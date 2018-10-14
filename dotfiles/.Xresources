@@ -1,0 +1,2 @@
+#include ".config/Xresources/color.conf"
+#include ".config/Xresources/urxvt.conf"

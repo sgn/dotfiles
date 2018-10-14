@@ -1,0 +1,30 @@
+#!/bin/bash
+
+cat <<EOF
+defaults
+auth		on
+tls		on
+tls_trust_file	/etc/ssl/certs/ca-certificates.crt
+logfile		~/.cache/msmtp/log
+aliases		~/.config/mail.aliases
+EOF
+
+echo "First account will be default account!" >&2
+
+while read -p "Email: " -r mail ; do
+	test -z "$mail" && break
+	test -z "$first" && first="$mail"
+	echo ""
+	echo "account $mail"
+	read -p "Host (smtp.gmail.com): " -r host
+	test -z "$host" && host="smtp.gmail.com"
+	echo "host $host"
+	read -p "Port (587): " -r port
+	test -z "$port" && port=587
+	echo "port $port"
+	echo "from $mail"
+	echo "user $mail"
+	echo "passwordeval \"pass mail/offline/$mail\""
+done
+
+printf "\naccount default: %s\n" "$first"

@@ -1,0 +1,46 @@
+#!/bin/sh
+
+## Internet Browsers that needs X
+for i in firefox chromium; do
+	command -v $i >/dev/null 2>&1 && \
+		BROWSER=$i && \
+		export BROWSER && \
+		break
+done
+
+## X resources
+if test -f "$HOME/.Xresources" && command -v xrdb >/dev/null; then
+	xrdb -merge "$HOME/.Xresources"
+fi
+
+## Disable Touchpad if exists
+if command -v xinput >/dev/null; then
+	for i in $(xinput list \
+			| grep -E -o 'Touchpad[[:space:]]+id=[[:digit:]]+' \
+			| cut -d= -f2); do
+		xinput disable "$i"
+	done
+fi
+
+## X bindkeys
+if command -v xbindkeys >/dev/null 2>&1; then
+	if test -f "$HOME/.xbindkeysrc" ; then
+		xbindkeys
+	fi
+fi
+
+## Turn off the bell
+command -v xset >/dev/null && xset -b
+
+## Lock on sleep
+command -v xss-lock >/dev/null && command -v slock >/dev/null && xss-lock slock &
+if command -v xss-lock >/dev/null 2>&1; then
+	if command -v i3lock >/dev/null 2>&1; then
+		xss-lock i3lock -n -c 000000 &
+	elif command -v slock >/dev/null 2>&1 ; then
+		xss-lock slock &
+	fi
+fi
+
+## Hook, should the last one to be sourced
+[ -f ~/.xprofile_hook ] && . ~/.xprofile_hook

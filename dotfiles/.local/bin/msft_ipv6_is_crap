@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if ! test -w /etc/gai.conf ; then
+	echo "We need write permission to /etc/gai.conf"
+	exit 1
+fi
+
+prefix=$(nslookup outlook.office365.com \
+		 | sed -nE 's/^Address:[[:space:]]+(([[:alnum:]]+:){2}).+/\1/p' \
+		 | head -1)
+if test -z "$prefix" ; then
+	echo 'IPv6 hadn'"'"' been resolved, fall back to default'
+	prefix="2603:1046:"
+fi
+
+printf 'precedence %s:/96 100\n' "$prefix"
+printf 'precedence %s:/96 100\n' "$prefix" >> /etc/gai.conf

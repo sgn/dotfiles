@@ -1,0 +1,13 @@
+*~
+\#*\#
+.\#*
+accels.scm
+*.elc
+local-*
+*.log
+*_fifo
+*.pem
+*.o
+*.hi
+*.errors
+xmonad-x86_64-linux
