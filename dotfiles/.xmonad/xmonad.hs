@@ -30,9 +30,9 @@ my_config = def
   , focusedBorderColor = "#646464"
   } `additionalKeys`
   [ ((my_mod_mask .|. shiftMask, xK_p),
-     spawn("dmenu_run " ++ my_dmenu_args ++" >/dev/null 2>&1"))
+     spawn("dmenu_run >/dev/null 2>&1"))
   , ((my_mod_mask              , xK_p),
-     spawn("j4-dmenu-desktop --no-generic --dmenu=\"dmenu -i " ++ my_dmenu_args ++ "\" --term=" ++ my_terminal ++" >/dev/null 2>&1"))
+     spawn("j4-dmenu-desktop --no-generic --term=" ++ my_terminal ++" >/dev/null 2>&1"))
   , ((my_mod_mask              , xK_f),
      spawn("firefox -P default"))
   , ((my_mod_mask .|. shiftMask, xK_f),
@@ -54,4 +54,3 @@ my_manage_hook = composeAll
 my_mod_mask = mod4Mask
 my_terminal = "urxvt"
 my_browser = "firefox"
-my_dmenu_args = "-b"
