@@ -2,19 +2,22 @@ Config { font = "xft:Monospace:bold:size=10, -misc-fixed-*-*-*-*-10-*-*-*-*-*-*-
        , fgColor = "white"
        , bgColor = "gray20"
        , position = Bottom
-       , commands = [ Run Date "%a %d %b %Y %H:%M:%S" "date" 10
+       , commands = [ Run Date "%H:%M:%S" "date" 10
+                    , Run Mail [ ("G: ","~/.cache/maildir/congdanhqx@gmail.com/Inbox")
+                               , ("L: ", "~/.cache/maildir/congdanhqx@live.com/Inbox")
+                               , ("S: ", "~/.cache/maildir/sgn.danh@gmail.com/Inbox")] "mail"
                     , Run Cpu [ "-t","CPU <total>%"
                               , "-H","50", "-h","red"] 10
-                    , Run Memory [ "-t","M <usedratio>%"
-                                 , "-H","70", "-h","red"] 10
-                    , Run Swap [ "-t","/<usedratio>%"
-                               , "-H","40", "-h","red"] 10
                     , Run DynNetwork [ "-t","<dev> <rx> <tx>"
                                       , "-H","8388608", "-h", "red"
                                       , "-S", "true"] 10
                     , Run Weather "VVTS" ["-t","<station>: <tempC>°C"] 36000
-                    -- , Run Volume
+                    , Run Volume "default" "Master"
+                                 [ "-t", "<status>"
+                                 ,  "--"
+                                 , "-O","Vol: <volume>%" -- 🔈
+                                 , "-o","Vol: <volume>%","-c","yellow"] 10 -- 🔇
                     , Run StdinReader
                     ]
-       , template = " %StdinReader% }{ %dynnetwork% │ %cpu% │ %memory%%swap% │ %VVTS% │ %date% "
+       , template = " %StdinReader% }{%dynnetwork% │ %cpu% %default:Master% %VVTS%│%mail% %date% "
        }
