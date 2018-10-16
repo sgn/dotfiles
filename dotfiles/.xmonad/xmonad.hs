@@ -52,5 +52,5 @@ my_manage_hook = composeAll
   [ className =? "Xmessage" --> doFloat ]
 
 my_mod_mask = mod4Mask
-my_terminal = "urxvt"
+my_terminal = "urxvtc"
 my_browser = "firefox"

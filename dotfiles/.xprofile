@@ -29,6 +29,8 @@ if command -v xbindkeys >/dev/null 2>&1; then
 	fi
 fi
 
+urxvtd -q -o -f
+
 ## Turn off the bell
 command -v xset >/dev/null && xset -b
 
