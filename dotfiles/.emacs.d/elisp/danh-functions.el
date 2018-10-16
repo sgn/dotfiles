@@ -1,11 +1,5 @@
 ;;; danh-functions
 
-(defun danh/call-process-for-output (prog &rest args)
-  "Call program `prog' and return its output"
-  (with-output-to-string
-    (with-current-buffer standard-output
-      (apply 'call-process prog nil t nil args))))
-
 (defun danh/define-keys (map &rest bindings)
   "Like `define-key' but for several bindings"
   (while bindings
