@@ -23,6 +23,7 @@ e2fsprogs
 ed
 emacs
 evince
+exiv2
 fakeroot
 file
 filesystem
@@ -54,6 +55,7 @@ i3blocks
 i3lock
 i3status
 ifplugd
+imagemagick
 inetutils
 intel-ucode
 iproute2
@@ -162,9 +164,11 @@ texlive-pictures
 texlive-pstricks
 texlive-publishers
 texlive-science
+tk
 tmux
 tor
 transmission-cli
+trash-cli
 ttf-dejavu
 ttf-droid
 unrar

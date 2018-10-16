@@ -1,0 +1,50 @@
+#!/bin/sh
+
+readonly KEY="$1"
+
+do_exif () {
+	while read file; do
+		exiv2 pr -q -pa "$file" 2>&1 | dmenu >/dev/null || true
+	done
+}
+
+orient () {
+	while read file; do
+		mogrify -auto-orient "$file"
+	done
+}
+
+rotate () {
+	degree="$1"
+	while read file; do
+		case "$(file -b -i "$file")" in
+		image/jpeg*)
+			jpegtran -rotate "$degree" -copy all -outfile "$file" "$file" ;;
+		*)
+			mogrify -rotate "$degree" "$file" ;;
+		esac
+	done
+}
+
+do_trash () {
+	while read file; do
+		trash "$file";
+	done
+}
+
+case "$KEY" in
+"C-c"|"c")
+	tr '\n' ' ' | xsel -i ;;
+"C-i"|"i")
+	do_exif ;;
+"C-o"|"o")
+	orient ;;
+"C-Left")
+	rotate 270 ;;
+"C-Right")
+	rotate  90 ;;
+"C-Up"|"C-Down")
+	rotate 180 ;;
+"C-d"|"d")
+	do_trash ;;
+esac
