@@ -16,3 +16,9 @@
 	XF86MonBrightnessDown
 "scrot 'Screenshot.%Y.%m.%d_%H.%M.%S.png' -e 'mv $f ~/Pictures'"
 	Print
+"firefox -P default"
+	Mod4 + f
+"firefox -P script --no-remote"
+	Mod4+Shift + f
+"xset s activate"
+	Mod4+Shift + l

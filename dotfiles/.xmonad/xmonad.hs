@@ -30,15 +30,7 @@ my_config = def
   , focusedBorderColor = "#646464"
   } `additionalKeys`
   [ ((my_mod_mask .|. shiftMask, xK_p),
-     spawn("dmenu_run >/dev/null 2>&1"))
-  , ((my_mod_mask              , xK_p),
-     spawn("j4-dmenu-desktop --no-generic --term=" ++ my_terminal ++" >/dev/null 2>&1"))
-  , ((my_mod_mask              , xK_f),
-     spawn("firefox -P default"))
-  , ((my_mod_mask .|. shiftMask, xK_f),
-     spawn("firefox -P script --no-remote"))
-  , ((my_mod_mask .|. shiftMask, xK_l),
-     spawn("xautolock -locknow"))]
+     spawn("j4-dmenu-desktop --no-generic --term=" ++ my_terminal ++" >/dev/null 2>&1"))]
   -- layouts
 my_layout_hook = smartBorders $ Full ||| tall ||| wide
   where

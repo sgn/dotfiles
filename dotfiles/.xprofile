@@ -32,17 +32,10 @@ fi
 urxvtd -q -o -f
 
 ## Turn off the bell
-command -v xset >/dev/null && xset -b
+command -v xset >/dev/null && xset -b s 180 120
 
 ## Lock on sleep
-command -v xss-lock >/dev/null && command -v slock >/dev/null && xss-lock slock &
-if command -v xss-lock >/dev/null 2>&1; then
-	if command -v i3lock >/dev/null 2>&1; then
-		xss-lock i3lock -n -c 000000 &
-	elif command -v slock >/dev/null 2>&1 ; then
-		xss-lock slock &
-	fi
-fi
+command -v xss-lock >/dev/null && command -v slock >/dev/null && xss-lock -- slock &
 
 ## Hook, should the last one to be sourced
 [ -f ~/.xprofile_hook ] && . ~/.xprofile_hook
