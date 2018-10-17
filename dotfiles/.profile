@@ -18,7 +18,7 @@
 ##
 ## Defaults umask = 0022
 ## Defaults umask_override
-umask 027
+#umask 027
 
 ## assumptions) you should always append entries to PATH, not prepend them.
 ## Usage: add_to_path <path> [prepend|append] [var]
