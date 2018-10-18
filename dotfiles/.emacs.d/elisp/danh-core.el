@@ -95,6 +95,8 @@
  "s-d" 'delete-window                    ; conflict with wm
  "s-S-d" 'delete-other-windows)
 
+(setq delete-by-moving-to-trash t)
+
 ;;;; Browse url at point
 (require 'browse-url)
 (global-set-key (kbd "C-<return>") 'browse-url)
