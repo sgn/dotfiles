@@ -111,6 +111,8 @@
 
 ;;;; git
 (require 'magit nil t)
+(with-eval-after-load 'diff-mode
+  (require 'diff-mode-))
 
 (when (require 'hl-todo nil t)
   (add-to-list 'hl-todo-keyword-faces
