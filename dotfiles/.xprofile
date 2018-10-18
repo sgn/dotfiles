@@ -38,6 +38,7 @@ keysym Control_L = Caps_Lock
 keysym Caps_Lock = Control_L
 add Lock = Caps_Lock
 add Control = Control_L
+remove mod4 = Hyper_L
 EOF
 
 ## Turn off the bell
