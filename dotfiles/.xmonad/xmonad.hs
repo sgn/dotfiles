@@ -1,48 +1,85 @@
 import XMonad
+import qualified XMonad.StackSet as W
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Renamed
+import XMonad.Layout.MultiColumns
 import XMonad.Util.EZConfig
 
+import Text.Printf
+
 -- launch XMonad with a status bar and overridden configuration
-main = xmonad =<< statusBar my_bar my_PP my_toggle_struts_key my_config
+main = xmonad =<< statusBar myBar myPp myToggleStrutsKey myConfig
 
-my_bar = "xmobar -x 0"
+myBar = "xmobar -x 0"
 
-my_PP = xmobarPP
+myPp = xmobarPP
   { ppSep  = " | "
   , ppTitle = xmobarColor "green" "" . shorten 140
   }
 
-my_toggle_struts_key XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
+myToggleStrutsKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
 
-my_config = def
-  { modMask            = my_mod_mask
-  , terminal           = my_terminal
+myConfig = def
+  { modMask            = myModMask
+  , terminal           = myTerminal
   , startupHook        = ewmhDesktopsStartup
-  , layoutHook         = my_layout_hook
+  , layoutHook         = myLayoutHook
   , handleEventHook    = ewmhDesktopsEventHook
   , logHook            = ewmhDesktopsLogHook
-  , manageHook         = my_manage_hook
+  , manageHook         = myManageHook
   , borderWidth        = 2
   , normalBorderColor  = "gray20"
   , focusedBorderColor = "#646464"
   } `additionalKeys`
-  [ ((my_mod_mask .|. shiftMask, xK_p),
-     spawn("j4-dmenu-desktop --no-generic --term=" ++ my_terminal ++" >/dev/null 2>&1"))]
-  -- layouts
-my_layout_hook = smartBorders $ Full ||| tall ||| wide
-  where
-    tall    = Tall nmaster delta ratio
-    wide    = renamed [ Replace "Wide" ] $ Mirror tall
-    nmaster = 1
-    ratio   = 1/2
-    delta   = 3/100
+  [ ((myModMask .|. shiftMask, xK_p),
+     spawn("j4-dmenu-desktop --no-generic --term=" ++ myTerminal ++" >/dev/null 2>&1"))
+  , ((myModMask              , xK_o),
+     if True -- will be change to condition to check number of windows soon
+     then windows W.focusDown
+     else spawn "xdotool key --clearmodifiers Hyper_L+o")
+  , ((myModMask .|. shiftMask, xK_o),
+     if True
+     then windows W.focusUp
+     else spawn "xdotool key --clearmodifiers Hyper_L+Shift+o")
+  -- , ((myModMask              , xK_h),
+     -- spawn("xdotool key --clearmodifiers Hyper_L+h"))
+  , ((myModMask,               xK_j     ),
+     spawn "xdotool key --clearmodifiers Hyper_L+j")
+     -- windows W.focusDown) -- %! Move focus to the next window
+  , ((myModMask,               xK_k     ),
+     spawn "xdotool key --clearmodifiers Hyper_L+k")
+     -- windows W.focusUp  ) -- %! Move focus to the previous window
+  , ((myModMask .|. shiftMask, xK_j     ),
+     spawn "xdotool key --clearmodifiers Hyper_L+Shift+j")
+     -- windows W.swapDown  ) -- %! Swap the focused window with the next window
+  , ((myModMask .|. shiftMask, xK_k     ),
+     spawn "xdotool key --clearmodifiers Hyper_L+Shift+k")
+     -- windows W.swapUp    ) -- %! Swap the focused window with the previous window
 
-my_manage_hook = composeAll
+    -- resizing the master/slave ratio
+  , ((myModMask,               xK_h     ),
+     if True
+     then sendMessage Shrink -- %! Shrink the master area
+     else spawn "xdotool key --clearmodifiers Hyper_L+h")
+  , ((myModMask,               xK_l ),
+     if True
+     then sendMessage Expand -- %! Expand the master area
+     else spawn "xdotool key --clearmofifiers Hyper_L+l")
+  ]
+  -- layouts
+-- myLayoutHook = smartBorders $ tall ||| Full ||| wide
+--   where
+--     tall    = Tall nmaster delta ratio
+--     wide    = renamed [ Replace "Wide" ] $ Mirror tall
+--     nmaster = 1
+--     ratio   = 1/2
+--     delta   = 3/100
+myLayoutHook = multiCol [1] 1 0.03 (-0.5)
+
+myManageHook = composeAll
   [ className =? "Xmessage" --> doFloat ]
 
-my_mod_mask = mod4Mask
-my_terminal = "urxvtc"
-my_browser = "firefox"
+myModMask = mod4Mask
+myTerminal = "urxvtc"
