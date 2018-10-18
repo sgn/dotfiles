@@ -47,6 +47,7 @@
         pinentry                        ; gpg
         ztree
         git-commit                      ; git
+        magit
         hl-todo                         ; todo
         helm-mu                         ; mu4e
         mu4e-maildirs-extension
@@ -109,9 +110,7 @@
   (dired-async-mode))
 
 ;;;; git
-(when (fboundp 'git-commit-setup-check-buffer)
-  (add-hook 'find-file-hook 'git-commit-setup-check-buffer)
-  (add-hook 'git-commit-mode-hook 'danh/reset-fill-column))
+(require 'magit nil t)
 
 (when (require 'hl-todo nil t)
   (add-to-list 'hl-todo-keyword-faces
