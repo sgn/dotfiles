@@ -31,6 +31,15 @@ fi
 
 urxvtd -q -o -f
 
+cat <<EOF | xmodmap -
+remove Lock = Caps_Lock
+remove Control = Control_L
+keysym Control_L = Caps_Lock
+keysym Caps_Lock = Control_L
+add Lock = Caps_Lock
+add Control = Control_L
+EOF
+
 ## Turn off the bell
 command -v xset >/dev/null && xset -b s 180 120
 
