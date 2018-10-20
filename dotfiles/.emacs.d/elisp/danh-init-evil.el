@@ -21,6 +21,11 @@
 (when (require 'with-editor nil t)
   (add-hook 'with-editor-mode-hook 'evil-insert-state))
 
+;;;; Window management
+(danh/global-set-keys
+ "s-j" 'evil-window-top-left
+ "H-j" 'evil-window-bottom-right)
+
 ;; https://emacs.stackexchange.com/questions/608/evil-map-keybindings-the-vim-way
 (defun danh/jump-to-tag ()
    (interactive)

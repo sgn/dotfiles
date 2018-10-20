@@ -21,4 +21,4 @@
 "firefox -P script --no-remote"
 	Mod4+Shift + f
 "xset s activate"
-	Mod4+Shift + l
+	Mod4+Control + l

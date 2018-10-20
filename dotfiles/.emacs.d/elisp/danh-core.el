@@ -70,30 +70,84 @@
 ;; Source: Reddit
 (setq split-height-threshold nil
       split-width-threshold 160)
+(defun danh/window-resize-unsafe (delta horizontal)
+  (cond
+   ((window-fixed-size-p nil horizontal) nil)
+   ((window--resizable-p nil delta horizontal)
+    (window-resize nil delta horizontal))
+   ((window--resizable-p nil delta horizontal 'preserved)
+    (window-resize nil delta horizontal 'preserved))))
+(defun danh/enlarge-window-real (delta)
+  (interactive "p")
+  (let ((minibuffer-window (minibuffer-window)))
+    (when (window-preserved-size)
+      (window-preserve-size))
+    (when (window-preserved-size nil t)
+      (window-preserve-size nil t))
+    (cond
+     ((zerop delta))
+     ((and (window-size-fixed-p)
+           (window-size-fixed-p nil t))
+      (user-error "Selected window has fixed size"))
+     ((window-minibuffer-p)
+      (window--resize-mini-window
+       (selected-window)
+       (* delta (frame-char-height))))
+     ((and (window-full-height-p)
+           (eq (window-frame minibuffer-window) (selected-frame))
+           (not resize-mini-windows))
+      (window--resize-mini-window
+       minibuffer-window (* (- delta) (frame-char-height))))
+     (t
+      (if (danh/window-resize-unsafe delta nil)
+          (danh/window-resize-unsafe delta t)
+        (when (not (danh/window-resize-unsafe delta t))
+          (user-error "Can't resize selected window")))))))
+(defun danh/shrink-window-real (delta)
+  (interactive "p")
+  (danh/enlarge-window-real (- delta)))
 
 ;;;; Window
+;; super and hyper is largely duplicated with this configuration
+;; to avoid extra work in wm
 (danh/global-set-keys
  ;; windmove
  "S-<left>" 'windmove-left
  "s-h" 'windmove-left                    ; conflict with wm?
+ "H-h" 'windmove-left
  "S-<right>" 'windmove-right
  "s-l" 'windmove-right                   ; conflict with wm?
+ "H-l" 'windmove-right
  "S-<up>" 'windmove-up
  "s-k" 'windmove-up                      ; conflict with wm?
+ "H-k" 'windmove-up
  "S-<down>" 'windmove-down
  "s-j" 'windmove-down                    ; conflict with wm?
+ "H-j" 'windmove-down
  "s-o" 'other-window
+ "H-o" 'other-window
+ ;; "s-t" and "H-t" will be bound to evil-window-top-left
+ ;; "s-b" and "H-b" will be bound to evil-window-bottom-right
  ;; win resize
- "s--" 'shrink-window-horizontally
- "s-H" 'shrink-window-horizontally
- "s-+" 'enlarge-window-horizontally
- "s-=" 'enlarge-window-horizontally
- "s-L" 'enlarge-window-horizontally
+ "s-=" 'danh/enlarge-window-real
+ "H-=" 'danh/enlarge-window-real
+ "s-+" 'danh/enlarge-window-real
+ "H-+" 'danh/enlarge-window-real
+ "s--" 'danh/shrink-window-real
+ "H--" 'danh/shrink-window-real
+ "s-S-<up>" 'enlarge-window
+ "s-S-<down>" 'shrink-window
+ "s-S-<left>" 'shrink-window-horizontally
+ "s-S-<right>" 'enlarge-window-horizontally
  "s-J" 'shrink-window
+ "H-J" 'shrink-window
  "s-K" 'enlarge-window
+ "H-K" 'enlarge-window
  ;; Delete Windows
  "s-d" 'delete-window                    ; conflict with wm
- "s-S-d" 'delete-other-windows)
+ "H-d" 'delete-window                    ; conflict with wm
+ "s-D" 'delete-other-windows
+ "H-D" 'delete-other-windows)
 
 (setq delete-by-moving-to-trash t)
 
