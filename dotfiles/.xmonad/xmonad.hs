@@ -6,7 +6,7 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.Renamed
 import XMonad.Layout.MultiColumns
 import XMonad.Util.EZConfig
-
+import Graphics.X11.ExtraTypes.XF86
 import Text.Printf
 
 -- launch XMonad with a status bar and overridden configuration
@@ -67,6 +67,19 @@ myConfig = def
      if True
      then sendMessage Expand -- %! Expand the master area
      else spawn "xdotool key --clearmofifiers Hyper_L+l")
+  , ((myModMask,               xK_f), spawn "firefox -P default")
+  , ((myModMask .|. shiftMask, xK_f), spawn "firefox -P script --no-remote")
+  -- lock the computer
+  , ((myModMask .|. controlMask, xK_l), spawn "xset s activate")
+  -- backlight: https://wiki.archlinux.org/index.php/Xbindkeys#Backlight_control
+  , ((0, xF86XK_MonBrightnessUp),   spawn "xbacklight -inc 20")
+  , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 20")
+  -- https://wiki.archlinux.org/index.php/PulseAudio/Examples#Set_the_default_output_source
+  , ((0, xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -2%")
+  , ((0, xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +2%")
+  , ((0, xF86XK_AudioMute),        spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
+  , ((0, xK_Print),
+     spawn "scrot 'Screenshot.%Y.%m.%d_%H.%M.%S.png' -e 'mv $f ~/Pictures'")
   ]
   -- layouts
 -- myLayoutHook = smartBorders $ tall ||| Full ||| wide

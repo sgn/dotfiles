@@ -109,6 +109,12 @@ pass-otp
 patch
 pciutils
 perl
+perl-capture-tiny
+perl-email-mime
+perl-file-path-expand
+perl-ipc-run
+perl-module-pluggable
+perl-net-imap-simple
 pkgconf
 playerctl
 procmail
@@ -181,7 +187,6 @@ w3m
 weechat
 which
 wmctrl
-xbindkeys
 xclip
 xdg-user-dirs
 xdotool

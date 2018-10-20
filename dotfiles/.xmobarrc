@@ -16,7 +16,7 @@ Config { font = "xft:Monospace:bold:size=10, -misc-fixed-*-*-*-*-10-*-*-*-*-*-*-
                                  [ "-t", "<status>"
                                  ,  "--"
                                  , "-O","Vol: <volume>%" -- 🔈
-                                 , "-o","Vol: <volume>%","-c","yellow"] 10 -- 🔇
+                                 , "-o","Vol: <volume>%","-c","yellow"] 1 -- 🔇
                     , Run StdinReader
                     ]
        , template = " %StdinReader% }{%dynnetwork% │ %cpu% %default:Master% %VVTS%│%mail% %date% "
