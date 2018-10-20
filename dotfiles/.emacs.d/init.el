@@ -31,7 +31,7 @@
         helm                            ; helm
         helm-ls-git
         helm-descbinds
-        helm-filesets
+        ;; helm-filesets
         wgrep-helm
         company                         ; company
         helm-company
