@@ -45,6 +45,8 @@ This works with my particular setup since that's how I named my folder"
  ;; Don't keep sent e-mail buffer.
  message-kill-buffer-on-exit t
  message-send-mail-function 'message-send-mail-with-sendmail
+ sendmail-program "/usr/bin/msmtp"
+ ;; message-send-mail-function 'smtpmail-multi-send-it
  message-sendmail-envelope-from 'header
  mail-user-agent 'mu4e-user-agent
  mu4e-compose-dont-reply-to-self t
