@@ -53,10 +53,15 @@
         mu4e-maildirs-extension
         flycheck                        ; flycheck
         helm-flycheck
-        w3m
+        w3m                             ; w3m
         apel
         helm-w3m
-        haskell-mode
+        haskell-mode                    ; haskell
+        haskell-emacs
+        pass                            ; password-store
+        pass-otp
+        helm-pass
+        helm-youtube
         which-key
         pdf-tools
         transmission
