@@ -2,17 +2,6 @@
 
 (setq gc-cons-threshold 100000000)
 
-;;; Temporary disable the file name handler
-(setq default-file-name-handler-alist file-name-handler-alist)
-(setq file-name-handler-alist nil)
-;; https://www.reddit.com/r/emacs/comments/83l1g1/creating_a_quicker_startup_in_a_fashion_like/dwe41y7/
-(defun danh/merge-file-name-handler-alist ()
-  (interactive)
-  (if (not file-name-handler-alist)
-      (setq file-name-handler-alist default-file-name-handler-alist)
-    (nconc file-name-handler-alist default-file-name-handler-alist)))
-(add-hook 'after-init-hook 'danh/merge-file-name-handler-alist)
-
 ;;;; Prefer newer source over old bytecode
 (setq load-prefer-newer t)
 
