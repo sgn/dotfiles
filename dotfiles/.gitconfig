@@ -32,3 +32,5 @@
 	ll = ls-files
 	llm = ls-files -m
 	lg = log --oneline --graph
+[rerere]
+	enabled = true
