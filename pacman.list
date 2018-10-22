@@ -48,6 +48,9 @@ grep
 gtypist
 gzip
 haskell-http2
+haskell-prettyprinter
+haskell-text-builder
+haskell-text-printer
 htop
 hwinfo
 i3-wm
@@ -89,7 +92,6 @@ mit-scheme
 mlocate
 mpv
 msmtp
-msmtp-mta
 mu
 mutt
 nasm
@@ -97,6 +99,8 @@ netctl
 nethogs
 nitrogen
 noto-fonts-cjk
+noto-fonts-emoji
+noto-fonts-extra
 ntp
 ocl-icd
 openssh
@@ -177,6 +181,8 @@ transmission-cli
 trash-cli
 ttf-dejavu
 ttf-droid
+ttf-font-awesome
+ttf-hack
 unrar
 unzip
 usbutils
