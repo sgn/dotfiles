@@ -2,10 +2,12 @@ import XMonad
 import qualified XMonad.StackSet as W
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.UrgencyHook
+import XMonad.Layout.Fullscreen
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Renamed
-import XMonad.Layout.MultiColumns
 import XMonad.Util.EZConfig
+import XMonad.Util.Scratchpad
 import Graphics.X11.ExtraTypes.XF86
 import Text.Printf
 
@@ -17,11 +19,12 @@ myBar = "xmobar -x 0"
 myPp = xmobarPP
   { ppSep  = " | "
   , ppTitle = xmobarColor "green" "" . shorten 140
+  , ppUrgent = xmobarColor "purple" "" . wrap "{" "}"
   }
 
-myToggleStrutsKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
+myToggleStrutsKey XConfig { XMonad.modMask = modMask } = (modMask, xK_v)
 
-myConfig = def
+myConfig = withUrgencyHook NoUrgencyHook $ def
   { modMask            = myModMask
   , terminal           = myTerminal
   , startupHook        = ewmhDesktopsStartup
@@ -35,6 +38,12 @@ myConfig = def
   } `additionalKeys`
   [ ((myModMask .|. shiftMask, xK_p),
      spawn("j4-dmenu-desktop --no-generic --term=" ++ myTerminal ++" >/dev/null 2>&1"))
+  , ((myModMask,               xK_s),
+     scratchpadSpawnActionTerminal "urxvt")
+  , ((myModMask .|. shiftMask, xK_s),
+     spawn "em")
+  , ((myModMask,               xK_u),
+     focusUrgent)
   , ((myModMask              , xK_o),
      if True -- will be change to condition to check number of windows soon
      then windows W.focusDown
@@ -82,17 +91,28 @@ myConfig = def
      spawn "scrot 'Screenshot.%Y.%m.%d_%H.%M.%S.png' -e 'mv $f ~/Pictures'")
   ]
   -- layouts
--- myLayoutHook = smartBorders $ tall ||| Full ||| wide
---   where
---     tall    = Tall nmaster delta ratio
---     wide    = renamed [ Replace "Wide" ] $ Mirror tall
---     nmaster = 1
---     ratio   = 1/2
---     delta   = 3/100
-myLayoutHook = multiCol [1] 1 0.03 (-0.5)
+myLayoutHook = smartBorders $ tall ||| Full ||| wide
+  where
+    tall    = Tall nmaster delta ratio
+    wide    = renamed [ Replace "Wide" ] $ Mirror tall
+    nmaster = 1
+    ratio   = 1/2
+    delta   = 3/100
+-- myLayoutHook = smartBorders $ multiCol [1] 1 0.03 (-0.5)
 
-myManageHook = composeAll
+myManageHook = myFloatHook
+               <+> fullscreenManageHook
+               <+> myScratchpadManageHook
+
+myFloatHook = composeAll
   [ className =? "Xmessage" --> doFloat ]
+
+myScratchpadManageHook = scratchpadManageHook (W.RationalRect l t w h)
+  where
+    h = 0.2
+    w = 1
+    t = 0
+    l = 0
 
 myModMask = mod4Mask
 myTerminal = "urxvtc"
