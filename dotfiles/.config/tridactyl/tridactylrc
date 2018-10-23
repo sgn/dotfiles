@@ -1,0 +1,11 @@
+" toogle comment on Reddit/Hacker News
+bind ;c hint -c [class*="expand"],[class="togg"]
+
+" yank git{hub|lab} url
+bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
+
+" editor
+js tri.browserBg.runtime.getPlatformInfo().then(os=>{const editorcmd = os.os=="linux" ? "emw" : "auto"; tri.config.set("editorcmd", editorcmd)})
+
+" search
+set searchengine duckduckgo
