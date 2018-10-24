@@ -1,5 +1,6 @@
 import XMonad
 import qualified XMonad.StackSet as W
+import XMonad.Actions.CycleWS
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.UrgencyHook
@@ -8,6 +9,7 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.Renamed
 import XMonad.Util.EZConfig
 import XMonad.Util.Scratchpad
+import XMonad.Util.WorkspaceCompare
 import Graphics.X11.ExtraTypes.XF86
 import Text.Printf
 
@@ -30,11 +32,11 @@ myConfig = withUrgencyHook NoUrgencyHook $ def
   , startupHook        = ewmhDesktopsStartup
   , layoutHook         = myLayoutHook
   , handleEventHook    = ewmhDesktopsEventHook
-  , logHook            = ewmhDesktopsLogHook
+  , logHook            = myLogHook
   , manageHook         = myManageHook
   , borderWidth        = 2
   , normalBorderColor  = "gray20"
-  , focusedBorderColor = "#646464"
+  , focusedBorderColor = "purple"
   } `additionalKeys`
   [ ((myModMask .|. shiftMask, xK_p),
      spawn("j4-dmenu-desktop --no-generic --term=" ++ myTerminal ++" >/dev/null 2>&1"))
@@ -44,6 +46,8 @@ myConfig = withUrgencyHook NoUrgencyHook $ def
      spawn "em")
   , ((myModMask,               xK_u),
      focusUrgent)
+  , ((myModMask,               xK_c),
+     spawn "urxvtc -name weechat -e weechat-curses")
   , ((myModMask              , xK_o),
      if True -- will be change to condition to check number of windows soon
      then windows W.focusDown
@@ -90,6 +94,9 @@ myConfig = withUrgencyHook NoUrgencyHook $ def
   , ((0, xK_Print),
      spawn "scrot 'Screenshot.%Y.%m.%d_%H.%M.%S.png' -e 'mv $f ~/Pictures'")
   ]
+  where
+    notSP = (return $ ("NSP" /=) . W.tag) :: X (WindowSpace -> Bool)
+
   -- layouts
 myLayoutHook = smartBorders $ tall ||| Full ||| wide
   where
@@ -105,7 +112,11 @@ myManageHook = myFloatHook
                <+> myScratchpadManageHook
 
 myFloatHook = composeAll
-  [ className =? "Xmessage" --> doFloat ]
+  [ className =? "Xmessage" --> doFloat,
+    (className =? "Firefox" <&&> resource =? "Dialog") --> doFloat,
+    className =? "weechat"  --> doShift "9"
+  ]
+
 
 myScratchpadManageHook = scratchpadManageHook (W.RationalRect l t w h)
   where
@@ -113,6 +124,8 @@ myScratchpadManageHook = scratchpadManageHook (W.RationalRect l t w h)
     w = 1
     t = 0
     l = 0
+
+myLogHook = ewmhDesktopsLogHook
 
 myModMask = mod4Mask
 myTerminal = "urxvtc"
