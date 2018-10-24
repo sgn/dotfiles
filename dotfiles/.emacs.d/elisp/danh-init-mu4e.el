@@ -9,14 +9,21 @@
       shr-use-colors nil
       )
 
-(setq danh/default-user-mail-address user-mail-address)
+;; (when (not (bound-and-true-p danh/default-user-mail-address))
+  ;; (setq danh/default-user-mail-address user-mail-address))
+(defvar danh/default-user-mail-address
+  user-mail-address
+  "default email address")
 
 (defun danh/mu4e-mail-from-maildir (msg)
   "Take email from the maildir.
 This works with my particular setup since that's how I named my folder"
   (if (not msg)
       danh/default-user-mail-address
-    (cadr (split-string (mu4e-message-field msg :maildir) "/"))))
+    (let ((maildir (cadr (split-string (mu4e-message-field msg :maildir) "/"))))
+      (if (string-match-p "@" maildir)
+          maildir
+        danh/default-user-mail-address))))
 
 (defun danh/mu4e-sent-folder (msg)
   (format "/%s/Sent" (danh/mu4e-mail-from-maildir msg)))
@@ -38,7 +45,7 @@ This works with my particular setup since that's how I named my folder"
  ;;; fetch mail
  mu4e-get-mail-command "mbsync -a"
  mu4e-update-interval 90
- ;; mu4e-headers-auto-update nil
+ mu4e-headers-auto-update nil
  mu4e-change-filenames-when-moving t
 
  ;;; compose mail
@@ -49,7 +56,7 @@ This works with my particular setup since that's how I named my folder"
  ;; message-send-mail-function 'smtpmail-multi-send-it
  message-sendmail-envelope-from 'header
  mail-user-agent 'mu4e-user-agent
- mu4e-compose-dont-reply-to-self t
+ message-user-fqdn "congdanhqx.xyz" mu4e-compose-dont-reply-to-self t
  mu4e-compose-hidden-headers nil
  message-citation-line-function 'message-insert-formatted-citation-line
  message-citation-line-format "On %a, %b %d %Y, %N wrote:\n"
@@ -116,7 +123,7 @@ This works with my particular setup since that's how I named my folder"
       '("congdanhqx@gmail.com"
         "congdanhqx@live.com"
         "kungdein@gmail.com"
-        "danh.danh@gmail.com"))
+        "sgn.danh@gmail.com"))
 
 ;;; Press "aV" to view in browser.
 (add-to-list 'mu4e-view-actions '("ViewInBrowser" . mu4e-action-view-in-browser) t)
@@ -146,7 +153,7 @@ If MSG is nil, use message at point."
 (setq danh/mu4e-maildir-shortcuts-common
       '(("/congdanhqx@gmail.com/Inbox"   . ?m)
         ("/congdanhqx@gmail.com/Drafts" . ?d)
-        ("/danh.danh@gmail.com/Inbox" . ?g)
+        ("/sgn.danh@gmail.com/Inbox" . ?g)
         ("/congdanhqx@live.com/Inbox" . ?l)))
 (setq mu4e-maildir-shortcuts
       (append danh/mu4e-maildir-shortcuts-common
