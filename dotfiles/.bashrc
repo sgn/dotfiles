@@ -5,10 +5,7 @@
 if test -f /usr/share/git/git-prompt.sh; then
 	source /usr/share/git/git-prompt.sh
 fi
-GIT_PS1_SHOWCOLORHINTS=1
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWUNTRACKEDFILES=1
-GIT_PS1_SHOWUPSTREAM="verbose"
+
 __my_command_prompt () {
 	local my_usr_host='\033[0;32m\u\033[0;37m@\033[0;32m\h'
 	local my_pwd='\033[0;36m\W'

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+TMP=$(mktemp) && cat > $TMP && emc $TMP; rm $TMP

@@ -1,3 +1,8 @@
 #!/bin/bash
 [[ -f ~/.profile ]] && . ~/.profile
-[[ -f ~/.bashrc ]] && . ~/.bashrc
+
+if [ -z "$DISPLAY" ] && [ "$(tty)" = '/dev/tty1' ] ; then
+	exec xinit -- vt01
+else
+	[[ -f ~/.bashrc ]] && . ~/.bashrc
+fi

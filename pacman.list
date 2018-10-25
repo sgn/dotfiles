@@ -5,6 +5,7 @@ bash
 bash-completion
 biber
 bind-tools
+bitlbee
 bzip2
 c2hs
 clang
@@ -13,6 +14,7 @@ coreutils
 cowsay
 cronie
 cryptsetup
+dash
 device-mapper
 dhcpcd
 dialog
@@ -33,6 +35,7 @@ firejail
 fish
 foremost
 fortune-mod
+fzf
 gawk
 gcc
 gcc-libs
@@ -45,6 +48,7 @@ glibc
 gptfdisk
 graphviz
 grep
+grml-zsh-config
 gtypist
 gzip
 haskell-http2
@@ -71,7 +75,9 @@ jfsutils
 jq
 jshon
 less
+libotr
 libraw
+libreoffice-fresh
 licenses
 linux
 linux-lts
@@ -103,6 +109,7 @@ noto-fonts-emoji
 noto-fonts-extra
 ntp
 ocl-icd
+openresolv
 openssh
 p7zip
 pacman
@@ -214,3 +221,7 @@ youtube-dl
 zbar
 zip
 zsh
+zsh-autosuggestions
+zsh-completions
+zsh-lovers
+zsh-syntax-highlighting

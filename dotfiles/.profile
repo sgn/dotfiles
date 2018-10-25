@@ -127,13 +127,11 @@ add_to_path "$HOME/.local/share/man" begin MANPATH
 ## intended. This could have detrimental effects.
 # export LD_LIBRARY_PATH=$HOME/.local/lib
 
-GEM_HOME=$(ruby -e 'print Gem.user_dir')
-export GEM_HOME
-add_to_path "$GEM_HOME/bin"
+if command -v ruby >/dev/null 2>&1; then
+	GEM_HOME=$(ruby -e 'print Gem.user_dir')
+	export GEM_HOME
+	add_to_path "$GEM_HOME/bin"
+fi
 
 ## Specific to local computer. Should be sourced last
 [ -f ~/.profile_local ] && . ~/.profile_local
-#
-umask 077
-
-[ -z "$DISPLAY" ] && [ "$(tty)" = '/dev/tty1' ] && exec xinit -- vt01
