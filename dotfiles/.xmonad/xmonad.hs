@@ -113,7 +113,7 @@ myManageHook = myFloatHook
 
 myFloatHook = composeAll
   [ className =? "Xmessage" --> doFloat,
-    (className =? "Firefox" <&&> resource =? "Dialog") --> doFloat,
+    (className =? "Firefox" <&&> (resource =? "Dialog" <||> resource=? "Browser")) --> doFloat,
     className =? "weechat"  --> doShift "9"
   ]
 
