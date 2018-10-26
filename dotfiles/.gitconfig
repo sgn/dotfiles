@@ -24,13 +24,44 @@
 [merge]
 	tool = ediff
 [alias]
-	st = status
-	dc = diff --cached
-	dcc = diff --cached --check
+	st = status --short
+	di = diff -M -p --stat
+	diw = !git di -w
+	diww = !git diw --word-diff=color
+	diwwd = !git diww --word-diff-regex=.
+	dc = !git di --cached
+	dcw = !git diw --cached
+	dcww = !git diww --cached
+	dcwwd = !git diwwd --cached
+	dcc = !git dc --check
 	ci = commit
+	cia = commit --amend --no-edit
 	co = checkout
 	ll = ls-files
 	llm = ls-files -m
 	lg = log --oneline --graph
+	ss = show -s
+	s = show -M -p --stat
+	sw = !git s -w
+	sww = !git sw --word-diff=color
+	swwd = !git sww --word-diff-regex=.
+	summary = show -s --date=short --pretty='format:commit %h, (\"%s\", %ad)'
+	env = !env | grep ^GIT_
 [rerere]
 	enabled = true
+	autoupdate = true
+[pull]
+	rebase = true
+[push]
+	default = upstream
+[grep]
+	lineNumber = true
+[log]
+	decorate = short
+	abbrevCommit = true
+[diff]
+	colorMoved = true
+[status]
+	showStash = true
+[mailinfo]
+	scissors = true
