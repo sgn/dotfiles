@@ -43,7 +43,7 @@ myConfig = withUrgencyHook NoUrgencyHook $ def
   , ((myModMask,               xK_s),
      scratchpadSpawnActionTerminal "urxvt")
   , ((myModMask .|. shiftMask, xK_s),
-     spawn "em")
+     spawn "emacsclient -nc -a ''")
   , ((myModMask,               xK_u),
      focusUrgent)
   , ((myModMask,               xK_c),
