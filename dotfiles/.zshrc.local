@@ -31,11 +31,11 @@ zle -N mquote && bindkey '^q' mquote
 rationalise-dot() {
 local MATCH
 if [[ $LBUFFER =~ '(^|/| |	|'$'\n''|\||;|&)\.\.$' ]]; then
- LBUFFER+=/
- zle self-insert
- zle self-insert
+	LBUFFER+=/
+	zle self-insert
+	zle self-insert
 else
- zle self-insert
+	zle self-insert
 fi
 }
 zle -N rationalise-dot
@@ -107,41 +107,39 @@ ot () { [[ $REPLY -ot ${~1} ]] }
 
 ## List all occurrences of programm in current PATH
 plap() {
-    emulate -L zsh
-    if [[ $# = 0 ]] ; then
-        echo "Usage:    $0 program"
-        echo "Example:  $0 zsh"
-        echo "Lists all occurrences of program in the current PATH."
-    else
-        ls -l ${^path}/*$1*(*N)
-    fi
+	emulate -L zsh
+	if [[ $# = 0 ]] ; then
+		echo "Usage:    $0 program"
+		echo "Example:  $0 zsh"
+		echo "Lists all occurrences of program in the current PATH."
+	else
+		ls -l ${^path}/*$1*(*N)
+	fi
 }
 
 ## Find out which libs define a symbol
 lcheck() {
-    if [[ -n "$1" ]] ; then
-        nm -go /usr/lib/lib*.a 2>/dev/null | grep ":[[:xdigit:]]\{8\} . .*$1"
-    else
-        echo "Usage: lcheck <function>" >&2
-    fi
+	if [[ -n "$1" ]] ; then
+		nm -go /usr/lib/lib*.a 2>/dev/null | grep ":[[:xdigit:]]\{8\} . .*$1"
+	else
+		echo "Usage: lcheck <function>" >&2
+	fi
 }
 
 ## Memory overview
 memusage() {
-    ps aux | awk '{if (NR > 1) print $5;
-                   if (NR > 2) print "+"}
-                   END { print "p" }' | dc
+	ps aux | awk '{if (NR > 1) print $5; if (NR > 2) print "+"} END { print "p" }' | dc
 }
 
 ## print hex value of a number
 hex() {
-    emulate -L zsh
-    if [[ -n "$1" ]]; then
-        printf "%x\n" $1
-    else
-        print 'Usage: hex <number-to-convert>'
-        return 1
-    fi
+	emulate -L zsh
+	if [[ -n "$1" ]]; then
+		printf "%x\n" $1
+	else
+		print 'Usage: hex <number-to-convert>'
+		return 1
+	fi
 }
 
 ## log out? set timeout in seconds...
