@@ -65,3 +65,10 @@
 	showStash = true
 [mailinfo]
 	scissors = true
+[sendemail]
+	smtpserver = smtp.gmail.com
+	smtpencryption = ssl
+	smtpuser = congdanhqx@gmail.com
+	confirm = always
+[credential]
+	helper = pass
