@@ -142,6 +142,12 @@ hex() {
 	fi
 }
 
+weather () {
+	station="${1-VVTS}"
+	station="$station:u"
+	curl "http://tgftp.nws.noaa.gov/data/observations/metar/decoded/$station.TXT"
+}
+
 ## log out? set timeout in seconds...
 ## ...and do not log out in some specific terminals:
 #if [[ "${TERM}" == ([Exa]term*|rxvt|dtterm|screen*) ]] ; then
