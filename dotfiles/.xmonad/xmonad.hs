@@ -87,10 +87,10 @@ myConfig = withUrgencyHook NoUrgencyHook $ def
   -- backlight: https://wiki.archlinux.org/index.php/Xbindkeys#Backlight_control
   , ((0, xF86XK_MonBrightnessUp),   spawn "xbacklight -inc 20")
   , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 20")
-  -- https://wiki.archlinux.org/index.php/PulseAudio/Examples#Set_the_default_output_source
-  , ((0, xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -2%")
-  , ((0, xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +2%")
-  , ((0, xF86XK_AudioMute),        spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
+  -- https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture#Keyboard_volume_control
+  , ((0, xF86XK_AudioLowerVolume), spawn "amixer set Master 2%-")
+  , ((0, xF86XK_AudioRaiseVolume), spawn "amixer set Master 2%+")
+  , ((0, xF86XK_AudioMute),        spawn "amixer set Master toggle")
   , ((0, xK_Print),
      spawn "scrot 'Screenshot.%Y.%m.%d_%H.%M.%S.png' -e 'mv $f ~/Pictures'")
   ]
