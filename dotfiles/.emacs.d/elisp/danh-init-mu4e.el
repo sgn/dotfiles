@@ -70,6 +70,7 @@ This works with my particular setup since that's how I named my folder"
                        (:from-or-to . 22)
                        (:thread-subject))
  mu4e-headers-time-format "%R"
+ mu4e-headers-sort-direction 'ascending
  mu4e-view-show-addresses t
  mu4e-view-show-images nil
  mu4e-view-image-max-width 800
