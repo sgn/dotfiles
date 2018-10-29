@@ -133,5 +133,8 @@ if command -v ruby >/dev/null 2>&1; then
 	add_to_path "$GEM_HOME/bin"
 fi
 
+_JAVA_AWT_WM_NONREPARENTING=1
+export _JAVA_AWT_WM_NONREPARENTING
+
 ## Specific to local computer. Should be sourced last
 [ -f ~/.profile_local ] && . ~/.profile_local
