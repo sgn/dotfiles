@@ -11,3 +11,7 @@ local-*
 *.hi
 *.errors
 xmonad-x86_64-linux
+pkg/
+src/
+*.pkg.tar.xz
+*-git/
