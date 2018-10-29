@@ -141,6 +141,9 @@
 (when (require 'flycheck nil t)
   (require 'danh-init-spelling))
 
+(when (require 'rainbow-delimiters nil t)
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+
 ;; https://stackoverflow.com/questions/4236808/syntax-highlight-a-vimrc-file-in-emacs/4238738
 (define-generic-mode 'vimrc-generic-mode
   '()

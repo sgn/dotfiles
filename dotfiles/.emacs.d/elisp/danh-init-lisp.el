@@ -64,15 +64,11 @@
 
 (define-key lisp-mode-shared-map (kbd "C-x ?") 'danh/outline-lisp)
 
-(require 'rainbow-delimiters nil t)
-
 (dolist (hook '(common-lisp-lisp-mode-hook
                 emacs-lisp-mode-hook
                 scheme-mode-hook))
   (add-hook hook 'danh/turn-off-indent-tabs)
-  (add-hook hook 'danh/init-lispy)
-  (when (fboundp 'rainbow-delimiters-mode)
-    (add-hook hook #'rainbow-delimiters-mode)))
+  (add-hook hook 'danh/init-lispy))
 
 ;;;; Common LISP.
 (setq inferior-lisp-program "sbcl --noinform")
