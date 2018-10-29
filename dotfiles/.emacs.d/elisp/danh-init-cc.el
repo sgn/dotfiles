@@ -44,9 +44,9 @@ provided."
                         (shell-quote-argument (file-name-sans-extension file))
                         (if c++-p
                           (or (getenv "CXXFLAGS") danh/cxxflags)
-                          (or (getenv "CFLAGS") danh/cflags)
-                          (or (getenv "LDFLAGS") danh/ldflags)
-                          (or (getenv "LDLIBS") danh/ldlibs)))))))))
+                          (or (getenv "CFLAGS") danh/cflags))
+                        (or (getenv "LDFLAGS") danh/ldflags)
+                        (or (getenv "LDLIBS") danh/ldlibs))))))))
 
 (defun danh/make-clean ()
   "Find Makefile and call the `clean' rule.
