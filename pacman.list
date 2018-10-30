@@ -42,6 +42,7 @@ gcc-libs
 gdb
 gettext
 ghc
+ghc-static
 ghostscript
 git
 glibc
@@ -120,6 +121,7 @@ pass-otp
 patch
 pciutils
 perl
+perl-authen-sasl
 perl-capture-tiny
 perl-email-mime
 perl-file-path-expand
@@ -135,6 +137,7 @@ pulseaudio
 pulseaudio-alsa
 python-fonttools
 python-pip
+python-virtualenv
 python2
 python2-fonttools
 python2-pip
@@ -200,6 +203,7 @@ w3m
 weechat
 which
 wmctrl
+xbindkeys
 xclip
 xdg-user-dirs
 xdotool
@@ -214,6 +218,7 @@ xorg-xev
 xorg-xinit
 xorg-xinput
 xorg-xmessage
+xorg-xprop
 xorg-xset
 xsel
 xss-lock
@@ -223,5 +228,6 @@ zip
 zsh
 zsh-autosuggestions
 zsh-completions
+zsh-history-substring-search
 zsh-lovers
 zsh-syntax-highlighting

@@ -15,3 +15,4 @@ pkg/
 src/
 *.pkg.tar.xz
 *-git/
+aur

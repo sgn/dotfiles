@@ -80,19 +80,6 @@ myConfig = withUrgencyHook NoUrgencyHook $ def
      if True
      then sendMessage Expand -- %! Expand the master area
      else spawn "xdotool key --clearmofifiers Hyper_L+l")
-  , ((myModMask,               xK_f), spawn "firefox -P default")
-  , ((myModMask .|. shiftMask, xK_f), spawn "firefox -P script --no-remote")
-  -- lock the computer
-  , ((myModMask .|. controlMask, xK_l), spawn "xset s activate")
-  -- backlight: https://wiki.archlinux.org/index.php/Xbindkeys#Backlight_control
-  , ((0, xF86XK_MonBrightnessUp),   spawn "xbacklight -inc 20")
-  , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 20")
-  -- https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture#Keyboard_volume_control
-  , ((0, xF86XK_AudioLowerVolume), spawn "amixer set Master 2%-")
-  , ((0, xF86XK_AudioRaiseVolume), spawn "amixer set Master 2%+")
-  , ((0, xF86XK_AudioMute),        spawn "amixer set Master toggle")
-  , ((0, xK_Print),
-     spawn "scrot 'Screenshot.%Y.%m.%d_%H.%M.%S.png' -e 'mv $f ~/Pictures'")
   ]
   where
     notSP = (return $ ("NSP" /=) . W.tag) :: X (WindowSpace -> Bool)
