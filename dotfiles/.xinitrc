@@ -24,5 +24,5 @@ nitrogen --restore &
 if test $# -eq 1 && command -v $1 >/dev/null 2>&1 ; then
 	exec $1
 else
-	exec xmonad
+	exec i3
 fi
