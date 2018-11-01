@@ -24,5 +24,6 @@ nitrogen --restore &
 if test $# -eq 1 && command -v $1 >/dev/null 2>&1 ; then
 	exec $1
 else
-	exec i3
+	echo "Starting at $(date)" >> ~/.cache/i3/log
+	exec i3 -V -d all >> ~/.cache/i3/log
 fi
