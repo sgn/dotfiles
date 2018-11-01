@@ -49,6 +49,12 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+# move focused workspace to different output
+bindsym $mod+Control+$left  move workspace to output left
+bindsym $mod+Control+$down  move workspace to output down
+bindsym $mod+Control+$up    move workspace to output up
+bindsym $mod+Control+$right move workspace to output right
+
 # split in horizontal orientation
 bindsym $mod+comma split h
 
@@ -111,6 +117,18 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws0
+
+# move the said workspace to current output
+bindsym $mod+Control+1 move workspace $ws1 to output current
+bindsym $mod+Control+2 move workspace $ws2 to output current
+bindsym $mod+Control+3 move workspace $ws3 to output current
+bindsym $mod+Control+4 move workspace $ws4 to output current
+bindsym $mod+Control+5 move workspace $ws5 to output current
+bindsym $mod+Control+6 move workspace $ws6 to output current
+bindsym $mod+Control+7 move workspace $ws7 to output current
+bindsym $mod+Control+8 move workspace $ws8 to output current
+bindsym $mod+Control+9 move workspace $ws9 to output current
+bindsym $mod+Control+0 move workspace $ws0 to output current
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
