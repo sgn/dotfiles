@@ -145,16 +145,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym $left resize shrink width 10 px or 10 ppt
-        bindsym $down resize grow height 10 px or 10 ppt
-        bindsym $up resize shrink height 10 px or 10 ppt
-        bindsym $right resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym $left resize shrink right 10px; resize grow left 10px
+        bindsym $down resize shrink up 10px; resize grow down 10px
+        bindsym $up resize shrink down 10px; resize grow up 10px
+        bindsym $right resize grow right 10px; resize shrink left 10px
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
@@ -163,6 +157,9 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+bindsym $mod+minus resize shrink width; resize shrink height
+bindsym $mod+plus resize grow width; resize grow height
+bindsym $mod+equal resize grow width; resize grow height
 
 # only bind switching workspace in this mode
 mode "insert" {
