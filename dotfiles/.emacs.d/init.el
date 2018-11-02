@@ -36,7 +36,6 @@
         pinentry                        ; gpg
         ztree
         git-commit                      ; git
-        magit
         hl-todo                         ; todo
         helm-mu                         ; mu4e
         mu4e-maildirs-extension
@@ -104,7 +103,7 @@
   (dired-async-mode))
 
 ;;;; git
-(require 'magit nil t)
+(global-git-commit-mode)
 (with-eval-after-load 'diff-mode
   (require 'diff-mode-))
 
