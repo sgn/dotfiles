@@ -208,5 +208,7 @@ bindsym --release $mod+Escape exec --no-startup-id xset s activate
 bindsym $mod+Shift+s exec emacsclient -nc -a ''
 
 bar {
-	status_command i3status
+	mode hide
+	status_command i3blocks
 }
+bindsym $mod+Shift+b bar mode toggle
