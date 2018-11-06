@@ -29,7 +29,7 @@ if command -v xbindkeys >/dev/null 2>&1; then
 	fi
 fi
 
-urxvtd -q -o -f
+command -v urxvtd >/dev/null 2>&1 && urxvtd -q -o -f
 
 cat <<EOF | xmodmap -
 remove Lock = Caps_Lock
