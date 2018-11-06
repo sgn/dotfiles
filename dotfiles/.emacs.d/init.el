@@ -1,6 +1,7 @@
 ;;;; Emacs configuration
 
 (setq gc-cons-threshold 100000000)
+(setq debug-on-error t)
 
 ;;;; Prefer newer source over old bytecode
 (setq load-prefer-newer t)
@@ -52,8 +53,7 @@
         helm-youtube
         which-key
         pdf-tools
-        transmission
-        dracula-theme))
+        transmission))
 
 ;;;; Package Management
 (when (require 'package nil t)
@@ -159,14 +159,12 @@
   "Generic mode for Vim configuration files.")
 
 ;;;; Theme
-(if (custom-theme-p 'dracula)
-    (load-theme 'dracula t)
-  (message "Notheme"))
-(when (locate-file "dracula-theme.el"
-		   (custom-theme--load-path)
-		   '("" "c"))
-  (load-theme 'dracula t))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (if (custom-theme-p 'dracula)
+;;     (load-theme 'dracula t)
+;;   (message "Notheme"))
+(setq custom-theme-directory "~/.emacs.d/theme/")
+(load-theme 'dracula t)
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Finalization
 
 ;;; Don't let `customize' ruin my config.
