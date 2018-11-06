@@ -141,10 +141,6 @@ bindsym $mod+Shift+q exec i3-msg exit
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
         bindsym $left resize shrink right 10px; resize grow left 10px
         bindsym $down resize shrink up 10px; resize grow down 10px
         bindsym $up resize shrink down 10px; resize grow up 10px
