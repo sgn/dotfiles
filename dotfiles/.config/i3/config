@@ -177,6 +177,7 @@ mode "insert" {
 bindsym $mod+i mode "insert"
 
 new_window 1pixel
+bindsym $mod+b border toggle
 
 # alsa
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 2%-
