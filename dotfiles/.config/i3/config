@@ -182,6 +182,34 @@ bindsym $mod+i mode "insert"
 
 new_window 1pixel
 
+# alsa
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 2%-
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 2%+
+bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
+bindsym XF86AudioMicMute exec --no-startup-id amixer set Capture toggle
+
+# playerctl
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym $mod+F1 exec --no-startup-id playerctl play-pause
+bindsym $mod+F2 exec --no-startup-id playerctl next
+bindsym $mod+F3 exec --no-startup-id playerctl previous
+# backlight
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 20
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20
+# screenshot
+bindsym --release Print exec --no-startup-id scrot 'Screenshot.%Y.%m.%d_%H.%M.%S.png' -e 'mv $f ~/Pictures'
+# xinerama
+bindsym XF86Display exec --no-startup-id xrandr.sh
+
+# firefox
+bindsym $mod+w exec firefox -P default
+bindsym $mod+Shift+w exec --no-startup-id firefox -P script --no-remote
+
+bindsym --release $mod+Escape exec --no-startup-id xset s activate
+bindsym $mod+Shift+s exec emacsclient -nc -a ''
+
 bar {
 	status_command i3status
 }
