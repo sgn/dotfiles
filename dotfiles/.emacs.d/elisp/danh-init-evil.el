@@ -23,8 +23,10 @@
 
 ;;;; Window management
 (danh/global-set-keys
- "s-j" 'evil-window-top-left
- "H-j" 'evil-window-bottom-right)
+ "s-t" 'evil-window-top-left
+ "H-t" 'evil-window-top-left
+ "s-b" 'evil-window-bottom-right
+ "H-b" 'evil-window-bottom-right)
 
 ;; https://emacs.stackexchange.com/questions/608/evil-map-keybindings-the-vim-way
 (defun danh/jump-to-tag ()

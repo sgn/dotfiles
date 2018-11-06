@@ -128,6 +128,7 @@
  "H-o" 'other-window
  ;; "s-t" and "H-t" will be bound to evil-window-top-left
  ;; "s-b" and "H-b" will be bound to evil-window-bottom-right
+ ;; the binding will be done in evil init file
  ;; win resize
  "s-=" 'danh/enlarge-window-real
  "H-=" 'danh/enlarge-window-real
