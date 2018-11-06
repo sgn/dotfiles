@@ -1,8 +1,10 @@
+acpi
 alsa-utils
 arch-install-scripts
 aspell-en
 bash
 bash-completion
+bc
 biber
 bind-tools
 bitlbee
@@ -16,11 +18,13 @@ cronie
 cryptsetup
 dash
 device-mapper
+devtools
 dhcpcd
 dialog
 diffutils
 dmenu
 dos2unix
+dunst
 e2fsprogs
 ed
 emacs
@@ -52,10 +56,6 @@ grep
 grml-zsh-config
 gtypist
 gzip
-haskell-http2
-haskell-prettyprinter
-haskell-text-builder
-haskell-text-printer
 htop
 hwinfo
 i3-wm
@@ -78,10 +78,9 @@ jshon
 less
 libotr
 libraw
-libreoffice-fresh
 licenses
 linux
-linux-lts
+linux-firmware
 logrotate
 lsb-release
 lshw
@@ -97,6 +96,7 @@ mcpp
 mdadm
 mit-scheme
 mlocate
+mpd
 mpv
 msmtp
 mu
@@ -121,6 +121,7 @@ pass-otp
 patch
 pciutils
 perl
+perl-anyevent-i3
 perl-authen-sasl
 perl-capture-tiny
 perl-email-mime
@@ -130,6 +131,7 @@ perl-module-pluggable
 perl-net-imap-simple
 pkgconf
 playerctl
+powertop
 procmail
 procps-ng
 psmisc
@@ -190,7 +192,6 @@ tor
 transmission-cli
 trash-cli
 ttf-dejavu
-ttf-droid
 ttf-font-awesome
 ttf-hack
 unrar
@@ -203,15 +204,11 @@ w3m
 weechat
 which
 wmctrl
-xbindkeys
 xclip
 xdg-user-dirs
 xdotool
 xf86-video-intel
 xfsprogs
-xmonad
-xmonad-contrib
-xmonad-utils
 xorg-server
 xorg-xbacklight
 xorg-xev
@@ -220,6 +217,7 @@ xorg-xinput
 xorg-xmessage
 xorg-xprop
 xorg-xset
+xorg-xsetroot
 xsel
 xss-lock
 youtube-dl
