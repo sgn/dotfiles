@@ -132,6 +132,7 @@
 (with-eval-after-load 'sh-script
   (require 'danh-init-sh))
 (add-to-list 'auto-mode-alist '("PKGBUILD" . sh-mode))
+(add-to-list 'auto-mode-alist '("template" . sh-mode))
 (add-to-list 'auto-mode-alist '("/\\.?zsh" . sh-mode))
 
 (require 'danh-init-youtube)
