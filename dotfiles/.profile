@@ -62,33 +62,12 @@ export TIME_STYLE
 
 ## SSH-Agent
 ## Set SSH to use gpg-agent
-unset SSH_AGENT_PID
-if test "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ; then
-	SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-	export SSH_AUTH_SOCK
-fi
-# Set GPG TTY
-GPG_TTY=$(tty)
-export GPG_TTY
-# Refresh gpg-agent tty in case user switches into an X session
-gpg-connect-agent updatestartuptty /bye >/dev/null
-
-## Linux specific
-if test "$(uname -o)" = "GNU/Linux" ; then
-	## Startup error log.
-	## dmesg
-	dmesg_err=$(dmesg | grep -i error | tee ~/dmesg.err.log | wc -l)
-	test "$dmesg_err" -eq 0 && rm ~/dmesg.err.log 2>/dev/null
-	## systemd
-	count="$(systemctl show | awk -F= '$1=="NFailedUnits" {print $2; exit}')"
-	if test "$count" -ne 0 ; then
-		systemctl -l --failed > "$HOME/systemd.err.log"
-	else
-		rm -f ~/systemd.err.log
+if test "$EUID" -ne 0; then
+	unset SSH_AGENT_PID
+	if test "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ; then
+		SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+		export SSH_AUTH_SOCK
 	fi
-
-	## Set sound volume.  (Useless when running Pulseaudio.)
-	# amixer 2>/dev/null | grep -q PCM && amixer set PCM 100%
 fi
 
 ## Wine DLL overrides.

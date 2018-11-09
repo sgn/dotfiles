@@ -18,7 +18,7 @@ fi
 ## local xprofile
 test -f ~/.xprofile && . ~/.xprofile
 
-xsetroot -solid "#282A36"
+command -v xsetroot >/dev/null 2>&1 && xsetroot -solid "#282A36"
 
 ## start session
 if test $# -eq 1 && command -v $1 >/dev/null 2>&1 ; then

@@ -15,9 +15,8 @@ fi
 
 ## Disable Touchpad if exists
 if command -v xinput >/dev/null; then
-	for i in $(xinput list \
-			| grep -E -o 'Touchpad[[:space:]]+id=[[:digit:]]+' \
-			| cut -d= -f2); do
+	for i in $(xinput list |
+			sed -nE 's/^.*Touch[Pp]ad[[:space:]]+id=([[:digit:]]+).*$/\1/p'); do
 		xinput disable "$i"
 	done
 fi
@@ -29,7 +28,7 @@ if command -v xbindkeys >/dev/null 2>&1; then
 	fi
 fi
 
-command -v urxvtd >/dev/null 2>&1 && urxvtd -q -o -f
+# command -v urxvtd >/dev/null 2>&1 && urxvtd -q -o -f
 
 cat <<EOF | xmodmap -
 remove Lock = Caps_Lock
