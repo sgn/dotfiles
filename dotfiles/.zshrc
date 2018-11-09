@@ -1,31 +1,58 @@
 #!/usr/bin/zsh
+
+ls_options=( '--group-directories-first' )
+NOTITLE=1
+GRML_NO_APT_ALIASES=1
+GRML_DISPLAY_BATTERY=1
+GRML_NO_DEFAULT_LOCALE=1
+
+# This file will be linked to "$HOME/.zshrc"
+D_EXTERNAL="$(readlink -f $HOME/.zshrc)"
+D_EXTERNAL="${D_EXTERNAL%/*/*}/external"
+
+D_EXT_SOURCE="${D_EXTERNAL}/grml/etc/zsh/zshrc"
+if test -f "${D_EXT_SOURCE}"; then
+	source "${D_EXT_SOURCE}"
+fi
+
+bindkey -v
+
 #function virtual_env_prompt () {
 #    REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
 #}
 #grml_theme_add_token  virtual-env -f virtual_env_prompt '%F{magenta}' '%f'
-zstyle ':prompt:grml:left:setup' items rc virtual-env change-root user at host path vcs newline percent
+zstyle ':prompt:grml:left:setup' items rc change-root user at host path vcs time shell-level newline percent
 
-if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] ; then
-	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+D_EXT_SOURCE="${D_EXTERNAL}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+if test -f "${D_EXT_SOURCE}"; then
+	source "${D_EXT_SOURCE}"
+fi
+
+D_EXT_SOURCE="${D_EXTERNAL}/zsh-history-substring-search/zsh-history-substring-search.zsh"
+if test -f "${D_EXT_SOURCE}"; then
+	source "${D_EXT_SOURCE}"
 fi
 
 ## set command suggestion from history
-if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ] ; then
-	source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-	bindkey '^Z' autosuggest-toggle
-	bindkey '^ ' autosuggest-accept
+D_EXT_SOURCE="${D_EXTERNAL}/zsh-autosuggestions/zsh-autosuggestions.zsh"
+if test -f "${D_EXT_SOURCE}"; then
+	source "${D_EXT_SOURCE}"
 	bindkey '^J' autosuggest-accept
+	export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
 fi
+
+unset D_EXT_SOURCE
+unset D_EXTERNAL
 
 ## press ctrl-q to quote line:
 mquote () {
-     zle beginning-of-line
-     zle forward-word
+     zle vi-beginning-of-line
+     zle vi-forward-word
      # RBUFFER="'$RBUFFER'"
      RBUFFER=${(q)RBUFFER}
      zle end-of-line
 }
-zle -N mquote && bindkey '^q' mquote
+zle -N mquote && bindkey '^G' mquote
 
 # just type '...' to get '../..'
 rationalise-dot() {
@@ -163,7 +190,9 @@ alias fgrep='fgrep --color=auto'
 fortune -a | \
 	$(shuf -n 1 -e cowsay cowthink) \
 		-$(shuf -n 1 -e b d g p s t w y) \
-		-f $(shuf -n 1 -e $(cowsay -l | tail -n +2))
+		-f $(shuf -n 1 -e $(cowsay -l | tail -n +2)) -W 70
 
-export GPG_TTY=$(tty)
-gpg-connect-agent updatestartuptty /bye >/dev/null
+if test "$EUID" -ne 0; then
+	export GPG_TTY=$(tty)
+	gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
+fi

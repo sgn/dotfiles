@@ -1,3 +1,0 @@
-#!/usr/bin/zsh
-ls_options=( '--group-directories-first' )
-NOTITLE=1
