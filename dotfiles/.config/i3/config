@@ -208,6 +208,17 @@ bindsym $mod+Shift+w exec --no-startup-id firefox -P script --no-remote
 bindsym --release $mod+Escape exec --no-startup-id xset s activate
 bindsym $mod+Shift+s exec emacsclient -nc -a ''
 
+# Windows Management
+## Scratchpad
+for_window [instance="scratchpad"] move to scratchpad
+bindsym $mod+g [instance="scratchpad"] scratchpad show
+exec st -n scratchpad
+
+## irc
+for_window [instance="irc"] move to $ws4
+# weechat doesn't work with st-direct, route through tmux?
+# exec st -n irc -t irc -e weechat
+
 bar {
 	status_command i3blocks
 }
