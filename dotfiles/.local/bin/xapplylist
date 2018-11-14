@@ -1,0 +1,4 @@
+#!/bin/sh
+
+xargs -l1 -n1 -I '{}' notmuch show --format=mbox '{}' |
+	git am
