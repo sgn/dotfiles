@@ -51,3 +51,5 @@
 	confirm = always
 [credential]
 	helper = pass
+[index]
+	recordEndOfIndexEntries = true
