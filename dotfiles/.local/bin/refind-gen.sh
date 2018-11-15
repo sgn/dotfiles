@@ -1,11 +1,11 @@
 #!/bin/sh
 
 cat <<EOF
-timeout 20
+timeout 5
 scanfor manual
 EOF
 
-for kernel in $(ls /boot/vmlinuz-*); do
+for kernel in /boot/vmlinuz-* ; do
 	kernel="${kernel#/boot}"
 	ver_rev="${kernel#/vmlinuz-}"
 	initrd="/initramfs-${ver_rev}.img"
