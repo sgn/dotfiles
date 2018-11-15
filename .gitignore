@@ -16,3 +16,4 @@ src/
 *.pkg.tar.xz
 *-git/
 aur
+*.gz

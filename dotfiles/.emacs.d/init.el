@@ -39,7 +39,6 @@
         git-commit                      ; git
         hl-todo                         ; todo
         helm-mu                         ; mu4e
-        mu4e-maildirs-extension
         flycheck                        ; flycheck
         helm-flycheck
         w3m                             ; w3m
@@ -118,15 +117,11 @@
 (require 'org-contacts)
 
 ;;;; Mail
-;;; mu4e
-(when (or (fboundp 'mu4e)
-          (mapcar
-            (lambda (path) (string-match "/mu4e/\\|/mu4e$" path))
-            load-path))
-  (require 'mu4e)
-  (require 'danh-init-mu4e))
-(danh/global-set-keys "C-x m" 'mu4e
-                     "C-c m" 'compose-mail)
+;; notmuch
+(setq notmuch-init-file "~/.emacs.d/notmuch-config")
+(autoload 'notmuch "notmuch" "notmuch mail" t)
+(danh/global-set-keys "C-x m" 'notmuch
+                      "C-c m" 'compose-mail)
 
 ;;;; Shell
 (with-eval-after-load 'sh-script
@@ -158,6 +153,14 @@
   '((lambda ()
       (modify-syntax-entry ?\" ".")))
   "Generic mode for Vim configuration files.")
+
+;; Never kill scratch
+;; https://www.reddit.com/r/emacs/comments/4cmfwp/scratch_buffer_hacks_to_increase_its_utility/
+(defun danh/immortal-scratch ()
+  (if (eq (current-buffer) (get-buffer "*scratch*"))
+      (progn (bury-buffer) nil)
+    t))
+(add-hook 'kill-buffer-query-functions 'danh/immortal-scratch)
 
 ;;;; Theme
 ;; (if (custom-theme-p 'dracula)
