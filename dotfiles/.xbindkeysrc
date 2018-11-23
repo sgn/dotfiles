@@ -1,11 +1,11 @@
 # -*- shell-script -*-
 
 # alsa
-"amixer set Master 2%- && pkill -RTMIN+1 i3blocks"
+"volume.sh down"
 	XF86AudioLowerVolume
-"amixer set Master 2%+ && pkill -RTMIN+1 i3blocks"
+"volume.sh up"
 	XF86AudioRaiseVolume
-"amixer set Master toggle && pkill -RTMIN+1 i3blocks"
+"volume.sh toggle"
 	XF86AudioMute
 "amixer set Capture toggle"
 	XF86AudioMicMute
