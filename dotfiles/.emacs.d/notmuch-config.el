@@ -1,12 +1,18 @@
+(require 'sendmail)
+
 (setq
  message-kill-buffer-on-exit t
  message-sendmail-envelope-from 'header
  message-send-mail-function 'message-send-mail-with-sendmail
  sendmail-program "/usr/bin/msmtp"
  message-user-fqdn "congdanhqx.xyz"
+ mm-text-html-renderer 'lynx
  notmuch-saved-searches
  (quote
-  ((:name "inbox"
+  ((:name "me in 1 day"
+          :query "date:1days.. AND (to:congdanhqx@gmail.com OR to:congdanhqx@live.com or to:kungdein@gmail.com or to:sgn.danh@gmail.com)"
+          :key "t")
+   (:name "inbox"
           :query "tag:inbox"
           :key "i")
    (:name "unread"
@@ -15,9 +21,6 @@
    (:name "to me"
           :query "(to:congdanhqx@gmail.com or to:congdanhqx@live.com) AND NOT tag:delete"
           :key "m")
-   (:name "me in 1 day"
-          :query "date:1days.. AND (to:congdanhqx@gmail.com OR to:congdanhqx@live.com or to:kungdein@gmail.com or to:sgn.danh@gmail.com)"
-          :key "t")
    (:name "me in 7 days"
           :query "date:7days.. AND (to:congdanhqx@gmail.com OR to:congdanhqx@live.com or to:kungdein@gmail.com or to:sgn.danh@gmail.com)"
           :key "w")
@@ -34,6 +37,17 @@
                            "In-Reply-To"
                            "List-ID"
                            "Content-Type")))
+
+(defun notmuch ()
+  (interactive)
+  (notmuch-search (cadddr (first notmuch-saved-searches))))
+
+(defun danh/notmuch-tag-todo ()
+  (interactive)
+  (notmuch-show-tag-message "+todo"))
+(defun danh/notmuch-toglle-todo ()
+  (interactive)
+  (notmuch-show-tag-message "-todo"))
 
 (defun danh/notmuch-append-msg-id-to-scratch ()
   (interactive)
