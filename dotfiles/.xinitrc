@@ -24,6 +24,6 @@ command -v xsetroot >/dev/null 2>&1 && xsetroot -solid "#282A36"
 if test $# -eq 1 && command -v $1 >/dev/null 2>&1 ; then
 	exec $1
 else
-	echo "Starting at $(date)" >> ~/.cache/i3/log
-	exec i3 -V -d all >> ~/.cache/i3/log
+	slstatus &
+	exec dwm
 fi
