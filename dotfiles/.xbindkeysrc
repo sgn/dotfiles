@@ -45,3 +45,5 @@
 	Mod4+Shift + s
 "xrandr.sh"
 	XF86Display
+"passmenu"
+	Mod4 + u
