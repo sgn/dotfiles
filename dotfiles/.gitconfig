@@ -5,14 +5,14 @@
 [alias]
 	st = status --short
 	di = diff -M -p --stat
-	diw = !git di -w
-	diww = !git diw --word-diff=color
-	diwwd = !git diww --word-diff-regex=.
-	dc = !git di --cached
-	dcw = !git diw --cached
-	dcww = !git diww --cached
-	dcwwd = !git diwwd --cached
-	dcc = !git dc --check
+	diw = di -w
+	diww = diw --word-diff=color
+	diwwd = diww --word-diff-regex=.
+	dc = di --cached
+	dcw = diw --cached
+	dcww = diww --cached
+	dcwwd = diwwd --cached
+	dcc = dc --check
 	ci = commit
 	cia = commit --amend --no-edit
 	co = checkout
@@ -21,9 +21,9 @@
 	lg = log --oneline --graph
 	ss = show -s
 	s = show -M -p --stat
-	sw = !git s -w
-	sww = !git sw --word-diff=color
-	swwd = !git sww --word-diff-regex=.
+	sw = s -w
+	sww = sw --word-diff=color
+	swwd = sww --word-diff-regex=.
 	summary = show -s --date=short --pretty='format:commit %h, (\"%s\", %ad)'
 	env = !env | grep ^GIT_
 [rerere]
