@@ -6,7 +6,7 @@
  message-send-mail-function 'message-send-mail-with-sendmail
  sendmail-program "/usr/bin/msmtp"
  message-user-fqdn "congdanhqx.xyz"
- mm-text-html-renderer 'lynx
+ mm-text-html-renderer 'shr
  notmuch-saved-searches
  (quote
   ((:name "me in 1 day"
