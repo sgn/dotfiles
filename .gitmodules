@@ -1,6 +1,3 @@
-[submodule "dotfiles/.emacs.d/theme"]
-	path = dotfiles/.emacs.d/theme
-	url = git@github.com:congdanhqx/emac-dracula-theme.git
 [submodule "dotfiles/.config/zsh/zsh-autosuggestions"]
 	path = external/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
