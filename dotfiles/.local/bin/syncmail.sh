@@ -1,5 +1,5 @@
 #!/bin/sh
 
-ssoma sync --cron || exit 0
-mbsync -a >/dev/null || exit 0
-notmuch new 2>&1 >/dev/null | grep -vF 'non-mail'
+ssoma sync --cron || exit 1
+mbsync -a >/dev/null || exit 1
+notmuch new 2>&1 | grep -vF 'non-mail' || exit 0
