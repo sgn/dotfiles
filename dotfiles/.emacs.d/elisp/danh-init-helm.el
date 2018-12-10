@@ -133,5 +133,13 @@
 (define-key helm-map (kbd "S-SPC") 'danh/helm-toggle-visible-mark-backwards)
 
 (global-set-key  (kbd "C-<f4>") 'helm-execute-kmacro)
+(defun helm-hide-minibuffer-maybe ()
+  (when (with-helm-buffer helm-echo-input-in-header-line)
+    (let ((ov (make-overlay (point-min) (point-max) nil nil t)))
+      (overlay-put ov 'window (selected-window))
+      (overlay-put ov 'face (let ((bg-color (face-background 'default nil)))
+                              `(:background ,bg-color :foreground ,bg-color)))
+      (setq-local cursor-type nil))))
 
+(add-hook 'helm-minibuffer-set-up-hook 'helm-hide-minibuffer-maybe)
 (provide 'danh-init-helm)
