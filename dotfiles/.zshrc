@@ -195,4 +195,5 @@ fortune -a | \
 if test "$EUID" -ne 0; then
 	export GPG_TTY=$(tty)
 	gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
+	source ~/.config/Xresources/base16-tomorrow-night.sh
 fi
