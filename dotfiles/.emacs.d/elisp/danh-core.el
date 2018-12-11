@@ -37,8 +37,8 @@
 ;;; Adding to `find-file-hook' ensures it will work for every file, regardless of
 ;;; the mode, but it won't work for buffers without files nor on mode change.
 (dolist (hook '(prog-mode-hook text-mode-hook))
-  (add-hook hook 'danh/turn-on-local-column-number-mode)
-  (add-hook hook 'display-line-numbers-mode))
+  (add-hook hook 'danh/turn-on-local-column-number-mode))
+(global-display-line-numbers-mode)
 (setq display-line-numbers-type 'visual)
 
 (setq kill-whole-line t)
