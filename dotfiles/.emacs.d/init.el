@@ -165,20 +165,15 @@
 (add-hook 'kill-buffer-query-functions 'danh/immortal-scratch)
 
 ;;;; Theme
-;; (if (custom-theme-p 'dracula)
-;;     (load-theme 'dracula t)
-;;   (message "Notheme"))
-;; (setq custom-theme-directory "~/.emacs.d/theme/")
-;; (load-theme 'dracula t)
-(load-theme 'base16-tomorrow-night t)
-;; Set the cursor color based on the evil state
-(defvar danh/base16-colors base16-tomorrow-night-colors)
-(setq evil-emacs-state-cursor   `(,(plist-get danh/base16-colors :base0D) box)
-      evil-insert-state-cursor  `(,(plist-get danh/base16-colors :base0D) bar)
-      evil-motion-state-cursor  `(,(plist-get danh/base16-colors :base0E) box)
-      evil-normal-state-cursor  `(,(plist-get danh/base16-colors :base0B) box)
-      evil-replace-state-cursor `(,(plist-get danh/base16-colors :base08) bar)
-      evil-visual-state-cursor  `(,(plist-get danh/base16-colors :base09) box))
+(when (load-theme 'base16-tomorrow-night t)
+  ;; Set the cursor color based on the evil state
+  (defvar danh/base16-colors base16-tomorrow-night-colors)
+  (setq evil-emacs-state-cursor   `(,(plist-get danh/base16-colors :base0D) box)
+        evil-insert-state-cursor  `(,(plist-get danh/base16-colors :base0D) bar)
+        evil-motion-state-cursor  `(,(plist-get danh/base16-colors :base0E) box)
+        evil-normal-state-cursor  `(,(plist-get danh/base16-colors :base0B) box)
+        evil-replace-state-cursor `(,(plist-get danh/base16-colors :base08) bar)
+        evil-visual-state-cursor  `(,(plist-get danh/base16-colors :base09) box)))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Finalization
@@ -193,6 +188,7 @@
          temporary-file-directory)))
 (load custom-file t)
 
-; init.el ends here
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
+
+; init.el ends here
