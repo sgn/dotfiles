@@ -187,13 +187,13 @@ alias xclipboard='xclip -selection clipboard'
 alias mu-index='mu index --maildir=~/.cache/maildir'
 alias fgrep='fgrep --color=auto'
 
-fortune -a | \
-	$(shuf -n 1 -e cowsay cowthink) \
-		-$(shuf -n 1 -e b d g p s t w y) \
-		-f $(shuf -n 1 -e $(cowsay -l | tail -n +2)) -W 70
-
 if test "$EUID" -ne 0; then
 	export GPG_TTY=$(tty)
 	gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
 	source ~/.config/Xresources/base16-tomorrow-night.sh
 fi
+
+fortune -a | \
+	$(shuf -n 1 -e cowsay cowthink) \
+		-$(shuf -n 1 -e b d g p s t w y) \
+		-f $(shuf -n 1 -e $(cowsay -l | tail -n +2)) -W 70
