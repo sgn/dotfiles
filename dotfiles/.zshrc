@@ -170,9 +170,9 @@ hex() {
 }
 
 weather () {
-	station="${1-VVTS}"
-	station="$station:u"
-	curl "http://tgftp.nws.noaa.gov/data/observations/metar/decoded/$station.TXT"
+	station="${@:-Ho_Chi_Minh}"
+	station="${station:gs/ /_/}"
+	curl "http://wttr.in/${station}"
 }
 
 ## log out? set timeout in seconds...
