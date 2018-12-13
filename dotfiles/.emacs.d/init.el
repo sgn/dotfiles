@@ -165,6 +165,7 @@
 (add-hook 'kill-buffer-query-functions 'danh/immortal-scratch)
 
 ;;;; Theme
+(setq base16-theme-256-color-source "base16-shell")
 (when (load-theme 'base16-tomorrow-night t)
   ;; Set the cursor color based on the evil state
   (defvar danh/base16-colors base16-tomorrow-night-colors)
