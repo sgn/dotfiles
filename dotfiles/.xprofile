@@ -50,4 +50,4 @@ command -v xset >/dev/null && xset -b s 180 120
 command -v xss-lock >/dev/null && command -v slock >/dev/null && xss-lock -- slock &
 
 ## Hook, should the last one to be sourced
-[ -f ~/.xprofile_hook ] && . ~/.xprofile_hook
+test -f ~/.xprofile_hook && . ~/.xprofile_hook
