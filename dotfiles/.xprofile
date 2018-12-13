@@ -33,7 +33,7 @@ export _JAVA_AWT_WM_NONREPARENTING
 
 # command -v urxvtd >/dev/null 2>&1 && urxvtd -q -o -f
 
-cat <<EOF | xmodmap -
+xmodmap - <<EOF
 remove Lock = Caps_Lock
 remove Control = Control_L
 keysym Control_L = Caps_Lock
