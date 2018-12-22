@@ -105,8 +105,10 @@
 
 ;;;; git
 (global-git-commit-mode)
-(with-eval-after-load 'diff-mode
-  (require 'diff-mode-))
+(setq vc-display-status nil
+      vc-follow-symlinks t
+      vc-handled-backends nil)
+(remove-hook 'find-file-hook 'vc-refresh-state)
 
 (when (require 'hl-todo nil t)
   (add-to-list 'hl-todo-keyword-faces
