@@ -43,8 +43,8 @@ add_to_path () {
 
 ## Last PATH entries.
 add_to_path "${HOME}/.local/bin"
-## Jailed application come here
-add_to_path "${HOME}/.local/sbin" begin
+## My scripts come here
+add_to_path "${DOTFILES_HOME}/bin" begin
 add_to_path "${HOME}/.local/platform-tools"
 
 ## Remove less history.
