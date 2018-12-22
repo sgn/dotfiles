@@ -118,4 +118,6 @@ ulimit -c unlimited
 ## Specific to local computer. Should be sourced last
 [ -f ~/.profile_local ] && . ~/.profile_local
 
-[ -z "$DISPLAY" ] && [ "$(tty)" = '/dev/tty1' ] && exec xinit -- vt01
+if [ -z "$DISPLAY" ] && [ "$(tty)" = '/dev/tty1' ]; then
+	 command -v xinit && exec xinit -- vt01
+fi
