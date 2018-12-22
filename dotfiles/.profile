@@ -39,6 +39,7 @@ add_to_path () {
 		;;
 	esac
 	eval export $PATHVAR
+	unset PATHVAR
 }
 
 ## Last PATH entries.
