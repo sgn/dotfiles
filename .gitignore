@@ -17,3 +17,12 @@ src/
 *-git/
 aur
 *.gz
+config/gtk-2.0/gtkfilechooser.ini
+config/libreoffice/
+config/transmission-daemon/
+neofetch
+pulse
+nitrogen
+htop
+user-dirs.*
+mimeapps.list
