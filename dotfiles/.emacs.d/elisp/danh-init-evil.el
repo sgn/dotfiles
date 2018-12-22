@@ -41,20 +41,6 @@
   (global-set-key (kbd "C-;") 'evil-multiedit-match-all)
   (evil-multiedit-default-keybinds))
 
-;;;; Mode line
-(setq evil-default-modeline-color
-      (cons (face-background 'mode-line)
-	    (or (face-foreground 'mode-line)
-		"black")))
-(defun danh/evil-modeline-color ()
-  (let ((color (cond ((minibufferp) evil-default-modeline-color)
-		     ((evil-insert-state-p) '("#6f006a" . "#ffbb00"))
-		     ((evil-emacs-state-p) '("#444488" . "#ffffff"))
-		     (t evil-default-modeline-color))))
-    (set-face-background 'mode-line (car color))
-    (set-face-foreground 'mode-line (cdr color))))
-(add-hook 'post-command-hook 'danh/evil-modeline-color)
-
 (setq evil-collection-setup-minibuffer t
       evil-collection-term-sync-state-and-mode-p t)
 (when (require 'evil-collection nil t)
