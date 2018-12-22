@@ -165,7 +165,8 @@
 (add-hook 'kill-buffer-query-functions 'danh/immortal-scratch)
 
 ;;;; Theme
-(setq base16-theme-256-color-source "base16-shell")
+(setq term-file-aliases '(("st-256color" . "xterm"))
+      base16-theme-256-color-source "base16-shell")
 (when (load-theme 'base16-tomorrow-night t)
   ;; Set the cursor color based on the evil state
   (defvar danh/base16-colors base16-tomorrow-night-colors)
@@ -173,7 +174,7 @@
         evil-insert-state-cursor  `(,(plist-get danh/base16-colors :base0D) bar)
         evil-motion-state-cursor  `(,(plist-get danh/base16-colors :base0E) box)
         evil-normal-state-cursor  `(,(plist-get danh/base16-colors :base0B) box)
-        evil-replace-state-cursor `(,(plist-get danh/base16-colors :base08) bar)
+        evil-replace-state-cursor `(,(plist-get danh/base16-colors :base08) box)
         evil-visual-state-cursor  `(,(plist-get danh/base16-colors :base09) box)))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
