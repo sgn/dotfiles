@@ -6,9 +6,7 @@ GRML_NO_APT_ALIASES=1
 GRML_DISPLAY_BATTERY=1
 GRML_NO_DEFAULT_LOCALE=1
 
-# This file will be linked to "$HOME/.zshrc"
-D_EXTERNAL="$(readlink -f $HOME/.zshrc)"
-D_EXTERNAL="${D_EXTERNAL%/*/*}/external"
+D_EXTERNAL="${DOTFILES_HOME}/external"
 
 D_EXT_SOURCE="${D_EXTERNAL}/grml/etc/zsh/zshrc"
 if test -f "${D_EXT_SOURCE}"; then
@@ -190,7 +188,7 @@ alias fgrep='fgrep --color=auto'
 if test "$EUID" -ne 0; then
 	export GPG_TTY=$(tty)
 	gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
-	source ~/.config/Xresources/base16-tomorrow-night.sh
+	source "${XDG_CONFIG_HOME}/Xresources/base16-tomorrow-night.sh"
 fi
 
 fortune -a | \
