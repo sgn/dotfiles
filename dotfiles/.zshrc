@@ -36,7 +36,7 @@ D_EXT_SOURCE="${D_EXTERNAL}/zsh-autosuggestions/zsh-autosuggestions.zsh"
 if test -f "${D_EXT_SOURCE}"; then
 	source "${D_EXT_SOURCE}"
 	bindkey '^J' autosuggest-accept
-	export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
+	export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 fi
 
 unset D_EXT_SOURCE
@@ -182,7 +182,6 @@ weather () {
 #fi
 
 alias xclipboard='xclip -selection clipboard'
-alias mu-index='mu index --maildir=~/.cache/maildir'
 alias fgrep='fgrep --color=auto'
 
 if test "$EUID" -ne 0; then
