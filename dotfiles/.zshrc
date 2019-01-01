@@ -176,6 +176,11 @@ weather () {
 	curl "http://wttr.in/${station}"
 }
 
+xbps-list() {
+	xbps-query -m |
+		sed -E 's/-[[:digit:]]+(\.(git)?[[:digit:]]+)*(_[[:digit:]]+)?(\.r[[:digit:]])?$//'
+}
+
 ## log out? set timeout in seconds...
 ## ...and do not log out in some specific terminals:
 #if [[ "${TERM}" == ([Exa]term*|rxvt|dtterm|screen*) ]] ; then
