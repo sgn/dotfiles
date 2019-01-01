@@ -53,7 +53,7 @@ mquote () {
      RBUFFER=${(q)RBUFFER}
      zle end-of-line
 }
-zle -N mquote && bindkey '^G' mquote
+zle -N mquote && bindkey '^Q' mquote
 
 # just type '...' to get '../..'
 rationalise-dot() {
