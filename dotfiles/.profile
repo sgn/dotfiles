@@ -73,12 +73,6 @@ if test "$(id -u)" -ne 0 && test x = "${SSH_AGENT_ID:-x}"; then
 	eval `ssh-agent`
 fi
 
-## Wine DLL overrides.
-## Remove the annoying messages for Mono and Gecko.
-export WINEDLLOVERRIDES="mscoree,mshtml="
-## Do not create desktop links or start menu entries.
-export WINEDLLOVERRIDES="$WINEDLLOVERRIDES;winemenubuilder.exe=d"
-
 ## Default text editor
 ## 'em' is a custom wrapper for emacsclient. See '.local/bin/em'.
 ## VISUAL is given priority by some programs like Mutt. This way we can separate
@@ -88,10 +82,6 @@ for i in emc emacsclient emacs vim vi nano; do
 		&& EDITOR=$i && export EDITOR \
 		&& break
 done
-GIT_EDITOR="$EDITOR"
-VISUAL="$EDITOR"
-export GIT_EDITOR
-export VISUAL
 
 ## $HOME software install
 ## See http://nullprogram.com/blog/2017/06/19/.
@@ -121,5 +111,5 @@ ulimit -c unlimited
 [ -f ~/.profile_local ] && . ~/.profile_local
 
 if [ -z "$DISPLAY" ] && [ "$(tty)" = '/dev/tty1' ]; then
-	 command -v xinit && exec xinit -- vt01
+	 command -v xinit >/dev/null 2>&1 && exec xinit -- vt01
 fi
