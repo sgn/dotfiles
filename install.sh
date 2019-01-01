@@ -14,9 +14,7 @@ chmod go-rwx ~/.gnupg
 XDG_CONFIG_HOME_="${BASEDIR}/config"
 
 cat <<EOF >| ~/.pam_environment
-DOTFILES_HOME		DEFAULT="${BASEDIR}"
 XDG_CONFIG_HOME		DEFAULT="${XDG_CONFIG_HOME_}"
-SSH_AUTH_SOCK		DEFAULT="\${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
 EOF
 
 cat <<EOF >| ~/.Xresources

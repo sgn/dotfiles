@@ -47,6 +47,8 @@ DOTFILES_HOME="${DOTFILES_HOME%/*/.profile}"
 XDG_CONFIG_HOME="${DOTFILES_HOME}/config"
 export XDG_CONFIG_HOME DOTFILES_HOME
 
+trap ". ~/.shlogout" 0
+
 ## Last PATH entries.
 add_to_path "${HOME}/.local/bin"
 ## My scripts come here
@@ -67,13 +69,8 @@ TIME_STYLE=+"|%Y-%m-%d %H:%M:%S|"
 export TIME_STYLE
 
 ## SSH-Agent
-## Set SSH to use gpg-agent
-if test "$EUID" -ne 0; then
-	unset SSH_AGENT_PID
-	if test "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ; then
-		SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-		export SSH_AUTH_SOCK
-	fi
+if test "$(id -u)" -ne 0 && test x = "${SSH_AGENT_ID:-x}"; then
+	eval `ssh-agent`
 fi
 
 ## Wine DLL overrides.

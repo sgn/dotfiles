@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if test x != "${SSH_AGENT_PID:-x}"; then
+	kill $SSH_AGENT_PID
+fi
+
+clear
