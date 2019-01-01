@@ -1,5 +1,7 @@
 #!/usr/bin/zsh
 
+test -z "${DOTFILES_HOME}${XDG_CONFIG_HOME}" && test -f ~/.profile && . ~/.profile
+
 ls_options=( '--group-directories-first' )
 NOTITLE=1
 GRML_NO_APT_ALIASES=1
@@ -41,6 +43,7 @@ fi
 
 unset D_EXT_SOURCE
 unset D_EXTERNAL
+unset DOTFILES_HOME
 
 ## press ctrl-q to quote line:
 mquote () {

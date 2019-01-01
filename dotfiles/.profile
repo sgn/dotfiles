@@ -42,6 +42,11 @@ add_to_path () {
 	unset PATHVAR
 }
 
+DOTFILES_HOME=$(readlink -f ~/.profile)
+DOTFILES_HOME="${DOTFILES_HOME%/*/.profile}"
+XDG_CONFIG_HOME="${DOTFILES_HOME}/config"
+export XDG_CONFIG_HOME DOTFILES_HOME
+
 ## Last PATH entries.
 add_to_path "${HOME}/.local/bin"
 ## My scripts come here
