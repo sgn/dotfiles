@@ -1,6 +1,8 @@
 #!/usr/bin/zsh
 
-test -z "${DOTFILES_HOME}${XDG_CONFIG_HOME}" && test -f ~/.profile && . ~/.profile
+if test -z "${DOTFILES_HOME}"; then
+	source ~/.profile
+fi
 
 ls_options=( '--group-directories-first' )
 NOTITLE=1
@@ -38,12 +40,13 @@ D_EXT_SOURCE="${D_EXTERNAL}/zsh-autosuggestions/zsh-autosuggestions.zsh"
 if test -f "${D_EXT_SOURCE}"; then
 	source "${D_EXT_SOURCE}"
 	bindkey '^J' autosuggest-accept
-	export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
+	export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 fi
+
+source "${D_EXTERNAL}/base16-gruvbox-dark-hard.sh"
 
 unset D_EXT_SOURCE
 unset D_EXTERNAL
-unset DOTFILES_HOME
 
 ## press ctrl-q to quote line:
 mquote () {
@@ -191,8 +194,6 @@ xbps-list() {
 
 alias xclipboard='xclip -selection clipboard'
 alias fgrep='fgrep --color=auto'
-
-source "${XDG_CONFIG_HOME}/Xresources/base16-gruvbox-dark-hard.sh"
 
 fortune -a | \
 	$(shuf -n 1 -e cowsay cowthink) \
