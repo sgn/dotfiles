@@ -26,3 +26,6 @@ nitrogen
 htop
 user-dirs.*
 mimeapps.list
+config/dconf/user
+msmtp
+rtv
