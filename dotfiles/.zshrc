@@ -195,6 +195,14 @@ xbps-list() {
 alias xclipboard='xclip -selection clipboard'
 alias fgrep='fgrep --color=auto'
 
+# stop rtv from launching firefox
+for i in w3m elinks lynx links; do
+	command -v $i >/dev/null 2>&1 && \
+		BROWSER=$i && \
+		export BROWSER && \
+		break
+done
+
 fortune -a | \
 	$(shuf -n 1 -e cowsay cowthink) \
 		-$(shuf -n 1 -e b d g p s t w y) \
