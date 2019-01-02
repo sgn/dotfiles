@@ -210,6 +210,7 @@ python-cairo
 python-gobject2
 python3
 refind
+rtv
 ruby
 scrot
 sent
@@ -234,6 +235,7 @@ tpacpi-bat
 tree
 ttf-ubuntu-font-family
 twolame
+unclutter
 unzip
 v4l-utils
 valgrind
