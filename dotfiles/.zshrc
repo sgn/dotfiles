@@ -192,11 +192,7 @@ xbps-list() {
 alias xclipboard='xclip -selection clipboard'
 alias fgrep='fgrep --color=auto'
 
-if test "$EUID" -ne 0; then
-	export GPG_TTY=$(tty)
-	gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
-	source "${XDG_CONFIG_HOME}/Xresources/base16-tomorrow-night.sh"
-fi
+source "${XDG_CONFIG_HOME}/Xresources/base16-gruvbox-dark-hard.sh"
 
 fortune -a | \
 	$(shuf -n 1 -e cowsay cowthink) \

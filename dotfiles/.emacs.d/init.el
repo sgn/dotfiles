@@ -169,9 +169,10 @@
 ;;;; Theme
 (setq term-file-aliases '(("st-256color" . "xterm"))
       base16-theme-256-color-source "base16-shell")
-(when (load-theme 'base16-tomorrow-night t)
+(when (require 'base16-gruvbox-dark-hard-theme)
+  (load-theme 'base16-gruvbox-dark-hard t)
   ;; Set the cursor color based on the evil state
-  (defvar danh/base16-colors base16-tomorrow-night-colors)
+  (defvar danh/base16-colors base16-gruvbox-dark-hard-colors)
   (setq evil-emacs-state-cursor   `(,(plist-get danh/base16-colors :base0D) box)
         evil-insert-state-cursor  `(,(plist-get danh/base16-colors :base0D) bar)
         evil-motion-state-cursor  `(,(plist-get danh/base16-colors :base0E) box)

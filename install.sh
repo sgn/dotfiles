@@ -18,7 +18,7 @@ XDG_CONFIG_HOME		DEFAULT="${XDG_CONFIG_HOME_}"
 EOF
 
 cat <<EOF >| ~/.Xresources
-#include "${XDG_CONFIG_HOME_}/Xresources/color.conf"
+#include "${XDG_CONFIG_HOME_}/Xresources/color.Xresources"
 #include "${XDG_CONFIG_HOME_}/Xresources/urxvt.conf"
 EOF
 
