@@ -1,6 +1,8 @@
 #!/bin/sh
 
-cat <<EOF
+TEMP=$(mktemp refind.XXXXXXXX)
+
+cat <<EOF >| "$TEMP"
 timeout 5
 scanfor manual
 EOF
@@ -9,13 +11,20 @@ for kernel in /boot/vmlinuz-* ; do
 	kernel="${kernel#/boot}"
 	ver_rev="${kernel#/vmlinuz-}"
 	initrd="/initramfs-${ver_rev}.img"
-	cat <<EOF
+	ed "$TEMP" <<EOF
+2
+a
 menuentry "Void Linux (${ver_rev})" {
-	icon     /EFI/refind/icons/os_void.png
-	volume   b6ede7cb-4592-4fae-98ab-e761fa8dc081
+	icon     /EFI/BOOT/icons/os_void.png
+	volume   "Void Linux"
 	loader   ${kernel}
 	initrd   ${initrd}
-	options  "root=PARTUUID=79de8074-3b32-4408-9a56-70e8ace04e43 rw add_efi_memmap quiet"
+	options  "add_efi_memmap quiet"
 }
+.
+wq
 EOF
-done
+done >/dev/null 2>&1
+
+mv -f /boot/EFI/BOOT/refind.conf /boot/EFI/BOOT/refind.conf.bak &&
+mv "$TEMP" /boot/EFI/BOOT/refind.conf
