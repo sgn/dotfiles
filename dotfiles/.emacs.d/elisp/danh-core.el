@@ -239,7 +239,7 @@
 
 ;;; Make windowing more reactive on.  This is especially true with Helm on EXWM.
 (setq x-wait-for-event-timeout nil)
-(defalias 'woman-fill-column 'fill-column)
+(setq woman-fill-column fill-column)
 
 ;;; Save all visited URLs.
 (setq url-history-track t
