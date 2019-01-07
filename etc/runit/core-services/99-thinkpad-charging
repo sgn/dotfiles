@@ -1,0 +1,6 @@
+#!/bin/sh
+
+if test -x /usr/bin/tpacpi-bat; then
+	msg "Limiting Charging threshold of ThinkPad"
+	/usr/bin/tpacpi-bat -s SP 0 90
+fi

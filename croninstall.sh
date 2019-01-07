@@ -9,7 +9,7 @@ make_cron () {
 	# minute hour day_of_month month day_of_week command
 	cat <<-EOF
 	*/10	 *    *		   *	 *	     ssoma sync --cron
-	*/2	 *    *		   *	 *	     ${HOME}/.local/bin/syncmail.sh
+	*/2	 *    *		   *	 *	     ${DOTFILES_HOME}/bin/syncmail.sh
 	*/5	 *    *		   *	 *	     ${XDG_CONFIG_HOME}/dunst/battery.sh
 	EOF
 }

@@ -172,7 +172,9 @@ libxml2-devel
 libxslt
 libzstd
 linux
+linux-tools
 linux4.20
+linux4.20-headers
 lm_sensors
 lua52
 lvm2
@@ -247,6 +249,7 @@ smartmontools
 socklog
 socklog-void
 sqlite
+ssoma
 st
 startup-notification
 stow

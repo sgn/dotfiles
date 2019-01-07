@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# Kernel hook for efibootmgr.
+#
+# Arguments passed to this script: $1 pkgname, $2 version.
+#
+VERSION="$2"
+
+. "${ROOTDIR}/etc/default/efibootmgr-kernel-hook"
+if [ "x${MODIFY_EFI_ENTRIES}" != x2 ]; then
+	exit 0
+fi
+
+# get hex number of the matching entry
+efibootmgr |
+	sed -n "s/^Boot\\(....\\).*Void Linux with kernel ${VERSION}/\\1/p" |
+	xargs -l efibootmgr -Bq -b

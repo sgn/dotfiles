@@ -13,5 +13,7 @@ if test -z "$prefix" ; then
 	prefix="2603:1046:"
 fi
 
-printf 'precedence %s:/96 100\n' "$prefix"
-printf 'precedence %s:/96 100\n' "$prefix" >> /etc/gai.conf
+TEXT=$(printf 'precedence %s:/96 100\n' "$prefix")
+if ! grep -q "${TEXT}" /etc/gai.conf ; then
+	echo "$TEXT" >> /etc/gai.conf
+fi

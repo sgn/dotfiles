@@ -19,7 +19,7 @@ menuentry "Void Linux (${ver_rev})" {
 	volume   "Void Linux"
 	loader   ${kernel}
 	initrd   ${initrd}
-	options  "add_efi_memmap quiet"
+	options  "quiet"
 }
 .
 wq
