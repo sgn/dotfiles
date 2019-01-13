@@ -155,7 +155,8 @@
 ;;;; Browse url at point
 (require 'browse-url)
 (global-set-key (kbd "C-<return>") 'browse-url)
-(when (require 'w3m nil t)
+(when (fboundp 'w3m-browse-url)
+  (setq w3m-fill-column fill-column)
   (setq browse-url-browser-function 'w3m-browse-url))
 
 ;;;; Spelling
