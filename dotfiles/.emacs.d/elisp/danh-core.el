@@ -183,7 +183,7 @@
 (with-eval-after-load 'compile
   (make-variable-buffer-local 'compile-command))
 ;; Some command output color escape regardless dumb terminal
-(require 'ansi-color)
+;; (require 'ansi-color)
 (defun danh/compilation-colourise-buffer ()
   (when (eq major-mode 'compilation-mode)
     (ansi-color-apply-on-region compilation-filter-start (point-max))))

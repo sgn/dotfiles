@@ -1,12 +1,29 @@
 (require 'sendmail)
 
+(require 'mm-view)
+(setcdr (assoc 'lynx mm-text-html-renderer-alist)
+        '(mm-inline-render-with-stdin
+          nil "lynx" "-dump" "-force_html" "-stdin" "-display_charset=utf-8"))
+
+(defvar danh/mm-insert-inline-use-utf-8 nil)
+(defadvice mm-insert-inline (around mm-insert-inline-utf-8)
+  (let ((x (point)))
+    (prog1 (progn ad-do-it)
+      (when danh/mm-insert-inline-use-utf-8
+        (decode-coding-region x (point-max) 'utf-8)))))
+(ad-activate 'mm-insert-inline)
+(defadvice mm-inline-text-html (around mm-inline-text-html-utf-8)
+  (let ((danh/mm-insert-inline-use-utf-8 t))
+    ad-do-it))
+(ad-activate 'mm-inline-text-html)
+
 (setq
  message-kill-buffer-on-exit t
  message-sendmail-envelope-from 'header
  message-send-mail-function 'message-send-mail-with-sendmail
  sendmail-program "/usr/bin/msmtp"
  message-user-fqdn "congdanhqx.xyz"
- mm-text-html-renderer 'shr
+ mm-text-html-renderer 'lynx
  notmuch-saved-searches
  (quote
   ((:name "me in 1 day"
@@ -40,7 +57,7 @@
 
 (defun notmuch ()
   (interactive)
-  (notmuch-search (cadddr (first notmuch-saved-searches))))
+  (notmuch-search (plist-get (first notmuch-saved-searches) :query)))
 
 (defun danh/notmuch-tag-todo ()
   (interactive)

@@ -52,7 +52,7 @@
 
 (defun danh/init-lispy ()
   (when (require 'lispy nil t)
-    (set-face-foreground 'lispy-face-hint "#FF00FF")
+    ;; (set-face-foreground 'lispy-face-hint "#FF00FF")
     (when (require 'lispyville nil t)
       (add-hook 'lispy-mode-hook 'lispyville-mode))
     (lispyville-mode)))

@@ -1,10 +1,13 @@
+ConsoleKit2
 acpi
+acpid
 adwaita-icon-theme
 alsa-firmware
 alsa-lib-devel
 alsa-plugins
 alsa-tools
 alsa-utils
+android-tools-9.0.0r21_1
 apulse
 aspell
 atkmm
@@ -42,6 +45,7 @@ dvtm
 e2fsprogs
 ed
 efibootmgr
+elogind
 emacs-x11
 enchant
 eudev
@@ -178,6 +182,7 @@ linux4.20-headers
 lm_sensors
 lua52
 lvm2
+lynx
 man-pages
 man-pages-devel
 mcpp
@@ -223,8 +228,7 @@ perl-Net-IMAP-Simple
 pinentry
 pkg-config
 playerctl
-pm-utils
-polkit
+polkit-elogind
 poppler-utils
 powertop
 pygtk
@@ -235,6 +239,7 @@ python-gobject2
 python3
 ranger
 refind
+rsync
 rtv
 ruby
 runit-void
@@ -253,6 +258,7 @@ ssoma
 st
 startup-notification
 stow
+strace
 sudo
 surf
 sxiv
@@ -294,6 +300,7 @@ xcb-util-wm
 xcb-util-xrm
 xclip
 xdotool
+xdpyinfo
 xev
 xf86-input-libinput
 xf86-video-intel
