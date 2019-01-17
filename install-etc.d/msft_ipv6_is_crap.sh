@@ -2,7 +2,7 @@
 
 if ! test -w /etc/gai.conf ; then
 	echo "We need write permission to /etc/gai.conf"
-	exit 1
+	return
 fi
 
 prefix=$(nslookup outlook.office365.com \
@@ -14,6 +14,6 @@ if test -z "$prefix" ; then
 fi
 
 TEXT=$(printf 'precedence %s:/96 100\n' "$prefix")
-if ! grep -q "${TEXT}" /etc/gai.conf ; then
+if ! grep -qF "${TEXT}" /etc/gai.conf ; then
 	echo "$TEXT" >> /etc/gai.conf
 fi
