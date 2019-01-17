@@ -110,6 +110,11 @@ ulimit -c unlimited
 ## Specific to local computer. Should be sourced last
 [ -f ~/.profile_local ] && . ~/.profile_local
 
-if [ -z "$DISPLAY" ] && [ "$(tty)" = '/dev/tty1' ]; then
-	 command -v xinit >/dev/null 2>&1 && exec xinit -- vt01
+if test -z "$DISPLAY" && test "$(tty)" = '/dev/tty1' \
+		&& command -v xinit >/dev/null 2>&1 ; then
+	if test -z "$DBUS_SESSION_BUS_ADDRESS" \
+			&& command -v dbus-run-session >/dev/null 2>&1; then
+		exec dbus-run-session -- xinit -- vt01
+	fi
+	exec xinit -- vt01
 fi

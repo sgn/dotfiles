@@ -12,6 +12,7 @@ apulse
 aspell
 atkmm
 audiofile
+augeas
 autoconf
 automake
 base-files
@@ -45,7 +46,6 @@ dvtm
 e2fsprogs
 ed
 efibootmgr
-elogind
 emacs-x11
 enchant
 eudev
@@ -106,6 +106,7 @@ libev
 libevdev
 libevent
 libexif
+libffi-devel
 libfftw
 libflac
 libfontenc
@@ -235,7 +236,10 @@ pygtk
 python
 python-alsa
 python-cairo
+python-devel
 python-gobject2
+python-pip
+python-virtualenv
 python3
 ranger
 refind
@@ -251,6 +255,7 @@ shadow
 shellcheck
 slock
 smartmontools
+snooze
 socklog
 socklog-void
 sqlite
@@ -308,7 +313,6 @@ xinit
 xinput
 xmlcatmgr
 xmodmap
-xorg-server
 xorgproto
 xprop
 xrandr

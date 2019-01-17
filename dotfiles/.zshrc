@@ -43,10 +43,14 @@ if test -f "${D_EXT_SOURCE}"; then
 	export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 fi
 
-source "${D_EXTERNAL}/base16-gruvbox-dark-hard.sh"
-
 unset D_EXT_SOURCE
 unset D_EXTERNAL
+
+recolor () {
+	if test -r "${DOTFILES_HOME}/external/base16-gruvbox-dark-hard.sh"; then
+		source "${DOTFILES_HOME}/external/base16-gruvbox-dark-hard.sh"
+	fi
+}
 
 ## press ctrl-q to quote line:
 mquote () {
