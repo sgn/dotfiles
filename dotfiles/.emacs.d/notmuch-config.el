@@ -27,7 +27,7 @@
  notmuch-saved-searches
  (quote
   ((:name "me in 1 day"
-          :query "date:1days.. AND (to:/congdanhqx/ or to:kungdein@gmail.com or to:sgn.danh@gmail.com)"
+          :query "date:1days.. AND (path:/congdanhqx/ or to:kungdein@gmail.com or to:sgn.danh@gmail.com)"
           :key "t")
    (:name "inbox"
           :query "tag:inbox"
@@ -39,7 +39,7 @@
           :query "(to:congdanhqx@gmail.com or to:congdanhqx@live.com) AND NOT tag:delete"
           :key "m")
    (:name "me in 7 days"
-          :query "date:7days.. AND (to:/congdanhqx/ or to:kungdein@gmail.com or to:sgn.danh@gmail.com)"
+          :query "date:7days.. AND (path:/congdanhqx/ or to:kungdein@gmail.com or to:sgn.danh@gmail.com)"
           :key "w")
    (:name "me at git"
           :query "path:git/** AND (to:congdanhqx@gmail.com OR cc:congdanhqx@gmail.com)"
