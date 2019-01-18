@@ -12,4 +12,11 @@ esac
 
 volume=$(amixer get Master | awk '/%/{print $6=="[off]"?"off":$4}')
 
-notify-send -i audio-speaker "Volume: ${volume}"
+if command -v dunstify >/dev/null 2>&1; then
+	NOTIFY_SEND="dunstify -r 29011"
+elif command -v notify-send >/dev/null 2>&1; then
+	NOTIFY_SEND="notify-send"
+else
+	exit
+fi
+exec $NOTIFY_SEND -i audio-speaker "Volume: ${volume}"
