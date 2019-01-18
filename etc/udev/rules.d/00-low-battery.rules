@@ -1,0 +1,1 @@
+SUBSYSTEM=="power_supply", ATTR{type}=="Battery", ATTR{status}=="Discharging", ATTR{capacity}=="4", RUN+="/usr/bin/ZZZ"
