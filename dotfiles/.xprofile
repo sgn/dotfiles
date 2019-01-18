@@ -21,17 +21,8 @@ if command -v xinput >/dev/null; then
 	done
 fi
 
-## X bindkeys
-if command -v xbindkeys >/dev/null 2>&1; then
-	if test -f "$HOME/.xbindkeysrc" ; then
-		xbindkeys
-	fi
-fi
-
 _JAVA_AWT_WM_NONREPARENTING=1
 export _JAVA_AWT_WM_NONREPARENTING
-
-# command -v urxvtd >/dev/null 2>&1 && urxvtd -q -o -f
 
 xmodmap - <<EOF
 remove Lock = Caps_Lock
@@ -46,9 +37,6 @@ EOF
 ## Turn off the bell
 command -v xset >/dev/null && xset -b s 180 120
 
-## Lock on sleep
-command -v xss-lock >/dev/null && command -v slock >/dev/null && xss-lock -- slock &
-
 if command -v nitrogen >/dev/null 2>&1; then
 	nitrogen --restore
 else
@@ -56,18 +44,6 @@ else
 fi
 
 command -v xdotool >/dev/null 2>&1 && xdotool mousemove 0 10000
-command -v unclutter >/dev/null 2>&1 && unclutter &
-
-if command -v dunst >/dev/null 2>&1; then
-	XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
-	dunst &
-	while true; do
-		if test -r "$XDG_CONFIG_HOME/dunst/battery.sh" ; then
-			/bin/sh "$XDG_CONFIG_HOME/dunst/battery.sh"
-		fi
-		sleep 120
-	done&
-fi
 
 ## Hook, should the last one to be sourced
 test -f ~/.xprofile_hook && . ~/.xprofile_hook

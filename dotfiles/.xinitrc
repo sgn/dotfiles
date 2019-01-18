@@ -18,6 +18,29 @@ fi
 ## local xprofile
 test -f ~/.xprofile && . ~/.xprofile
 
+## X bindkeys
+if command -v xbindkeys >/dev/null 2>&1; then
+	if test -f "$HOME/.xbindkeysrc" ; then
+		xbindkeys
+	fi
+fi
+
+## Lock on sleep
+command -v xss-lock >/dev/null && command -v slock >/dev/null && xss-lock -- slock &
+
+command -v unclutter >/dev/null 2>&1 && unclutter &
+
+if command -v dunst >/dev/null 2>&1; then
+	XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
+	dunst &
+	while true; do
+		if test -r "$XDG_CONFIG_HOME/dunst/battery.sh" ; then
+			/bin/sh "$XDG_CONFIG_HOME/dunst/battery.sh"
+		fi
+		sleep 180
+	done&
+fi
+
 slstatus &
 ## start session
 DWM=dwm
