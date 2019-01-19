@@ -30,3 +30,9 @@ config/dconf/user
 msmtp
 rtv
 *.swp
+jack
+gtk-2.0
+fish
+dconf
+cmus
+pavucontrol.ini

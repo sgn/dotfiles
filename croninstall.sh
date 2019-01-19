@@ -1,6 +1,5 @@
 #!/bin/sh
 
-test -z "${XDG_CONFIG_HOME}" && XDG_CONFIG_HOME="$HOME/.config"
 make_cron () {
 	crontab -l 2>/dev/null |
 		sed '/ssoma/d;

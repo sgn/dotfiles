@@ -44,7 +44,7 @@ add_to_path () {
 
 DOTFILES_HOME=$(readlink -f ~/.profile)
 DOTFILES_HOME="${DOTFILES_HOME%/*/.profile}"
-XDG_CONFIG_HOME="${DOTFILES_HOME}/config"
+XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
 export XDG_CONFIG_HOME DOTFILES_HOME
 
 trap ". ~/.shlogout" 0
