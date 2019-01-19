@@ -1,10 +1,12 @@
 ConsoleKit2
+abduco
 acpi
 acpid
 adwaita-icon-theme
 alsa-firmware
 alsa-lib-devel
 alsa-plugins
+alsa-sndio
 alsa-tools
 alsa-utils
 android-tools-9.0.0r21_1
@@ -196,7 +198,7 @@ mpd
 mpv
 msmtp
 mtdev
-mupdf
+ncmpcpp
 neofetch
 nftables
 nitrogen
@@ -207,7 +209,6 @@ noto-fonts-emoji
 npth
 nspr
 nss
-nvi
 ocl-icd
 openssh-7.9p1_2
 opus
@@ -281,6 +282,7 @@ twolame
 tzdata-2018i_1
 unclutter
 unzip
+usbutils
 v4l-utils
 valgrind
 vim
