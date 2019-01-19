@@ -10,5 +10,6 @@ git submodule update --init
 
 mkdir -p ~/.gnupg
 chmod go-rwx ~/.gnupg
+mkdir -p ~/.cache/mpd/playlists
 
 stow dotfiles -t ~
