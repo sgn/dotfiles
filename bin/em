@@ -5,13 +5,18 @@ if test "${0##*/}" = "emc" ; then
 else
 	## If Emacs cannot start in graphical mode, -c will act just like -t.
 	param="-c"
-	if test "${0##*/}" != "emw" && test -n "$DISPLAY" ; then
-		lisp_test='(message (if (fboundp '"'"'tool-bar-mode) "X" "TTY"))'
-		x_tty=$(emacs --batch -Q --eval="$lisp_test" 2>&1)
-		## If not called with "emw" and Emacs can start in graphical mode.
-		## Do not wait
-		test "$x_tty" = "X" && param="$param -n"
-	fi
 fi
 
-emacsclient $param -a "" "$@"
+if [ $# -eq 1 ] && [ $1 = '-' ]; then
+	tempfile=$(mktemp -t "emacs-stdin.XXXXXX")
+	cat >"$tempfile"
+	emacsclient $param -a "" \
+		--eval "(progn
+			(find-file \"$tempfile\")
+			(auto-save-mode 0)
+			(set-visited-file-name nil)
+			(rename-buffer \"*stdin*\" t))"
+	rm -f "$tempfile"
+else
+	exec emacsclient $param -a "" "$@"
+fi
