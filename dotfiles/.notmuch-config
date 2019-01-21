@@ -11,7 +11,7 @@
 # configured here named ".notmuch".
 #
 [database]
-path=.cache/maildir
+path=/home/danh/.cache/maildir
 
 # User configuration
 #
@@ -48,7 +48,7 @@ other_email=congdanhqx@live.com;kungdein@gmail.com;sgn.danh@gmail.com;
 #		in the mail store.
 #
 [new]
-tags=unread;inbox;
+tags=unread;inbox;new;
 ignore=
 
 # Search configuration

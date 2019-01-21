@@ -52,7 +52,7 @@
                            "Id"
                            "Message-Id"
                            "In-Reply-To"
-                           "List-ID"
+                           "List-Id"
                            "Content-Type")))
 
 (defun notmuch ()

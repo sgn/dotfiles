@@ -1,0 +1,11 @@
+[SpamFilter]
+[KillThreadsFilter]
+[ListMailsFilter]
+[ArchiveSentMailsFilter]
+
+[Filter.1]
+message = 'mailing list'
+query = 'tag:lists'
+tags = -inbox
+
+[InboxFilter]

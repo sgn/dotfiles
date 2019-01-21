@@ -3,6 +3,7 @@ abduco
 acpi
 acpid
 adwaita-icon-theme
+afew
 alsa-firmware
 alsa-lib-devel
 alsa-plugins
@@ -22,6 +23,8 @@ bc
 bind-utils
 binutils-devel
 bison
+bitlbee
+bitlbee-facebook
 cairomm
 cava
 celt
@@ -39,6 +42,7 @@ desktop-file-utils
 dhcpcd
 dialog
 diffutils
+dma
 dmenu
 dnssec-anchors
 dos2unix
@@ -56,8 +60,11 @@ expat
 f2fs-tools
 faad2
 farbfeld
+ffmpeg
 file
 firefox
+fish-shell
+flac
 flex
 fltk
 font-util
@@ -72,6 +79,7 @@ gettext-libs
 git
 glslang
 gmime
+gmime-devel
 gnu-efi-libs
 gnupg
 gnupg2
@@ -92,7 +100,6 @@ intel-ucode
 iproute2
 iputils
 isync
-jack
 kbd
 lame
 libGLES
@@ -193,7 +200,9 @@ mdocml
 mesa-intel-dri
 mkfontscale
 mlocate
+moreutils
 mozjs52
+mpc
 mpd
 mpv
 msmtp
@@ -219,6 +228,7 @@ parted
 pass
 passmenu
 patch
+pavucontrol
 pcre2-devel
 perl-Email-LocalDelivery
 perl-Email-MIME
@@ -228,11 +238,12 @@ perl-IPC-Run
 perl-JSON-XS
 perl-Net-IMAP-Simple
 pinentry
+pinentry-gtk
 pkg-config
-playerctl
 polkit-elogind
 poppler-utils
 powertop
+pulseaudio
 pygtk
 python
 python-alsa
@@ -242,15 +253,18 @@ python-gobject2
 python-pip
 python-virtualenv
 python3
+qemu
 ranger
 refind
 rsync
 rtv
 ruby
+ruby-devel
 runit-void
 scrot
 sed
 sent
+setxkbmap
 shaderc
 shadow
 shellcheck
@@ -269,6 +283,7 @@ sudo
 surf
 sxiv
 sysstat
+talloc-devel
 tar
 texinfo
 thermald
@@ -295,9 +310,11 @@ which
 wpa_supplicant
 x264
 x265
+xapian-core-devel
 xauth
 xbacklight
 xbindkeys
+xcape
 xcb-util
 xcb-util-cursor
 xcb-util-image

@@ -30,7 +30,7 @@
         rainbow-delimiters
         geiser
         slime
-        org-plus-contrib                ; org-mode
+        ;; org-plus-contrib                ; org-mode
         helm-org-contacts
         htmlize                         ; blog
         async                           ; dired
@@ -118,7 +118,7 @@
 
 (require 'org)
 (require 'org-capture)
-(require 'org-contacts)
+;; (require 'org-contacts)
 
 ;;;; Mail
 ;; notmuch
@@ -167,7 +167,8 @@
 (add-hook 'kill-buffer-query-functions 'danh/immortal-scratch)
 
 ;;;; Theme
-(setq term-file-aliases '(("st-256color" . "xterm"))
+(setq term-file-aliases '(("st-256color" . "xterm")
+                          ("dvtm-256color" . "xterm"))
       base16-theme-256-color-source "base16-shell")
 (when (require 'base16-gruvbox-dark-hard-theme)
   (load-theme 'base16-gruvbox-dark-hard t)
