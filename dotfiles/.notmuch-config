@@ -31,7 +31,7 @@ path=/home/danh/.cache/maildir
 [user]
 name=Danh Doan
 primary_email=congdanhqx@gmail.com
-other_email=congdanhqx@live.com;kungdein@gmail.com;sgn.danh@gmail.com;
+other_email=congdanhqx@live.com;sgn.danh@gmail.com;
 
 # Configuration for "notmuch new"
 #
@@ -48,7 +48,7 @@ other_email=congdanhqx@live.com;kungdein@gmail.com;sgn.danh@gmail.com;
 #		in the mail store.
 #
 [new]
-tags=unread;inbox;new;
+tags=unread;new;
 ignore=
 
 # Search configuration

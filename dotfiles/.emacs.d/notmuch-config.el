@@ -26,9 +26,12 @@
  mm-text-html-renderer 'lynx
  notmuch-saved-searches
  (quote
-  ((:name "me in 1 day"
-          :query "date:1days.. AND (path:/congdanhqx/ or to:kungdein@gmail.com or to:sgn.danh@gmail.com)"
+  ((:name "today"
+          :query "date:1days.. AND (path:/congdanhqx/ or to:/sgn.danh/)"
           :key "t")
+   (:name "following"
+          :query "tag:follow"
+          :key "f")
    (:name "inbox"
           :query "tag:inbox"
           :key "i")
@@ -36,14 +39,14 @@
           :query "tag:unread"
           :key "u")
    (:name "to me"
-          :query "(to:congdanhqx@gmail.com or to:congdanhqx@live.com) AND NOT tag:delete"
+          :query "(to:congdanhqx@gmail.com or to:congdanhqx@live.com)"
           :key "m")
-   (:name "me in 7 days"
-          :query "date:7days.. AND (path:/congdanhqx/ or to:kungdein@gmail.com or to:sgn.danh@gmail.com)"
+   (:name "this week"
+          :query "date:7days.. AND (path:/congdanhqx/ or to:/sgn.danh/)"
           :key "w")
-   (:name "me at git"
-          :query "path:git/** AND (to:congdanhqx@gmail.com OR cc:congdanhqx@gmail.com)"
-          :key "g")))
+   (:name "mailing list this week"
+          :query "tag:lists AND to:congdanhqx@gmail.com AND date:7days.."
+          :key "l")))
  notmuch-message-headers (quote
                           ("Subject"
                            "To"
@@ -59,12 +62,26 @@
   (interactive)
   (notmuch-search (plist-get (first notmuch-saved-searches) :query)))
 
-(defun danh/notmuch-tag-todo ()
+(defun danh/notmuch-show-toggle-follow ()
+  "Toggle follow tag for message"
   (interactive)
-  (notmuch-show-tag-message "+todo"))
-(defun danh/notmuch-toglle-todo ()
+  (if (member "follow" (notmuch-show-get-tags))
+      (notmuch-show-tag (list "-follow"))
+    (notmuch-show-tag (list "+follow"))))
+
+(defun danh/notmuch-search-toggle-follow ()
+  "Toggle follow tag for message"
   (interactive)
-  (notmuch-show-tag-message "-todo"))
+  (if (member "follow" (notmuch-search-get-tags))
+      (notmuch-search-tag (list "-follow"))
+    (notmuch-search-tag (list "+follow"))))
+
+(defun danh/notmuch-tree-toggle-follow ()
+  "Toggle follow tag for message"
+  (interactive)
+  (if (member "follow" (notmuch-tree-get-tags))
+      (notmuch-tree-tag (list "-follow"))
+    (notmuch-tree-tag (list "+follow"))))
 
 (defun danh/notmuch-append-msg-id-to-scratch ()
   (interactive)
@@ -91,11 +108,14 @@
     (kbd "SPC") 'notmuch-show-advance-and-archive
     "<" 'notmuch-show-toggle-thread-indentation
     "=" 'danh/notmuch-append-msg-id-to-scratch
+    "f" 'danh/notmuch-show-toggle-follow
     "r" 'notmuch-show-reply
     "R" 'notmuch-show-reply-sender)
   (evil-collection-define-key 'normal 'notmuch-tree-mode-map
+    "f" 'danh/notmuch-tree-toggle-follow
     "r" (notmuch-tree-close-message-pane-and 'notmuch-show-reply)
     "R" (notmuch-tree-close-message-pane-and 'notmuch-show-reply-sender))
   (evil-collection-define-key 'normal 'notmuch-search-mode-map
+    "f" 'danh/notmuch-search-toggle-follow
     "r" 'notmuch-search-reply-to-thread
     "R" 'notmuch-search-reply-to-thread-sender))
