@@ -6,6 +6,6 @@
 [Filter.1]
 message = 'mailing list'
 query = 'tag:lists'
-tags = -new;-inbox;
+tags = -new
 
 [InboxFilter]
