@@ -1,4 +1,4 @@
 image/*; sxiv %s
 video/*; mpv %s
-application/pdf; /usr/bin/mupdf %s; test=test "$DISPLAY" != ""
-application/x-pdf; /usr/bin/mupdf %s; test=test "$DISPLAY" != ""
+application/pdf; /usr/bin/zathura %s; test=test "$DISPLAY" != ""
+application/x-pdf; /usr/bin/zathura %s; test=test "$DISPLAY" != ""

@@ -1,0 +1,5 @@
+default xkb_keycodes "xevdev"{
+	include "evdev(evdev)"
+	<SPCE> = 248;
+	<I248> = 65;
+};

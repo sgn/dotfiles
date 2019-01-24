@@ -33,7 +33,13 @@ export _JAVA_AWT_WM_NONREPARENTING
 # add Control = Control_L
 # remove mod4 = Hyper_L
 # EOF
-setxkbmap -option ctrl:swapcaps
+
+# here come the madness
+# capslock will send:
+# - escape when press-and-released
+# - ctrl when press with other keys
+setxkbmap -option ctrl:nocaps -option shift:both_capslock -option nbsp:level2
+xcape -e 'Control_L=Escape'
 
 ## Turn off the bell
 command -v xset >/dev/null && xset -b s 180 120

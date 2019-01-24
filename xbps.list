@@ -46,6 +46,7 @@ dma
 dmenu
 dnssec-anchors
 dos2unix
+dracut
 dtach
 dunst
 dvtm
@@ -185,7 +186,8 @@ libxkbcommon-x11
 libxml2-devel
 libxslt
 libzstd
-linux
+linux-firmware-intel
+linux-firmware-network
 linux-tools
 linux4.20
 linux4.20-headers
@@ -344,5 +346,7 @@ xvidcore
 xz
 yajl
 youtube-dl
+zathura
+zathura-pdf-poppler
 zsh
 zziplib
