@@ -1,24 +1,16 @@
 #!/bin/sh
 
-## Internet Browsers that needs X
-for i in firefox chromium; do
-	command -v $i >/dev/null 2>&1 && \
-		BROWSER=$i && \
-		export BROWSER && \
-		break
-done
+BROWSER=firefox
+export BROWSER
 
 ## X resources
-if test -f "$HOME/.Xresources" && command -v xrdb >/dev/null; then
-	xrdb -merge "$HOME/.Xresources"
-fi
+xrdb -merge "$HOME/.Xresources" || true
 
 ## Disable Touchpad if exists
 if command -v xinput >/dev/null; then
-	for i in $(xinput list |
-			sed -nE 's/^.*Touch[Pp]ad[[:space:]]+id=([[:digit:]]+).*$/\1/p'); do
-		xinput disable "$i"
-	done
+	xinput --list |
+		sed -nE 's/^.*Touch[Pp]ad[[:space:]]+id=([[:digit:]]+).*$/\1/p' |
+		xargs -L 1 xinput --disable
 fi
 
 _JAVA_AWT_WM_NONREPARENTING=1
@@ -42,15 +34,11 @@ setxkbmap -option ctrl:nocaps -option shift:both_capslock -option nbsp:level2
 xcape -e 'Control_L=Escape'
 
 ## Turn off the bell
-command -v xset >/dev/null && xset -b s 180 120
+xset -b s 180 120
 
-if command -v nitrogen >/dev/null 2>&1; then
-	nitrogen --restore
-else
-	command -v xsetroot >/dev/null 2>&1 && xsetroot -solid "#282A36"
-fi
+nitrogen --restore || xsetroot -solid "#1d2021" || true
 
-command -v xdotool >/dev/null 2>&1 && xdotool mousemove 0 10000
+xdotool mousemove 0 10000 || true
 
-## Hook, should the last one to be sourced
+## Hook, should be the last one to be sourced
 test -f ~/.xprofile_hook && . ~/.xprofile_hook

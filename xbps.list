@@ -245,7 +245,6 @@ pkg-config
 polkit-elogind
 poppler-utils
 powertop
-pulseaudio
 pygtk
 python
 python-alsa

@@ -199,6 +199,10 @@ xbps-list() {
 alias xclipboard='xclip -selection clipboard'
 alias fgrep='fgrep --color=auto'
 
+if test linux = "$TERM"; then
+	recolor
+fi
+
 # stop rtv from launching firefox
 for i in w3m elinks lynx links; do
 	command -v $i >/dev/null 2>&1 && \
