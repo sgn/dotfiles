@@ -23,6 +23,7 @@ bindkey -v
 #    REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
 #}
 #grml_theme_add_token  virtual-env -f virtual_env_prompt '%F{magenta}' '%f'
+zstyle ':vcs_info:*' enable git
 zstyle ':prompt:grml:left:setup' items rc change-root user at host path vcs time shell-level newline percent
 
 D_EXT_SOURCE="${D_EXTERNAL}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
@@ -185,7 +186,7 @@ weather () {
 
 xbps-list() {
 	xbps-query -m |
-		sed -E 's/-[[:digit:]]+(\.(git)?[[:digit:]]+)*(_[[:digit:]]+)?(\.r[[:digit:]])?$//'
+		sed -E 's/-[[:digit:]]+(\.(git)?[[:digit:]]+)*(r[[:digit:]]+)?(_[[:digit:]]+)$//'
 }
 
 ## log out? set timeout in seconds...
