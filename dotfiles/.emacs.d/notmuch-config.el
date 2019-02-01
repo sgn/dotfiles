@@ -3,7 +3,11 @@
 (require 'mm-view)
 (setcdr (assoc 'lynx mm-text-html-renderer-alist)
         '(mm-inline-render-with-stdin
-          nil "lynx" "-dump" "-force_html" "-stdin" "-display_charset=utf-8"))
+          nil
+          "lynx"
+          "-force_html"
+          "-stdin" "-assume_charset=utf-8"
+          "-dump" "-display_charset=utf-8"))
 
 (defvar danh/mm-insert-inline-use-utf-8 nil)
 (defadvice mm-insert-inline (around mm-insert-inline-utf-8)
