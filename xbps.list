@@ -1,4 +1,5 @@
 ConsoleKit2
+ImageMagick
 abduco
 acpi
 acpid
@@ -25,6 +26,7 @@ binutils-devel
 bison
 bitlbee
 bitlbee-facebook
+busybox
 cairomm
 cava
 celt
@@ -50,6 +52,7 @@ dracut
 dtach
 dunst
 dvtm
+dwm
 e2fsprogs
 ed
 efibootmgr
@@ -61,6 +64,8 @@ expat
 f2fs-tools
 faad2
 farbfeld
+feh
+fex
 ffmpeg
 file
 firefox
@@ -88,6 +93,7 @@ gnutls
 gpgme
 gptfdisk
 grep
+gromit-mpx
 gst-plugins-base1
 gstreamer1
 gtk+
@@ -196,6 +202,7 @@ lm_sensors
 lua52
 lvm2
 lynx
+macchanger
 man-pages
 man-pages-devel
 mcpp
@@ -215,6 +222,7 @@ ncurses-devel
 neofetch
 nftables
 nitrogen
+nmap
 notmuch-emacs
 notmuch-mutt
 noto-fonts-cjk
@@ -257,6 +265,7 @@ python-pip
 python-virtualenv
 python3
 qemu
+qrencode
 ranger
 refind
 rsync
@@ -264,6 +273,8 @@ rtv
 ruby
 ruby-devel
 runit-void
+sbsigntools
+sc
 scrot
 sed
 sent
@@ -290,6 +301,7 @@ sysstat
 talloc-devel
 tar
 texinfo
+the_silver_searcher
 thermald
 tlp
 tpacpi-bat
@@ -310,7 +322,9 @@ w3m
 webkit2gtk
 weechat
 weechat-aspell
+wgetpaste
 which
+wmutils-core
 wpa_supplicant
 x264
 x265
@@ -344,6 +358,7 @@ xset
 xsetroot
 xss-lock
 xtools
+xurls
 xvidcore
 xz
 yajl

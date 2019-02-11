@@ -149,6 +149,6 @@ use_jisc6226 0
 use_jisx0201k 0
 use_jisx0212 0
 use_jisx0213 0
-strict_iso2022 1
+strict_iso2022 0
 gb18030_as_ucs 0
 simple_preserve_space 0
