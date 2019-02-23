@@ -16,7 +16,7 @@ if [ $# -eq 1 ] && [ $1 = '-' ]; then
 			(auto-save-mode 0)
 			(set-visited-file-name nil)
 			(rename-buffer \"*stdin*\" t))"
-	rm -f "$tempfile"
+#	rm -f "$tempfile"
 else
 	exec emacsclient $param -a "" "$@"
 fi

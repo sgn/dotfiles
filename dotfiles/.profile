@@ -35,7 +35,7 @@ add_to_path "${DOTFILES_HOME}/bin" begin
 add_to_path "${HOME}/.local/platform-tools"
 
 ## Remove less history.
-LESS='-R'
+LESS='-RF'
 LESSHISTFILE='-'
 export LESS LESSHISTFILE
 

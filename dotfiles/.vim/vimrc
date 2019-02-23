@@ -22,11 +22,26 @@ set shiftwidth=8
 set noexpandtab
 
 " cursor
+set cursorline
 set scrolloff=3
 set matchpairs+=<:>
 
 " rendering
 set ttyfast
+set lazyredraw
+
+" folding
+set foldenable
+set foldlevelstart=5
+set foldnestmax=5
+set foldmethod=indent
+" nnoremap <space> za
+
+" move by visual line
+nnoremap j gj
+nnoremap k gk
+" highlight last insert text
+nnoremap gV `[v`]
 
 " status
 set laststatus=2
@@ -36,12 +51,15 @@ set showmode
 set showcmd
 
 " Search
-
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
 set showmatch
+nnoremap <leader><space> :nohlsearch<CR>
+
+" autocomplete
+set wildmenu
 
 " Color scheme
 let base16colorspace=256
