@@ -23,16 +23,17 @@ add_to_path () {
 	unset PATHVAR
 }
 
-DOTFILES_HOME=$(readlink -f ~/.profile)
-DOTFILES_HOME="${DOTFILES_HOME%/*/.profile}"
 XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
-export XDG_CONFIG_HOME DOTFILES_HOME
+export XDG_CONFIG_HOME
 
 trap ". ~/.shlogout" 0
 
 ## My scripts come here
+DOTFILES_HOME=$(readlink -f ~/.profile)
+DOTFILES_HOME="${DOTFILES_HOME%/*/.profile}"
 add_to_path "${DOTFILES_HOME}/bin" begin
 add_to_path "${HOME}/.local/platform-tools"
+unset DOTFILES_HOME
 
 ## Remove less history.
 LESS='-RF'

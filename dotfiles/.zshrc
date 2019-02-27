@@ -1,16 +1,12 @@
 #!/usr/bin/zsh
 
-if test -z "${DOTFILES_HOME}"; then
-	source ~/.profile
-fi
-
 ls_options=( '--group-directories-first' )
 NOTITLE=1
 GRML_NO_APT_ALIASES=1
 GRML_DISPLAY_BATTERY=1
 GRML_NO_DEFAULT_LOCALE=1
 
-D_EXTERNAL="${DOTFILES_HOME}/external"
+D_EXTERNAL="${XDG_CONFIG_HOME}/zsh"
 
 D_EXT_SOURCE="${D_EXTERNAL}/grml/etc/zsh/zshrc"
 if test -f "${D_EXT_SOURCE}"; then
@@ -48,8 +44,8 @@ unset D_EXT_SOURCE
 unset D_EXTERNAL
 
 recolor () {
-	if test -r "${DOTFILES_HOME}/external/base16-gruvbox-dark-hard.sh"; then
-		source "${DOTFILES_HOME}/external/base16-gruvbox-dark-hard.sh"
+	if test -r "${XDG_CONFIG_HOME}/base16-gruvbox-dark-hard.sh"; then
+		source "${XDG_CONFIG_HOME}/base16-gruvbox-dark-hard.sh"
 	fi
 }
 
