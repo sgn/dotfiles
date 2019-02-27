@@ -19,4 +19,4 @@ elif command -v notify-send >/dev/null 2>&1; then
 else
 	exit
 fi
-exec $NOTIFY_SEND -i audio-speaker "Volume: ${volume}"
+exec $NOTIFY_SEND -i audio-speakers "Volume: ${volume}"
