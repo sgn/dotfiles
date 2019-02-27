@@ -1,20 +1,47 @@
 " no vi compatble
 set nocompatible
-filetype off
+if has("autocmd")
+	filetype off
+endif
 
-syntax on
+if has("syntax")
+	syntax on
+endif
 
-filetype plugin indent on
-let mapleader = ","
+let mapleader=" "
 
-set modelines=0
-set number
-set ruler
-set visualbell
+set backspace=indent,eol,start
+
+set autoindent           " always set autoindenting on
+set nobackup             " do not backup
+set viminfo=%,'50,\"100  " rw .viminfo, max 100 registers
+set viminfofile=~/.vim/viminfo
+set tags=./tags,./TAGS,TAGS,tags,../tags,../../tags,../../../tags,../../../../tags
+set number               " line number
+set ruler                " cursor position
 set encoding=utf-8
-set wrap
+set wrap                 " visual wrap text
 set textwidth=78
-set formatoptions=tcqrn1
+" fo, fo-table:
+" t: auto-wrap text using tw
+" c: auto-wrap comments using tw, auto insert current comment leader
+" q: format comments with gq
+" r: auto insert current comment leader after <Enter> in INS mode
+" n: recognize numbered list
+" 1: not break line after one-letter-word
+" j: where it makes sense, remove a comment leader when join lines
+set formatoptions+=tcqrn1j
+set suffixes=.bak,~,.swp,.o,.info,.obj,#
+
+" jump to last position when reopen file
+if has("autocmd")
+	filetype plugin indent on
+	autocmd FileType mail set tw=70
+	autocmd BufReadPost * if line("'\"") && line("'\"") <= line("$")
+				\| exe "normal g'\"" | endif
+endif
+
+set esckeys
 
 " tab
 set tabstop=8
@@ -40,11 +67,13 @@ set foldmethod=indent
 " move by visual line
 nnoremap j gj
 nnoremap k gk
+set whichwrap=<,>,h,l
 " highlight last insert text
 nnoremap gV `[v`]
 
 " status
 set laststatus=2
+set shortmess=at
 
 " Last line
 set showmode
@@ -56,11 +85,33 @@ set incsearch
 set ignorecase
 set smartcase
 set showmatch
-nnoremap <leader><space> :nohlsearch<CR>
+nnoremap <leader>/ :nohlsearch<CR>
+
+set autowrite
+set mouse=
+" toggle paste to not alter text on copy/paste
+set pastetoggle=<f11>
+
+" http://vim.wikia.com/wiki/GNU/Linux_clipboard_copy/paste_with_xclip
+map   <F12> :w !xclip<CR><CR>
+vmap  <F12> "*y
+map <S-F12> :r!xclip -o<cr>
+
+" trim trailing whitespaces
+map  <leader>tr :%s/\s\+$//
+vmap <leader>tr :%s/\s\+$//
+" kill quote spaces (quoting quoted mail)
+map  <leader>kqs mz:%s/^> >/>><cr>
 
 " autocomplete
 set wildmenu
 
+if version >= 700
+	map <F7> :set spell!<CR><Bar>:echo "Spell Check: " . strpart("OffOn", 3 * &spell, 3)<cr>
+	set spellfile=~/.vim/spellfile.add
+	set sps=best,10
+endif
 " Color scheme
+set t_Co=256
 let base16colorspace=256
 colorscheme base16-gruvbox-dark-hard
