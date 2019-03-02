@@ -1,22 +1,14 @@
-*~
-\#*\#
-.\#*
 accels.scm
-*.elc
 local-*
-*.log
 *_fifo
 *.pem
-*.o
 *.hi
 *.errors
 xmonad-x86_64-linux
 pkg/
 src/
-*.pkg.tar.xz
 *-git/
 aur
-*.gz
 config/gtk-2.0/gtkfilechooser.ini
 config/libreoffice/
 config/transmission-daemon/
@@ -29,7 +21,6 @@ mimeapps.list
 config/dconf/user
 msmtp
 rtv
-*.swp
 jack
 gtk-2.0
 fish
@@ -40,4 +31,3 @@ supervise/
 .netrwhist
 viminfo
 libreoffice
-*.log
