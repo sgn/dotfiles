@@ -31,3 +31,5 @@ supervise/
 .netrwhist
 viminfo
 libreoffice
+lprofile
+lxprofile

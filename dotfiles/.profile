@@ -26,7 +26,7 @@ add_to_path () {
 XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
 export XDG_CONFIG_HOME
 
-trap ". ~/.shlogout" 0
+trap ". ${XDG_CONFIG_HOME}/sh/logout" 0
 
 ## My scripts come here
 DOTFILES_HOME=$(readlink -f ~/.profile)
@@ -80,7 +80,7 @@ fi
 ulimit -c unlimited
 
 ## Specific to local computer. Should be sourced last
-[ -f ~/.profile_local ] && . ~/.profile_local
+[ -f "${XDG_CONFIG_HOME}/sh/lprofile" ] && . "${XDG_CONFIG_HOME}/sh/lprofile"
 
 if test -z "$DISPLAY" && test "$(tty)" = '/dev/tty1' \
 		&& command -v xinit >/dev/null 2>&1 ; then
