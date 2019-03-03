@@ -1,5 +1,8 @@
 MODULES=$(shell awk '/path =/{print $$NF}' .gitmodules)
 MODULE_FILE=$(MODULES:=/README.md)
+MODULE_TAR=$(MODULES:=.tar)
+prefix?=dotfiles
+PREFIX?=$(prefix:/%=%)
 
 .PHONY: all
 all: submodule
@@ -25,3 +28,20 @@ $(MODULE_FILE) update-submodule:
 cron: croninstall.sh
 	$(SHELL) ./croninstall.sh
 
+.PHONY: dist
+dist: dotfiles.tar.gz
+
+%.gz: %
+	gzip --force $<
+
+dotfiles.tar: $(MODULE_TAR)
+	git archive --format=tar --prefix=$(PREFIX)/ -o $@ HEAD
+	tar Avf $@ $?
+
+%.tar: %/
+	git -C $< archive --format=tar --prefix=$(PREFIX)/$< -o $(CURDIR)/$@ HEAD
+
+.PHONY: clean
+clean:
+	find . -name '*.tar' -exec rm -f {} +
+	rm -f dotfiles.tar.gz
