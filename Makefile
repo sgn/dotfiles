@@ -13,4 +13,7 @@ submodule: $(SUBMODULE)
 $(SUBMODULE):
 	git submodule update --init
 
-.PHONY: all submodule
+cron: croninstall.sh
+	$(SHELL) ./croninstall.sh
+
+.PHONY: all submodule cron
