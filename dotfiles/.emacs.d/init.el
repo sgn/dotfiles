@@ -98,11 +98,6 @@
 (with-eval-after-load 'cc-mode
   (require 'danh-init-cc))
 
-(require 'dired)
-(require 'danh-init-dired)
-(when (require 'async)
-  (dired-async-mode))
-
 ;;;; git
 (global-git-commit-mode)
 (setq vc-display-status nil
@@ -133,8 +128,6 @@
 (add-to-list 'auto-mode-alist '("PKGBUILD" . sh-mode))
 (add-to-list 'auto-mode-alist '("template" . sh-mode))
 (add-to-list 'auto-mode-alist '("/\\.?zsh" . sh-mode))
-
-(require 'danh-init-youtube)
 
 ;;;; Spelling
 (when (require 'flycheck nil t)
