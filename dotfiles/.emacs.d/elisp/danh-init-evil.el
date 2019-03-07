@@ -9,17 +9,9 @@
 
 (setq-default evil-symbol-word-search t)
 
-;;;; Comment
-(when (require 'evil-commentary nil t)
-  (evil-global-set-key 'normal "gc" 'evil-commentary)
-  (evil-global-set-key 'normal "gy" 'evil-commentary-yank))
-
-;;;; Terminal
-(evil-set-initial-state 'term-mode 'emacs)
-
 ;;;; With Editor
 (when (require 'with-editor nil t)
-  (add-hook 'with-editor-mode-hook 'evil-insert-state))
+  (add-hook 'with-editor-mode-hook 'evil-normal-state))
 
 ;;;; Window management
 (danh/global-set-keys
