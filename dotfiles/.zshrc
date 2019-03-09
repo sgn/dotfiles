@@ -182,7 +182,7 @@ weather () {
 
 xbps-list() {
 	xbps-query -m |
-		sed -E 's/-[[:digit:]]+(\.(git)?[[:digit:]]+)*(r[[:digit:]]+)?(_[[:digit:]]+)$//'
+		sed -E 's/-[[:digit:]]+(\.(git)?[[:digit:]]+)*(r[[:digit:]]+)?[[:alpha:]]?(_[[:digit:]]+)$//'
 }
 
 ## log out? set timeout in seconds...

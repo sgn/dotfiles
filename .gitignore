@@ -33,3 +33,5 @@ viminfo
 libreoffice
 lprofile
 lxprofile
+elpa
+dotfiles/.emacs.d/places

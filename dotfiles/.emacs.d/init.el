@@ -10,65 +10,33 @@
 ;;; our configuration
 (add-to-list 'load-path "~/.emacs.d/elisp/")
 
-;;; move user-emacs-directory to .cache
-(setq user-emacs-directory "~/.cache/emacs/")
-
 (setf package-selected-packages
       '(evil                            ; evil
-        evil-commentary
         evil-multiedit
         evil-collection
         helm                            ; helm
-        helm-ls-git
         helm-descbinds
-        ;; helm-filesets
         wgrep-helm
         company                         ; company
         helm-company
-        lispy                           ; lisp
-        lispyville
         rainbow-delimiters
-        geiser
-        slime
         ;; org-plus-contrib                ; org-mode
         helm-org-contacts
-        htmlize                         ; blog
-        async                           ; dired
-        pinentry                        ; gpg
         ztree
         git-commit                      ; git
         hl-todo                         ; todo
-        helm-mu                         ; mu4e
         flycheck                        ; flycheck
         helm-flycheck
-        w3m                             ; w3m
-        apel
-        helm-w3m
-        haskell-mode                    ; haskell
-        haskell-emacs
-        pass                            ; password-store
-        pass-otp
-        helm-pass
         markdown-mode
-        helm-youtube
         which-key
-        pdf-tools
-        base16-theme
-        transmission))
+        pdf-tools))
 
 ;;;; Package Management
 (when (require 'package nil t)
-  ;; prefer versioned byte code if exists
-  (let ((versioned-dir
-        (format "elpa-%s.%s" emacs-major-version emacs-minor-version)))
-    (when (member versioned-dir
-                  (directory-files (expand-file-name ".." package-user-dir)))
-      (setq package-user-dir
-            (expand-file-name (concat "../" versioned-dir) package-user-dir))))
   (setq package-archives
-        '(("gnu" . "https://elpa.gnu.org/packages/")
-          ("melpa" . "https://melpa.org/packages/")
-          ("org" . "https://orgmode.org/elpa/")))
+        '(("gnu" . "http://elpa.gnu.org/packages/")
+          ("melpa" . "http://melpa.org/packages/")
+          ("org" . "http://orgmode.org/elpa/")))
 
   (package-initialize))
 
@@ -99,7 +67,8 @@
   (require 'danh-init-cc))
 
 ;;;; git
-(global-git-commit-mode)
+(when (require 'git-commit nil t)
+  (global-git-commit-mode))
 (setq vc-display-status nil
       vc-follow-symlinks t
       vc-handled-backends nil)

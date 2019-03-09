@@ -1,6 +1,6 @@
 ConsoleKit2
 ImageMagick
-abduco
+WoeUSB
 acpi
 acpid
 adwaita-icon-theme
@@ -22,6 +22,7 @@ automake
 base-files
 bc
 bind-utils
+binutils
 binutils-devel
 bison
 bitlbee
@@ -31,6 +32,7 @@ cairomm
 cava
 celt
 cgmanager
+clang
 cowsay
 cpupower
 crda
@@ -39,6 +41,7 @@ cryptsetup
 curl
 dash
 dbus
+ddgr
 dejavu-fonts-ttf
 desktop-file-utils
 dhcpcd
@@ -51,7 +54,6 @@ dos2unix
 dracut
 dtach
 dunst
-dvtm
 dwm
 e2fsprogs
 ed
@@ -61,6 +63,7 @@ enchant
 eudev
 exiv2
 expat
+ext4magic
 f2fs-tools
 faad2
 farbfeld
@@ -80,6 +83,7 @@ freetype
 fwupdate
 gcc
 gdb
+geckodriver
 gettext
 gettext-libs
 git
@@ -94,10 +98,12 @@ gpgme
 gptfdisk
 grep
 gromit-mpx
+grub-x86_64-efi
 gst-plugins-base1
 gstreamer1
 gtk+
 gtkmm2
+hashcat
 help2man
 htop
 hunspell
@@ -177,6 +183,7 @@ libswresample
 libswscale
 libtdb
 libtheora
+libtool
 libupnp1.8
 libuuid-devel
 libva
@@ -185,7 +192,6 @@ libvdpau
 libvidstab
 libvisual
 libvorbis
-libvpx
 libwacom
 libxapian
 libxdg-basedir
@@ -226,12 +232,10 @@ nmap
 notmuch-emacs
 notmuch-mutt
 noto-fonts-cjk
-noto-fonts-emoji
 npth
 nspr
 nss
 ocl-icd
-openssh-7.9p1_2
 opus
 orc
 pango-xft
@@ -273,7 +277,6 @@ rtv
 ruby
 ruby-devel
 runit-void
-sbsigntools
 sc
 scrot
 sed
@@ -301,16 +304,19 @@ sysstat
 talloc-devel
 tar
 texinfo
+texlive-bin
+texlive2018-bin
 the_silver_searcher
 thermald
 tlp
+tmux
 tpacpi-bat
 traceroute
 trash-cli
 tree
 ttf-ubuntu-font-family
 twolame
-tzdata-2018i_1
+tzdata
 unclutter
 unzip
 usbutils

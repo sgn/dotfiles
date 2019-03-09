@@ -98,8 +98,8 @@ vmap  <F12> "*y
 map <S-F12> :r!xclip -o<cr>
 
 " trim trailing whitespaces
-map  <leader>tr :%s/\s\+$//
-vmap <leader>tr :%s/\s\+$//
+map  <leader>tr :%s/\s\+$//<cr>
+vmap <leader>tr :%s/\s\+$//<cr>
 " kill quote spaces (quoting quoted mail)
 map  <leader>kqs mz:%s/^> >/>><cr>
 

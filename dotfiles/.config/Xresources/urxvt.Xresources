@@ -1,2 +1,2 @@
-URxvt*font: xft:Deja Vu Sans Mono:pixelsize=14
+URxvt*font: xft:Deja Vu Sans Mono:size=12:antialias=true:autohint=true
 URxvt*scrollBar: false

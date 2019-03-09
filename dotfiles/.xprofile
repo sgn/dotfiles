@@ -4,7 +4,7 @@ BROWSER=firefox
 export BROWSER
 
 ## X resources
-xrdb -merge "${XDG_COFIG_HOME}/Xresources/config" || true
+xrdb -merge "${XDG_CONFIG_HOME}/Xresources/config" || true
 
 ## Disable Touchpad if exists
 if command -v xinput >/dev/null; then
