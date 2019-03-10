@@ -1,8 +1,7 @@
 MODULES=$(shell awk '/path =/{print $$NF}' .gitmodules)
 MODULE_FILE=$(MODULES:=/README.md)
 MODULE_TAR=$(MODULES:=.tar)
-prefix?=dotfiles
-PREFIX?=$(prefix:/%=%)
+PREFIX=dotfiles
 
 .PHONY: all
 all: submodule
@@ -25,16 +24,21 @@ $(MODULE_FILE) update-submodule:
 	git submodule update --init
 
 .PHONY: cron
-cron: croninstall.sh
-	$(SHELL) ./croninstall.sh
+cron:
+	@echo installing cron job
+	(crontab -l 2>/dev/null | sed '/ssoma/d; \,bin/syncmail.sh,d; \,dunst/battery,d'; \
+	printf '%s\n' \
+	'*/10 * * * * ssoma sync --cron' \
+	'*/2  * * * * $(CURDIR)/bin/syncmail.sh >/dev/null' \
+	) | crontab -
 
 .PHONY: dist
-dist: dotfiles.tar.gz
+dist: $(PREFIX).tar.gz
 
 %.gz: %
 	gzip --force $<
 
-dotfiles.tar: $(MODULE_TAR)
+$(PREFIX).tar: $(MODULE_TAR)
 	git archive --format=tar --prefix=$(PREFIX)/ -o $@ HEAD
 	tar Avf $@ $?
 
@@ -44,4 +48,4 @@ dotfiles.tar: $(MODULE_TAR)
 .PHONY: clean
 clean:
 	find . -name '*.tar' -exec rm -f {} +
-	rm -f dotfiles.tar.gz
+	rm -f *.tar.gz
