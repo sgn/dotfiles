@@ -10,7 +10,7 @@
 ;;; our configuration
 (add-to-list 'load-path "~/.emacs.d/elisp/")
 
-(setf package-selected-packages
+(setq package-selected-packages
       '(evil                            ; evil
         evil-multiedit
         evil-collection
@@ -29,6 +29,7 @@
         helm-flycheck
         markdown-mode
         which-key
+        w3m
         pdf-tools))
 
 ;;;; Package Management
