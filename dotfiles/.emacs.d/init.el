@@ -89,6 +89,7 @@
 ;; notmuch
 (setq notmuch-init-file "~/.emacs.d/notmuch-config")
 (autoload 'notmuch "notmuch" "notmuch mail" t)
+(add-hook 'message-setup-hook 'mml-secure-sign-pgpmime)
 (danh/global-set-keys "C-x m" 'notmuch
                       "C-c m" 'compose-mail)
 
