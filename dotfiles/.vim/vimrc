@@ -14,8 +14,7 @@ set backspace=indent,eol,start
 
 set autoindent           " always set autoindenting on
 set nobackup             " do not backup
-set viminfo=%,'50,\"100  " rw .viminfo, max 100 registers
-set viminfofile=~/.vim/viminfo
+set viminfo=%,'50,\"100,n~/.vim/viminfo
 set tags=./tags,./TAGS,TAGS,tags,../tags,../../tags,../../../tags,../../../../tags
 set number               " line number
 set ruler                " cursor position
