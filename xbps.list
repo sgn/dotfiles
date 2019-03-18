@@ -202,8 +202,9 @@ libzstd
 linux-firmware-intel
 linux-firmware-network
 linux-tools
-linux4.20
-linux4.20-headers
+linux4.19
+linux5.0
+linux5.0-headers
 lm_sensors
 lua52
 lvm2
@@ -277,6 +278,7 @@ rtv
 ruby
 ruby-devel
 runit-void
+rxvt-unicode
 sc
 scrot
 sed
@@ -310,6 +312,7 @@ the_silver_searcher
 thermald
 tlp
 tmux
+tor
 tpacpi-bat
 traceroute
 trash-cli
