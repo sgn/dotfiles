@@ -6,4 +6,4 @@ if ps -Cmbsync >/dev/null 2>&1; then
 fi
 
 mbsync -a >/dev/null || exit 1
-notmuch new 2>&1 | grep -vF 'non-mail' || exit 0
+notmuch new 2>&1 >/dev/null | grep -vF 'non-mail' || true

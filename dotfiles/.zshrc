@@ -186,8 +186,10 @@ weather () {
 
 xbps-list() {
 	xbps-query -m |
-		sed -E 's/-[[:digit:]]+(\.(git)?[[:digit:]]+)*(r[[:digit:]]+)?[[:alpha:]]?(_[[:digit:]]+)$//'
+		sed -E 's/-[[:digit:]]+(\.(git)?[[:digit:]]+)*([pr][[:digit:]]+)?[[:alpha:]]?(_[[:digit:]]+)$//'
 }
+
+. "${HOME}/.config/sh/load-ssh-agent.sh"
 
 ## log out? set timeout in seconds...
 ## ...and do not log out in some specific terminals:

@@ -16,7 +16,7 @@ set autoindent           " always set autoindenting on
 set nobackup             " do not backup
 set viminfo=%,'50,\"100,n~/.vim/viminfo
 set tags=./tags,./TAGS,TAGS,tags,../tags,../../tags,../../../tags,../../../../tags
-set number               " line number
+set number relativenumber
 set ruler                " cursor position
 set encoding=utf-8
 set wrap                 " visual wrap text

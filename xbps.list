@@ -52,7 +52,6 @@ dmenu
 dnssec-anchors
 dos2unix
 dracut
-dtach
 dunst
 dwm
 e2fsprogs
@@ -236,7 +235,9 @@ noto-fonts-cjk
 npth
 nspr
 nss
+nvi
 ocl-icd
+openssh
 opus
 orc
 pango-xft
@@ -253,6 +254,7 @@ perl-File-Path-Expand
 perl-File-Slurp
 perl-IPC-Run
 perl-JSON-XS
+perl-Module-Build
 perl-Net-IMAP-Simple
 pinentry
 pinentry-gtk
@@ -326,6 +328,7 @@ usbutils
 v4l-utils
 valgrind
 vim
+void-artwork
 vulkan-loader
 w3m
 webkit2gtk

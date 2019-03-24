@@ -49,7 +49,7 @@
           :query "date:7days.. AND (path:/congdanhqx/ or to:/sgn.danh/)"
           :key "w")
    (:name "mailing list this week"
-          :query "tag:lists AND to:congdanhqx@gmail.com AND date:7days.."
+          :query "tag:lists AND date:7days.."
           :key "l")))
  notmuch-message-headers (quote
                           ("Subject"

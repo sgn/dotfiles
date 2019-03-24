@@ -29,7 +29,7 @@ cron:
 	(crontab -l 2>/dev/null | sed '/ssoma/d; \,bin/syncmail.sh,d; \,dunst/battery,d'; \
 	printf '%s\n' \
 	'*/10 * * * * ssoma sync --cron' \
-	'*/2  * * * * $(CURDIR)/bin/syncmail.sh >/dev/null' \
+	'*/2  * * * * $(CURDIR)/bin/syncmail.sh' \
 	) | crontab -
 
 .PHONY: dist

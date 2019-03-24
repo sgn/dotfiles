@@ -23,10 +23,11 @@ add_to_path () {
 	unset PATHVAR
 }
 
+TZ="Asia/Ho_Chi_Minh"
+export TZ
+
 XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
 export XDG_CONFIG_HOME
-
-trap ". ${XDG_CONFIG_HOME}/sh/logout" 0
 
 ## My scripts come here
 DOTFILES_HOME=$(readlink -f ~/.profile)
@@ -50,16 +51,19 @@ TIME_STYLE=long-iso
 export TIME_STYLE
 
 ## SSH-Agent
-if test "$(id -u)" -ne 0 && test x = "${SSH_AGENT_ID:-x}"; then
-	eval `ssh-agent`
-fi
+. "${HOME}/.config/sh/load-ssh-agent.sh"
+load_ssh_agent
 
 ## Default text editor
-for i in emc emacsclient vim vi; do
+for i in emacsclient vim vi; do
 	command -v $i >/dev/null 2>&1 \
 		&& EDITOR=$i && export EDITOR \
 		&& break
 done
+
+if test emacsclient = "$EDITOR"; then
+	EDITOR="emacsclient -t -a ''"
+fi
 
 ## $HOME software install
 ## See http://nullprogram.com/blog/2017/06/19/.
