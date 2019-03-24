@@ -60,6 +60,7 @@ efibootmgr
 emacs-x11
 enchant
 eudev
+exfat-utils
 exiv2
 expat
 ext4magic
@@ -343,7 +344,6 @@ x265
 xapian-core-devel
 xauth
 xbacklight
-xbindkeys
 xcape
 xcb-util
 xcb-util-cursor

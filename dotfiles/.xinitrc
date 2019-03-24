@@ -12,10 +12,7 @@ fi
 ## local xprofile
 test -f ~/.xprofile && . ~/.xprofile
 
-## X bindkeys
-xbindkeys -f "${XDG_CONFIG_HOME}/sh/xbindkeysrc" || true
-
-## Lock on sleep
+## lock is the screensaver
 command -v slock >/dev/null && xss-lock -- slock &
 
 command -v unclutter >/dev/null 2>&1 && unclutter &
