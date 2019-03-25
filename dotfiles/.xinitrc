@@ -19,12 +19,6 @@ command -v unclutter >/dev/null 2>&1 && unclutter &
 
 if command -v dunst >/dev/null 2>&1; then
 	dunst &
-	while true; do
-		if test -r "$XDG_CONFIG_HOME/dunst/battery.sh" ; then
-			/bin/sh "$XDG_CONFIG_HOME/dunst/battery.sh"
-		fi
-		sleep 180
-	done&
 fi
 
 slstatus &

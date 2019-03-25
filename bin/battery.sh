@@ -5,6 +5,11 @@ test -d /sys/class/power_supply/BAT0 || exit 0
 # or if it's charging
 grep -qF Charging /sys/class/power_supply/BAT*/status && exit 0
 
+dunst_pid=$(pgrep -u danh dunst)
+[ -z "$dunst_pid" ] && exit 0
+eval "$(grep -z '^DBUS_SESSION_BUS_ADDRESS=' /proc/$dunst_pid/environ)"
+export DBUS_SESSION_BUS_ADDRESS
+
 if command -v dunstify >/dev/null 2>&1; then
 	NOTIFY_SEND="dunstify -r 13277"
 elif command -v notify-send >/dev/null 2>&1; then
