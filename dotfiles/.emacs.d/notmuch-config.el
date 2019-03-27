@@ -31,7 +31,7 @@
  notmuch-saved-searches
  (quote
   ((:name "today"
-          :query "date:1days.. AND (path:/congdanhqx/ or to:/sgn.danh/)"
+          :query "date:1days.. AND (path:/congdanhqx/ or path:/sgn.danh/)"
           :key "t")
    (:name "following"
           :query "tag:follow"
@@ -46,7 +46,7 @@
           :query "(to:congdanhqx@gmail.com or to:congdanhqx@live.com)"
           :key "m")
    (:name "this week"
-          :query "date:7days.. AND (path:/congdanhqx/ or to:/sgn.danh/)"
+          :query "date:7days.. AND (path:/congdanhqx/ or path:/sgn.danh/)"
           :key "w")
    (:name "mailing list this week"
           :query "tag:lists AND date:7days.."
