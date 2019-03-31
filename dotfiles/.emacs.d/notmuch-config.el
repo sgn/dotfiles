@@ -36,14 +36,17 @@
    (:name "following"
           :query "tag:follow"
           :key "f")
+   (:name "spam"
+          :query "tag:spam and not tag:deleted"
+          :key "s")
    (:name "inbox"
-          :query "tag:inbox"
+          :query "tag:inbox and not tag:deleted"
           :key "i")
    (:name "unread"
           :query "tag:unread"
           :key "u")
    (:name "to me"
-          :query "(to:congdanhqx@gmail.com or to:congdanhqx@live.com)"
+          :query "path:/congdanhqx/ and not tag:deleted"
           :key "m")
    (:name "this week"
           :query "date:7days.. AND (path:/congdanhqx/ or path:/sgn.danh/)"
