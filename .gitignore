@@ -36,3 +36,4 @@ lxprofile
 elpa
 dotfiles/.emacs.d/places
 recentf
+*.tar
