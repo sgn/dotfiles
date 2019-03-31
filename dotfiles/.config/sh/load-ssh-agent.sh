@@ -6,7 +6,7 @@ load_ssh_agent() {
 	ssh_agent_env="$ssh_agent_env/$(uname -n).agent"
 	[ -f "$ssh_agent_env" ] && . "$ssh_agent_env" >| /dev/null
 	if [ ! -S "$SSH_AUTH_SOCK" ] ||\
-		   [ 2 -eq "$(ssh-add -l)" ]; then
+		[ 2 -eq "$(ssh-add -l >/dev/null; echo $?)" ]; then
 		(umask 077; ssh-agent >| "$ssh_agent_env")
 		. "$ssh_agent_env" >| /dev/null
 	fi
