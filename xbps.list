@@ -13,6 +13,7 @@ alsa-tools
 alsa-utils
 android-tools
 apulse
+asciinema
 aspell
 atkmm
 audiofile
@@ -27,6 +28,7 @@ binutils-devel
 bison
 bitlbee
 bitlbee-facebook
+bmake
 busybox
 cairomm
 cava
@@ -59,6 +61,7 @@ ed
 efibootmgr
 emacs-x11
 enchant
+entr
 eudev
 exfat-utils
 exiv2
@@ -70,6 +73,7 @@ farbfeld
 feh
 fex
 ffmpeg
+figlet
 file
 firefox
 fish-shell
@@ -81,6 +85,7 @@ fontconfig
 fortune-mod
 freetype
 fwupdate
+fzf
 gcc
 gdb
 geckodriver
@@ -224,6 +229,7 @@ mpd
 mpv
 msmtp
 mtdev
+mutt
 ncmpcpp
 ncurses-devel
 neofetch
@@ -258,6 +264,7 @@ perl-JSON-XS
 perl-Module-Build
 perl-Net-IMAP-Simple
 pinentry
+pinentry-dmenu
 pinentry-gtk
 pkg-config
 polkit-elogind
@@ -290,6 +297,7 @@ setxkbmap
 shaderc
 shadow
 shellcheck
+sl
 slock
 slstatus
 smartmontools
@@ -316,7 +324,6 @@ thermald
 tlp
 tmux
 tor
-tpacpi-bat
 traceroute
 trash-cli
 tree
