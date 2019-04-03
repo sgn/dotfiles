@@ -26,7 +26,7 @@
  message-sendmail-envelope-from 'header
  message-send-mail-function 'message-send-mail-with-sendmail
  sendmail-program "/usr/bin/msmtp"
- message-user-fqdn "congdanhqx.xyz"
+ message-user-fqdn "danh.dev"
  mm-text-html-renderer 'lynx
  notmuch-saved-searches
  (quote
