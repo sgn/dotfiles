@@ -1,6 +1,7 @@
 [user]
 	name = Doan Tran Cong Danh
 	email = congdanhqx@gmail.com
+	signingkey = 0408B72A66A3235D
 
 [alias]
 	st = status --short
