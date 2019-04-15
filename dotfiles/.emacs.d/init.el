@@ -90,6 +90,7 @@
 (setq notmuch-init-file "~/.emacs.d/notmuch-config")
 (autoload 'notmuch "notmuch" "notmuch mail" t)
 (add-hook 'message-setup-hook 'mml-secure-sign-pgpmime)
+;; (setq mm-sign-option 'guided)
 (danh/global-set-keys "C-x m" 'notmuch
                       "C-c m" 'compose-mail)
 
@@ -132,6 +133,7 @@
 
 ;;;; Theme
 (setq term-file-aliases '(("st-256color" . "xterm")
+                          ("screen-256color" . "xterm")
                           ("dvtm-256color" . "xterm"))
       base16-theme-256-color-source "base16-shell")
 (when (require 'base16-gruvbox-dark-hard-theme)
