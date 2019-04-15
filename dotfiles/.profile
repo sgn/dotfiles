@@ -55,15 +55,11 @@ export TIME_STYLE
 load_ssh_agent
 
 ## Default text editor
-for i in emacsclient vim vi; do
+for i in vim vi; do
 	command -v $i >/dev/null 2>&1 \
 		&& EDITOR=$i && export EDITOR \
 		&& break
 done
-
-if test emacsclient = "$EDITOR"; then
-	EDITOR="emacsclient -t -a ''"
-fi
 
 ## $HOME software install
 ## See http://nullprogram.com/blog/2017/06/19/.
