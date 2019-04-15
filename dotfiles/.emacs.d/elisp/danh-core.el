@@ -120,17 +120,9 @@
 (danh/global-set-keys
  ;; windmove
  "S-<left>" 'windmove-left
- "s-h" 'windmove-left                    ; conflict with wm?
- "H-h" 'windmove-left
  "S-<right>" 'windmove-right
- "s-l" 'windmove-right                   ; conflict with wm?
- "H-l" 'windmove-right
  "S-<up>" 'windmove-up
- "s-k" 'windmove-up                      ; conflict with wm?
- "H-k" 'windmove-up
  "S-<down>" 'windmove-down
- "s-j" 'windmove-down                    ; conflict with wm?
- "H-j" 'windmove-down
  "s-o" 'other-window
  "H-o" 'other-window
  ;; "s-t" and "H-t" will be bound to evil-window-top-left
