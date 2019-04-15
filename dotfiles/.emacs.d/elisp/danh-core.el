@@ -57,6 +57,7 @@
 (setq-default tab-width 8)
 (defvaralias 'standard-indent 'tab-width)
 (setq-default indent-tabs-mode t)
+(danh/global-set-keys "<f11>" 'electric-indent-local-mode)
 
 ;;; `just-one-space' is more or less single call of `cycle-spacing'
 (global-set-key [remap just-one-space] 'cycle-spacing)
