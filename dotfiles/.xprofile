@@ -16,6 +16,14 @@ fi
 _JAVA_AWT_WM_NONREPARENTING=1
 export _JAVA_AWT_WM_NONREPARENTING
 
+if command -v fcitx >/dev/null; then
+	GTK_IM_MODULE=fcitx
+	QT_IM_MODULE=fcitx
+	XMODIFIERS=@im=fcitx
+	export GTK_IM_MODULE QT_IM_MODULE XMODIFIERS
+	# fcitx
+fi
+
 # xmodmap - <<EOF
 # remove Lock = Caps_Lock
 # remove Control = Control_L
