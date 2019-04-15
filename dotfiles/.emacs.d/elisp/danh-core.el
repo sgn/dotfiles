@@ -18,8 +18,14 @@
 (save-place-mode)
 (setq recentf-max-saved-items 40)
 ;;; backup everything in 1 place
-(setq backup-directory-alist
-      `(("." . ,(expand-file-name "backup" user-emacs-directory))))
+(setq danh/emacs-temp-file-dir
+      (expand-file-name (format "emacs.%s" (user-uid))
+                        temporary-file-directory))
+(make-directory danh/emacs-temp-file-dir t)
+(chmod danh/emacs-temp-file-dir #o700)
+(setq backup-directory-alist `(("." . ,danh/emacs-temp-file-dir)))
+(setq undo-tree-history-directory-alist
+      `(("." . ,danh/emacs-temp-file-dir)))
 
 ;;;; Keyboard/Command
 ;;; Disable suspend hotkey
