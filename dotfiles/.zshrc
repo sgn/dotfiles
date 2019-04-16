@@ -189,7 +189,9 @@ xbps-list() {
 		sed -E 's/-[[:digit:]]+(\.(git)?[[:digit:]]+)*([pr][[:digit:]]+)?[[:alpha:]]?(_[[:digit:]]+)$//'
 }
 
-. "${HOME}/.config/sh/load-ssh-agent.sh"
+if [ -r "${HOME}/.config/sh/load-ssh-agent.sh" ]; then
+	. "${HOME}/.config/sh/load-ssh-agent.sh"
+fi
 
 ## log out? set timeout in seconds...
 ## ...and do not log out in some specific terminals:

@@ -51,8 +51,10 @@ TIME_STYLE=long-iso
 export TIME_STYLE
 
 ## SSH-Agent
-. "${HOME}/.config/sh/load-ssh-agent.sh"
-load_ssh_agent
+if [ -r "${HOME}/.config/sh/load-ssh-agent.sh" ]; then
+	. "${HOME}/.config/sh/load-ssh-agent.sh"
+	load_ssh_agent
+fi
 
 ## Default text editor
 for i in vim vi; do
@@ -80,7 +82,7 @@ fi
 ulimit -c unlimited
 
 ## Specific to local computer. Should be sourced last
-[ -f "${XDG_CONFIG_HOME}/sh/lprofile" ] && . "${XDG_CONFIG_HOME}/sh/lprofile"
+[ -r "${XDG_CONFIG_HOME}/sh/lprofile" ] && . "${XDG_CONFIG_HOME}/sh/lprofile"
 
 if test -z "$DISPLAY" && test "$(tty)" = '/dev/tty1' \
 		&& command -v xinit >/dev/null 2>&1 ; then
