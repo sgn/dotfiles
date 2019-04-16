@@ -19,8 +19,8 @@ bindkey -v
 #    REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
 #}
 #grml_theme_add_token  virtual-env -f virtual_env_prompt '%F{magenta}' '%f'
-zstyle ':vcs_info:*' enable git
-zstyle ':prompt:grml:left:setup' items rc change-root user at host path vcs time shell-level newline percent
+# zstyle ':vcs_info:*' enable git
+zstyle ':prompt:grml:left:setup' items rc change-root user at host path shell-level newline percent
 
 D_EXT_SOURCE="${D_EXTERNAL}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 if test -f "${D_EXT_SOURCE}"; then
