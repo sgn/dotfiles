@@ -1,5 +1,6 @@
 accels.scm
 aur
+chromium
 cmus
 config/dconf/user
 config/gtk-2.0/gtkfilechooser.ini
@@ -9,6 +10,7 @@ dconf
 dotfiles/.emacs.d/places
 elpa
 *.errors
+fcitx
 *_fifo
 fish
 *-git/
