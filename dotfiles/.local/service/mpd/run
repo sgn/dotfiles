@@ -1,5 +1,0 @@
-#!/bin/sh
-HOME=$(getent passwd $UID | cut -d: -f6)
-export HOME
-mkdir -p "$HOME/.cache/mpd/playlists"
-exec mpd --no-daemon
