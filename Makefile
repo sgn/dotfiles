@@ -2,9 +2,10 @@ MODULES=$(shell awk '/path =/{print $$NF}' .gitmodules)
 MODULE_FILE=$(MODULES:=/README.md)
 MODULE_TAR=$(MODULES:=.tar)
 PREFIX=dotfiles
+VOLATILE_FILES=\
 
 .PHONY: all
-all: submodule
+all: submodule $(VOLATILE_FILES)
 	mkdir -p "${HOME}/.gnupg"
 	chmod go-rwx "${HOME}/.gnupg"
 	stow -t "${HOME}" dotfiles
@@ -22,6 +23,9 @@ update: update-submodule
 .PHONY: update-submodule
 $(MODULE_FILE) update-submodule:
 	git submodule update --init
+
+%: src/%.in
+	sed -e 's!__BIN__!$(CURDIR)/bin!g' $< > $@
 
 .PHONY: cron
 cron:
