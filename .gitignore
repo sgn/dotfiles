@@ -8,6 +8,7 @@ config/libreoffice/
 config/transmission-daemon/
 dconf
 dotfiles/.emacs.d/places
+dotfiles/.local
 elpa
 *.errors
 fcitx
@@ -20,7 +21,6 @@ htop
 jack
 libreoffice
 local-*
-.local/share/ranger/
 lprofile
 lxprofile
 mimeapps.list
@@ -35,6 +35,7 @@ pulse
 recent*
 recentf
 rtv
+.sessions
 src/
 supervise/
 *.tar
