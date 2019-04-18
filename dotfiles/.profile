@@ -73,11 +73,10 @@ add_to_path "$HOME/.local/lib/pkgconfig" begin PKG_CONFIG_PATH
 add_to_path "$HOME/.local/share/info" begin INFOPATH
 add_to_path "$HOME/.local/share/man" begin MANPATH
 
-if command -v ruby >/dev/null 2>&1; then
-	GEM_HOME=$(ruby -e 'print Gem.user_dir')
-	export GEM_HOME
-	add_to_path "$GEM_HOME/bin"
-fi
+GEM_HOME="$HOME/.local/share/gem"
+GEM_SPEC_CACHE="$HOME/.cache/gem"
+export GEM_HOME GEM_SPEC_CACHE
+add_to_path "$GEM_HOME/bin"
 
 ulimit -c unlimited
 
