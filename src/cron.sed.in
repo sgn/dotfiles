@@ -1,0 +1,8 @@
+/ssoma/d
+/syncmail.sh/d
+/battery.sh/d
+1a\
+*/10 * * * * ssoma sync --cron\
+*/2  * * * * __BIN__/syncmail.sh\
+*/3  * * * * __BIN__/battery.sh
+

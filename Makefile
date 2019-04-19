@@ -6,8 +6,7 @@ VOLATILE_FILES=\
 
 .PHONY: all
 all: submodule $(VOLATILE_FILES)
-	mkdir -p "${HOME}/.gnupg"
-	chmod go-rwx "${HOME}/.gnupg"
+	mkdir -p -m 700 "${HOME}/.gnupg"
 	stow -t "${HOME}" dotfiles
 
 .PHONY: var
@@ -28,14 +27,11 @@ $(MODULE_FILE) update-submodule:
 	sed -e 's!__BIN__!$(CURDIR)/bin!g' $< > $@
 
 .PHONY: cron
-cron:
+cron: cron.sed
 	@echo installing cron job
-	(crontab -l 2>/dev/null | sed '/ssoma/d; \,syncmail.sh,d; \,battery.sh,d'; \
-	printf '%s\n' \
-	'*/10 * * * * ssoma sync --cron' \
-	'*/2  * * * * $(CURDIR)/bin/syncmail.sh' \
-	'*/3  * * * * $(CURDIR)/bin/battery.sh' \
-	) | crontab -
+	crontab -l 2>/dev/null |\
+		sed -f cron.sed |\
+		crontab -
 
 .PHONY: dist
 dist: $(PREFIX).tar.gz
@@ -52,5 +48,5 @@ $(PREFIX).tar: $(MODULE_TAR)
 
 .PHONY: clean
 clean:
-	find . -name '*.tar' -exec rm -f {} +
-	rm -f *.tar.gz
+	$(RM) $(PREFIX).tar.gz $(PREFIX).tar
+	$(RM) $(MODULE_TAR)

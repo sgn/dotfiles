@@ -7,6 +7,7 @@ config/dconf/user
 config/gtk-2.0/gtkfilechooser.ini
 config/libreoffice/
 config/transmission-daemon/
+cron.sed
 dconf
 dotfiles/.emacs.d/places
 dotfiles/.local
@@ -37,7 +38,6 @@ recent*
 recentf
 rtv
 .sessions
-src/
 supervise/
 *.tar
 url_hist
