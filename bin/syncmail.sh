@@ -10,4 +10,4 @@ if ps -Cmbsync >/dev/null 2>&1; then
 fi
 
 mbsync -aq || exit 1
-notmuch new --quiet 2>&1 | grep -vF 'non-mail' || true
+notmuch new --quiet 2>&1
