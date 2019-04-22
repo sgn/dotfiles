@@ -115,14 +115,14 @@
     (kbd "SPC") 'notmuch-show-advance-and-archive
     "<" 'notmuch-show-toggle-thread-indentation
     "=" 'danh/notmuch-append-msg-id-to-scratch
-    "f" 'danh/notmuch-show-toggle-follow
+    "F" 'danh/notmuch-show-toggle-follow
     "r" 'notmuch-show-reply
     "R" 'notmuch-show-reply-sender)
   (evil-collection-define-key 'normal 'notmuch-tree-mode-map
-    "f" 'danh/notmuch-tree-toggle-follow
+    "F" 'danh/notmuch-tree-toggle-follow
     "r" (notmuch-tree-close-message-pane-and 'notmuch-show-reply)
     "R" (notmuch-tree-close-message-pane-and 'notmuch-show-reply-sender))
   (evil-collection-define-key 'normal 'notmuch-search-mode-map
-    "f" 'danh/notmuch-search-toggle-follow
+    "F" 'danh/notmuch-search-toggle-follow
     "r" 'notmuch-search-reply-to-thread
     "R" 'notmuch-search-reply-to-thread-sender))

@@ -1,0 +1,45 @@
+# vim: syntax=muttrc
+set realname='Danh Doan'
+set mbox=~/.cache/maildir/archives
+set mbox_type=maildir
+
+# display mail
+ignore *
+unignore from date subject to cc
+unignore content-type
+unignore message-id
+unignore list-id
+unignore in-reply-to
+unhdr_order *
+hdr_order Date: Subject: From: To: Cc:
+alternative_order text/plain text/calendar text/enriched text/html
+set assumed_charset="utf-8"
+set sort=threads
+
+# sendmail
+set send_charset="utf-8"
+set ispell="/usr/bin/aspell"
+set sendmail="/usr/bin/msmtp"
+set envelope_from=yes
+set use_from=yes
+set abort_noattach=yes
+set text_flowed=no
+set edit_headers=yes
+set hostname="danh.dev"
+set crypt_autosign=yes
+set copy=yes
+set record="~/.cache/maildir/sent"
+set postpone=yes
+set postponed="~/.cache/maildir/drafts"
+
+# reply to everyone, someone didn't subsribed
+set ignore_list_reply_to=yes
+set include=yes
+
+# misc
+set trash="~/.cache/maildir/trash"
+set history_file="~/.cache/mutt/history"
+
+source ~/.config/mutt/gpg.rc
+source ~/.config/mutt/base16.rc
+source ~/.config/mutt/vim-keys.rc

@@ -8,4 +8,9 @@ message = 'mailing list'
 query = 'tag:lists'
 tags = -new
 
+[Filter.2]
+message = 'trash'
+query = 'path:/trash/ and tag:new'
+tag = +deleted;-inbox;-new;-unread
+
 [InboxFilter]
