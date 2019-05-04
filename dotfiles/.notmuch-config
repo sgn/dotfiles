@@ -8,7 +8,7 @@ other_email=congdanhqx@live.com;sgn.danh@gmail.com;
 
 [new]
 tags=new;
-ignore=.mbsyncstate;.uidvalidity
+ignore=.mbsyncstate;.uidvalidity;trash
 
 [search]
 exclude_tags=deleted;spam;

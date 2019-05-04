@@ -3,6 +3,13 @@ source ~/.config/mutt/common.rc
 set virtual_spoolfile=yes
 set folder=~/.cache/maildir
 
+bind index,browser,pager J noop
+bind index,browser,pager K noop
+bind pager ]] next-entry
+bind pager [[ previous-entry
+#macro index,pager Jt "<change-vfolder> inbox<enter>"
+macro index,pager gw "<change-vfolder> this_week<enter>"
+
 virtual-mailboxes "inbox" "notmuch://?query=tag:inbox and date:1days.."
 virtual-mailboxes "this_week" "notmuch://?query=tag:inbox and date:7days.."
 virtual-mailboxes "real_inbox" "notmuch://?query=tag:inbox"

@@ -1,4 +1,4 @@
-# base16-mutt: base16-shell support for mutt
+# Depends on base16-shell color
 #
 # These depend on mutt compiled with s-lang, not ncurses. Check by running `mutt -v`
 # Details this configuration may be found in the mutt manual:
@@ -89,21 +89,21 @@ color header      color04  color00  "^(Subject)"
 # When possible, these regular expressions attempt to match http://spec.commonmark.org/
 ## Weak
 # ~~~ Horizontal rules ~~~
-color body  color08  color00  "([[:space:]]*[-+=#*~_]){3,}[[:space:]]*"
+# color body  color08  color00  "([[:space:]]*[-+=#*~_]){3,}[[:space:]]*"
 ## Strong
 # *Bold* span
-color body  color03  color00  "(^|[[:space:][:punct:]])\\*[^*]+\\*([[:space:][:punct:]]|$)"
+color body  color03  color00  "(^|[[:space:][:punct:]])\\*[[:alnum:]]([^*]+[[:alnum:]])?\\*([[:space:][:punct:]]|$)"
 # _Underline_ span
-color body  color05  color00  "(^|[[:space:][:punct:]])_[^_]+_([[:space:][:punct:]]|$)"
+color body  color05  color00  "(^|[[:space:][:punct:]])_[[:alnum:]]([^_]+[[:alnum:]])?_([[:space:][:punct:]]|$)"
 # /Italic/ span (Sometimes gets directory names)
-color body  color05  color00  "(^|[[:space:][:punct:]])/[^/]+/([[:space:][:punct:]]|$)"
+color body  color05  color00  "(^|[[:space:][:punct:]])/[[:alnum:]]([^/]+[[:alnum:]])?/([[:space:][:punct:]]|$)"
 # ATX headers
-color body  color04  color00  "^[[:space:]]{0,3}#+[[:space:]].*$"
+# color body  color04  color00  "^[[:space:]]{0,3}#+[[:space:]].*$"
 ## Highlight
 # `Code` span
 color body  color02  color00  "(^|[[:space:][:punct:]])\`[^\`]+\`([[:space:][:punct:]]|$)"
 # Indented code block
-color body  color02  color00  "^[[:space:]]{4,}.*$"
+# color body  color02  color00  "^[[:space:]]{4,}.*$"
 # URLs
 color body  color16 color00  "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n<>\"]"
 # Email addresses
@@ -128,5 +128,19 @@ color quoted4  color01  color00
 color quoted5  color17  color00
 color quoted6  color05  color00
 color quoted7  color04  color00
+
+# Patch
+color   body    yellow          default         "^(diff) .*"
+color   body    green           default         "^[\+].*"
+color   body    red             default         "^\-.*"
+color   body    cyan            default         "^(Signed-off-by:).*"
+color   body    brightwhite     default         "^(Cc:)"
+color   body    brightwhite     default         "^diff \-.*"
+color   body    brightwhite     default         "^index [a-f0-9].*"
+color   body    brightblue      default         "^---$"
+color   body    brightwhite     default         "^\-\-\- .*"
+color   body    brightwhite     default         "^[\+]{3} .*"
+color   body    cyan            default         "^@@ .*"
+color   body    green           default         "LGTM"
 
 # vi: ft=muttrc

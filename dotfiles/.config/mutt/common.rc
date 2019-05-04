@@ -2,6 +2,7 @@
 set realname='Danh Doan'
 set mbox=~/.cache/maildir/archives
 set mbox_type=maildir
+set beep_new=yes
 
 # display mail
 ignore *
@@ -10,11 +11,15 @@ unignore content-type
 unignore message-id
 unignore list-id
 unignore in-reply-to
+unignore tags
 unhdr_order *
 hdr_order Date: Subject: From: To: Cc:
 alternative_order text/plain text/calendar text/enriched text/html
 set assumed_charset="utf-8"
 set sort=threads
+set sort_aux=last-date-received
+set pager_index_lines=10
+set quote_regexp="^(>[[:space:]]*)+"
 
 # sendmail
 set send_charset="utf-8"
@@ -41,5 +46,5 @@ set trash="~/.cache/maildir/trash"
 set history_file="~/.cache/mutt/history"
 
 source ~/.config/mutt/gpg.rc
-source ~/.config/mutt/base16.rc
+source ~/.config/mutt/color.rc
 source ~/.config/mutt/vim-keys.rc
