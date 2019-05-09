@@ -7,13 +7,14 @@ set beep_new=yes
 # display mail
 ignore *
 unignore from date subject to cc
+unignore x-mailer x-url user-agent
 unignore content-type
 unignore message-id
 unignore list-id
 unignore in-reply-to
 unignore tags
-unhdr_order *
-hdr_order Date: Subject: From: To: Cc:
+# unhdr_order *
+# hdr_order Date: Subject: From: To: Cc:
 alternative_order text/plain text/calendar text/enriched text/html
 set assumed_charset="utf-8"
 set sort=threads
