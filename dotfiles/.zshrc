@@ -189,6 +189,13 @@ xbps-list() {
 		sed -E 's/-[[:digit:]]+(\.(git)?[[:digit:]]+)*([pr][[:digit:]]+)?[[:alpha:]]?(_[[:digit:]]+)$//'
 }
 
+opass() {
+	PASSWORD_STORE_DIR="${HOME}/.cache/opass" pass "$@"
+}
+
+compdef _pass opass
+zstyle ':completion::complete:opass::' prefix "$HOME/.cache/opass"
+
 if [ -r "${HOME}/.config/sh/load-ssh-agent.sh" ]; then
 	. "${HOME}/.config/sh/load-ssh-agent.sh"
 fi
