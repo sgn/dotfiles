@@ -114,3 +114,5 @@ endif
 set t_Co=256
 let base16colorspace=256
 colorscheme base16-gruvbox-dark-hard
+
+" set keymap=vietnamese-telex_utf-8
