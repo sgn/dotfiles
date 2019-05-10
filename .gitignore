@@ -10,7 +10,12 @@ config/transmission-daemon/
 cron.sed
 dconf
 dotfiles/.emacs.d/places
-dotfiles/.local
+dotfiles/.local/lib
+dotfiles/.local/share/gem
+dotfiles/.local/share/ranger
+dotfiles/.local/share/Trash
+dotfiles/.local/share/tridactyl
+dotfiles/.local/share/zathura
 elpa
 *.errors
 fcitx
