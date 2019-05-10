@@ -3,20 +3,31 @@ source ~/.config/mutt/common.rc
 set virtual_spoolfile=yes
 set folder=~/.cache/maildir
 
+# bind index               i get-message
 bind index,browser,pager J noop
 bind index,browser,pager K noop
-bind pager ]] next-entry
-bind pager [[ previous-entry
-#macro index,pager Jt "<change-vfolder> inbox<enter>"
-macro index,pager gw "<change-vfolder> this_week<enter>"
 
+macro index,pager Jt "<change-vfolder> inbox<enter>"
 virtual-mailboxes "inbox" "notmuch://?query=tag:inbox and date:1days.."
+
+macro index,pager Jw "<change-vfolder> this_week<enter>"
 virtual-mailboxes "this_week" "notmuch://?query=tag:inbox and date:7days.."
+
+macro index,pager Ji "<change-vfolder> real_inbox<enter>"
 virtual-mailboxes "real_inbox" "notmuch://?query=tag:inbox"
+
 #virtual-mailboxes "sent" "notmuch://?query=tag:sent"
 #virtual-mailboxes "trash" "notmuch://?query=tag:deleted"
+
+macro index,pager Ju "<change-vfolder> unread<enter>"
 virtual-mailboxes "unread" "notmuch://?query=tag:unread"
+
+macro index,pager Jf "<change-vfolder> follow<enter>"
 virtual-mailboxes "follow" "notmuch://?query=tag:follow"
-virtual-mailboxes "me" "notmuch://?query=to:congdanhqx@gmail.com"
+macro index,pager Jm "<change-vfolder> me<enter>"
+virtual-mailboxes "me" "notmuch://?query=to:congdanhqx@gmail.com or to:sgn.danh@gmail.com"
+macro index,pager Jl "<change-vfolder> weekly_list<enter>"
 virtual-mailboxes "weekly_list" "notmuch://?query=tag:lists and date:7days.."
+
+macro index,pager Jj "<change-vfolder> spam<enter>"
 virtual-mailboxes "junk-spam" "notmuch://?query=tag:spam"
