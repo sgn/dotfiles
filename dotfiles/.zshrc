@@ -211,9 +211,10 @@ fi
 alias xclipboard='xclip -selection clipboard'
 alias fgrep='fgrep --color=auto'
 
-if test linux = "$TERM"; then
-	recolor
-fi
+case "${TERM%-256color}" in
+	st|screen) : ;;
+	*) recolor ;;
+esac
 
 # stop rtv from launching firefox
 for i in w3m elinks lynx links; do
