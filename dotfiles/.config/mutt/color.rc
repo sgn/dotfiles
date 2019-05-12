@@ -112,11 +112,10 @@ color body  color16 color00  "((@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-9
 color body  black   yellow   "[;:][-o]?[})>{(<|P]"
 
 # PGP
-color body  color21  color01   "(BAD signature)"
-color body  color21  color01   "^gpg: BAD signature from.*"
-color body  color21  color04   "(Good signature)"
-color body  color21  color04   "^gpg: Good signature .*"
-color body  color04  color00  "^gpg: "
+color body  color18  color01   "^gpg: BAD signature "
+color body  color18  color02   "^gpg: Good signature "
+color body  color18  color03   "^gpg: WARNING: This key has been revoked .*"
+color body  color04  color00   "^gpg: "
 
 
 ## Quotation blocks

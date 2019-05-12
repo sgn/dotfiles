@@ -22,6 +22,7 @@ set sort_aux=last-date-received
 set pager_index_lines=10
 set quote_regexp="^(>[[:space:]]*)+"
 
+set folder=~/.cache/maildir
 # sendmail
 set send_charset="utf-8"
 set ispell="/usr/bin/aspell"
@@ -34,16 +35,16 @@ set edit_headers=yes
 set hostname="danh.dev"
 set crypt_autosign=yes
 set copy=yes
-set record="~/.cache/maildir/sent"
+set record="=sent"
 set postpone=yes
-set postponed="~/.cache/maildir/drafts"
+set postponed="=drafts"
 
 # reply to everyone, someone didn't subsribed
 set ignore_list_reply_to=yes
 set include=yes
 
 # misc
-set trash="~/.cache/maildir/trash"
+set trash="=trash"
 set history_file="~/.cache/mutt/history"
 
 source ~/.config/mutt/gpg.rc

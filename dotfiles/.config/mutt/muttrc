@@ -1,5 +1,9 @@
 source ~/.config/mutt/common.rc
 
+# mutt is used for reading system email
+# for day-to-day email, neomutt will be used
+set trash=""
+
 macro index <F8> \
 "<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
 <shell-escape>notmuch-mutt -r --prompt search<enter>\

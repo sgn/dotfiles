@@ -1,7 +1,6 @@
 source ~/.config/mutt/common.rc
 
 set virtual_spoolfile=yes
-set folder=~/.cache/maildir
 
 # bind index               i get-message
 bind index,browser,pager J noop
