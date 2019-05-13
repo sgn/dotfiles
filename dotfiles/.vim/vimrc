@@ -110,6 +110,19 @@ if version >= 700
 	set spellfile=~/.vim/spellfile.add
 	set sps=best,10
 endif
+
+set statusline=[%2.n]        " buffer number
+set statusline+=%#todo#%f%*  " filename, relative
+set statusline+=%m           " modified [+]
+set statusline+=%r           " readonly [RO]
+set statusline+=%=           " left/right separator
+set statusline+=%h           " [help] flag
+set statusline+=%w           " [Preview] flag
+set statusline+=%y           " filetype [sh]
+set statusline+=[%{&fenc}:   " encoding [utf-8]
+set statusline+=%{&ff}]      " line ending [unix/dos]
+set statusline+=[%c%V]       " cursor column
+
 " Color scheme
 set t_Co=256
 let base16colorspace=256
