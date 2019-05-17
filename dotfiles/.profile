@@ -86,19 +86,9 @@ GEM_SPEC_CACHE="$HOME/.cache/gem"
 export GEM_HOME GEM_SPEC_CACHE
 add_to_path "$GEM_HOME/bin"
 
-ulimit -c unlimited
 LANG=en_US.UTF-8
 LC_ALL=en_US.UTF-8
 export LANG LC_ALL
 
 ## Specific to local computer. Should be sourced last
 [ -r "${XDG_CONFIG_HOME}/sh/lprofile" ] && . "${XDG_CONFIG_HOME}/sh/lprofile"
-
-if test -z "$DISPLAY" && test "$(tty)" = '/dev/tty1' \
-		&& command -v xinit >/dev/null 2>&1 ; then
-	if test -z "$DBUS_SESSION_BUS_ADDRESS" \
-			&& command -v dbus-run-session >/dev/null 2>&1; then
-		exec dbus-run-session -- xinit -- vt01
-	fi
-	exec xinit -- vt01
-fi
