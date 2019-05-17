@@ -15,7 +15,7 @@ test -f ~/.xprofile && . ~/.xprofile
 ## lock is the screensaver
 command -v slock >/dev/null && xss-lock -- slock &
 
-command -v unclutter >/dev/null 2>&1 && unclutter &
+# command -v unclutter >/dev/null 2>&1 && unclutter &
 
 if command -v dunst >/dev/null 2>&1; then
 	dunst &
