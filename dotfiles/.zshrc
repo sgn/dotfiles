@@ -1,4 +1,3 @@
-ls_options=( '--group-directories-first' )
 NOTITLE=1
 GRML_NO_APT_ALIASES=1
 GRML_DISPLAY_BATTERY=1
