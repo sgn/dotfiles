@@ -1,12 +1,12 @@
 [submodule "dotfiles/.config/zsh/zsh-autosuggestions"]
-	path = dotfiles/.config/zsh/zsh-autosuggestions
+	path = dotfiles/.config/zsh.bundle/90-zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
 [submodule "dotfiles/.config/zsh/zsh-history-substring-search"]
-	path = dotfiles/.config/zsh/zsh-history-substring-search
+	path = dotfiles/.config/zsh.bundle/80-zsh-history-substring-search
 	url = https://github.com/zsh-users/zsh-history-substring-search.git
 [submodule "dotfiles/.config/zsh/zsh-syntax-highlighting"]
-	path = dotfiles/.config/zsh/zsh-syntax-highlighting
+	path = dotfiles/.config/zsh.bundle/70-zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
 [submodule "dotfiles/.config/zsh/grml"]
-	path = dotfiles/.config/zsh/grml
+	path = dotfiles/.config/grml
 	url = https://github.com/grml/grml-etc-core.git

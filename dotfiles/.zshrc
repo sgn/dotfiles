@@ -1,16 +1,11 @@
-#!/usr/bin/zsh
-
 ls_options=( '--group-directories-first' )
 NOTITLE=1
 GRML_NO_APT_ALIASES=1
 GRML_DISPLAY_BATTERY=1
 GRML_NO_DEFAULT_LOCALE=1
 
-D_EXTERNAL="${XDG_CONFIG_HOME}/zsh"
-
-D_EXT_SOURCE="${D_EXTERNAL}/grml/etc/zsh/zshrc"
-if test -f "${D_EXT_SOURCE}"; then
-	source "${D_EXT_SOURCE}"
+if test -r "${XDG_CONFIG_HOME}/grml/etc/zsh/zshrc"; then
+	source "${XDG_CONFIG_HOME}/grml/etc/zsh/zshrc"
 fi
 
 bindkey -v
@@ -25,27 +20,6 @@ done
 #grml_theme_add_token  virtual-env -f virtual_env_prompt '%F{magenta}' '%f'
 # zstyle ':vcs_info:*' enable git
 zstyle ':prompt:grml:left:setup' items rc change-root user at host path shell-level newline percent
-
-D_EXT_SOURCE="${D_EXTERNAL}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-if test -f "${D_EXT_SOURCE}"; then
-	source "${D_EXT_SOURCE}"
-fi
-
-D_EXT_SOURCE="${D_EXTERNAL}/zsh-history-substring-search/zsh-history-substring-search.zsh"
-if test -f "${D_EXT_SOURCE}"; then
-	source "${D_EXT_SOURCE}"
-fi
-
-## set command suggestion from history
-D_EXT_SOURCE="${D_EXTERNAL}/zsh-autosuggestions/zsh-autosuggestions.zsh"
-if test -f "${D_EXT_SOURCE}"; then
-	source "${D_EXT_SOURCE}"
-	bindkey '^J' autosuggest-accept
-	export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
-fi
-
-unset D_EXT_SOURCE
-unset D_EXTERNAL
 
 recolor () {
 	if test -r "${XDG_CONFIG_HOME}/base16-gruvbox-dark-hard.sh"; then
