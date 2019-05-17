@@ -15,6 +15,10 @@ fi
 
 bindkey -v
 
+for f in ~/.config/zsh/**/*.zsh; do
+	[ -f "$f" ] && source "$f"
+done
+
 #function virtual_env_prompt () {
 #    REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
 #}
