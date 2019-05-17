@@ -36,6 +36,10 @@ add_to_path "${DOTFILES_HOME}/bin" begin
 add_to_path "${HOME}/.local/platform-tools"
 unset DOTFILES_HOME
 
+## pager
+PAGER='less'
+export PAGER
+
 ## Remove less history.
 LESS='-RXF'
 LESSHISTFILE='-'
@@ -49,6 +53,10 @@ export MANPAGER MANWIDTH
 ## Time display (with ls command for example).  GNU 'ls' only.
 TIME_STYLE=long-iso
 export TIME_STYLE
+
+## system mailbox
+MAIL=/var/mail/$USER
+export MAIL
 
 ## SSH-Agent
 if [ -r "${HOME}/.config/sh/load-ssh-agent.sh" ]; then
@@ -79,6 +87,9 @@ export GEM_HOME GEM_SPEC_CACHE
 add_to_path "$GEM_HOME/bin"
 
 ulimit -c unlimited
+LANG=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+export LANG LC_ALL
 
 ## Specific to local computer. Should be sourced last
 [ -r "${XDG_CONFIG_HOME}/sh/lprofile" ] && . "${XDG_CONFIG_HOME}/sh/lprofile"
