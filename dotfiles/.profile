@@ -43,7 +43,18 @@ export PAGER
 ## Remove less history.
 LESS='-RXF'
 LESSHISTFILE='-'
-export LESS LESSHISTFILE
+# support colors in less
+xesc=$(printf '\033')
+LESS_TERMCAP_mb="${xesc}[01;31m"
+LESS_TERMCAP_md="${xesc}[01;31m"
+LESS_TERMCAP_me="${xesc}[0m"
+LESS_TERMCAP_se="${xesc}[0m"
+LESS_TERMCAP_so="${xesc}[01;44;33m"
+LESS_TERMCAP_ue="${xesc}[0m"
+LESS_TERMCAP_us="${xesc}[01;32m"
+unset xesc
+export LESS LESSHISTFILE LESS_TERMCAP_mb LESS_TERMCAP_md LESS_TERMCAP_me \
+	LESS_TERMCAP_se LESS_TERMCAP_so LESS_TERMCAP_ue LESS_TERMCAP_us
 
 ## Manpage.
 MANPAGER="less -s"
