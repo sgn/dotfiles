@@ -151,16 +151,6 @@ hex() {
 	fi
 }
 
-weather () {
-	local station="${@:-Ho_Chi_Minh}"
-	local station="${station:gs/ /_/}"
-	local request="https://wttr.in/${station}?m"
-
-	[ "$COLUMNS" -lt 125 ] && request="${request}n"
-
-	curl --compressed "$request"
-}
-
 xbps-list() {
 	xbps-query -m |
 		sed -E 's/-[[:digit:]]+(\.(git)?[[:digit:]]+)*([pr][[:digit:]]+)?[[:alpha:]]?(_[[:digit:]]+)$//'
