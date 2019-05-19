@@ -20,12 +20,6 @@ done
 # zstyle ':vcs_info:*' enable git
 zstyle ':prompt:grml:left:setup' items rc change-root user at host path shell-level newline percent
 
-recolor () {
-	if test -r "${XDG_CONFIG_HOME}/base16-gruvbox-dark-hard.sh"; then
-		source "${XDG_CONFIG_HOME}/base16-gruvbox-dark-hard.sh"
-	fi
-}
-
 ## press ctrl-q to quote line:
 mquote () {
      zle vi-beginning-of-line
