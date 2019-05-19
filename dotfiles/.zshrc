@@ -158,7 +158,6 @@ fi
 #fi
 
 alias xclipboard='xclip -selection clipboard'
-alias fgrep='fgrep --color=auto'
 
 if command -v fortune >/dev/null 2>&1; then
 	fortune -a | \
