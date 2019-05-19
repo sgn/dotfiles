@@ -151,11 +151,6 @@ hex() {
 	fi
 }
 
-xbps-list() {
-	xbps-query -m |
-		sed -E 's/-[[:digit:]]+(\.(git)?[[:digit:]]+)*([pr][[:digit:]]+)?[[:alpha:]]?(_[[:digit:]]+)$//'
-}
-
 if [ -r "${HOME}/.config/sh/load-ssh-agent.sh" ]; then
 	. "${HOME}/.config/sh/load-ssh-agent.sh"
 fi

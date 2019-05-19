@@ -1,0 +1,3 @@
+# vim: ft=sh
+xbps-query -m |
+	sed -E 's/-[[:digit:]]+(\.(git)?[[:digit:]]+)*([pr][[:digit:]]+)?[[:alpha:]]?(_[[:digit:]]+)$//'
