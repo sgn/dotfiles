@@ -70,9 +70,8 @@ MAIL=/var/mail/$USER
 export MAIL
 
 ## SSH-Agent
-if [ -r "${HOME}/.config/sh/load-ssh-agent.sh" ]; then
-	. "${HOME}/.config/sh/load-ssh-agent.sh"
-	load_ssh_agent
+if [ -r "${HOME}/.config/zsh/functions/load-ssh-agent" ]; then
+	. "${HOME}/.config/zsh/functions/load-ssh-agent"
 fi
 
 ## Default text editor

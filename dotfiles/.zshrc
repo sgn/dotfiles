@@ -145,10 +145,6 @@ hex() {
 	fi
 }
 
-if [ -r "${HOME}/.config/sh/load-ssh-agent.sh" ]; then
-	. "${HOME}/.config/sh/load-ssh-agent.sh"
-fi
-
 ## log out? set timeout in seconds...
 ## ...and do not log out in some specific terminals:
 #if [[ "${TERM}" == ([Exa]term*|rxvt|dtterm|screen*) ]] ; then
