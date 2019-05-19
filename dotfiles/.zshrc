@@ -160,11 +160,6 @@ fi
 alias xclipboard='xclip -selection clipboard'
 alias fgrep='fgrep --color=auto'
 
-case "${TERM%-256color}" in
-	st|screen) : ;;
-	*) recolor ;;
-esac
-
 if command -v fortune >/dev/null 2>&1; then
 	fortune -a | \
 		$(shuf -n 1 -e cowsay cowthink) \
