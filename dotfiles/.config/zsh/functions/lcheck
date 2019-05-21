@@ -1,0 +1,7 @@
+# vim: ft=zsh
+## Find out which libs define a symbol
+if [[ -n "$1" ]] ; then
+	nm -go /usr/lib/lib*.a 2>/dev/null | grep ":[[:xdigit:]]\{8\} . .*$1"
+else
+	echo "Usage: lcheck <function>" >&2
+fi

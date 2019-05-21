@@ -1,0 +1,10 @@
+# vim: ft=zsh
+## List all occurrences of programm in current PATH
+emulate -L zsh
+if [[ $# = 0 ]] ; then
+	echo "Usage:    $0 program"
+	echo "Example:  $0 zsh"
+	echo "Lists all occurrences of program in the current PATH."
+else
+	ls -l ${^path}/*$1*(*N)
+fi

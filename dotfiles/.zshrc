@@ -22,15 +22,6 @@ zstyle ':prompt:grml:left:setup' items rc change-root user at host path shell-le
 zstyle ':completion:*' completer _complete _correct _approximate
 zstyle ':completion:*' expand prefix suffix
 
-## get top 10 shell commands:
-alias top10='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
-
-## Execute \kbd{./configure}
-alias CO="./configure"
-
-## Execute \kbd{./configure --help}
-alias CH="./configure --help"
-
 ## miscellaneous code ##
 
 ## variation of our manzsh() function; pick you poison:
@@ -40,6 +31,7 @@ alias CH="./configure --help"
 #bash() {
 #    NO_SWITCH="yes" command bash "$@"
 #}
+
 restart () {
     exec $SHELL $SHELL_ARGS "$@"
 }
@@ -49,42 +41,6 @@ contains() { grep -q "$*" $REPLY }
 sameas() { diff -q "$*" $REPLY &>/dev/null }
 ot () { [[ $REPLY -ot ${~1} ]] }
 
-## List all occurrences of programm in current PATH
-plap() {
-	emulate -L zsh
-	if [[ $# = 0 ]] ; then
-		echo "Usage:    $0 program"
-		echo "Example:  $0 zsh"
-		echo "Lists all occurrences of program in the current PATH."
-	else
-		ls -l ${^path}/*$1*(*N)
-	fi
-}
-
-## Find out which libs define a symbol
-lcheck() {
-	if [[ -n "$1" ]] ; then
-		nm -go /usr/lib/lib*.a 2>/dev/null | grep ":[[:xdigit:]]\{8\} . .*$1"
-	else
-		echo "Usage: lcheck <function>" >&2
-	fi
-}
-
-## Memory overview
-memusage() {
-	ps aux | awk '{if (NR > 1) print $5; if (NR > 2) print "+"} END { print "p" }' | dc
-}
-
-## print hex value of a number
-hex() {
-	emulate -L zsh
-	if [[ -n "$1" ]]; then
-		printf "%x\n" $1
-	else
-		print 'Usage: hex <number-to-convert>'
-		return 1
-	fi
-}
 
 ## log out? set timeout in seconds...
 ## ...and do not log out in some specific terminals:
@@ -93,5 +49,3 @@ hex() {
 #else
 #    TMOUT=1800
 #fi
-
-alias xclipboard='xclip -selection clipboard'
