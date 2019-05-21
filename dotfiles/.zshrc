@@ -48,29 +48,6 @@ bindkey -M isearch . self-insert
 
 bindkey '\eq' push-line-or-edit
 
-## some popular options ##
-
-## add `|' to output redirections in the history
-setopt histallowclobber
-
-## try to avoid the 'zsh: no matches found...'
-setopt nonomatch
-
-## warning if file exists ('cat /dev/null > ~/.zshrc')
-setopt NO_clobber
-
-## don't warn me about bg processes when exiting
-#setopt nocheckjobs
-
-## alert me if something failed
-setopt printexitvalue
-
-## with spelling correction, assume dvorak kb
-#setopt dvorak
-
-## Allow comments even in interactive shells
-setopt interactivecomments
-
 ## changed completer settings
 zstyle ':completion:*' completer _complete _correct _approximate
 zstyle ':completion:*' expand prefix suffix
@@ -85,12 +62,6 @@ alias CO="./configure"
 alias CH="./configure --help"
 
 ## miscellaneous code ##
-
-## Use a default width of 80 for manpages for more convenient reading
-export MANWIDTH=${MANWIDTH:-80}
-
-## Set a search path for the cd builtin
-#cdpath=(.. ~)
 
 ## variation of our manzsh() function; pick you poison:
 #manzsh()  { /usr/bin/man zshall |  most +/"$1" ; }
