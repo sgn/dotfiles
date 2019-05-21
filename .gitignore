@@ -39,6 +39,7 @@ pavucontrol.ini
 *.pem
 pkg/
 pulse
+QtProject.conf
 recent*
 recentf
 rtv
@@ -48,4 +49,6 @@ supervise/
 url_hist
 user-dirs.*
 viminfo
+VirtualBox
+.w3m/
 xmonad-x86_64-linux
