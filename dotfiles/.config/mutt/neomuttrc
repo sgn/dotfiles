@@ -5,28 +5,40 @@ set virtual_spoolfile=yes
 # bind index               i get-message
 bind index,browser,pager J noop
 bind index,browser,pager K noop
+bind index,browser,pager C change-vfolder
+bind index,browser,pager t modify-tags
+bind index,browser,pager A create-alias
+bind index,browser,pager S vfolder-from-query
 
-macro index,pager Jt "<change-vfolder> inbox<enter>"
-virtual-mailboxes "inbox" "notmuch://?query=tag:inbox and date:1days.."
+macro index,browser,pager a "<modify-tags> +archives -inbox -me<enter>"
+macro index,browser,pager K "<modify-tags> +deleted -inbox -me<enter>"
+macro index,browser,pager F "<modify-tags> !follow<enter>"
+macro index,browser,pager s "<copy-message>\Cu~/patches<enter>y<show-log-messages>"
 
-macro index,pager Jw "<change-vfolder> this_week<enter>"
-virtual-mailboxes "this_week" "notmuch://?query=tag:inbox and date:7days.."
+set nm_query_type=threads
+macro index,pager Jm "<change-vfolder> inbox<enter>"
+virtual-mailboxes "inbox" "notmuch://?query=tag:me and date:7days.."
 
-macro index,pager Ji "<change-vfolder> real_inbox<enter>"
-virtual-mailboxes "real_inbox" "notmuch://?query=tag:inbox"
+macro index,pager Jt "<change-vfolder> today<enter>"
+virtual-mailboxes "today" "notmuch://?query=tag:inbox and date:1days.."
+
+macro index,pager Jw "<change-vfolder> weekly<enter>"
+virtual-mailboxes "weekly" "notmuch://?query=tag:inbox and date:7days.."
+
+macro index,pager Ji "<change-vfolder> all<enter>"
+virtual-mailboxes "all" "notmuch://?query=tag:inbox"
 
 #virtual-mailboxes "sent" "notmuch://?query=tag:sent"
-#virtual-mailboxes "trash" "notmuch://?query=tag:deleted"
+virtual-mailboxes "trash" "notmuch://?query=tag:deleted"
 
 macro index,pager Ju "<change-vfolder> unread<enter>"
 virtual-mailboxes "unread" "notmuch://?query=tag:unread"
 
 macro index,pager Jf "<change-vfolder> follow<enter>"
 virtual-mailboxes "follow" "notmuch://?query=tag:follow"
-macro index,pager Jm "<change-vfolder> me<enter>"
-virtual-mailboxes "me" "notmuch://?query=to:congdanhqx@gmail.com or to:sgn.danh@gmail.com"
+
 macro index,pager Jl "<change-vfolder> weekly_list<enter>"
 virtual-mailboxes "weekly_list" "notmuch://?query=tag:lists and date:7days.."
 
-macro index,pager Jj "<change-vfolder> spam<enter>"
-virtual-mailboxes "junk-spam" "notmuch://?query=tag:spam"
+macro index,pager Jj "<change-vfolder> junk<enter>"
+virtual-mailboxes "junk" "notmuch://?query=tag:spam"

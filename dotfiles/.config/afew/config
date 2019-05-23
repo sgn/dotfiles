@@ -1,16 +1,20 @@
 [SpamFilter]
 [KillThreadsFilter]
 [ListMailsFilter]
-[ArchiveSentMailsFilter]
+[SentMailsFilter]
+sent_tag = sent
+
+[FolderNameFilter]
+folder_explicit_list = archives
 
 [Filter.1]
-message = 'mailing list'
-query = 'tag:lists'
-tags = -new
-
-[Filter.2]
-message = 'trash'
-query = 'path:/trash/ and tag:new'
-tag = +deleted;-inbox;-new;-unread
+query=to:/danh/ or from:/danh/
+tags = +me
 
 [InboxFilter]
+
+[MailMover]
+folders = Inbox trash
+rename = false
+Inbox = 'tag:deleted':trash 'tag:archives':archives
+trash = 'NOT tag:deleted':archives

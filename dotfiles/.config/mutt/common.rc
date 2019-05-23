@@ -1,7 +1,7 @@
 # vim: syntax=muttrc
 set realname='Danh Doan'
 set mbox=~/.cache/maildir/archives
-set mbox_type=maildir
+# set mbox_type=maildir
 set beep_new=yes
 
 # display mail
