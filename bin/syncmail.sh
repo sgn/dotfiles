@@ -12,7 +12,7 @@ if ! flock -n 3; then
 	echo Sync mail is running 2>&1
 	exit
 fi
-afew --move-mails
+#afew --move-mails
 mbsync -aq
-notmuch new --quiet
+#notmuch new --quiet
 ) 3>"$LOCK_FILE"
