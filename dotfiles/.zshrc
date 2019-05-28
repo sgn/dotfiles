@@ -15,22 +15,18 @@ done
 #    REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
 #}
 #grml_theme_add_token  virtual-env -f virtual_env_prompt '%F{magenta}' '%f'
-# zstyle ':vcs_info:*' enable git
-zstyle ':prompt:grml:left:setup' items rc change-root user at host path shell-level newline percent
+zstyle ':vcs_info:*' enable git
+zstyle ':prompt:grml:left:setup' items rc change-root user at host path vcs shell-level newline percent
 
 ## changed completer settings
 zstyle ':completion:*' completer _complete _correct _approximate
 zstyle ':completion:*' expand prefix suffix
 
-## miscellaneous code ##
-
-## variation of our manzsh() function; pick you poison:
-#manzsh()  { /usr/bin/man zshall |  most +/"$1" ; }
-
-## Switching shell safely and efficiently? http://www.zsh.org/mla/workers/2001/msg02410.html
-#bash() {
-#    NO_SWITCH="yes" command bash "$@"
-#}
+# Switching shell safely and efficiently?
+# http://www.zsh.org/mla/workers/2001/msg02410.html
+bash() {
+    NO_SWITCH="yes" command bash "$@"
+}
 
 restart () {
     exec $SHELL $SHELL_ARGS "$@"
@@ -40,12 +36,3 @@ restart () {
 contains() { grep -q "$*" $REPLY }
 sameas() { diff -q "$*" $REPLY &>/dev/null }
 ot () { [[ $REPLY -ot ${~1} ]] }
-
-
-## log out? set timeout in seconds...
-## ...and do not log out in some specific terminals:
-#if [[ "${TERM}" == ([Exa]term*|rxvt|dtterm|screen*) ]] ; then
-#    unset TMOUT
-#else
-#    TMOUT=1800
-#fi
