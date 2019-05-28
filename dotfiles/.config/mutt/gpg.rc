@@ -109,5 +109,4 @@ set pgp_good_sign="^\\[GNUPG:\\] GOODSIG"
 # pattern to verify a decryption occurred
 # This is now deprecated by pgp_check_gpg_decrypt_status_fd:
 # set pgp_decryption_okay="^\\[GNUPG:\\] DECRYPTION_OKAY"
-set pgp_check_gpg_decrypt_status_fd
-
+set pgp_check_gpg_decrypt_status_fd=yes

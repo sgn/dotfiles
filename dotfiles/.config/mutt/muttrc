@@ -1,8 +1,6 @@
 source ~/.config/mutt/common.rc
 
-# mutt is used for reading system email
-# for day-to-day email, neomutt will be used
-set trash=""
+bind index,pager <esc><tab> next-unread-mailbox
 
 macro index <F8> \
 "<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
@@ -23,3 +21,5 @@ macro index <F6> \
 <pipe-message>notmuch-mutt tag -- -inbox<enter>\
 <enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
 "notmuch: remove message from inbox"
+
+push <show-version>

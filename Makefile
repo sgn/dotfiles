@@ -4,10 +4,16 @@ MODULE_TAR=$(MODULES:=.tar)
 PREFIX=dotfiles
 VOLATILE_FILES=\
 
+LOCAL_FILES=\
+	${HOME}/.config/mutt/aliases \
+	${HOME}/.config/mutt/local.rc \
+	${HOME}/.config/sh/lprofile \
+
 .PHONY: all
 all: submodule $(VOLATILE_FILES)
 	mkdir -p -m 700 "${HOME}/.gnupg"
 	stow -t "${HOME}" dotfiles
+	touch $(LOCAL_FILES)
 
 .PHONY: var
 var:

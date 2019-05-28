@@ -1,20 +1,25 @@
-# vim: syntax=muttrc
+# vim: ft=muttrc
 set realname='Danh Doan'
-set mbox=~/.cache/maildir/archives
+alternates congdanh.* sgn\.danh.*
 # set mbox_type=maildir
 set beep_new=yes
 
 # display mail
 ignore *
 unignore from date subject to cc
+unignore bcc
 unignore x-mailer x-url user-agent
 unignore content-type
 unignore message-id
 unignore list-id
 unignore in-reply-to
-unignore tags
-# unhdr_order *
-# hdr_order Date: Subject: From: To: Cc:
+unignore X-Junked-Because
+unignore X-SpamProbe
+unignore X-Virus-Hagbard
+
+unhdr_order *
+hdr_order from date subject to cc bcc reply-to
+
 alternative_order text/plain text/calendar text/enriched text/html
 auto_view text/calendar text/enriched text/html
 set assumed_charset="utf-8"
@@ -22,10 +27,15 @@ set sort=threads
 set sort_aux=last-date-received
 set pager_index_lines=10
 set quote_regexp="^(>[[:space:]]*)+"
+set markers=no
+set pager_context=3
+set tilde=yes
 
 set folder=~/.cache/maildir
+set mbox="=archives"
+set keep_flagged=yes
 # sendmail
-set send_charset="utf-8"
+set send_charset="us-ascii:utf-8"
 set ispell="/usr/bin/aspell"
 set sendmail="/usr/bin/msmtp"
 set envelope_from=yes
@@ -37,17 +47,29 @@ set hostname="danh.dev"
 set crypt_autosign=yes
 set copy=yes
 set record="=sent"
-set postpone=yes
+set fcc_clear=yes
+set postpone=ask-yes
 set postponed="=drafts"
+set attribution="On %{%Y-%m-%d %H:%M:%S %Z}, %n wrote:"
+set mime_type_query_command="file -bi"
 
 # reply to everyone, someone didn't subsribed
 set ignore_list_reply_to=yes
 set include=yes
 
 # misc
-set trash="=trash"
+set alias_file="~/.config/mutt/aliases"
 set history_file="~/.cache/mutt/history"
+set confirmappend=no
+set confirmcreate=no
 
 source ~/.config/mutt/gpg.rc
 source ~/.config/mutt/color.rc
 source ~/.config/mutt/vim-keys.rc
+source ~/.config/mutt/aliases
+
+folder-hook .              source ~/.config/mutt/default.rc
+folder-hook '\/var\/mail'  source ~/.config/mutt/system.rc
+folder-hook 'Sent'         source ~/.config/mutt/sent.rc
+
+source ~/.config/mutt/local.rc

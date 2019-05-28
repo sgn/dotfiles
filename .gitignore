@@ -1,4 +1,5 @@
 accels.scm
+aliases
 .arrived
 aur
 chromium
@@ -28,6 +29,7 @@ htop
 jack
 libreoffice
 local-*
+*local.rc
 lprofile
 lxprofile
 mimeapps.list

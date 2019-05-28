@@ -5,5 +5,5 @@ application/x-pdf; /usr/bin/zathura %s; test=test "$DISPLAY" != ""
 text/plain; less
 # auto view using w3m
 # text/html; w3m -I %{charset} -T text/html; copiousoutput;
-text/html; lynx -force_html -dump -width 80 %s ; copiousoutput
+text/html; lynx -force_html -dump -width 80 -assume_charset utf-8 %s ; copiousoutput
 text/calendar; showical.rb; copiousoutput

@@ -1,0 +1,3 @@
+# vim: ft=muttrc
+set mbox="=sent"
+set move=yes

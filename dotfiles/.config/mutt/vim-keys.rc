@@ -17,10 +17,8 @@ bind attach,browser,pager,index \CF next-page
 bind attach,browser,pager,index \CB previous-page
 bind attach,browser,pager,index \Cu half-up
 bind attach,browser,pager,index \Cd half-down
-bind browser,pager              \Ce next-line
-bind browser,pager              \Cy previous-line
-bind index                      \Ce next-line
-bind index                      \Cy previous-line
+bind browser,pager,index        \Ce next-line
+bind browser,pager,index        \Cy previous-line
 
 # bind pager,index                d   noop
 # bind pager,index                dd  delete-message
@@ -39,5 +37,10 @@ bind pager,index                gT  previous-thread
 bind index                      za  collapse-thread
 bind index                      zA  collapse-all # Missing :folddisable/foldenable
 
-bind pager ]] next-entry
-bind pager [[ previous-entry
+bind index,pager                ]]  next-unread
+bind index,pager                [[  previous-unread
+
+bind index,pager                A   create-alias
+macro index,pager               a   "<decode-save>=archives<enter>"
+bind index,pager                <delete> purge-message
+bind generic                    <f12> what-key

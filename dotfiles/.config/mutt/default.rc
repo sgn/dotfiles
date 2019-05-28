@@ -1,0 +1,5 @@
+# vim: ft=muttrc
+set move=no
+set trash="=trash"
+set from=$EMAIL
+set mbox="=archives"
