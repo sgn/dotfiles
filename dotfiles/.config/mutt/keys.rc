@@ -41,6 +41,8 @@ bind index,pager                ]]  next-unread
 bind index,pager                [[  previous-unread
 
 bind index,pager                A   create-alias
-macro index,pager               a   "<decode-save>=archives<enter>"
 bind index,pager                <delete> purge-message
 bind generic                    <f12> what-key
+
+macro index,pager               a   "<decode-save>=archives<enter>"
+macro index,pager               x   "<save-message>=spam<enter>"

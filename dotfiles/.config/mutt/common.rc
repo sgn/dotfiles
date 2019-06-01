@@ -65,7 +65,7 @@ set confirmcreate=no
 
 source ~/.config/mutt/gpg.rc
 source ~/.config/mutt/color.rc
-source ~/.config/mutt/vim-keys.rc
+source ~/.config/mutt/keys.rc
 source ~/.config/mutt/aliases
 
 folder-hook .              source ~/.config/mutt/default.rc
