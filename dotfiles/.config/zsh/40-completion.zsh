@@ -33,6 +33,8 @@ zstyle ':completion:*:history-words'   menu yes
 # ignore duplicate entries
 zstyle ':completion:*:history-words'   remove-all-dups yes
 zstyle ':completion:*:history-words'   stop yes
+zle -C hist-complete complete-word _generic
+zstyle ':completion:hist-complete:*'   completer _history
 
 # match uppercase from lowercase
 zstyle ':completion:*' matcher-list \
@@ -96,7 +98,6 @@ zstyle -e ':completion:*' completer '
 	fi
     fi'
 
-command mkdir -p "${HOME}/.cache/zsh"
 zstyle ':completion:*' use-cache  yes
 zstyle ':completion:*:complete:*' cache-path "${HOME}/.cache/zsh"
 
