@@ -10,5 +10,5 @@ for module in ~/.config/zsh.bundle/*; do
 done
 unset module module_name
 
-bindkey '^J' autosuggest-accept
+bindkey -M viins '^J' autosuggest-accept
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'

@@ -1,7 +1,5 @@
 accels.scm
 aliases
-.arrived
-aur
 chromium
 cmus
 config/dconf/user
@@ -54,3 +52,4 @@ viminfo
 VirtualBox
 .w3m/
 xmonad-x86_64-linux
+*.zwc

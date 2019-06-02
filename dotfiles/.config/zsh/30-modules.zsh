@@ -5,3 +5,5 @@ zmodload -i zsh/mathfunc
 zmodload -a zsh/stat zstat
 zmodload -a zsh/zpty zpty
 zmodload -ap zsh/mapfile mapfile
+autoload zmv
+autoload zed

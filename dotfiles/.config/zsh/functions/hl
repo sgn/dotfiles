@@ -4,6 +4,8 @@
 # grml config: https://grml.org/
 # which, in turn, taken from:
 # https://dev.0x50.de/projects/ftzsh/repository/revisions/master/entry/functions/hl
+# or more likely:
+# https://www.0x50.de/fterbeck/zsh/blob/master/functions/hl
 
 if ! [[ -x ${commands[highlight]} ]]; then
     printf 'hl: Could not find `highlight'\'' binary!\n'
