@@ -1,0 +1,166 @@
+# vim: ft=zsh
+
+__kernel=$(uname -s)
+
+[ "$__kernel" = Linux ] && __battery () {
+	__battery_status=''
+	local batteries bat capacity energy_full energy_now bat_status
+	batteries=( /sys/class/power_supply/BAT*(N) )
+	if (( $#batteries > 0 )) ; then
+		for bat in $batteries ; do
+			if [[ -e $bat/capacity ]]; then
+				read capacity <$bat/capacity
+			else
+				read energy_full <$bat/energy_full
+				read energy_now <$bat/energy_now
+				capacity=$(( 100 * $energy_now / $energy_full))
+			fi
+			read bat_status <$bat/status
+			case "$bat_status" in
+			Charging) __battery_status+=" ^" ;;
+			Discharging)
+				if [ "$capacity" -lt 20 ]; then
+					__battery_status+=" !v"
+				else
+					__battery_status+=" v"
+				fi
+				;;
+			*) __battery_status+=" =" ;;
+			esac
+			__battery_status+="${capacity}%%"
+		done
+	fi
+}
+
+# Begin GPLv2 code from grml
+[ "$__kernel" = OpenBSD ] && __battery () {
+	__battery_status=''
+	local bat batfull batwarn batnow num
+	for num in 0 1 ; do
+		bat=$(sysctl -n hw.sensors.acpibat${num} 2>/dev/null)
+		if [[ -n $bat ]]; then
+			batfull=${"$(sysctl -n hw.sensors.acpibat${num}.amphour0)"%% *}
+			batwarn=${"$(sysctl -n hw.sensors.acpibat${num}.amphour1)"%% *}
+			batnow=${"$(sysctl -n hw.sensors.acpibat${num}.amphour3)"%% *}
+			case "$(sysctl -n hw.sensors.acpibat${num}.raw0)" in
+				*" discharging"*)
+					if (( batnow < batwarn )) ; then
+						__battery_status+=" !v"
+					else
+						__battery_status+=" v"
+					fi
+					;;
+				*" charging"*)
+					__battery_status+=" ^"
+					;;
+				*)
+					__battery_status+=" ="
+					;;
+			esac
+			__battery_status+="${$(( 100 * batnow / batfull ))%%.*}%%"
+		fi
+	done
+}
+
+[ "$__kernel" = FreeBSD ] && __battery () {
+	__battery_status=''
+	local num
+	local -A table
+	for num in 0 1 ; do
+		table=( ${=${${${${${(M)${(f)"$(acpiconf -i $num 2>&1)"}:#(State|Remaining capacity):*}%%( ##|%)}//:[ $'\t']##/@}// /-}//@/ }} )
+		if [[ -n $table ]] && [[ $table[State] != "not-present" ]] ; then
+			case $table[State] in
+				*discharging*)
+					if (( $table[Remaining-capacity] < 20 )) ; then
+						__battery_status+=" !v"
+					else
+						__battery_status+=" v"
+					fi
+					;;
+				*charging*)
+					__battery_status+=" ^"
+					;;
+				*)
+					__battery_status+=" ="
+					;;
+			esac
+			__battery_status+="$table[Remaining-capacity]%%"
+		fi
+	done
+}
+
+[ "$__kernel" = Darwin ] && __battery () {
+	__battery_status=''
+	local -a table
+	table=( ${$(pmset -g ps)[(w)7,8]%%(\%|);} )
+	if [[ -n $table[2] ]] ; then
+		case $table[2] in
+			charging)
+				__battery_status+=" ^"
+				;;
+			discharging)
+				if (( $table[1] < 20 )) ; then
+					__battery_status+=" !v"
+				else
+					__battery_status+=" v"
+				fi
+				;;
+			*)
+				__battery_status+=" ="
+				;;
+		esac
+		__battery_status+="$table[1]%%"
+	fi
+}
+# End GPLv2 code from grml
+unset __kernel
+
+if [[ ! -o restricted ]]; then
+	autoload vcs_info
+	zstyle ':vcs_info:*' max-exports 2
+	zstyle ':vcs_info:*' enable git
+	zstyle ':vcs_info:*' actionformats "[%F{green}%b%F{yellow}|%F{red}%a%f] "
+	zstyle ':vcs_info:*' formats	   "[%F{green}%b%f] "
+else
+	vcs_info () { :; }
+fi
+
+if command -v __battery >/dev/null 2>&1 && __battery \
+	&& [ -n "$__battery_status" ]; then
+prompt_personal_precmd () {
+	vcs_info
+	__battery
+}
+else
+prompt_personal_precmd () {
+	vcs_info
+}
+fi
+
+prompt_personal_setup () {
+	add-zsh-hook precmd prompt_personal_precmd
+	# secondary prompt,
+	# printed when the shell needs more information to complete a command.
+	PS2='\`%_> '
+	# selection prompt used within a select loop.
+	PS3='?# '
+	# the execution trace prompt (setopt xtrace). default: '+%N:%i>'
+	PS4='+%N:%i:%e:%_> '
+
+	# exit status of previous command if failure
+	PS1='%B%F{red}%(?..%? )%f%b'
+	# user@host
+	PS1="${PS1}%B%F{blue}%n%f%b@%m "
+	# cwd, truncate to 40 chars
+	PS1="${PS1}%B%40<..<%~%<<%b "
+	PS1="${PS1}\$vcs_info_msg_0_"
+	# source /usr/share/git/git-prompt.sh
+	# PS1="${PS1}\$(__git_ps1 '(%s)')"
+	# SHLVL
+	PS1="${PS1}%F{red}%(3L.+ .)%f"
+	newline=$'\n'
+	PS1="${PS1}${newline}%# "
+	RPS1="\$__battery_status"
+}
+
+prompt_personal_setup "$@"
