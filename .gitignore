@@ -45,6 +45,7 @@ recentf
 rtv
 .sessions
 supervise/
+*.swo
 *.tar
 url_hist
 user-dirs.*

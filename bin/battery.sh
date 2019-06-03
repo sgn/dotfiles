@@ -3,9 +3,12 @@
 # gratefully exit if no battery exist
 test -d /sys/class/power_supply/BAT0 || exit 0
 # or if it's charging
-grep -qF Charging /sys/class/power_supply/BAT*/status && exit 0
+for f in /sys/class/power_supply/BAT*/status; do
+	read -r status < "$f"
+	[ Charging = "$status" ] && exit 0
+done
 
-dunst_pid=$(pgrep -u danh dunst)
+dunst_pid=$(pgrep -u "$USER" dunst)
 [ -z "$dunst_pid" ] && exit 0
 eval "$(grep -z '^DBUS_SESSION_BUS_ADDRESS=' /proc/$dunst_pid/environ)"
 export DBUS_SESSION_BUS_ADDRESS
@@ -18,10 +21,22 @@ else
 	exit 1
 fi
 
-full="$(cat /sys/class/power_supply/BAT*/energy_full | paste -sd+ - | bc)"
-now="$(cat /sys/class/power_supply/BAT*/energy_now | paste -sd+ - | bc)"
+total_capacity=0
+num_bat=0
+for d in /sys/class/power_supply/BAT*; do
+	num_bat=$(( num_bat + 1 ))
+	if [ -e "$d/capacity" ]; then
+		read -r capacity < "$d/capacity"
+	else
+		read -r full < "$d/energy_full"
+		read -r now < "$d/energy_now"
+		capacity=$(( 100 * now / full ))
+	fi
+	total_capacity=$(( total_capacity + capacity ))
+done
+pct=$(( total_capacity / num_bat ))
 
-pct=$(echo "${now} / (${full} / 100)" | bc)
+[ -t 1 ] && echo "Battery: $pct"
 
 if test "$pct" -lt 15 ; then
 	exec $NOTIFY_SEND -i battery -u critical "Super Low Battery"
