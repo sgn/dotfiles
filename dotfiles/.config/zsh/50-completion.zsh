@@ -1,5 +1,5 @@
 autoload compinit
-compinit -d "${HOME}/.zcompdump"
+compinit -d "${HOME}/.cache/zsh/zcompdump"
 
 # provide verbose completion information
 zstyle ':completion:*'                 verbose true
