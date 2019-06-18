@@ -1,0 +1,51 @@
+# vi: ft=zsh
+local ansi_mappings=(
+	Black
+	Red
+	Green
+	Yellow
+	Blue
+	Magenta
+	Cyan
+	White
+	Bright_Black
+	Bright_Red
+	Bright_Green
+	Bright_Yellow
+	Bright_Blue
+	Bright_Magenta
+	Bright_Cyan
+	Bright_White
+)
+local xcolors=(
+	base00
+	base08
+	base0B
+	base0A
+	base0D
+	base0E
+	base0C
+	base05
+	base03
+	base08
+	base0B
+	base0A
+	base0D
+	base0E
+	base0C
+	base07
+	base09
+	base0F
+	base01
+	base02
+	base04
+	base06
+)
+local index zindex
+for index in {0..21}; do
+	zindex=$(( index + 1 ))
+	printf "\e[38;5;${index}m"
+	printf "color%02d %s " $index $xcolors[zindex]
+	printf "%-30s " $ansi_mappings[zindex]
+	printf "\e[48;5;${index}m___________________________\e[0m\n"
+done;
