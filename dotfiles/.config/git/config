@@ -54,5 +54,3 @@
 	helper = pass
 [index]
 	recordEndOfIndexEntries = true
-[core]
-	excludesfile = ~/.config/git/exclude
