@@ -46,3 +46,4 @@ bind generic                    <f12> what-key
 
 macro index,pager               a   "<decode-save>=archives<enter>"
 macro index,pager               x   "<save-message>=spam<enter>"
+macro index,pager               s   "<copy-message>~/patches<enter>"
