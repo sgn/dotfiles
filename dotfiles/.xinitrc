@@ -21,6 +21,10 @@ if command -v dunst >/dev/null 2>&1; then
 	dunst &
 fi
 
+if command -v start-pulseaudio-x11 >/dev/null 2>&1; then
+	start-pulseaudio-x11
+fi
+
 slstatus &
 ## start session
 DWM=dwm
