@@ -54,3 +54,6 @@ VirtualBox
 .w3m/
 xmonad-x86_64-linux
 *.zwc
+Yubico
+_git
+git
