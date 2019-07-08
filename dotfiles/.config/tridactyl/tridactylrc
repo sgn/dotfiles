@@ -4,8 +4,20 @@ bind ;c hint -c [class*="expand"],[class="togg"]
 " yank git{hub|lab} url
 bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
 
+" allow C-a C-c in ex mode
+unbind --mode=ex <C-a>
+unbind --mode=ex <C-c>
+
+" Handy multiwindow/multitasking binds
+bind gd tabdetach
+bind gD composite tabduplicate | tabdetach
+
+" Right click menu
+bind ;C composite hint_focus; !s xdotool key Menu
+
 " editor
-js tri.browserBg.runtime.getPlatformInfo().then(os=>{const editorcmd = os.os=="linux" ? "emw" : "auto"; tri.config.set("editorcmd", editorcmd)})
+js tri.browserBg.runtime.getPlatformInfo().then(os=>{tri.config.set("editorcmd", os.os=="linux" ? "st vim" : "auto")})
 
 " search
 set searchengine duckduckgo
+" vi: ft=vim
