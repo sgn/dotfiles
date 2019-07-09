@@ -48,5 +48,20 @@ nitrogen --restore || xsetroot -solid "#1d2021" || true
 
 xdotool mousemove 0 10000 || true
 
+## lock is the screensaver
+command -v slock >/dev/null && xss-lock -- slock &
+
+# command -v unclutter >/dev/null 2>&1 && unclutter &
+
+if command -v dunst >/dev/null 2>&1; then
+	dunst &
+fi
+
+if command -v start-pulseaudio-x11 >/dev/null 2>&1; then
+	start-pulseaudio-x11
+fi
+
+slstatus &
+
 ## Hook, should be the last one to be sourced
 [ -f "${XDG_CONFIG_HOME}/sh/lxprofile" ] && . "${XDG_CONFIG_HOME}/sh/lxprofile"
