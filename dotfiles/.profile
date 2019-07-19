@@ -84,6 +84,7 @@ done
 ## $HOME software install
 ## See http://nullprogram.com/blog/2017/06/19/.
 add_to_path "$HOME/.local/bin" begin
+add_to_path "$HOME/bin" begin
 add_to_path "$HOME/.local/include" begin C_INCLUDE_PATH
 add_to_path "$HOME/.local/include" begin CXX_INCLUDE_PATH
 add_to_path "$HOME/.local/lib" begin LIBRARY_PATH

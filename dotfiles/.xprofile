@@ -44,7 +44,8 @@ xcape -e 'Control_L=Escape'
 ## Turn off the bell
 xset -b s 180 120
 
-nitrogen --restore || xsetroot -solid "#1d2021" || true
+xsetroot -solid '#1d2021'
+nitrogen --restore
 
 xdotool mousemove 0 10000 || true
 
