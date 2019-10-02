@@ -1,5 +1,6 @@
 " toogle comment on Reddit/Hacker News
 bind ;c hint -c [class*="expand"],[class="togg"]
+bind V hint -qW mpvsafe
 
 " yank git{hub|lab} url
 bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
