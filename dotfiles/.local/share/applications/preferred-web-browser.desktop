@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
 Name=Firefox Web Browser
-Exec=firefox %u
+Exec=firefox -p script -private-window %u
 Terminal=false
 X-MultipleArgs=false
 Type=Application
