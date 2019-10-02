@@ -34,7 +34,6 @@ DOTFILES_HOME=$(readlink -f ~/.profile)
 DOTFILES_HOME="${DOTFILES_HOME%/*/.profile}"
 add_to_path "${DOTFILES_HOME}/bin" begin
 add_to_path "${HOME}/.local/platform-tools"
-unset DOTFILES_HOME
 
 ## pager
 PAGER='less'
@@ -102,4 +101,4 @@ LC_ALL=en_US.UTF-8
 export LANG LC_ALL
 
 ## Specific to local computer. Should be sourced last
-[ -r "${XDG_CONFIG_HOME}/sh/lprofile" ] && . "${XDG_CONFIG_HOME}/sh/lprofile"
+[ -r "${HOME}/.config/sh/lprofile" ] && . "${HOME}/.config/sh/lprofile"

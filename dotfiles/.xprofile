@@ -4,7 +4,7 @@ BROWSER=firefox
 export BROWSER
 
 ## X resources
-xrdb -merge "${XDG_CONFIG_HOME}/Xresources/config" || true
+xrdb -merge "${HOME}/.config/Xresources/config" || true
 
 ## Disable Touchpad if exists
 if command -v xinput >/dev/null; then
@@ -65,4 +65,4 @@ fi
 slstatus &
 
 ## Hook, should be the last one to be sourced
-[ -f "${XDG_CONFIG_HOME}/sh/lxprofile" ] && . "${XDG_CONFIG_HOME}/sh/lxprofile"
+[ -f "${HOME}/.config/sh/lxprofile" ] && . "${HOME}/.config/sh/lxprofile"
