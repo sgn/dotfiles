@@ -124,8 +124,7 @@ set statusline+=%{&ff}]      " line ending [unix/dos]
 set statusline+=[%c%V]       " cursor column
 
 " Color scheme
-set t_Co=256
-let base16colorspace=256
-colorscheme base16-gruvbox-dark-hard
+colorscheme zellner
+hi Visual term=reverse ctermfg=White ctermbg=DarkGray gui=NONE guifg=Black guibg=Yellow
 
 " set keymap=vietnamese-telex_utf-8

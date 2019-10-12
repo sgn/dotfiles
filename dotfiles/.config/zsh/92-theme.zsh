@@ -1,4 +1,4 @@
-case "${TERM%-256color}" in
-	st|screen) : ;;
-	*) recolor ;;
+case "$TERM" in
+	linux) recolor ;;
+	*) : ;;
 esac
