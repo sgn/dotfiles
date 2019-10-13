@@ -18,26 +18,26 @@ color underline   color05  color00
 color error       color01  color00
 color message     color04  color00
 color search      color08  color03
-color status      color20  color19
-color indicator   color21  color19  # inverse, brighter
+color status      color15  color08
+color indicator   color15  color08  # inverse, brighter
 
 ## Quotation blocks
 color quoted   color06  color00
 color quoted1  color02  color00
 color quoted2  color03  color00
-color quoted3  color16  color00
+color quoted3  color04  color00
 color quoted4  color01  color00
-color quoted5  color17  color00
-color quoted6  color05  color00
-color quoted7  color04  color00
+color quoted5  color05  color00
+color quoted6  color08  color00
+color quoted7  color07  color00
 
 # Message Index
-color index  color20  color00  "~R"        # read messages
+color index  color07  color00  "~R"        # read messages
 color index  color08  color00  "~d >45d"   # older than 45 days
-color index  color20  color00  "~v~(!~N)"  # collapsed thread with no unread
+color index  color07  color00  "~v~(!~N)"  # collapsed thread with no unread
 color index  color14  color00  "~Q"        # messages that have been replied to
 
-color index  color16  color00  "(~U|~N|~O)"        # unread, new, old messages
+color index  color15  color00  "(~U|~N|~O)"        # unread, new, old messages
 color index  color15  color00  "~v~(~U|~N|~O)"  # collapsed thread with unread
 
 color index  color01  color00  "~E"  # past Expires: header date
@@ -47,14 +47,14 @@ color index  color01  color00  "~S"  # marked by Supersedes: header
 color index  color05  color00  "~F"       # flagged messages
 color index  color05  color00  "~v~(~F)"  # collapsed thread with flagged inside
 
-color index  color02  color18   "~T"  # tagged messages
-color index  color01  color18   "~D"  # deleted messages
+color index  color02  color06   "~T"  # tagged messages
+color index  color01  color06   "~D"  # deleted messages
 
 # Message Headers
 
 # Base
 color hdrdefault  color07  default
-color header      color21  color00  "^(From)"
+color header      color04  color00  "^(From)"
 color header      color04  color00  "^(Subject)"
 
 ### Message Body -------------------------------------------------------
@@ -65,13 +65,13 @@ color body  color04  color00  '(^| )_[a-zA-Z0-9]+([ _-]+[a-zA-Z0-9]+)*_( |$)'
 # /Italic/ span (Sometimes gets directory names)
 color body  color05  color00  '(^| )/[a-zA-Z0-9]+([ _-]+[a-zA-Z0-9]+)*/( |$)'
 # URLs
-color body  color16 color00 '[a-z][a-z0-9+-]*://[@;.,/%~_:?&=\#a-zA-Z0-9-]+'
+color body  color04 color00 '[a-z][a-z0-9+-]*://[@;.,/%~_:?&=\#a-zA-Z0-9-]+'
 color body  color04 color00 '(\(.*\))?(([a-z0-9!#$%&'"'"'`*+/=.?^_{|}~-]|\\ |\\@)+|"([^"]|\\")*")(\(.*\))?@[a-z0-9\.-]+'
 
 # PGP
-color body  color18  color01   "^gpg: BAD signature "
-color body  color18  color02   "^gpg: Good signature "
-color body  color18  color03   "^gpg: WARNING: This key has been revoked .*"
+color body  color03  color01   "^gpg: BAD signature "
+color body  color03  color02   "^gpg: Good signature "
+color body  color15  color03   "^gpg: WARNING: This key has been revoked .*"
 color body  color04  color00   "^gpg: "
 
 

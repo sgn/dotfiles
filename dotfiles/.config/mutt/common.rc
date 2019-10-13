@@ -18,7 +18,7 @@ unignore X-SpamProbe
 unignore X-Virus-Hagbard
 
 unhdr_order *
-hdr_order from date subject to cc bcc reply-to
+hdr_order from subject date to cc bcc reply-to
 
 alternative_order text/plain text/calendar text/enriched text/html
 auto_view text/calendar text/enriched text/html
