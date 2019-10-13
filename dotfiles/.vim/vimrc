@@ -124,7 +124,6 @@ set statusline+=%{&ff}]      " line ending [unix/dos]
 set statusline+=[%c%V]       " cursor column
 
 " Color scheme
-colorscheme zellner
-hi Visual term=reverse ctermfg=White ctermbg=DarkGray gui=NONE guifg=Black guibg=Yellow
+colorscheme mindark
 
 " set keymap=vietnamese-telex_utf-8
