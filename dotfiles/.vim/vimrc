@@ -126,4 +126,7 @@ set statusline+=[%c%V]       " cursor column
 " Color scheme
 colorscheme mindark
 
+command HGroup let s = synID(line('.'), col('.'), 1) |
+	\ echo synIDattr(s, 'name') . ' -> ' . synIDattr(synIDtrans(s), 'name')
+
 " set keymap=vietnamese-telex_utf-8
