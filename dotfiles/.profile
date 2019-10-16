@@ -74,9 +74,15 @@ if [ -r "${HOME}/.config/zsh/functions/load-ssh-agent" ]; then
 fi
 
 ## Default text editor
-for i in vim vi; do
+for i in ed ex vim vi; do
 	command -v $i >/dev/null 2>&1 \
 		&& EDITOR=$i && export EDITOR \
+		&& break
+done
+
+for i in vim vi; do
+	command -v $i >/dev/null 2>&1 \
+		&& VISUAL=$i && export VISUAL \
 		&& break
 done
 
