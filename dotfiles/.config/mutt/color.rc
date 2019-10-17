@@ -40,15 +40,15 @@ color index  color14  color00  "~Q"        # messages that have been replied to
 color index  color15  color00  "(~U|~N|~O)"        # unread, new, old messages
 color index  color15  color00  "~v~(~U|~N|~O)"  # collapsed thread with unread
 
-color index  color01  color00  "~E"  # past Expires: header date
-color index  color01  color00  "~="  # duplicated
-color index  color01  color00  "~S"  # marked by Supersedes: header
+color index  color08  color00  "~E"  # past Expires: header date
+color index  color08  color00  "~="  # duplicated
+color index  color08  color00  "~S"  # marked by Supersedes: header
 
 color index  color05  color00  "~F"       # flagged messages
 color index  color05  color00  "~v~(~F)"  # collapsed thread with flagged inside
 
-color index  color02  color06   "~T"  # tagged messages
-color index  color01  color06   "~D"  # deleted messages
+color index  color11  color00   "~T"  # tagged messages
+color index  color01  color00   "~D"  # deleted messages
 
 # Message Headers
 
@@ -70,8 +70,8 @@ color body  color04 color00 '(\(.*\))?(([a-z0-9!#$%&'"'"'`*+/=.?^_{|}~-]|\\ |\\@
 
 # PGP
 color body  color03  color01   "^gpg: BAD signature "
-color body  color03  color02   "^gpg: Good signature "
-color body  color15  color03   "^gpg: WARNING: This key has been revoked .*"
+color body  color00  color02   "^gpg: Good signature "
+color body  color01  color03   "^gpg: WARNING: This key has been revoked .*"
 color body  color04  color00   "^gpg: "
 
 
