@@ -1,7 +1,7 @@
 #!/bin/sh
 
-if ! test -w /etc/gai.conf ; then
-	echo "We need write permission to /etc/gai.conf"
+if ! test -w "$DESTDIR/etc/gai.conf" ; then
+	echo "We need write permission to '$DESTDIR/etc/gai.conf'"
 	return
 fi
 
@@ -14,6 +14,6 @@ if test -z "$prefix" ; then
 fi
 
 TEXT=$(printf 'precedence %s:/96 100\n' "$prefix")
-if ! grep -qF "${TEXT}" /etc/gai.conf ; then
-	echo "$TEXT" >> /etc/gai.conf
+if ! grep -qF "${TEXT}" "$DESTDIR/etc/gai.conf" ; then
+	echo "$TEXT" >> "$DESTDIR/etc/gai.conf"
 fi
