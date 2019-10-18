@@ -1,0 +1,7 @@
+#!/bin/sh
+
+exec 2>&1
+
+install -d -m750 -o danh -g danh /run/user/danh/runit
+
+exec chpst -udanh:danh runsvdir ~danh/.local/service
