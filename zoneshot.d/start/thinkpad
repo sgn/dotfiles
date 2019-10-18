@@ -1,0 +1,8 @@
+#!/bin/sh
+# requires: /sys/class/power_supply/BAT0/charge_stop_threshold
+
+for f in /sys/class/power_supply/BAT*/charge_stop_threshold; do
+	if [ -f $f ]; then
+		echo 95 > "$f"
+	fi
+done

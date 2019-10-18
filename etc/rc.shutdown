@@ -1,0 +1,7 @@
+#!/bin/sh
+
+for f in /etc/zoneshot.d/stop/*; do
+	if [ -f "$f" ] && [ -x "$f" ]; then
+		"$f"
+	fi
+done

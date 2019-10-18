@@ -1,0 +1,3 @@
+#!/bin/sh
+# requires: /usr/bin/alsactl
+exec alsactl restore

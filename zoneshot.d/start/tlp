@@ -1,0 +1,4 @@
+#!/bin/sh
+# requires: /usr/bin/tlp
+
+exec tlp init start
