@@ -1,7 +1,7 @@
 [user]
 	name = Doan Tran Cong Danh
 	email = congdanhqx@gmail.com
-	signingkey = 0408B72A66A3235D
+	signingkey = 2FC0C6C002D75D4E
 
 [alias]
 	st = status --short
@@ -54,3 +54,5 @@
 	helper = pass
 [index]
 	recordEndOfIndexEntries = true
+[gpg]
+	program = gpg2
