@@ -97,6 +97,12 @@ add_to_path "$HOME/.local/lib/pkgconfig" begin PKG_CONFIG_PATH
 add_to_path "$HOME/.local/share/info" begin INFOPATH
 add_to_path "$HOME/.local/share/man" begin MANPATH
 
+if [ -x "$HOME/workspace/git/git" ]; then
+	PATH="$HOME/workspace/git:$PATH"
+	GIT_EXEC_PATH="$HOME/workspace/git"
+	export GIT_EXEC_PATH
+fi
+
 GEM_HOME="$HOME/.local/share/gem"
 GEM_SPEC_CACHE="$HOME/.cache/gem"
 export GEM_HOME GEM_SPEC_CACHE
