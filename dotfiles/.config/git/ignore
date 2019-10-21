@@ -11,6 +11,7 @@
 *.log
 *_LOCAL_*
 *.o
+*.old
 *.orig
 *.pyc
 *.rej
