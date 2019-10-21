@@ -12,12 +12,16 @@ esac
 
 DESTDIR=${DESTDIR:=/}
 
+xcpdiff() {
+	cmp -s "$1" "$DESTDIR/etc/$1" || cp "$1" "$DESTDIR/etc/$1"
+}
+
+xlink() {
+	[ -L "$2" ] || [ -f "$2" ] && rm "$2"
+	[ -d "$2" ] && rmdir "$2"
+	ln -s "$1" "$2"
+}
+
 for f in ./install-etc.d/*.sh; do
 	 test -r "$f" && . "$f"
 done
-
-if command -v rsync >/dev/null 2>&1; then
-	rsync -ruvl etc "$DESTDIR"
-else
-	cp -r etc "$DESTDIR"
-fi
