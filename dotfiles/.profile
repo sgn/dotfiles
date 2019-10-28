@@ -2,25 +2,29 @@
 
 #umask 027
 
-## Usage: add_to_path <path> [begin|end] [var]
 add_to_path () {
+	if test $# -eq 1; then
+		via=end
+	else
+		via="$1"
+		shift
+	fi
 	test -d "$1" || return
-	test $# -eq 3 && PATHVAR="$3" || PATHVAR=PATH
-	eval echo \$$PATHVAR | grep -q "\\(:\\|^\\)$1\\(:\\|$\\)" && return
-	test $# -eq 1 && via=end || via="$2"
+	case ":$PATH:" in
+		*:"$1":*) return ;;
+		*) ;;
+	esac
 	case "$via" in
 	begin)
-		eval $PATHVAR="$1:\$$PATHVAR"
+		PATH=$1:$PATH
 		;;
 	end)
-		eval $PATHVAR="\$$PATHVAR:$1"
+		PATH=$PATH:$1
 		;;
 	*)
-		echo "Invalid call to add_to_path: $via"
+		echo "Invalid call to add_to_path: $via" >&2
 		;;
 	esac
-	eval export $PATHVAR
-	unset PATHVAR
 }
 
 TZ="Asia/Ho_Chi_Minh"
@@ -32,7 +36,7 @@ export XDG_CONFIG_HOME
 ## My scripts come here
 DOTFILES_HOME=$(readlink -f ~/.profile)
 DOTFILES_HOME="${DOTFILES_HOME%/*/.profile}"
-add_to_path "${DOTFILES_HOME}/bin" begin
+add_to_path begin "${DOTFILES_HOME}/bin"
 add_to_path "${HOME}/.local/platform-tools"
 
 ## pager
@@ -88,17 +92,12 @@ done
 
 ## $HOME software install
 ## See http://nullprogram.com/blog/2017/06/19/.
-add_to_path "$HOME/.local/bin" begin
-add_to_path "$HOME/bin" begin
-add_to_path "$HOME/.local/include" begin C_INCLUDE_PATH
-add_to_path "$HOME/.local/include" begin CXX_INCLUDE_PATH
-add_to_path "$HOME/.local/lib" begin LIBRARY_PATH
-add_to_path "$HOME/.local/lib/pkgconfig" begin PKG_CONFIG_PATH
-add_to_path "$HOME/.local/share/info" begin INFOPATH
-add_to_path "$HOME/.local/share/man" begin MANPATH
+add_to_path begin "$HOME/.local/bin"
+add_to_path begin "$HOME/bin"
+add_to_path begin "$HOME/workspace/xtools"
 
 if [ -x "$HOME/workspace/git/git" ]; then
-	PATH="$HOME/workspace/git:$PATH"
+	add_to_path begin "$HOME/workspace/git"
 	GIT_EXEC_PATH="$HOME/workspace/git"
 	export GIT_EXEC_PATH
 fi
