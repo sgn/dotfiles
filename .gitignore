@@ -68,4 +68,5 @@ vulkan
 xfce4
 Yubico
 zoomus.conf
+*.zshrc
 *.zw?

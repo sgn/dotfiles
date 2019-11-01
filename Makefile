@@ -3,6 +3,8 @@ MODULE_FILE=$(MODULES:=/README.md)
 MODULE_TAR=$(MODULES:=.tar)
 PREFIX=dotfiles
 VOLATILE_FILES=\
+	dotfiles/.config/zsh/zsh.zshrc \
+	dotfiles/.config/zsh/stolen.zshrc \
 
 LOCAL_FILES=\
 	${HOME}/.config/mutt/aliases \
@@ -14,6 +16,9 @@ all: submodule $(VOLATILE_FILES)
 	mkdir -p -m 700 "${HOME}/.gnupg"
 	stow -t "${HOME}" dotfiles
 	touch $(LOCAL_FILES)
+
+dotfiles/.config/zsh/%.zshrc: dotfiles/.config/zsh/*.%
+	cat dotfiles/.config/zsh/*.$* >$@
 
 .PHONY: var
 var:
