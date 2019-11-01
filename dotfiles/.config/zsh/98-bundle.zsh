@@ -1,4 +1,4 @@
-for module in ~/.config/zsh.bundle/*; do
+for module in ~/.config/zsh/bundle/*; do
 	module_name="${module##*/[0-9][0-9]-}"
 	if test -r "$module/${module_name}.plugin.zsh"; then
 		source "$module/${module_name}.plugin.zsh"
