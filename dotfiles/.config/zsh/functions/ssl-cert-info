@@ -1,0 +1,10 @@
+ssl-cert-info () {
+	if [[ -z $1 ]] ; then
+		printf 'usage: ssl-cert-info <file>\n'
+		return 1
+	fi
+	openssl x509 -noout -text -in $1
+	ssl-cert-fingerprint $1
+}
+
+ssl-cert-info "$@"
