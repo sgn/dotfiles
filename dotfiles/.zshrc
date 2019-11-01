@@ -1,6 +1,7 @@
 if [ -f ~/.config/zsh/zsh.zshrc ]; then
 	source ~/.config/zsh/zsh.zshrc
 	source ~/.config/zsh/stolen.zshrc
+	source ~/.config/zsh/local.rc
 else
 	for f in ~/.config/zsh/*.zsh ~/.config/zsh/*.stolen; do
 		source "$f"

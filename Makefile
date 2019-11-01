@@ -10,6 +10,7 @@ LOCAL_FILES=\
 	${HOME}/.config/mutt/aliases \
 	${HOME}/.config/mutt/local.rc \
 	${HOME}/.config/sh/lprofile \
+	${HOME}/.config/zsh/local.rc \
 
 .PHONY: all
 all: submodule $(VOLATILE_FILES)
