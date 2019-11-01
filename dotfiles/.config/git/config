@@ -20,12 +20,14 @@
 	ll = ls-files
 	llm = ls-files -m
 	lg = log --oneline --graph
+	rs = restore
 	ss = show -s
 	s = show -M -p --stat
-	sw = s -w
-	sww = sw --word-diff=color
-	swwd = sww --word-diff-regex=.
+	shw = s -w
+	shww = sw --word-diff=color
+	shwwd = sww --word-diff-regex=.
 	summary = show -s --date=short --pretty='format:commit %h, (\"%s\", %ad)'
+	sw = switch
 	env = !env | grep ^GIT_
 [rerere]
 	enabled = true
