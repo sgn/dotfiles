@@ -1,13 +1,13 @@
-for f in ~/.config/zsh/**/*.zsh; do
-	[ -f "$f" ] && source "$f"
-done
+if [ -f ~/.config/zsh/zsh.zshrc ]; then
+	source ~/.config/zsh/zsh.zshrc
+	source ~/.config/zsh/stolen.zshrc
+else
+	for f in ~/.config/zsh/*.zsh ~/.config/zsh/*.stolen; do
+		source "$f"
+	done
+fi
 
-#function virtual_env_prompt () {
-#    REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
-#}
-#grml_theme_add_token  virtual-env -f virtual_env_prompt '%F{magenta}' '%f'
 zstyle ':vcs_info:*' enable git
-zstyle ':prompt:grml:left:setup' items rc change-root user at host path vcs shell-level newline percent
 
 ## changed completer settings
 zstyle ':completion:*' completer _complete _correct _approximate
