@@ -38,11 +38,11 @@ bindkey -M vicmd j down-line-or-beginning-search
 
 ## press ctrl-q to quote line:
 mquote () {
-     zle vi-beginning-of-line
-     zle vi-forward-word
-     # RBUFFER="'$RBUFFER'"
-     RBUFFER=${(q)RBUFFER}
-     zle end-of-line
+	zle vi-beginning-of-line
+	zle vi-forward-word
+	# RBUFFER="'$RBUFFER'"
+	RBUFFER=${(q)RBUFFER}
+	zle end-of-line
 }
 zle -N mquote && bindkey '^Q' mquote
 
