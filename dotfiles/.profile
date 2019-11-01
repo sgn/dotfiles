@@ -112,4 +112,4 @@ LC_ALL=en_US.UTF-8
 export LANG LC_ALL
 
 ## Specific to local computer. Should be sourced last
-[ -r "${HOME}/.config/sh/lprofile" ] && . "${HOME}/.config/sh/lprofile"
+. "${HOME}/.config/sh/local.profile"

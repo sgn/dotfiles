@@ -31,9 +31,7 @@ keybase
 known_hosts
 libfm
 libreoffice
-*local\.*
-lprofile
-lxprofile
+local\.*
 lxsession
 mimeapps.list
 msmtp

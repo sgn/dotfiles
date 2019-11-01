@@ -65,4 +65,4 @@ fi
 slstatus &
 
 ## Hook, should be the last one to be sourced
-[ -f "${HOME}/.config/sh/lxprofile" ] && . "${HOME}/.config/sh/lxprofile"
+. "${HOME}/.config/sh/local.xprofile"

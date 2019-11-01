@@ -7,19 +7,22 @@ VOLATILE_FILES=\
 	dotfiles/.config/zsh/stolen.zshrc \
 
 LOCAL_FILES=\
-	${HOME}/.config/mutt/aliases \
-	${HOME}/.config/mutt/local.rc \
-	${HOME}/.config/sh/lprofile \
-	${HOME}/.config/zsh/local.rc \
+	dotfiles/.config/mutt/aliases \
+	dotfiles/.config/mutt/local.rc \
+	dotfiles/.config/sh/local.profile \
+	dotfiles/.config/sh/local.xprofile \
+	dotfiles/.config/zsh/local.rc \
 
 .PHONY: all
-all: submodule $(VOLATILE_FILES)
+all: submodule $(VOLATILE_FILES) $(LOCAL_FILES)
 	mkdir -p -m 700 "${HOME}/.gnupg"
 	stow -t "${HOME}" dotfiles
-	touch $(LOCAL_FILES)
 
 dotfiles/.config/zsh/%.zshrc: dotfiles/.config/zsh/*.%
 	cat dotfiles/.config/zsh/*.$* >$@
+
+$(LOCAL_FILES):
+	touch $@
 
 .PHONY: var
 var:
