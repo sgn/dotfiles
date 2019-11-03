@@ -5,7 +5,8 @@ if [ -f ~/.config/zsh/zsh.zshrc ]; then
 else
 	for f in ~/.config/zsh/*.zsh ~/.config/zsh/*.stolen; do
 		source "$f"
-	done
+	done; unset f
+	[ -f ~/.config/zsh/local.rc ] && source ~/.config/zsh/local.rc
 fi
 
 zstyle ':vcs_info:*' enable git

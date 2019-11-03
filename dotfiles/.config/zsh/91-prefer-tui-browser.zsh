@@ -1,7 +1,7 @@
 # stop rtv from launching firefox
-for i in w3m elinks lynx links; do
-	command -v $i >/dev/null 2>&1 && \
-		BROWSER=$i && \
+for browser in w3m elinks lynx links; do
+	command -v $browser >/dev/null 2>&1 && \
+		BROWSER=$browser && \
 		export BROWSER && \
 		break
-done
+done; unset browser
