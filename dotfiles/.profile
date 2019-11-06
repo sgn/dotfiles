@@ -83,12 +83,14 @@ for i in ed ex vim vi; do
 		&& EDITOR=$i && export EDITOR \
 		&& break
 done
+unset i
 
 for i in vim vi; do
 	command -v $i >/dev/null 2>&1 \
 		&& VISUAL=$i && export VISUAL \
 		&& break
 done
+unset i
 
 ## $HOME software install
 ## See http://nullprogram.com/blog/2017/06/19/.
@@ -110,6 +112,15 @@ add_to_path "$GEM_HOME/bin"
 LANG=en_US.UTF-8
 LC_ALL=en_US.UTF-8
 export LANG LC_ALL
+
+for socket in /var/lib/mpd/socket /tmp/mpd.socket; do
+	if [ -S "$socket" ]; then
+		MPD_HOST=$socket
+		export MPD_HOST
+		break;
+	fi
+done
+unset socket
 
 ## Specific to local computer. Should be sourced last
 . "${HOME}/.config/sh/local.profile"
