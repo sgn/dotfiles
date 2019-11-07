@@ -123,4 +123,4 @@ done
 unset socket
 
 ## Specific to local computer. Should be sourced last
-. "${HOME}/.config/sh/local.profile"
+. "${HOME}/.config/local.profile"

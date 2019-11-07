@@ -9,8 +9,8 @@ VOLATILE_FILES=\
 LOCAL_FILES=\
 	dotfiles/.config/mutt/aliases \
 	dotfiles/.config/mutt/local.rc \
-	dotfiles/.config/sh/local.profile \
-	dotfiles/.config/sh/local.xprofile \
+	dotfiles/.config/local.profile \
+	dotfiles/.config/local.xprofile \
 	dotfiles/.config/zsh/local.rc \
 
 .PHONY: all
