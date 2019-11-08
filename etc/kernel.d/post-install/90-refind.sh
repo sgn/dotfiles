@@ -1,6 +1,7 @@
 #!/bin/sh
 
-TEMP=$(mktemp refind.XXXXXXXX)
+[ -d /boot/EFI/BOOT ] || exit
+TEMP=$(mktemp /tmp/refind.XXXXXXXX)
 
 cat <<EOF >| "$TEMP"
 timeout 5
