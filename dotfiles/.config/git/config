@@ -24,8 +24,8 @@
 	ss = show -s
 	s = show -M -p --stat
 	shw = s -w
-	shww = sw --word-diff=color
-	shwwd = sww --word-diff-regex=.
+	shww = shw --word-diff=color
+	shwwd = shww --word-diff-regex=.
 	summary = show -s --date=short --pretty='format:commit %h, (\"%s\", %ad)'
 	sw = switch
 	env = !env | grep ^GIT_
