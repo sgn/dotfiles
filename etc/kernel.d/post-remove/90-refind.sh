@@ -1,1 +1,0 @@
-../post-install/90-refind.sh
