@@ -64,8 +64,8 @@ set foldmethod=indent
 " nnoremap <space> za
 
 " move by visual line
-nnoremap j gj
-nnoremap k gk
+" nnoremap j gj
+" nnoremap k gk
 set whichwrap=<,>,h,l
 " highlight last insert text
 nnoremap gV `[v`]
