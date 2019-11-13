@@ -1,0 +1,27 @@
+# vim: ft=zsh
+
+_xgit_commit () {
+	x=$1
+	touch "$x.file"
+	git add "$x.file"
+	git commit -m "add $x.file"
+}
+
+xgit-gen-test () {
+	emulate zsh
+	tdir=$(mktemp -d /tmp/tmp.gxtest.XXXXXXXX)
+	cd $tdir
+	git init
+	for i in {1..10}; do
+		_xgit_commit "$i"
+	done
+}
+
+xgit-ci-more () {
+	emulate zsh
+	for x in {a..d}; do
+		_xgit_commit "$x"
+	done
+}
+
+xgit-gen-test

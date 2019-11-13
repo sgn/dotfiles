@@ -58,3 +58,5 @@
 	recordEndOfIndexEntries = true
 [gpg]
 	program = gpg2
+[format]
+	signOff = true
