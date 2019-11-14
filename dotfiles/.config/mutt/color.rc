@@ -89,5 +89,7 @@ color   body    brightwhite     color00         '^--- [^[:space:]]+$'
 color   body    brightwhite     color00         '^\+\+\+ [^[:space:]]+$'
 color   body    cyan            color00         '^@@ -[0-9]+(,[0-9]+)? \+[0-9]+(,[0-9]+)? @@'
 color   body    green           color00         'LGTM'
+color   body    yellow          default         '^[-]*8<[-]*'
+color   body    yellow          default         '^[-]*>8[-]*'
 
 # vi: ft=muttrc
