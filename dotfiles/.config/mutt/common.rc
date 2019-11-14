@@ -50,7 +50,7 @@ set record="=sent"
 set fcc_clear=yes
 set postpone=ask-yes
 set postponed="=drafts"
-set attribution="On %{%Y-%m-%d %H:%M:%S %Z}, %n wrote:"
+set attribution="On %{%Y-%m-%d %H:%M:%S%Z}, %f wrote:"
 set mime_type_query_command="file -bi"
 
 # reply to everyone, someone didn't subsribed
