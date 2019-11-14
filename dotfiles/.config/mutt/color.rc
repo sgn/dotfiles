@@ -59,14 +59,17 @@ color header      color04  color00  "^(Subject)"
 
 ### Message Body -------------------------------------------------------
 # *Bold* span
-color body  color03  color00  '(^| )\*[a-zA-Z0-9]+([ _-]+[a-zA-Z0-9]+)*\*( |$)'
+color body  color03  color00  '(^| )\*[a-zA-Z0-9]+([-_ ]+[a-zA-Z0-9]+)*\*([ ,.!?;]|$)'
 # _Underline_ span
-color body  color04  color00  '(^| )_[a-zA-Z0-9]+([ _-]+[a-zA-Z0-9]+)*_( |$)'
+# match _stuff_ and _other stuff_ and _yet_other_stuff_
+color body  color04  color00  '(^| )_[a-zA-Z0-9]+([- ]+[a-zA-Z0-9]+)*_([ ,.!?;]|$)'
+color body  color04  color00  '(^| )_[a-zA-Z0-9]+([-_]+[a-zA-Z0-9]+)*_([ ,.!?;]|$)'
 # /Italic/ span (Sometimes gets directory names)
-color body  color05  color00  '(^| )/[a-zA-Z0-9]+([ _-]+[a-zA-Z0-9]+)*/( |$)'
+color body  color05  color00  '(^| )/[a-zA-Z0-9]+([-_ ]+[a-zA-Z0-9]+)*/([ ,.!?;]|$)'
 # URLs
 color body  color04 color00 '[a-z][a-z0-9+-]*://[@;.,/%~_:?&=\#a-zA-Z0-9-]+'
-color body  color04 color00 '(\(.*\))?(([a-z0-9!#$%&'"'"'`*+/=.?^_{|}~-]|\\ |\\@)+|"([^"]|\\")*")(\(.*\))?@[a-z0-9\.-]+'
+# email
+color body  color04 color00 '(\(.*\))?(([-a-zA-Z0-9!#$%&'"'"'`*+/=.?^_{|}~]|\\ |\\@)+|"([^"]|\\")*")(\(.*\))?@[-.a-zA-Z0-9]+'
 
 # PGP
 color body  color03  color01   "^gpg: BAD signature "
@@ -86,7 +89,7 @@ color   body    brightwhite     color00         '^similarity index [0-9]+%$'
 color   body    brightwhite     color00         '^rename (from|to) [^[:space:]]+$'
 color   body    brightblue      color00         '^---$'
 color   body    brightwhite     color00         '^--- [^[:space:]]+$'
-color   body    brightwhite     color00         '^\+\+\+ [^[:space:]]+$'
+color   body    brightwhite     color00         '^\+{3} [^[:space:]]+$'
 color   body    cyan            color00         '^@@ -[0-9]+(,[0-9]+)? \+[0-9]+(,[0-9]+)? @@'
 color   body    green           color00         'LGTM'
 color   body    yellow          default         '^[-]*8<[-]*'
