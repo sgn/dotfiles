@@ -62,4 +62,12 @@ bindkey -M viins . rationalise-dot
 ## without this, typing a . aborts incremental history search
 bindkey -M isearch . self-insert
 
+# add a command line to the shells history without executing it
+commit-to-history () {
+	print -s ${(z)BUFFER}
+	zle send-break
+}
+zle -N commit-to-history
+bindkey -M viins "^x^h" commit-to-history
+
 bindkey '\eq' push-line-or-edit

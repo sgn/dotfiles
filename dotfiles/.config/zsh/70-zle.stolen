@@ -57,14 +57,6 @@ mkdir-in-place () {
 zle -N mkdir-in-place
 bindkey -M viins '^xM' mkdir-in-place
 
-# add a command line to the shells history without executing it
-commit-to-history () {
-	print -s ${(z)BUFFER}
-	zle send-break
-}
-zle -N commit-to-history
-bindkey -M viins "^x^h" commit-to-history
-
 # Alt-BS to kill word until space/slash
 # only slash should be considered as a word separator:
 slash-backward-kill-word () {
