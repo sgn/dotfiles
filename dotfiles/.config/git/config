@@ -26,7 +26,7 @@
 	shw = s -w
 	shww = shw --word-diff=color
 	shwwd = shww --word-diff-regex=.
-	summary = show -s --date=short --pretty='format:commit %h, (\"%s\", %ad)'
+	summary = show -s --date=short --pretty='format:%h, (%s, %ad)'
 	sw = switch
 	env = !env | grep ^GIT_
 [rerere]
