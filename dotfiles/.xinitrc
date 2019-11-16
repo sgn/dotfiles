@@ -1,5 +1,8 @@
 #!/bin/sh
 
+exec >/tmp/xinitrc.$(hostname).$USER.$(date +%Y%m%dT%H%M%S)
+exec 2>&1
+
 ## Run site init scripts
 if test -d /etc/X11/xinit/xinitrc.d ; then
 	for f in /etc/X11/xinit/xinitrc.d/*
