@@ -63,7 +63,9 @@ set history_file="~/.cache/mutt/history"
 set confirmappend=no
 set confirmcreate=no
 
-source ~/.config/mutt/gpg.rc
+set pgp_default_key="0x2B3D09F7702F46E8"
+set crypt_use_gpgme=yes
+
 source ~/.config/mutt/color.rc
 source ~/.config/mutt/keys.rc
 source ~/.config/mutt/aliases

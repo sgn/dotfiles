@@ -72,9 +72,9 @@ color body  color04 color00 '[a-z][a-z0-9+-]*://[@;.,/%~_:?&=\#a-zA-Z0-9-]+'
 color body  color04 color00 '(\(.*\))?(([-a-zA-Z0-9!#$%&'"'"'`*+/=.?^_{|}~]|\\ |\\@)+|"([^"]|\\")*")(\(.*\))?@[-.a-zA-Z0-9]+'
 
 # PGP
-color body  color03  color01   "^gpg: BAD signature "
-color body  color00  color02   "^gpg: Good signature "
-color body  color01  color03   "^gpg: WARNING: This key has been revoked .*"
+color body  color03  color01   "^(gpg: )?BAD signature "
+color body  color00  color02   "^(gpg: )?Good signature "
+color body  color01  color03   "^(gpg: )?WARNING: This key has been revoked .*"
 color body  color04  color00   "^gpg: "
 
 
