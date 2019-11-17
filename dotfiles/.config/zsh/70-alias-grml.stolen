@@ -4,7 +4,8 @@
 # This file is licensed under the GPL v2
 # Authors: grml-team (grml.org), (c) Michael Prokop <mika@grml.org>
 #
-alias dir="command ls -lSrah"
+# get top 10 shell commands:
+alias top10='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
 # Only show dot-directories
 alias lad='command ls -d .*(/)'
 # Only show dot-files

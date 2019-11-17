@@ -32,3 +32,4 @@ fi
 
 # Remove current empty directory.
 alias rmcdir='cd ..; rmdir $OLDPWD || cd $OLDPWD'
+alias dir='command ls -lSrah'
