@@ -3,6 +3,7 @@ MODULE_FILE=$(MODULES:=/README.md)
 MODULE_TAR=$(MODULES:=.tar)
 PREFIX=dotfiles
 VOLATILE_FILES=\
+	dotfiles/.config/bash/bash.bashrc \
 	dotfiles/.config/zsh/zsh.zshrc.zwc \
 	dotfiles/.config/zsh/stolen.zshrc.zwc \
 
@@ -17,6 +18,9 @@ LOCAL_FILES=\
 all: submodule $(VOLATILE_FILES) $(LOCAL_FILES)
 	mkdir -p -m 700 "${HOME}/.gnupg"
 	stow -t "${HOME}" dotfiles
+
+dotfiles/.config/bash/%.bashrc: dotfiles/.config/bash/*.%
+	cat dotfiles/.config/bash/*.$* >$@
 
 dotfiles/.config/zsh/%.zwc: dotfiles/.config/zsh/%
 	zsh -c 'zcompile $<'
