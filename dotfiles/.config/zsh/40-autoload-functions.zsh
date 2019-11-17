@@ -7,3 +7,6 @@ ffiles=(~/.config/zsh/functions/**/[^_]*[^(~|.zwc)](N.:t))
 unset -v ffiles
 
 typeset -U fpath FPATH
+
+unalias run-help
+autoload -U run-help
