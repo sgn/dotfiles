@@ -6,7 +6,6 @@ xzoom () {
 	xtmp=$(mktemp -d /tmp/xlibc.XXXXXXXX)
 	xbps-uunshare \
 		-b $xtmp:/tmp \
-		-b $HOME:$HOME \
 		-- /xlibc \
 		sh -c 'LD_LIBRARY_PATH=/opt/zoom exec /opt/zoom/zoom'
 }
