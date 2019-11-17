@@ -73,9 +73,8 @@ MAIL=/var/mail/$USER
 export MAIL
 
 ## SSH-Agent
-if [ -r "${HOME}/.config/zsh/functions/load-ssh-agent" ]; then
-	. "${HOME}/.config/zsh/functions/load-ssh-agent"
-fi
+SSH_AUTH_SOCK="/run/user/$USER/ssh-$(uname -n).socket"
+export SSH_AUTH_SOCK
 
 ## Default text editor
 for i in ed ex vim vi; do

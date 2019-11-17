@@ -1,0 +1,6 @@
+#!/bin/sh
+
+exec 2>&1
+exec >/dev/null
+
+exec ssh-agent -D -a "/run/user/$(whoami)/ssh-$(uname -n).socket"

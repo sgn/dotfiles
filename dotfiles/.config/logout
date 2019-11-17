@@ -5,6 +5,5 @@ ps -u$USER -o pid=,comm= | \
 		$2=="slstatus"||
 		$2=="xss-lock"||
 		$2=="dunst"||
-		$2=="xcape"||
-		$2=="ssh-agent"{print $1}' | \
+		$2=="xcape"{print $1}' | \
 	xargs kill
