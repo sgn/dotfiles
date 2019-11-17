@@ -2,6 +2,7 @@
 
 exec 2>&1
 
-install -d -m750 -o danh -g danh /run/user/danh/runit
+install -d -m 700 -o danh -g danh /run/user/danh
+install -d -m 700 -o danh -g danh /run/user/danh/runit
 
 exec chpst -udanh:danh runsvdir ~danh/.local/service
