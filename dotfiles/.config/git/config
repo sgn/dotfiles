@@ -20,6 +20,7 @@
 	ll = ls-files
 	llm = ls-files -m
 	lg = log --oneline --graph
+	ls-origin = for-each-ref --format='%(refname:lstrip=3)' refs/remotes/origin
 	rs = restore
 	ss = show -s
 	s = show -M -p --stat
