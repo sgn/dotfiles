@@ -1,0 +1,50 @@
+#!/bin/sh
+# Copyright (c) 2019, Doan Tran Cong Danh <congdanhqx@gmail.com>
+#
+# Licensed under GPL v2
+USAGE='[options] [--] [<refname pattern>]'
+LONG_USAGE='[<refname pattern>]
+	pattern passed down to git-foreach-ref,
+	pattern must not start with /, refs/remotes/
+	any pattern that start with neither refs/ nor ** will be
+	considered short refs, and will have refs/heads/ prepended.
+'
+
+OPTIONS_SPEC=
+. "$(git --exec-path)/git-sh-setup"
+
+while case "$#" in 0) break ;; esac
+do
+	case "$1" in
+	--)
+		shift; break ;;
+	-*)
+		usage ;;
+	*)
+		break ;;
+	esac
+	shift
+done
+
+case "$1" in
+/*|refs/remotes|refs/remotes/*)
+	usage ;;
+refs|refs/|refs/*|"**"*)
+	pattern="$1" ;;
+*)
+	pattern="refs/heads/$1" ;;
+esac
+
+(
+	git for-each-ref "$pattern" |
+		awk '$3 !~ /^refs\/remotes\// && $3 != "refs/heads/master"{print $0}'
+	cat <<-EOF
+	# Delete refname you want to keep.
+	# Any line starts with # will be ignored.
+	EOF
+) >"$GIT_DIR/clean-ref-list"
+
+git_editor "$GIT_DIR/clean-ref-list"
+
+awk '$1 !~ /^#/ {print "delete " $3}' "$GIT_DIR/clean-ref-list" |
+	git update-ref --stdin
