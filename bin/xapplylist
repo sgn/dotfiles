@@ -1,8 +1,0 @@
-#!/bin/sh
-
-test -t 0 && echo "tty input isn't expected"
-
-grep '^id:' |
-	paste -sd " or " |
-	xargs notmuch show --format=mbox |
-	git am -3 --whitespace=fix
