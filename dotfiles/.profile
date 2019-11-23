@@ -77,7 +77,7 @@ SSH_AUTH_SOCK="/run/user/$USER/ssh-$(uname -n).socket"
 export SSH_AUTH_SOCK
 
 ## Default text editor
-for i in ed ex vim vi; do
+for i in vim vi ex ed; do
 	command -v $i >/dev/null 2>&1 \
 		&& EDITOR=$i && export EDITOR \
 		&& break
