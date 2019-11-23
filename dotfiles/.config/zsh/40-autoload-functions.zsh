@@ -8,5 +8,7 @@ unset -v ffiles
 
 typeset -U fpath FPATH
 
-unalias run-help
+if alias run-help &>/dev/null; then
+	unalias run-help
+fi
 autoload -U run-help
