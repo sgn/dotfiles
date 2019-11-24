@@ -46,6 +46,8 @@ set esckeys
 set tabstop=8
 set shiftwidth=8
 set noexpandtab
+set smarttab
+set copyindent
 
 " cursor
 set cursorline
