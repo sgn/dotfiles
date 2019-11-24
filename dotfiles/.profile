@@ -95,11 +95,11 @@ unset i
 ## See http://nullprogram.com/blog/2017/06/19/.
 add_to_path begin "$HOME/.local/bin"
 add_to_path begin "$HOME/bin"
-add_to_path begin "$HOME/workspace/xtools"
+add_to_path begin "$HOME/src/xtools"
 
-if [ -x "$HOME/workspace/git/git" ]; then
-	add_to_path begin "$HOME/workspace/git"
-	GIT_EXEC_PATH="$HOME/workspace/git"
+if [ -x "$HOME/src/git/git" ]; then
+	add_to_path begin "$HOME/src/git"
+	GIT_EXEC_PATH="$HOME/src/git"
 	export GIT_EXEC_PATH
 fi
 
