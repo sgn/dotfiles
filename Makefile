@@ -51,9 +51,7 @@ $(MODULE_FILE) update-submodule:
 .PHONY: cron
 cron: cron.sed
 	@echo installing cron job
-	crontab -l 2>/dev/null |\
-		sed -f cron.sed |\
-		crontab -
+	crontab -l 2>/dev/null | sed -f cron.sed | crontab -
 
 .PHONY: dist
 dist: $(PREFIX).tar.gz
