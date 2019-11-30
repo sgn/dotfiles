@@ -1,0 +1,26 @@
+#!/bin/sh
+
+: "${BINPKGS:=${HOME}/src/void-packages/hostdir/binpkgs}"
+: "${PRIVKEY:=${HOME}/src/private.pem}"
+: "${SIGNER:=Danh Doan (Void Packaging) <congdanhqx@gmail.com>}"
+
+while test $# -ne 0; do
+	case "$1" in
+		-f|--force) force=yes ;;
+		-d|--debug) debug=yes ;;
+	esac
+	shift
+done
+
+find "$BINPKGS" -maxdepth 1 -name '*.xbps' -print0 |
+	sed -z -E -e '/noarch[.]xbps$/d' \
+		-e 's/^.*[.]([^.]+)[.]xbps$/\1/p' |
+	sort -z |
+	uniq -z |
+	xargs --null --no-run-if-empty -I '{}' \
+		env XBPS_TARGET_ARCH='{}' xbps-rindex \
+			${force:+--force} \
+			${debug:+--debug} \
+			--privkey "$PRIVKEY" \
+			--sign --signedby "$SIGNER" \
+			"$BINPKGS"

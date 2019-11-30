@@ -1,0 +1,20 @@
+#!/bin/sh
+
+: "${BINPKGS:=${HOME}/src/void-packages/hostdir/binpkgs}"
+: "${PRIVKEY:=${HOME}/src/private.pem}"
+
+while test $# -ne 0; do
+	case "$1" in
+		-d|--debug) debug=yes ;;
+	esac
+	shift
+done
+
+find "$BINPKGS" -maxdepth 1 \
+	-name '*.xbps' -print0 -o\
+	-name '*.xbps.sig' -print0 |
+	sed -z 's/[.]sig$//' |
+	sort -z |
+	uniq -z -u |
+	xargs --null --no-run-if-empty \
+		xbps-rindex ${debug:+-d} --privkey "$PRIVKEY" --sign-pkg
