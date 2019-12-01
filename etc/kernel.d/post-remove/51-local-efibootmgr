@@ -11,7 +11,9 @@ if [ "x${MODIFY_EFI_ENTRIES}" != x2 ]; then
 	exit 0
 fi
 
+xversion=$(echo "$VERSION" | sed 's/[.]/[.]/g')
+
 # get hex number of the matching entry
-efibootmgr |
-	sed -n "s/^Boot\\(....\\).*Void Linux with kernel ${VERSION}/\\1/p" |
-	xargs -l efibootmgr -Bq -b
+entry=$(efibootmgr |
+	sed -n "s/^Boot\\(....\\).*Void Linux with kernel ${xversion}/\\1/p")
+test -z "$entry" || efibootmgr -Bq -b "$entry"
