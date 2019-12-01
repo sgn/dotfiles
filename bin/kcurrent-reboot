@@ -1,0 +1,21 @@
+#!/bin/sh
+
+die () {
+	printf "%s\n" "$@" >&2
+	exit 1
+}
+
+kernel=/boot/vmlinuz-$(uname -r)
+initrd=/boot/initramfs-$(uname -r).img
+
+test -f "$kernel" || die "kernel not found"
+test -f "$initrd" || die "initrd not found"
+command -v kexec >/dev/null 2>&1 || die "kexec not found"
+
+if test "$(id -u)" = 0; then
+	kexec -l -s "$kernel" --initrd="$initrd" --reuse-cmdline
+elif command -v sudo >/dev/null 2>&1; then
+	sudo -k
+	echo "sudo kexec -l -s --initrd=\"$initrd\" --reuse-cmdline \"$kernel\""
+	sudo kexec -l -s "$kernel" --initrd="$initrd" --reuse-cmdline
+fi
