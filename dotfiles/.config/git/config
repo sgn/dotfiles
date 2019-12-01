@@ -61,8 +61,6 @@
 	program = gpg2
 [format]
 	signOff = true
-[tag]
-	gpgSign = true
 [rebase]
 	autoSquash = true
 	autoStash = true
