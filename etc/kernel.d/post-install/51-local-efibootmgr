@@ -19,9 +19,12 @@ if [ "x${DISK}" != x ]; then
 fi
 
 # if existing, do nothing
-if efibootmgr | grep -q "Void Linux with kernel ${VERSION}"; then
+if efibootmgr | grep -q -F "Void Linux with kernel ${VERSION}"; then
 	exit 0
 fi
 
 # create the new entry
-efibootmgr -qc $args -L "Void Linux with kernel ${VERSION}" -l /vmlinuz-${VERSION} -u "${OPTIONS}"
+efibootmgr -qc $args \
+	-L "Void Linux with kernel ${VERSION}" \
+	-l /vmlinuz-${VERSION} \
+	-u "${OPTIONS}"
