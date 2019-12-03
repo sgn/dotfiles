@@ -2,7 +2,6 @@ accels.scm
 aliases
 authorized_keys
 autostart
-*.bashrc
 cef_user_data
 chromium
 cmus

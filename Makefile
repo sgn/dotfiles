@@ -1,9 +1,9 @@
+all::
+
 MODULES=$(shell awk '/path =/{print $$NF}' .gitmodules)
 MODULE_FILE=$(MODULES:=/README.md)
 MODULE_TAR=$(MODULES:=.tar)
 PREFIX=dotfiles
-VOLATILE_FILES=\
-	dotfiles/.config/bash/bash.bashrc \
 
 LOCAL_FILES=\
 	dotfiles/.config/mutt/aliases \
@@ -12,13 +12,11 @@ LOCAL_FILES=\
 	dotfiles/.config/local.xprofile \
 
 .PHONY: all
-all: submodule $(VOLATILE_FILES) $(LOCAL_FILES)
+all:: submodule $(LOCAL_FILES)
 	mkdir -p -m 700 "${HOME}/.gnupg"
+	$(MAKE) -C dotfiles/.config/bash
 	$(MAKE) -C dotfiles/.config/zsh
 	stow -t "${HOME}" dotfiles
-
-dotfiles/.config/bash/%.bashrc: dotfiles/.config/bash/*.%
-	cat dotfiles/.config/bash/*.$* >$@
 
 $(LOCAL_FILES):
 	touch $@
@@ -62,4 +60,5 @@ $(PREFIX).tar: $(MODULE_TAR)
 clean:
 	$(RM) $(PREFIX).tar.gz $(PREFIX).tar
 	$(RM) $(MODULE_TAR)
+	$(MAKE) -C dotfiles/.config/bash clean
 	$(MAKE) -C dotfiles/.config/zsh clean
