@@ -1,0 +1,20 @@
+__battery () {
+	local result=''
+	local -a table
+	table=( ${$(pmset -g ps)[(w)7,8]%%(\%|);} )
+	if [[ -n $table[2] ]] ; then
+		case $table[2] in
+			charging) result="^" ;;
+			discharging)
+				if (( $table[1] < 20 )) ; then
+					result="!v"
+				else
+					result="v"
+				fi
+				;;
+			*) result="=" ;;
+		esac
+		result+="$table[1]%%"
+	fi
+	__battery_status="$result"
+}

@@ -1,5 +1,6 @@
 all::
 
+uname_S := $(shell uname -s)
 ZSH_FILES :=
 
 ZSH_FILES += 00-prof.zsh
@@ -20,6 +21,7 @@ ZSH_FILES += 91-git-completions.zsh
 ZSH_FILES += 91-offline-pass.zsh
 ZSH_FILES += 91-prefer-tui-browser.zsh
 ZSH_FILES += 91-term-title.zsh
+ZSH_FILES += 92-prompt-battery.$(uname_S).zsh
 ZSH_FILES += 92-theme.zsh
 ZSH_FILES += 93-xlibc.zsh
 ZSH_FILES += 98-bundle.zsh
@@ -37,6 +39,9 @@ clean:
 $(HOME)/.zshrc: $(ZSH_FILES) $(LOCAL_FILES)
 	$(RM) $@
 	cat $^ >$@
+
+92-prompt-battery.$(uname_S).zsh:
+	touch $@
 
 local.zsh:
 	if test -f local.rc; then \
