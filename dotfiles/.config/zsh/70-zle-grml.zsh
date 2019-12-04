@@ -1,7 +1,4 @@
-#!/bin/zsh
-# Code in this file is stolen from grml project
-#
-# This file is licensed under the GPL v2
+# This block of code is licensed under the GPL v2
 # Authors: grml-team (grml.org), (c) Michael Prokop <mika@grml.org>
 #
 # "ctrl-x d" to insert the current date in yyyy-mm-dd
@@ -66,3 +63,4 @@ slash-backward-kill-word () {
 zle -N slash-backward-kill-word
 bindkey -M viins "\e^?" slash-backward-kill-word
 bindkey -M viins "\e^h" slash-backward-kill-word
+# End of GPL v2 code from grml project

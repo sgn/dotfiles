@@ -4,29 +4,21 @@ MODULE_TAR=$(MODULES:=.tar)
 PREFIX=dotfiles
 VOLATILE_FILES=\
 	dotfiles/.config/bash/bash.bashrc \
-	dotfiles/.config/zsh/zsh.zshrc.zwc \
-	dotfiles/.config/zsh/stolen.zshrc.zwc \
 
 LOCAL_FILES=\
 	dotfiles/.config/mutt/aliases \
 	dotfiles/.config/mutt/local.rc \
 	dotfiles/.config/local.profile \
 	dotfiles/.config/local.xprofile \
-	dotfiles/.config/zsh/local.rc \
 
 .PHONY: all
 all: submodule $(VOLATILE_FILES) $(LOCAL_FILES)
 	mkdir -p -m 700 "${HOME}/.gnupg"
+	$(MAKE) -C dotfiles/.config/zsh
 	stow -t "${HOME}" dotfiles
 
 dotfiles/.config/bash/%.bashrc: dotfiles/.config/bash/*.%
 	cat dotfiles/.config/bash/*.$* >$@
-
-dotfiles/.config/zsh/%.zwc: dotfiles/.config/zsh/%
-	zsh -c 'zcompile $<'
-
-dotfiles/.config/zsh/%.zshrc: dotfiles/.config/zsh/*.%
-	cat dotfiles/.config/zsh/*.$* >$@
 
 $(LOCAL_FILES):
 	touch $@
@@ -70,3 +62,4 @@ $(PREFIX).tar: $(MODULE_TAR)
 clean:
 	$(RM) $(PREFIX).tar.gz $(PREFIX).tar
 	$(RM) $(MODULE_TAR)
+	$(MAKE) -C dotfiles/.config/zsh clean

@@ -1,7 +1,4 @@
-#!/bin/zsh
-# Code in this file is stolen from grml project
-#
-# This file is licensed under the GPL v2
+# This block of code is licensed under the GPL v2
 # Authors: grml-team (grml.org), (c) Michael Prokop <mika@grml.org>
 #
 # Create Directory and cd to it
@@ -37,3 +34,4 @@ modified () {
 	emulate -L zsh
 	print -l -- *(m-${1:-1})
 }
+# End of GPL v2 code from grml project
