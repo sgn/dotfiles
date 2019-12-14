@@ -108,6 +108,7 @@ map  <leader>kqs mz:%s/^> >/>><cr>
 set wildmenu
 
 au! BufEnter *_EDITMSG call setpos('.', [0, 1, 1, 0])
+au! BufNewFile,BufRead template set filetype=bash
 
 if version >= 700
 	map <F7> :set spell!<CR><Bar>:echo "Spell Check: " . strpart("OffOn", 3 * &spell, 3)<cr>
