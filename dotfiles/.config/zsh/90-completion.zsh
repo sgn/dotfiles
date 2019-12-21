@@ -84,6 +84,11 @@ zstyle ':completion:*:sudo:*' command-path      \
 				/bin            \
 				/usr/X11R6/bin
 
+_force_rehash() {
+	(( CURRENT == 1 )) && rehash
+	return 1  # Because we didn't really complete anything
+}
+
 # TODO
 setopt correct
 zstyle -e ':completion:*' completer '
