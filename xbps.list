@@ -1,9 +1,5 @@
-9base
-ImageMagick
-MultiMarkdown
 acpi
 acpid
-adwaita-icon-theme
 alsa-firmware
 alsa-lib-devel
 alsa-plugins
@@ -251,7 +247,6 @@ socklog
 socklog-void
 ssoma
 st
-stow
 strace
 sudo
 sxiv
@@ -268,7 +263,6 @@ tor
 traceroute
 trash-cli
 tree
-ttf-ubuntu-font-family
 tzdata
 udisks2
 unzip
@@ -310,7 +304,6 @@ xss-lock
 xtools
 xurls
 xz
-yajl
 youtube-dl
 zathura
 zathura-pdf-poppler
