@@ -17,11 +17,12 @@ clean:
 	$(RM) $(HOME)/.bashrc
 
 $(HOME)/.bashrc: $(BASH_FILES)
-	$(RM) $@
-	cat $^ >$@
+	@echo "GEN $@"
+	@$(RM) $@
+	@cat $^ >$@
 
 local.bash:
-	if test -f local.rc; then \
+	@if test -f local.rc; then \
 		mv local.rc local.bash; \
 	else \
 		touch $@; \

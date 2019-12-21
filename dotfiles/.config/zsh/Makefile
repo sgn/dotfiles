@@ -38,21 +38,23 @@ clean:
 	$(RM) $(GEN_FILES)
 
 %.zwc: %
-	zsh -c 'zcompile $<'
+	@echo "COMPILE $<"
+	@zsh -c 'zcompile $<'
 
 $(HOME)/.zshrc: $(ZSH_FILES) $(LOCAL_FILES)
-	$(RM) $@
-	cat $^ >$@
+	@echo "GEN $@"
+	@$(RM) $@
+	@cat $^ >$@
 
 92-prompt-battery.$(uname_S).zsh:
-	touch $@
+	@touch $@
 
 %: %.in
 	@echo "GEN $@"
 	@sed -e 's:[$$]DOTFILES:$(ROOT):' $< >$@
 
 local.zsh:
-	if test -f local.rc; then \
+	@if test -f local.rc; then \
 		mv local.rc local.zsh; \
 	else \
 		touch $@; \
