@@ -1,7 +1,9 @@
 all::
 
+ROOT ?= $(shell cd $(CURDIR)/../../.. && pwd)
 uname_S := $(shell uname -s)
 ZSH_FILES :=
+GEN_FILES :=
 
 ZSH_FILES += 00-prof.zsh
 ZSH_FILES += 01-setup.zsh
@@ -24,6 +26,7 @@ ZSH_FILES += 91-term-title.zsh
 ZSH_FILES += 92-prompt-battery.$(uname_S).zsh
 ZSH_FILES += 92-theme.zsh
 ZSH_FILES += 93-xlibc.zsh
+GEN_FILES += 98-bundle.zsh
 ZSH_FILES += 98-bundle.zsh
 ZSH_FILES += 99-cowsay.zsh
 ZSH_FILES += local.zsh
@@ -32,6 +35,7 @@ all:: $(HOME)/.zshrc.zwc
 
 clean:
 	$(RM) "$(HOME)/.zshrc" "$(HOME)/.zshrc.zwc"
+	$(RM) $(GEN_FILES)
 
 %.zwc: %
 	zsh -c 'zcompile $<'
@@ -42,6 +46,10 @@ $(HOME)/.zshrc: $(ZSH_FILES) $(LOCAL_FILES)
 
 92-prompt-battery.$(uname_S).zsh:
 	touch $@
+
+%: %.in
+	@echo "GEN $@"
+	@sed -e 's:[$$]DOTFILES:$(ROOT):' $< >$@
 
 local.zsh:
 	if test -f local.rc; then \

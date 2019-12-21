@@ -4,6 +4,9 @@ MODULES=$(shell awk '/path =/{print $$NF}' .gitmodules)
 MODULE_FILE=$(MODULES:=/README.md)
 MODULE_TAR=$(MODULES:=.tar)
 PREFIX=dotfiles
+ROOT = $(CURDIR)
+
+export ROOT
 
 LOCAL_FILES=\
 	dotfiles/.config/mutt/aliases \
