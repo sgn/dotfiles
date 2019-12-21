@@ -5,6 +5,10 @@ MODULE_FILE=$(MODULES:=/README.md)
 MODULE_TAR=$(MODULES:=.tar)
 PREFIX=dotfiles
 ROOT = $(CURDIR)
+SUBDIRS :=
+
+SUBDIRS += bash
+SUBDIRS += zsh
 
 export ROOT
 
@@ -15,15 +19,17 @@ LOCAL_FILES=\
 	dotfiles/.config/local.xprofile \
 
 .PHONY: all
-all:: submodule $(LOCAL_FILES)
+all:: submodule $(LOCAL_FILES) $(SUBDIRS)
 	@mkdir -p -m 700 "${HOME}/.gnupg"
-	@$(MAKE) -C bash
-	@$(MAKE) -C zsh
 	@echo "LINK configuration files"
 	@stow -t "${HOME}" dotfiles
 
 $(LOCAL_FILES):
 	@touch $@
+
+.PHONY: $(SUBDIRS)
+$(SUBDIRS):
+	@$(MAKE) -C $@
 
 .PHONY: var
 var:
