@@ -8,6 +8,7 @@ ROOT = $(CURDIR)
 SUBDIRS :=
 
 SUBDIRS += bash
+SUBDIRS += bin
 SUBDIRS += zsh
 
 export ROOT
