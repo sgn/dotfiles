@@ -92,16 +92,15 @@ _force_rehash() {
 # TODO
 setopt correct
 zstyle -e ':completion:*' completer '
-    if [[ $_last_try != "$HISTNO$BUFFER$CURSOR" ]] ; then
-	_last_try="$HISTNO$BUFFER$CURSOR"
-	reply=(_complete _match _ignored _prefix _files)
-    else
-	if [[ $words[1] == (rm|mv) ]] ; then
-	    reply=(_complete _files)
+	if [[ $_last_try != "$HISTNO$BUFFER$CURSOR" ]] ; then
+		_last_try="$HISTNO$BUFFER$CURSOR"
+		reply=(_complete _match _ignored _prefix _files)
+	elif [[ $words[1] == (rm|mv) ]] ; then
+		reply=(_complete _files)
 	else
-	    reply=(_oldlist _expand _force_rehash _complete _ignored _correct _approximate _files)
+		reply=(_oldlist _expand _force_rehash _complete _ignored _correct _approximate _files)
 	fi
-    fi'
+	'
 
 zstyle ':completion:*' use-cache  yes
 zstyle ':completion:*:complete:*' cache-path "${HOME}/.cache/zsh"
