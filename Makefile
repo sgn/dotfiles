@@ -18,7 +18,7 @@ LOCAL_FILES=\
 all:: submodule $(LOCAL_FILES)
 	@mkdir -p -m 700 "${HOME}/.gnupg"
 	@$(MAKE) -C dotfiles/.config/bash
-	@$(MAKE) -C dotfiles/.config/zsh
+	@$(MAKE) -C zsh
 	@echo "LINK configuration files"
 	@stow -t "${HOME}" dotfiles
 
@@ -67,4 +67,4 @@ clean:
 	$(RM) $(PREFIX).tar.gz $(PREFIX).tar
 	$(RM) $(MODULE_TAR)
 	@$(MAKE) -C dotfiles/.config/bash clean
-	@$(MAKE) -C dotfiles/.config/zsh clean
+	@$(MAKE) -C zsh clean

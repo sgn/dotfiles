@@ -1,6 +1,6 @@
 all::
 
-ROOT ?= $(shell cd $(CURDIR)/../../.. && pwd)
+ROOT ?= $(shell cd $(CURDIR)/.. && pwd)
 uname_S := $(shell uname -s)
 ZSH_FILES :=
 GEN_FILES :=
