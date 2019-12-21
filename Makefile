@@ -9,24 +9,13 @@ SUBDIRS :=
 
 SUBDIRS += bash
 SUBDIRS += bin
+SUBDIRS += home
 SUBDIRS += zsh
 
 export ROOT
 
-LOCAL_FILES=\
-	dotfiles/.config/mutt/aliases \
-	dotfiles/.config/mutt/local.rc \
-	dotfiles/.config/local.profile \
-	dotfiles/.config/local.xprofile \
-
 .PHONY: all
-all:: submodule $(LOCAL_FILES) $(SUBDIRS)
-	@mkdir -p -m 700 "${HOME}/.gnupg"
-	@echo "LINK configuration files"
-	@stow -t "${HOME}" dotfiles
-
-$(LOCAL_FILES):
-	@touch $@
+all:: submodule $(SUBDIRS)
 
 .PHONY: $(SUBDIRS)
 $(SUBDIRS):
