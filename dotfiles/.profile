@@ -33,10 +33,6 @@ export TZ
 XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
 export XDG_CONFIG_HOME
 
-## My scripts come here
-DOTFILES_HOME=$(readlink -f ~/.profile)
-DOTFILES_HOME="${DOTFILES_HOME%/*/.profile}"
-add_to_path begin "${DOTFILES_HOME}/bin"
 add_to_path "${HOME}/.local/platform-tools"
 
 ## pager
