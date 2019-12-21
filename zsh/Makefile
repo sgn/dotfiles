@@ -39,11 +39,11 @@ clean:
 	$(RM) $(GEN_FILES)
 
 %.zwc: %
-	@echo "COMPILE $<"
+	@echo "\tCOMPILE $<"
 	@zsh -c 'zcompile $<'
 
 $(HOME)/.zshrc: $(ZSH_FILES) $(LOCAL_FILES)
-	@echo "GEN $@"
+	@echo "\tGEN $@"
 	@$(RM) $@
 	@cat $^ >$@
 
@@ -51,7 +51,7 @@ $(HOME)/.zshrc: $(ZSH_FILES) $(LOCAL_FILES)
 	@touch $@
 
 %: %.in
-	@echo "GEN $@"
+	@echo "\tGEN zsh/$@"
 	@sed -e 's:[$$]DOTFILES:$(ROOT):' \
 		-e 's:__CURDIR__:$(CURDIR):' \
 		$< >$@

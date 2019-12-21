@@ -17,7 +17,7 @@ clean:
 	$(RM) $(HOME)/.bashrc
 
 $(HOME)/.bashrc: $(BASH_FILES)
-	@echo "GEN $@"
+	@echo "\tGEN $@"
 	@$(RM) $@
 	@cat $^ >$@
 
