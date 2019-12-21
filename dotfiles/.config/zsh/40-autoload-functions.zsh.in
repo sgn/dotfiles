@@ -1,8 +1,8 @@
-fpath=( ~/.config/zsh/functions ${fpath} )
-fpath=( ~/.config/zsh/completions ${fpath} )
+fpath=( __CURDIR__/functions ${fpath} )
+fpath=( __CURDIR__/completions ${fpath} )
 
 typeset -aU ffiles
-ffiles=(~/.config/zsh/functions/**/[^_]*[^(~|.zwc)](N.:t))
+ffiles=( __CURDIR__/functions/**/[^_]*[^(~|.zwc)](N.:t))
 (( ${#ffiles} > 0 )) && autoload -U "${ffiles[@]}"
 unset -v ffiles
 

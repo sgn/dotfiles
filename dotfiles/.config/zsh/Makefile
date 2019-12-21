@@ -10,6 +10,7 @@ ZSH_FILES += 01-setup.zsh
 ZSH_FILES += 10-setopt.zsh
 ZSH_FILES += 20-variables.zsh
 ZSH_FILES += 30-modules.zsh
+GEN_FILES += 40-autoload-functions.zsh
 ZSH_FILES += 40-autoload-functions.zsh
 ZSH_FILES += 70-key-binding.zsh
 ZSH_FILES += 70-alias-grml.zsh
@@ -51,7 +52,9 @@ $(HOME)/.zshrc: $(ZSH_FILES) $(LOCAL_FILES)
 
 %: %.in
 	@echo "GEN $@"
-	@sed -e 's:[$$]DOTFILES:$(ROOT):' $< >$@
+	@sed -e 's:[$$]DOTFILES:$(ROOT):' \
+		-e 's:__CURDIR__:$(CURDIR):' \
+		$< >$@
 
 local.zsh:
 	@if test -f local.rc; then \
