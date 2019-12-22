@@ -1,6 +1,3 @@
 40-autoload-functions.zsh
 98-bundle.zsh
 cron.sed
-local\.*
-muttrc2html
-*.sw?

@@ -16,6 +16,6 @@
 *.pyc
 *.rej
 *_REMOTE_*
-*.swp
+*.sw?
 *.xz
 *.diff

@@ -9,7 +9,10 @@ BASH_FILES += 90-prompt.bash
 BASH_FILES += 91-prefer-tui-browser.bash
 BASH_FILES += 93-xlibc.bash
 BASH_FILES += 99-cowsay.bash
+
+ifeq ($(wildcard local.bash),local.bash)
 BASH_FILES += local.bash
+endif
 
 all:: $(HOME)/.bashrc
 
@@ -18,12 +21,4 @@ clean:
 
 $(HOME)/.bashrc: $(BASH_FILES)
 	@echo "\tGEN $@"
-	@$(RM) $@
-	@cat $^ >$@
-
-local.bash:
-	@if test -f local.rc; then \
-		mv local.rc local.bash; \
-	else \
-		touch $@; \
-	fi
+	@cat $(BASH_FILES) >$@

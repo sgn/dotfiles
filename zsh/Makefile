@@ -24,41 +24,37 @@ ZSH_FILES += 91-git-completions.zsh
 ZSH_FILES += 91-pass.zsh
 ZSH_FILES += 91-prefer-tui-browser.zsh
 ZSH_FILES += 91-term-title.zsh
+
+ifeq ($(wildcard 92-prompt-battery.$(uname_S).zsh),92-prompt-battery.$(uname_S).zsh)
 ZSH_FILES += 92-prompt-battery.$(uname_S).zsh
+endif
+
 ZSH_FILES += 92-theme.zsh
 ZSH_FILES += 93-xlibc.zsh
 GEN_FILES += 98-bundle.zsh
 ZSH_FILES += 98-bundle.zsh
 ZSH_FILES += 99-cowsay.zsh
+
+ifeq ($(wildcard local.zsh),local.zsh)
 ZSH_FILES += local.zsh
+endif
 
 all:: $(HOME)/.zshrc.zwc
 
 clean:
-	$(RM) "$(HOME)/.zshrc" "$(HOME)/.zshrc.zwc"
+	$(RM) $(HOME)/.zshrc $(HOME)/.zshrc.zwc
 	$(RM) $(GEN_FILES)
 
 %.zwc: %
 	@echo "\tCOMPILE $<"
 	@zsh -c 'zcompile $<'
 
-$(HOME)/.zshrc: $(ZSH_FILES) $(LOCAL_FILES)
+$(HOME)/.zshrc: $(ZSH_FILES)
 	@echo "\tGEN $@"
-	@$(RM) $@
-	@cat $^ >$@
-
-92-prompt-battery.$(uname_S).zsh:
-	@touch $@
+	@cat $(ZSH_FILES) >$@
 
 %: %.in
 	@echo "\tGEN zsh/$@"
 	@sed -e 's:[$$]DOTFILES:$(ROOT):' \
 		-e 's:__CURDIR__:$(CURDIR):' \
 		$< >$@
-
-local.zsh:
-	@if test -f local.rc; then \
-		mv local.rc local.zsh; \
-	else \
-		touch $@; \
-	fi
