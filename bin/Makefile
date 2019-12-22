@@ -1,6 +1,6 @@
 all::
 
-LN := ln -sf
+LN := ln -fP
 MKDIR := mkdir -p -m 0700
 
 ALL_FILES = $(shell find . -type f -a -perm -0100)
