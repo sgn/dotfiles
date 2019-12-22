@@ -62,5 +62,7 @@ $(PREFIX).tar: $(MODULE_TAR)
 clean:
 	$(RM) $(PREFIX).tar.gz $(PREFIX).tar
 	$(RM) $(MODULE_TAR)
+	@echo "UNLINK old symlink"
+	@find $(HOME) -path '$(HOME)/.*' -type l -delete
 	@$(MAKE) -C bash clean
 	@$(MAKE) -C zsh clean

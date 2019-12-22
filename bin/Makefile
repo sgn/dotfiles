@@ -10,7 +10,6 @@ OUTDIR = $(HOME)/$(XDIR)
 all:: $(ALL_FILES)
 
 $(OUTDIR):
-	@if [ -h '$@' ]; then $(RM) '$@'; fi
 	@$(MKDIR) $@
 
 .PHONY: $(ALL_FILES)

@@ -38,5 +38,4 @@ $(LOCAL_FILES): subdirs
 subdirs: $(SUBDIRS)
 
 $(SUBDIRS):
-	@if [ -h '$(HOME)/.$@' ]; then $(RM) '$(HOME)/.$@'; fi
 	@$(MKDIR) $(HOME)/.$@
