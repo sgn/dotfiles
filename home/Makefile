@@ -1,41 +1,45 @@
 all::
 
 LN := ln -fP
-MKDIR := mkdir -p -m 0700
+MKDIR := mkdir -p
+TOUCH := touch
 
 ALL_FILES = $(shell find . -type f -a -not -name Makefile -a -not -name '*.sw?')
+OUT_FILES = $(subst ./,$(HOME)/.,$(ALL_FILES))
 ALL_SYMLINKS = $(shell find . -type l)
-SUBDIRS = $(shell find . -type d -a -not -name '.')
+OUT_SYMLINKS = $(subst ./,$(HOME)/.,$(ALL_SYMLINKS))
 LOCAL_FILES=\
 	$(HOME)/.config/mutt/aliases \
 	$(HOME)/.config/mutt/local.rc \
 	$(HOME)/.config/local.profile \
 	$(HOME)/.config/local.xprofile \
 
+.PHONY: all all-real xlink localfiles var
 
-all:: xlink localfiles
+all:: all-real
 
-.PHONY: xlink $(ALL_FILES) $(ALL_SYMLINKS)
-xlink: $(ALL_FILES) $(ALL_SYMLINKS)
+all-real: xlink localfiles
 
-$(ALL_FILES): subdirs
-	@echo "\tLINK $@"
-	@$(LN) $(CURDIR)/$@ $(HOME)/.$@
+var:
+	@echo $(OUT_FILES)
+	@echo $(OUT_SYMLINKS)
 
-# This is a hack for supervise link to /run
-# It doesn't work for top-level dotfiles
-$(ALL_SYMLINKS): subdirs
-	@echo "\tLINK $@"
-	@$(LN) $(CURDIR)/$@ $(dir $(HOME)/.$@)
+xlink: $(OUT_FILES) $(OUT_SYMLINKS)
 
-.PHONY: localfiles
 localfiles: $(LOCAL_FILES)
 
-$(LOCAL_FILES): subdirs
-	@touch $@
+$(OUT_FILES): $(HOME)/.%: %
+	@echo "\tINSTALL $<"
+	@$(MKDIR) $(dir $@)
+	@$(LN) $(CURDIR)/$< $@
 
-.PHONY: subdirs $(SUBDIRS)
-subdirs: $(SUBDIRS)
+# This is a special rule for supervise link to /run
+# It doesn't work for top-level dotfiles
+$(OUT_SYMLINKS): $(HOME)/.%: %
+	@echo "\tINSTALL $<"
+	@$(MKDIR) $(dir $@)
+	@$(LN) $(CURDIR)/$< $(dir $@)
 
-$(SUBDIRS):
-	@$(MKDIR) $(HOME)/.$@
+$(LOCAL_FILES): $(SUBDIRS)
+	@$(MKDIR) $(dir $@)
+	@$(TOUCH) $@
