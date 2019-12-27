@@ -1,5 +1,6 @@
 all::
 
+CP := cp -R -f
 LN := ln -fP
 MKDIR := mkdir -p
 TOUCH := touch
@@ -35,10 +36,10 @@ $(OUT_FILES): $(HOME)/.%: %
 
 # This is a special rule for supervise link to /run
 # It doesn't work for top-level dotfiles
-$(OUT_SYMLINKS): $(HOME)/.%: %
-	@echo "\tINSTALL $<"
+$(OUT_SYMLINKS):
+	@echo "\tINSTALL $(subst $(HOME)/,,$@)"
 	@$(MKDIR) $(dir $@)
-	@$(LN) $(CURDIR)/$< $(dir $@)
+	@$(CP) $(subst $(HOME)/.,,$@) $(dir $@)
 
 $(LOCAL_FILES): $(SUBDIRS)
 	@$(MKDIR) $(dir $@)
