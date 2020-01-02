@@ -38,7 +38,7 @@ esac
 
 (
 	git for-each-ref "$pattern" |
-		awk '$3 !~ /^refs\/remotes\// && $3 != "refs/heads/master"{print $0}'
+		grep -vF -e refs/remotes/ -e refs/heads/master
 	cat <<-EOF
 	# Delete refname you want to keep.
 	# Any line starts with # will be ignored.
@@ -47,7 +47,7 @@ esac
 
 git_editor "$GIT_DIR/clean-ref-list"
 
-awk '$1 !~ /^#/ {print "delete " $3}' "$GIT_DIR/clean-ref-list" |
+sed -e '/^#/d' -e 's/.*\t/delete /' "$GIT_DIR/clean-ref-list" |
 	git update-ref --stdin
 
 rm -f "$GIT_DIR/clean-ref-list"
