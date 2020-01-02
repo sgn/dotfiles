@@ -135,3 +135,7 @@ command HGroup let s = synID(line('.'), col('.'), 1) |
 	\ echo synIDattr(s, 'name') . ' -> ' . synIDattr(synIDtrans(s), 'name')
 
 " set keymap=vietnamese-telex_utf-8
+" toggle list
+nnoremap <F2> :set list!<cr>
+" rotate tab size
+nnoremap <silent> <F3> :let &ts=(&ts*2 > 16 ? 2 : &ts*2)<cr>:echo "tabstop:" . &ts<cr>
