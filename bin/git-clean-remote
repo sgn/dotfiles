@@ -37,7 +37,7 @@ remote=${1:-origin}
 
 git_editor "$GIT_DIR/clean-remote-list"
 
-sed -n '/^refs/s/^/:/p' "$GIT_DIR/clean-remote-list" |
+sed -e '/^#/d' -e 's/^/:/' "$GIT_DIR/clean-remote-list" |
 	xargs ${dryrun:+echo} git push "$remote"
 
 rm -f "$GIT_DIR/clean-remote-list"
