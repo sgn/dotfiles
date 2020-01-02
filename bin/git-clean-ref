@@ -1,5 +1,6 @@
 #!/bin/sh
-# Copyright (c) 2019, Doan Tran Cong Danh <congdanhqx@gmail.com>
+# Copyright (c) 2019, 2020
+# Đoàn Trần Công Danh <congdanhqx@gmail.com>
 #
 # Licensed under GPL v2
 USAGE='[options] [--] [<refname pattern>]'
@@ -48,3 +49,5 @@ git_editor "$GIT_DIR/clean-ref-list"
 
 awk '$1 !~ /^#/ {print "delete " $3}' "$GIT_DIR/clean-ref-list" |
 	git update-ref --stdin
+
+rm -f "$GIT_DIR/clean-ref-list"

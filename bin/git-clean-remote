@@ -1,5 +1,6 @@
 #!/bin/sh
-# Copyright (c) 2020, Đoàn Trần Công Danh
+# Copyright (c) 2020
+# Đoàn Trần Công Danh <congdanhqx@gmail.com>
 # Licensed under GPL v2
 USAGE='[-n|--dry-run] -- [<remote>]'
 LONG_USAGE='
@@ -38,3 +39,5 @@ git_editor "$GIT_DIR/clean-remote-list"
 
 sed -n '/^refs/s/^/:/p' "$GIT_DIR/clean-remote-list" |
 	xargs ${dryrun:+echo} git push "$remote"
+
+rm -f "$GIT_DIR/clean-remote-list"
