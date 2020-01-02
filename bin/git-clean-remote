@@ -1,0 +1,40 @@
+#!/bin/sh
+# Copyright (c) 2020, Đoàn Trần Công Danh
+# Licensed under GPL v2
+USAGE='[-n|--dry-run] -- [<remote>]'
+LONG_USAGE='
+-n
+--dry-run
+	Report the command will be used to purge remote,
+	but do not actually purge them.
+'
+
+OPTIONS_SPEC=
+. "$(git --exec-path)/git-sh-setup"
+
+while case "$#" in 0) break ;; esac
+do
+	case "$1" in
+	--) shift; break ;;
+	-n|--d|--dr|--dry|--dry-|--dry-r|--dry-ru|--dry-run)
+		dryrun=yes ;;
+	-*) usage ;;
+	*) break ;;
+	esac
+	shift
+done
+
+remote=${1:-origin}
+
+(
+	git ls-remote -h "$remote" | cut -f2-
+	cat <<-EOF
+	# Delete refname you want to keep.
+	# Any lines starts with # will be ignored
+	EOF
+) >"$GIT_DIR/clean-remote-list"
+
+git_editor "$GIT_DIR/clean-remote-list"
+
+sed -n '/^refs/s/^/:/p' "$GIT_DIR/clean-remote-list" |
+	xargs ${dryrun:+echo} git push "$remote"
