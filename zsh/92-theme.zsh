@@ -45,4 +45,4 @@ prompt_sgn_setup () {
 	RPS1="\$__battery_status"
 }
 
-prompt_sgn_setup "$@"
+prompt_sgn_setup
