@@ -126,3 +126,17 @@ hi DiffLine         cterm=none      ctermbg=none    ctermfg=6
 hi DiffFile         cterm=bold      ctermbg=none    ctermfg=15
 hi DiffNewFile      cterm=bold      ctermbg=none    ctermfg=15
 hi DiffIndexLine    cterm=bold      ctermbg=none    ctermfg=15
+
+" git
+hi gitcommitSummary cterm=none      ctermbg=none    ctermfg=6
+hi gitrebaseReword  cterm=none      ctermbg=none    ctermfg=6
+hi gitrebaseEdit    cterm=none      ctermbg=none    ctermfg=6
+hi gitrebaseBreak   cterm=none      ctermbg=none    ctermfg=6
+hi gitrebaseExec    cterm=none      ctermbg=none    ctermfg=3
+hi gitrebaseSquash  cterm=none      ctermbg=none    ctermfg=5
+hi gitrebaseFixup   cterm=none      ctermbg=none    ctermfg=5
+hi gitrebaseMerge   cterm=none      ctermbg=none    ctermfg=3
+hi gitrebaseLabel   cterm=none      ctermbg=none    ctermfg=4
+hi gitrebaseReset   cterm=none      ctermbg=none    ctermfg=4
+hi gitrebaseNoop    cterm=none      ctermbg=none    ctermfg=8
+hi gitrebaseDrop    cterm=none      ctermbg=none    ctermfg=8

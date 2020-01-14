@@ -44,10 +44,10 @@ set esckeys
 
 " tab
 set tabstop=8
-set shiftwidth=8
 set noexpandtab
 set smarttab
 set copyindent
+set cinoptions=:0,l1,g0,N-s,E-s,t0,(0,Ws,j1,J1
 
 " cursor
 set cursorline
@@ -134,7 +134,8 @@ colorscheme mindark
 command HGroup let s = synID(line('.'), col('.'), 1) |
 	\ echo synIDattr(s, 'name') . ' -> ' . synIDattr(synIDtrans(s), 'name')
 
-" set keymap=vietnamese-telex_utf-8
+command VKey if &keymap == '' | set keymap=vietnamese-telex_utf-8 |
+	\ else | set keymap& | endif
 " toggle list
 nnoremap <F2> :set list!<cr>
 " rotate tab size
