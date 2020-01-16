@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# adb shell settings put global setting.duraspeed.enabled 0
+
+adb shell pm list packages  |
+	cut -d: -f2 |
+	grep '^com[.]evenwell' |
+	xargs -L1 adb shell pm uninstall --user 0
+
+adb shell rm -rf /data/dalvik-cache
+
+echo Rebooting Phone...
+adb reboot
