@@ -1,0 +1,25 @@
+#!/bin/bash
+
+xls-pkg() {
+	xbps-query -l |
+		sed -e 's/^i*[[:space:]]//' -e 's/[[:space:]].*$//'
+}
+
+usage() {
+	cat <<-EOF
+	$0 [-n] [PATTERN]
+
+	OPTIONS:
+	    -n Dry run
+	EOF
+}
+
+xcmd='rm -f'
+if [ "x$1" = "x-n" ]; then
+	xcmd='printf %s\n'
+	shift
+fi
+
+find /var/cache/xbps -type f |
+	grep -v -f <(xls-pkg) |
+	xargs $xcmd
