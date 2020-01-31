@@ -1,0 +1,5 @@
+#!/bin/sh
+
+thisdir="${0%/*}"
+
+exec snooze -H'*' -M/3 "$thisdir/battery.sh"

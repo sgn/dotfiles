@@ -8,8 +8,8 @@ for f in /sys/class/power_supply/BAT*/status; do
 	[ Charging = "$status" ] && exit 0
 done
 
-dunst_pid=$(pgrep -u "$USER" dunst)
-[ -z "$dunst_pid" ] && exit 0
+dunst_pid=$(echo $(ps -C dunst -o pid=))
+[ $? -ne 0 ] && exit 0
 eval "$(grep -z '^DBUS_SESSION_BUS_ADDRESS=' /proc/$dunst_pid/environ)"
 export DBUS_SESSION_BUS_ADDRESS
 
@@ -26,10 +26,10 @@ num_bat=0
 for d in /sys/class/power_supply/BAT*; do
 	num_bat=$(( num_bat + 1 ))
 	if [ -e "$d/capacity" ]; then
-		read -r capacity < "$d/capacity"
+		capacity=$(cat "$d/capacity")
 	else
-		read -r full < "$d/energy_full"
-		read -r now < "$d/energy_now"
+		full=$(cat "$d/energy_full")
+		now=$(cat "$d/energy_now")
 		capacity=$(( 100 * now / full ))
 	fi
 	total_capacity=$(( total_capacity + capacity ))
