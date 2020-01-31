@@ -1,0 +1,6 @@
+#!/bin/sh
+
+HOME=$(eval echo "~$(id -un)")
+export HOME
+
+exec snooze -H'*' -M/2 mbsync -a
