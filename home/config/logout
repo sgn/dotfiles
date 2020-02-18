@@ -1,4 +1,7 @@
 #!/bin/sh
+
+sv down ~/.local/service/battery
+
 ps -u$USER -o pid=,comm= | \
 	awk '
 		$2~"^(dbus|gvfsd|dconf|gsetting|udisk)"{print $1}
