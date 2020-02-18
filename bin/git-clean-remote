@@ -28,16 +28,24 @@ done
 remote=${1:-origin}
 
 (
+	commentchar=$(git config core.commentchar || echo '#')
 	git ls-remote -h "$remote" | cut -f2-
-	cat <<-EOF
-	# Delete refname you want to keep.
-	# Any lines starts with # will be ignored
+	git stripspace -c <<-EOF
+	Delete refname you want to keep.
+	Any lines starts with $commentchar will be ignored
 	EOF
-) >"$GIT_DIR/clean-remote-list"
+) >"$GIT_DIR/x-clean-remote-list"
 
-git_editor "$GIT_DIR/clean-remote-list"
+git_editor "$GIT_DIR/x-clean-remote-list"
 
-sed -e '/^#/d' -e 's/^/:/' "$GIT_DIR/clean-remote-list" |
+# POSIX xargs doesn't have --no-run-if-empty
+git stripspace -s <"$GIT_DIR/x-clean-remote-list" >"$GIT_DIR/x-clean-remote-real"
+
+if test -s "$GIT_DIR/x-clean-remote-real"
+then
+	sed 's/^/:/' "$GIT_DIR/x-clean-remote-real" |
 	xargs ${dryrun:+echo} git push "$remote"
+fi
 
-rm -f "$GIT_DIR/clean-remote-list"
+rm -f "$GIT_DIR/x-clean-remote-real"
+rm -f "$GIT_DIR/x-clean-remote-list"
