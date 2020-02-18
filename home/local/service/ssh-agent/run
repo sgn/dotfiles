@@ -1,3 +1,8 @@
 #!/bin/sh
 
-exec ssh-agent -D -a "/run/user/$(whoami)/ssh-$(uname -n).socket"
+if [ -z "$USER" ]; then
+	USER=$(whoami)
+	export USER
+fi
+
+exec ssh-agent -D -a "/run/x-user/$USER/ssh-agent.socket"

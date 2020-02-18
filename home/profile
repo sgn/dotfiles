@@ -69,7 +69,7 @@ MAIL=/var/mail/$USER
 export MAIL
 
 ## SSH-Agent
-SSH_AUTH_SOCK="/run/user/$USER/ssh-$(uname -n).socket"
+SSH_AUTH_SOCK="/run/x-user/$USER/ssh-agent.socket"
 export SSH_AUTH_SOCK
 
 ## Default text editor

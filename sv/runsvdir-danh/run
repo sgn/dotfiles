@@ -2,7 +2,15 @@
 
 exec 2>&1
 
-install -d -m 700 -o danh -g danh /run/user/danh
-install -d -m 700 -o danh -g danh /run/user/danh/runit
+[ -f conf ] && . conf
 
-exec chpst -udanh:danh runsvdir ~danh/.local/service
+: ${ZUSER:=danh}
+
+[ $? -eq 0 ] || exit
+
+ZHOME=$(eval echo ~$ZUSER)
+
+install -d -m 700 -o $ZUSER -g $ZUSER /run/x-user/$ZUSER
+install -d -m 700 -o $ZUSER -g $ZUSER /run/x-user/$ZUSER/runit
+
+exec chpst -u$ZUSER:$ZUSER runsvdir "$ZHOME/.local/service"
