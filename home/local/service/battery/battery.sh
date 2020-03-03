@@ -8,12 +8,6 @@ for f in /sys/class/power_supply/BAT*/status; do
 	[ Charging = "$status" ] && exit 0
 done
 
-dunst_pid=$(ps -C dunst -o pid=)
-[ $? -ne 0 ] && exit 0
-dunst_pid=${dunst_pid% *}
-eval "$(grep -z '^DBUS_SESSION_BUS_ADDRESS=' /proc/$dunst_pid/environ)"
-export DBUS_SESSION_BUS_ADDRESS
-
 if command -v dunstify >/dev/null 2>&1; then
 	NOTIFY_SEND="dunstify -r 13277"
 elif command -v notify-send >/dev/null 2>&1; then
@@ -38,6 +32,12 @@ done
 pct=$(( total_capacity / num_bat ))
 
 [ -t 1 ] && echo "Battery: $pct"
+
+dunst_pid=$(ps -C dunst -o pid=)
+[ $? -ne 0 ] && exit 0
+dunst_pid=${dunst_pid% *}
+eval "$(grep -z '^DBUS_SESSION_BUS_ADDRESS=' /proc/$dunst_pid/environ)"
+export DBUS_SESSION_BUS_ADDRESS
 
 if test "$pct" -lt 15 ; then
 	exec $NOTIFY_SEND -i battery -u critical "Super Low Battery"
