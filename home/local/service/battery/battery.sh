@@ -8,8 +8,9 @@ for f in /sys/class/power_supply/BAT*/status; do
 	[ Charging = "$status" ] && exit 0
 done
 
-dunst_pid=$(echo $(ps -C dunst -o pid=))
+dunst_pid=$(ps -C dunst -o pid=)
 [ $? -ne 0 ] && exit 0
+dunst_pid=${dunst_pid% *}
 eval "$(grep -z '^DBUS_SESSION_BUS_ADDRESS=' /proc/$dunst_pid/environ)"
 export DBUS_SESSION_BUS_ADDRESS
 
