@@ -1,0 +1,19 @@
+#!/bin/sh
+# tmux-urls - get a list of all urls in current tmux pane.
+# Copied and modified from:
+# https://github.com/Duncaen/dotfiles/blob/d58fee76e7014a461fada5b0c549198c33f48379/bin/tmux-urls
+
+get_urls() {
+	tmux capture-pane -pJ |
+	grep -oE '(www.|http[s]?://)[^ ]+'
+}
+
+tmux display-message -p '#W'
+case "$(tmux display-message -p '#W')" in
+	weechat*|WeeChat*)
+		tmux send-keys M-l
+		get_urls
+		tmux send-keys M-l
+		;;
+	*) get_urls ;;
+esac
