@@ -20,7 +20,6 @@ ZSH_FILES += 80-alias-misc.zsh
 ZSH_FILES += 80-functions.zsh
 ZSH_FILES += 80-functions-grml.zsh
 ZSH_FILES += 90-completion.zsh
-ZSH_FILES += 91-git-completions.zsh
 ZSH_FILES += 91-pass.zsh
 ZSH_FILES += 91-prefer-tui-browser.zsh
 ZSH_FILES += 91-term-title.zsh
