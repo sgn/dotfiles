@@ -1,0 +1,9 @@
+#!/bin/sh
+
+pattern="$1"
+shift
+
+printf '#include "%s"\n' "$@" |
+	gcc -E -M -MP -x c++ - |
+	awk -F: '/:$/ {print $1}' |
+	xargs grep -n -e "$pattern"
