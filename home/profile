@@ -80,13 +80,6 @@ for i in vim vi ex ed; do
 done
 unset i
 
-for i in vim vi; do
-	command -v $i >/dev/null 2>&1 \
-		&& VISUAL=$i && export VISUAL \
-		&& break
-done
-unset i
-
 ## $HOME software install
 ## See http://nullprogram.com/blog/2017/06/19/.
 add_to_path begin "$HOME/.local/bin"
