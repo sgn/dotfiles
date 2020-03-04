@@ -1,0 +1,6 @@
+#!/bin/sh
+
+ping -c 1 pool.ntp.org >/dev/null 2>&1 || exit 1
+
+install -d -m750 -o chrony -g chrony /var/run/chrony
+exec chronyd -n -u chrony
