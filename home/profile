@@ -84,13 +84,6 @@ unset i
 ## See http://nullprogram.com/blog/2017/06/19/.
 add_to_path begin "$HOME/.local/bin"
 add_to_path begin "$HOME/bin"
-add_to_path begin "$HOME/src/xtools"
-
-if [ -x "$HOME/src/git/git" ]; then
-	add_to_path begin "$HOME/src/git"
-	GIT_EXEC_PATH="$HOME/src/git"
-	export GIT_EXEC_PATH
-fi
 
 GEM_HOME="$HOME/.local/share/gem"
 GEM_SPEC_CACHE="$HOME/.cache/gem"
