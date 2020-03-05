@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd $(xdistdir)
+git diff --name-only upstream/master.. 'srcpkgs/*/template' |
+	xargs -L1 xlint
