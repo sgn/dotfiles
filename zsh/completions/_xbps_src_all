@@ -1,0 +1,22 @@
+#compdef xbps-src-all
+
+_arguments -s : \
+	'-a[Cross compile packages]:architecture:($archs)' \
+	'-C[Do not remove build directory/autodeps/destdir]' \
+	'-E[Exit immediately when binary package already exists]' \
+	'-f[Force building and registering binary packages]' \
+	'-G[Enable XBPS_USE_GIT_REVS]' \
+	'-Q[Enable running the check stage]' \
+	'-g[Enable building -dbg packages]' \
+	'-H[Absolute path to hostdir]:hostdir:_files -/' \
+	'-h[Help]' \
+	'-I[Ignore required dependencies]' \
+	'-j[Number of parallel build jobs]:number: ' \
+	'-L[Disable ASCII colors]' \
+	'-m[Absolute path to masterdir]:masterdir:_files -/' \
+	'-N[Disable use of remote repositories]' \
+	'-o[Set package build options]:options: ' \
+	'-r[Use alternative local repository]:repo:_files -/' \
+	'-t[Create a temporary masterdir]' \
+
+return 0

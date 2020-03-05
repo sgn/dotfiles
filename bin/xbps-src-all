@@ -1,0 +1,18 @@
+#!/bin/sh
+
+cd $(xdistdir)
+tmp=$(mktemp)
+(
+git diff --name-only upstream/master.. 'srcpkgs/*/template' |
+	cut -d/ -f2
+cat <<EOF
+# delete package you don't want to check
+# line begin with # is ignored
+EOF
+) >"$tmp"
+
+${EDITOR:-vi} "$tmp"
+
+PKGS=$(grep -v '^#' "$tmp")
+rm -f "$tmp"
+xbulk "$@" $PKGS
