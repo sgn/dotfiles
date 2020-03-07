@@ -1,0 +1,9 @@
+#!/bin/sh
+
+[ -f conf ] && . conf
+
+: ${ZUSER:=danh}
+ZHOME=$(eval echo ~$ZUSER)
+
+sv -w600 force-stop "$ZHOME"/.local/service/*
+sv exit "$ZHOME"/.local/service/*
