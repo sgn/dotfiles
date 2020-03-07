@@ -1,5 +1,6 @@
 #!/bin/sh
 
 cd $(xdistdir)
-git diff --name-only upstream/master.. 'srcpkgs/*/template' |
+git diff --no-renames --name-status upstream/master.. 'srcpkgs/*/template' |
+	awk '!/^D/{print $2}' |
 	xargs -L1 xlint
