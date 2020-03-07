@@ -1,37 +1,9 @@
 #!/bin/sh
 
-PKGS=$(cat <<-__EOF__
-	bluez
-	dracut
-	efitools
-	fcitx-unikey
-	firefox-esr
-	git
-	libtimezonemap
-	nspr
-	nss
-	python3-Sphinx
-	python3-authres
-	python3-elementpath
-	python3-fido2
-	python3-scard
-	python3-sphinxcontrib-applehelp
-	python3-sphinxcontrib-devhelp
-	python3-sphinxcontrib-htmlhelp
-	python3-sphinxcontrib-jsmath
-	python3-sphinxcontrib-qthelp
-	python3-sphinxcontrib-serializinghtml
-	python3-usb
-	python3-xmlschema
-	sbsigntool
-	yubikey-manager
-	__EOF__
-)
+cd "$(xdistdir)" || exit 1
+[ -f packages ]  || exit 1
 
-CHROOT_PKGS=":$(tr '\n' ':' <<-__EOF__
-	git
-	__EOF__
-)"
+PKGS=$(cat packages)
 
 update_pkg() {
 	c_flags=$1
@@ -44,10 +16,9 @@ update_pkg() {
 	xbump "$pkg"
 }
 
-cd "$(xdistdir)" || exit
-
 for pkg in $PKGS; do
 	c_flags=""
+	echo "Checking for $pkg..."
 	version=$(./xbps-src update-check "$pkg" |
 		sed "s/.*-> $pkg-//" |
 		sort -V | tail -1)
@@ -59,8 +30,8 @@ for pkg in $PKGS; do
 			c_flags="-c"
 		fi
 		update_pkg "$c_flags" "$pkg" "$version"
-		case "$CHROOT_PKGS" in
-		*:$pkg:*) update_pkg "$c_flags" "chroot-$pkg" "$version" ;;
-		esac
+		if [ -f "srcpkgs/chroot-$pkg/template" ]; then
+			update_pkg "$c_flags" "chroot-$pkg" "$version"
+		fi
 	fi
 done
