@@ -6,9 +6,13 @@ cd "$(xdistdir)" || exit 1
 PKGS=$(cat packages)
 
 update_pkg() {
-	c_flags=$1
-	pkg=$2
-	version=$3
+	c_flags=""
+	if [ "x$1" = "x-c" ]; then
+		c_flags="-c"
+		shift
+	fi
+	pkg=$1
+	version=$2
 	sed -i -e "/^version/s/=.*/=$version/" \
 		-e "/^revision=/s/=.*/=1/" \
 		"srcpkgs/$pkg/template"
@@ -31,7 +35,7 @@ for pkg in $PKGS; do
 		fi
 		update_pkg "$c_flags" "$pkg" "$version"
 		if [ -f "srcpkgs/chroot-$pkg/template" ]; then
-			update_pkg "$c_flags" "chroot-$pkg" "$version"
+			update_pkg $c_flags "chroot-$pkg" "$version"
 		fi
 	fi
 done
