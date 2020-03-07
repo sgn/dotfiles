@@ -35,8 +35,8 @@ pct=$(( total_capacity / num_bat ))
 
 dunst_pid=$(ps -C dunst -o pid=)
 [ $? -ne 0 ] && exit 0
-dunst_pid=${dunst_pid% *}
-eval "$(grep -z '^DBUS_SESSION_BUS_ADDRESS=' /proc/$dunst_pid/environ)"
+eval "$(printf "/proc/%d/environ\n" $dunst_pid |
+	xargs grep -hz '^DBUS_SESSION_BUS_ADDRESS=')"
 export DBUS_SESSION_BUS_ADDRESS
 
 if test "$pct" -lt 15 ; then
