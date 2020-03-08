@@ -1,5 +1,19 @@
 #compdef xbps-src-all
 
+local archs
+
+archs=( \
+	aarch64-musl aarch64 \
+	armv6hf-musl armv6hf \
+	armv7hf-musl armv7hf \
+	i686-musl i686 \
+	mips mipsel \
+	ppc-musl ppc \
+	ppc64le-musl ppc64le \
+	ppc64-musl ppc64 \
+	x86_64-musl \
+)
+
 _arguments -s : \
 	'-a[Cross compile packages]:architecture:($archs)' \
 	'-C[Do not remove build directory/autodeps/destdir]' \
