@@ -16,4 +16,4 @@ ${EDITOR:-vi} "$tmp"
 
 PKGS=$(grep -v '^#' "$tmp")
 rm -f "$tmp"
-xbulk "$@" $PKGS
+exec xbulk "$@" $PKGS
