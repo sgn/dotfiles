@@ -112,6 +112,7 @@ highlight
 htop
 hunspell
 hyphen
+i3lock
 iana-etc
 imlib2
 intel-ucode
@@ -239,7 +240,6 @@ shaderc
 shadow
 shellcheck
 sl
-slock
 slstatus
 smartmontools
 snooze
