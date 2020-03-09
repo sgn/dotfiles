@@ -1,12 +1,12 @@
 #!/bin/sh
 
 sv down ~/.local/service/battery
+sv down ~/.local/service/i3lock
 
 ps -u$USER -o pid=,comm= | \
 	awk '
-		$2~"^(dbus|gvfsd|dconf|gsetting|udisk)"{print $1}
+		$2~"^(gvfsd|dconf|gsetting|udisk)"{print $1}
 		$2=="slstatus"||
-		$2=="xss-lock"||
 		$2=="dunst"||
 		$2=="xcape"{print $1}' | \
 	xargs kill
