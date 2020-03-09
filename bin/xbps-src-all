@@ -3,8 +3,8 @@
 cd $(xdistdir)
 tmp=$(mktemp)
 (
-git diff --no-renames --name-status upstream/master.. 'srcpkgs/*/template' |
-	awk '!/^D/{print $2}' |
+git diff --no-renames --name-only --diff-filter=AM \
+	upstream/master.. -- 'srcpkgs/*/template' |
 	cut -d/ -f2
 cat <<EOF
 # delete package you don't want to check
