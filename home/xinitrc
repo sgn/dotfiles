@@ -17,4 +17,9 @@ if test $# -eq 1 && command -v $1 >/dev/null 2>&1 ; then
 	exec $STARTUP "$@"
 fi
 
+## lock is the screensaver
+command -v sv >/dev/null 2>&1 &&
+	command -v xss-lock >/dev/null 2>&1 &&
+	sv up ~/.local/service/i3lock
+
 exec $STARTUP dwm

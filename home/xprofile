@@ -49,12 +49,6 @@ nitrogen --restore
 
 xdotool mousemove 0 10000 || true
 
-## lock is the screensaver
-if command -v xss-lock >/dev/null 2>&1 &&
-	command -v i3lock >/dev/null 2>&1; then
-	xss-lock -- i3lock -n -i ~/Pictures/lock.png -c 1d2021 &
-fi
-
 # command -v unclutter >/dev/null 2>&1 && unclutter &
 
 if command -v dunst >/dev/null 2>&1; then
