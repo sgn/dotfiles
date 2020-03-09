@@ -65,7 +65,5 @@ if command -v start-pulseaudio-x11 >/dev/null 2>&1; then
 	start-pulseaudio-x11
 fi
 
-slstatus &
-
 ## Hook, should be the last one to be sourced
 . "${HOME}/.config/local.xprofile"
