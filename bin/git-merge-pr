@@ -1,0 +1,51 @@
+#!/bin/sh
+
+USAGE='[-u <repository>] <pull_id>...'
+LONG_USAGE="-u <repository>
+	pull from repository.
+	Default to upstream
+pull_id
+	Pull Request's ID
+"
+
+. git-sh-setup
+
+REPOSITORY=upstream
+
+while test "$#" -ne 0
+do
+	OPTION="$1"
+	case "$OPTION" in
+	--) shift; break ;;
+	-*) ;;
+	*) break ;;
+	esac
+
+	# Below switches want 1 argument
+	[ "$#" -ne 1 ] || usage
+	shift
+	OPTARG="$1"
+	shift
+	case "$OPTION" in
+	-u) REPOSITORY="$OPTARG" ;;
+	esac
+done
+
+build_args() {
+	printf "%d\n" "$@" |
+		sed 's|.*|refs/pull/&/head:pull/&|'
+}
+
+build_msg() {
+	echo "Merge PR #$1"
+	echo ""
+	git shortlog "..$2"
+}
+
+build_args "$@" | xargs git fetch -- "$REPOSITORY"
+
+for pull_id; do
+	pull_head="pull/$pull_id"
+	build_msg "$pull_id" "$pull_head" |
+	git merge --no-edit --no-ff -F /dev/stdin "$pull_head"
+done
