@@ -33,7 +33,7 @@ for pkg in $PKGS; do
 			grep -q "@"; then
 			c_flags="-c"
 		fi
-		update_pkg "$c_flags" "$pkg" "$version"
+		update_pkg $c_flags "$pkg" "$version"
 		if [ -f "srcpkgs/chroot-$pkg/template" ]; then
 			update_pkg $c_flags "chroot-$pkg" "$version"
 		fi
