@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if test "x$1" = "x-c"; then
+	QEMU_CONSOLE="-nographic -serial mon:stdio"
+	shift
+fi
+
+exec qemu-system-x86_64 -boot order=d \
+	-drive file=/second/image/arch.cow,format=qcow2 \
+	-enable-kvm -m 3G \
+	$QEMU_CONSOLE \
+	"$@"

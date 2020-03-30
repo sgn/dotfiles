@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+qemu-system-x86_64 -boot order=d \
+	-drive file=/second/image/freebsd.cow,format=qcow2 \
+	-enable-kvm -m 3G \
+	-nographic \
+	"$@"
