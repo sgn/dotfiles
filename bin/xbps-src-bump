@@ -1,5 +1,13 @@
 #!/bin/sh
 
+while test $# -ne 0; do
+	case "$1" in
+	-x) set -x ;;
+	-n|--dry-run) dryrun=yes ;;
+	esac
+	shift
+done
+
 cd "$(xdistdir)" || exit 1
 [ -f packages ]  || exit 1
 
@@ -23,6 +31,10 @@ update_pkg() {
 for pkg in $PKGS; do
 	c_flags=""
 	echo "Checking for $pkg..."
+	if ${dryrun+:} false; then
+		./xbps-src update-check "$pkg"
+		continue
+	fi
 	version=$(./xbps-src update-check "$pkg" |
 		sed "s/.*-> $pkg-//" |
 		sort -V | tail -1)
