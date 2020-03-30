@@ -1,0 +1,4 @@
+#!/bin/sh
+
+find . -name '*.orig' \
+	-exec sh -c 'diff -u "$1" "${1%.orig}"' diff {} \;
