@@ -1,0 +1,9 @@
+#!/bin/sh
+
+cd $(xdistdir)
+PKGS=$(
+git diff --no-renames --name-only --diff-filter=AM HEAD^ -- 'srcpkgs/*/template' |
+	cut -d/ -f2
+)
+[ -n "$PKGS" ] || exit 0
+exec xbulk "$@" $PKGS
