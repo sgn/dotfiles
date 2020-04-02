@@ -39,6 +39,7 @@ for pkg in $PKGS; do
 		sed "s/.*-> $pkg-//" |
 		sort -V | tail -1)
 	if [ -n "$version" ]; then
+		echo "$pkg" >&3
 		if grep -q "^checksum=['\"]?@" "srcpkgs/$pkg/template"; then
 			c_flags="-c"
 		elif grep -A 1 "^checksum=['\"]?$" "srcpkgs/$pkg/template" |
@@ -50,4 +51,4 @@ for pkg in $PKGS; do
 			update_pkg $c_flags "chroot-$pkg" "$version"
 		fi
 	fi
-done
+done 3>&1 1>&2
