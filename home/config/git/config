@@ -15,7 +15,7 @@
 	dcwwd = diwwd --cached
 	dcc = dc --check
 	ci = commit
-	cia = commit --amend --no-edit
+	cia = ci --amend --no-edit
 	co = checkout
 	ll = ls-files
 	llm = ls-files -m
@@ -64,3 +64,5 @@
 [rebase]
 	autoSquash = true
 	autoStash = true
+[includeIf "gitdir:~/src/git/"]
+	path = ~/.config/git/git.conf
