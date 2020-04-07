@@ -64,5 +64,7 @@
 [rebase]
 	autoSquash = true
 	autoStash = true
+[add "interactive"]
+	usebuiltin = true
 [includeIf "gitdir:~/src/git/"]
 	path = ~/.config/git/git.conf
