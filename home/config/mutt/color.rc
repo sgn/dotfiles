@@ -67,7 +67,7 @@ color body  color04  color00  '(^| )_[a-zA-Z0-9]+([-_]+[a-zA-Z0-9]+)*_([ ,.!?;]|
 # /Italic/ span (Sometimes gets directory names)
 color body  color05  color00  '(^| )/[a-zA-Z0-9]+([-_ ]+[a-zA-Z0-9]+)*/([ ,.!?;]|$)'
 # URLs
-color body  color04 color00 '[a-z][a-z0-9+-]*://[@;.,/%~_:?&=\#a-zA-Z0-9-]+'
+color body  color04 color00 '[a-z][a-z0-9+-]*://[@;.,/%~_:?&=\#a-zA-Z0-9+-]+'
 # email
 color body  color04 color00 '(\(.*\))?(([-a-zA-Z0-9!#$%&'"'"'`*+/=.?^_{|}~]|\\ |\\@)+|"([^"]|\\")*")(\(.*\))?@[-.a-zA-Z0-9]+'
 
