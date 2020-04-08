@@ -66,5 +66,8 @@
 	autoStash = true
 [add "interactive"]
 	usebuiltin = true
+[trailer "cab"]
+	key = Co-authored-by
+	command = echo \"$(git config user.name) <$(git config user.email)>\"
 [includeIf "gitdir:~/src/git/"]
 	path = ~/.config/git/git.conf
