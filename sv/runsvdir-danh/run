@@ -6,11 +6,11 @@ exec 2>&1
 
 : ${ZUSER:=danh}
 
-[ $? -eq 0 ] || exit
-
-ZHOME=$(eval echo ~$ZUSER)
-
 install -d -m 700 -o $ZUSER -g $ZUSER /run/x-user/$ZUSER
 install -d -m 700 -o $ZUSER -g $ZUSER /run/x-user/$ZUSER/runit
 
-exec chpst -u$ZUSER:$ZUSER runsvdir "$ZHOME/.local/service"
+export HOME=$(eval echo ~$ZUSER)
+[ $? -eq 0 ] || exit
+groups=$(id -Gn $ZUSER | tr ' ' ':')
+
+exec chpst -u"$ZUSER:$groups" sh -l -c 'exec runsvdir ~/.local/service'
