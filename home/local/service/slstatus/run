@@ -1,0 +1,10 @@
+#!/bin/sh
+
+[ -f ./conf ] && . ./conf
+
+: ${DISPLAY:=:0}
+export DISPLAY
+
+PATH="$HOME/.local/bin:/usr/local/bin:$PATH"
+
+exec slstatus
