@@ -1,2 +1,5 @@
+URxvt.perl-ext-common: default,matcher
 URxvt*font: xft:Deja Vu Sans Mono:size=12:antialias=true:autohint=true
 URxvt*scrollBar: false
+URxvt.url-launcher: topen
+URxvt.matcher.button: 1
