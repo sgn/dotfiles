@@ -1,7 +1,3 @@
 #!/bin/sh
 
-cd ../../../
-: ${HOME:=$PWD}
-export HOME
-
 exec snooze -H'*' -M/2 mbsync -a

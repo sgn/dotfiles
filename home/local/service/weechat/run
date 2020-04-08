@@ -1,8 +1,5 @@
 #!/bin/sh
 
-cd ../../../
-: ${HOME:=$PWD}
-export HOME
-
+cd ~
 tmux new -d -s weechat weechat
 exec pause

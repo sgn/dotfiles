@@ -5,8 +5,4 @@
 : ${DISPLAY:=:0}
 export DISPLAY
 
-cd ../../../
-: ${HOME:=$PWD}
-export HOME
-
 exec xss-lock -- i3lock -n -i ~/Pictures/lock.png -c 1d2021
