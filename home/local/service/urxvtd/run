@@ -1,0 +1,9 @@
+#!/bin/sh
+
+cd ../../../
+: ${HOME:=$PWD}
+export HOME
+
+PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH"
+
+exec urxvtd
