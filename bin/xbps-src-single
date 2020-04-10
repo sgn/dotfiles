@@ -1,9 +1,13 @@
 #!/bin/sh
 
 cd $(xdistdir)
-PKGS=$(
-git diff --no-renames --name-only --diff-filter=AM HEAD^ -- 'srcpkgs/*/template' |
+
+list_changed_pkgs() {
+	git diff-tree -r --no-renames --name-only --diff-filter=AM \
+		'HEAD^' HEAD -- 'srcpkgs/*/template' |
 	cut -d/ -f2
-)
+}
+
+PKGS=$(list_changed_pkgs)
 [ -n "$PKGS" ] || exit 0
 exec xbulk "$@" $PKGS
