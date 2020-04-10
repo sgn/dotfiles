@@ -1,19 +1,21 @@
 #!/bin/sh
 
 cd $(xdistdir)
-tmp=$(mktemp)
-(
-git diff --no-renames --name-only --diff-filter=AM \
-	upstream/master.. -- 'srcpkgs/*/template' |
+
+mk_todo() {
+	git diff-tree -r --no-renames --name-only --diff-filter=AM \
+		upstream/master HEAD -- 'srcpkgs/*/template' |
 	cut -d/ -f2
-cat <<EOF
-# delete package you don't want to check
-# line begin with # is ignored
-EOF
-) >"$tmp"
+	cat <<-'EOF'
+	# delete package you don't want to check
+	# line begins with # is ignored
+	EOF
+}
 
+tmp=$(mktemp)
+mk_todo >"$tmp"
 ${EDITOR:-vi} "$tmp"
-
 PKGS=$(grep -v '^#' "$tmp")
 rm -f "$tmp"
+[ -n "$PKGS" ] || exit 0
 exec xbulk "$@" $PKGS
