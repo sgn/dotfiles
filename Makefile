@@ -1,12 +1,13 @@
 all::
 
-MODULES=$(shell awk '/path =/{print $$NF}' .gitmodules)
-MODULE_FILE=$(MODULES:=/README.md)
-MODULE_TAR=$(MODULES:=.tar)
-PREFIX=dotfiles
-ROOT = $(CURDIR)
-SUBDIRS :=
+MODULES     = $(shell awk '/path =/{print $$NF}' .gitmodules)
+MODULE_FILE = $(MODULES:=/README.md)
+MODULE_TAR  = $(MODULES:=.tar)
+PREFIX      = dotfiles
+ROOT        = $(CURDIR)
+DESTDIR     ?= /
 
+SUBDIRS :=
 SUBDIRS += bash
 SUBDIRS += bin
 SUBDIRS += home
@@ -57,6 +58,9 @@ $(PREFIX).tar: $(MODULE_TAR)
 
 %.tar: %/
 	@git -C $< archive --format=tar --prefix=$(PREFIX)/$< -o $(CURDIR)/$@ HEAD
+
+system:
+	@./install-etc.sh
 
 .PHONY: clean
 clean:
