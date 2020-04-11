@@ -37,15 +37,6 @@ $(MODULE_FILE) update-submodule:
 	@echo "Initialise/Update all submodules"
 	@git submodule update --init
 
-%: %.in
-	@echo "GEN $@"
-	@sed -e 's!__BIN__!$(CURDIR)/bin!g' $< > $@
-
-.PHONY: cron
-cron: cron.sed
-	@echo installing cron job
-	@crontab -l 2>/dev/null | sed -f cron.sed | crontab -
-
 .PHONY: dist
 dist: $(PREFIX).tar.gz
 

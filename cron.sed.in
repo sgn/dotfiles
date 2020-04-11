@@ -1,8 +1,0 @@
-/ssoma/d
-/syncmail.sh/d
-/mbsync/d
-/battery.sh/d
-1a\
-*/10 * * * * ssoma sync --cron\
-*/2  * * * * mbsync -aq \
-*/3  * * * * __BIN__/battery.sh
