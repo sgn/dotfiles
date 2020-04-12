@@ -1,4 +1,4 @@
-#compdef xbps-src-all
+#compdef xbps-src-all xbps-src-single
 
 local archs
 
@@ -32,5 +32,7 @@ _arguments -s : \
 	'-o[Set package build options]:options: ' \
 	'-r[Use alternative local repository]:repo:_files -/' \
 	'-t[Create a temporary masterdir]' \
+	'-k[keep going when a build fails]' \
+	'-n[dry-run]'
 
 return 0
