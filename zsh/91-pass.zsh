@@ -25,6 +25,12 @@ pass-login () {
 	fi
 }
 
+_pass-login () {
+	CURRENT=3
+	words=(pass-login show ${words[1]})
+	_pass
+}
+
 compdef _pass opass
-compdef _pass pass-login
+compdef _pass-login pass-login
 zstyle ':completion::complete:opass::' prefix "$HOME/.cache/opass"
