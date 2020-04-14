@@ -13,6 +13,7 @@ LONG_USAGE='
 OPTIONS_SPEC=
 . "$(git --exec-path)/git-sh-setup"
 
+dryrun=
 while case "$#" in 0) break ;; esac
 do
 	case "$1" in

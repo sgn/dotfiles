@@ -3,6 +3,8 @@
 : "${BINPKGS:=${HOME}/src/void-packages/hostdir/binpkgs}"
 : "${PRIVKEY:=${HOME}/src/private.pem}"
 
+force=
+debug=
 while test $# -ne 0; do
 	case "$1" in
 		-f|--force) force=yes ;;

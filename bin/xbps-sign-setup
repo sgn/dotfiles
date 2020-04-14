@@ -4,6 +4,8 @@
 : "${PRIVKEY:=${HOME}/src/private.pem}"
 : "${SIGNER:=Danh Doan (Void Packaging) <congdanhqx@gmail.com>}"
 
+force=
+debug=
 while test $# -ne 0; do
 	case "$1" in
 		-f|--force) force=yes ;;
