@@ -21,7 +21,6 @@ prompt_sgn_precmd () {
 prompt_sgn_setup () {
 	local newline=$'\n'
 	autoload add-zsh-hook
-	add-zsh-hook precmd prompt_sgn_precmd
 	# secondary prompt,
 	# printed when the shell needs more information to complete a command.
 	PS2='\`%_> '
@@ -36,13 +35,16 @@ prompt_sgn_setup () {
 	PS1="${PS1}%B%F{blue}%n%f%b@%m "
 	# cwd, truncate to 40 chars
 	PS1="${PS1}%B%40<..<%~%<<%b "
-	PS1="${PS1}\$vcs_info_msg_0_"
+	if ${ZSH_PROMPT_NO_PRECMD+false} :; then
+		add-zsh-hook precmd prompt_sgn_precmd
+		PS1="${PS1}\$vcs_info_msg_0_"
+		RPS1="\$__battery_status"
+	fi
 	# source /usr/share/git/git-prompt.sh
 	# PS1="${PS1}\$(__git_ps1 '(%s)')"
 	# SHLVL
 	PS1="${PS1}%F{red}%(3L.+ .)%f"
 	PS1="${PS1}${newline}%# "
-	RPS1="\$__battery_status"
 }
 
 prompt_sgn_setup
