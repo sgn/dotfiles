@@ -43,7 +43,9 @@ bind index,pager                [[  previous-unread
 bind index,pager                A   create-alias
 bind index,pager                <delete> purge-message
 bind generic                    <f12> what-key
+bind index,pager                s copy-message
+bind index,pager                C save-message
+bind index                      <Space> tag-entry
 
 macro index,pager               a   "<decode-save>=archives<enter>"
 macro index,pager               x   "<save-message>=spam<enter>"
-macro index,pager               s   "<copy-message>~/patches<enter>"
