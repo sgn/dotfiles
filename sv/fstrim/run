@@ -1,4 +1,4 @@
 #!/bin/sh
 
 exec 2>&1
-exec snooze -w0 -s 6d -t ./timefile sh -c 'fstrim -av && touch timefile'
+exec snooze -w0 -s 6d -t ./timefile sh -c 'fstrim -Av && touch timefile'
