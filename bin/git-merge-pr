@@ -47,7 +47,7 @@ build_args "$@" | xargs git fetch -- "$REPOSITORY"
 for pull_id; do
 	pull_head="pull/$pull_id"
 
-	if test "$(git config xuser.merge-pr)" = am; then
+	if test "$(git config merge-pr.backend)" = am; then
 		GIT_EDITOR="git interpret-trailers --in-place --trailer 'Closes: #$pull_id'" \
 		git cherry-pick --edit HEAD.."$pull_head"
 	else
