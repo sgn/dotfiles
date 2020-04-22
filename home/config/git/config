@@ -68,3 +68,5 @@
 	usebuiltin = true
 [includeIf "gitdir:~/src/git/"]
 	path = ~/.config/git/git.conf
+[includeIf "gitdir:~/src/void-packages/"]
+	path = ~/.config/git/void-packages.conf
