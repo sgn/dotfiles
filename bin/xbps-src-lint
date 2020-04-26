@@ -1,6 +1,6 @@
 #!/bin/sh
 
 cd $(xdistdir)
-git diff --no-renames --name-only --diff-filter=AM \
-	upstream/master.. -- 'srcpkgs/*/template' |
+git diff-tree -r --no-renames --name-only --diff-filter=AM \
+	upstream/master HEAD -- 'srcpkgs/*/template' |
 	xargs -L1 xlint
