@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ ! -f ~/.cache/public-inbox/git/description ]; then
+	touch down
+	exit 1
+fi
+exec public-inbox-nntpd -l 127.0.0.1:6119
