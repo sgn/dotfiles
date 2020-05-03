@@ -15,13 +15,13 @@ ZSH_FILES += 40-autoload-functions.zsh
 ZSH_FILES += 70-key-binding.zsh
 ZSH_FILES += 70-alias-grml.zsh
 ZSH_FILES += 70-zle-grml.zsh
-ZSH_FILES += 80-alias-core-util.zsh
-ZSH_FILES += 80-alias-misc.zsh
+ZSH_FILES += 80-alias-core-util.sh
+ZSH_FILES += 80-alias-misc.sh
 ZSH_FILES += 80-functions.zsh
 ZSH_FILES += 80-functions-grml.zsh
 ZSH_FILES += 90-completion.zsh
 ZSH_FILES += 91-pass.zsh
-ZSH_FILES += 91-prefer-tui-browser.zsh
+ZSH_FILES += 91-prefer-tui-browser.sh
 ZSH_FILES += 91-term-title.zsh
 
 ifeq ($(wildcard 92-prompt-battery.$(uname_S).zsh),92-prompt-battery.$(uname_S).zsh)
@@ -29,10 +29,10 @@ ZSH_FILES += 92-prompt-battery.$(uname_S).zsh
 endif
 
 ZSH_FILES += 92-theme.zsh
-ZSH_FILES += 93-xlibc.zsh
+ZSH_FILES += 93-xlibc.sh
 GEN_FILES += 98-bundle.zsh
 ZSH_FILES += 98-bundle.zsh
-ZSH_FILES += 99-cowsay.zsh
+ZSH_FILES += 99-cowsay.sh
 
 ifeq ($(wildcard local.zsh),local.zsh)
 ZSH_FILES += local.zsh
