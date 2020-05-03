@@ -7,7 +7,7 @@ Darwin|FreeBSD)
 	ls_options="-G"
 	grep_options="--color=auto"
 	;;
-Linux)
+Linux|MINGW*)
 	ls_options="--group-directories-first --color=auto -v"
 	grep_options="--color=auto"
 	;;
