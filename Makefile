@@ -11,7 +11,7 @@ SUBDIRS :=
 SUBDIRS += bash
 SUBDIRS += bin
 SUBDIRS += home
-SUBDIRS += zsh
+SUBDIRS += sh
 
 export ROOT
 
@@ -57,7 +57,5 @@ system:
 clean:
 	$(RM) $(PREFIX).tar.gz $(PREFIX).tar
 	$(RM) $(MODULE_TAR)
-	@echo "UNLINK old symlink"
-	@find $(HOME) -path '$(HOME)/.*' -type l -delete
 	@$(MAKE) -C bash clean
-	@$(MAKE) -C zsh clean
+	@$(MAKE) -C sh clean
