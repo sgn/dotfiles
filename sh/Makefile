@@ -2,10 +2,20 @@ all::
 
 ROOT ?= $(shell cd $(CURDIR)/.. && pwd)
 uname_S := $(shell uname -s)
+BASH_FILES :=
 ZSH_FILES :=
 GEN_FILES :=
 
+BASH_FILES += 00-setup.sh
+BASH_FILES += 80-alias-core-util.sh
+BASH_FILES += 80-alias-misc.sh
+BASH_FILES += 90-prompt.bash
+BASH_FILES += 91-prefer-tui-browser.sh
+BASH_FILES += 93-xlibc.sh
+BASH_FILES += 99-cowsay.sh
+
 ZSH_FILES += 00-prof.zsh
+ZSH_FILES += 00-setup.sh
 ZSH_FILES += 01-setup.zsh
 ZSH_FILES += 10-setopt.zsh
 ZSH_FILES += 20-variables.zsh
@@ -34,15 +44,24 @@ GEN_FILES += 98-bundle.zsh
 ZSH_FILES += 98-bundle.zsh
 ZSH_FILES += 99-cowsay.sh
 
+ifeq ($(wildcard local.bash),local.bash)
+BASH_FILES += local.bash
+endif
+
 ifeq ($(wildcard local.zsh),local.zsh)
 ZSH_FILES += local.zsh
 endif
 
-all:: $(HOME)/.zshrc.zwc
+all:: $(HOME)/.bashrc $(HOME)/.zshrc.zwc
 
 clean:
+	$(RM) $(HOME)/.bashrc
 	$(RM) $(HOME)/.zshrc $(HOME)/.zshrc.zwc
 	$(RM) $(GEN_FILES)
+
+$(HOME)/.bashrc: $(BASH_FILES)
+	@echo "\tGEN $@"
+	@cat $(BASH_FILES) >$@
 
 %.zwc: %
 	@echo "\tCOMPILE $<"

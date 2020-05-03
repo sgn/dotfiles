@@ -8,7 +8,6 @@ ROOT        = $(CURDIR)
 DESTDIR     ?= /
 
 SUBDIRS :=
-SUBDIRS += bash
 SUBDIRS += bin
 SUBDIRS += home
 SUBDIRS += sh
@@ -57,5 +56,4 @@ system:
 clean:
 	$(RM) $(PREFIX).tar.gz $(PREFIX).tar
 	$(RM) $(MODULE_TAR)
-	@$(MAKE) -C bash clean
 	@$(MAKE) -C sh clean
