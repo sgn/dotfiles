@@ -1,5 +1,5 @@
 # vim: ft=muttrc
-set realname='Danh Doan'
+set realname='Đoàn Trần Công Danh'
 alternates congdanh.* sgn\.danh.*
 # set mbox_type=maildir
 set beep_new=yes
