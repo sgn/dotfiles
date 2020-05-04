@@ -1,5 +1,8 @@
 #!/bin/sh
 
+. "${0%/*}/common.sh"
+cd "${0%/*}/.."
+
 mkdir -p "$DESTDIR/etc/zoneshot.d/start"
 mkdir -p "$DESTDIR/etc/zoneshot.d/stop"
 

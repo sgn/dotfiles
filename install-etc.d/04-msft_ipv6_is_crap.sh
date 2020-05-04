@@ -1,9 +1,6 @@
 #!/bin/sh
 
-if ! test -w "$DESTDIR/etc/gai.conf" ; then
-	echo "We need write permission to '$DESTDIR/etc/gai.conf'"
-	return
-fi
+mkdir -p "$DESTDIR/etc" || die "Can't create '$DESTDIR/etc'"
 
 prefix=$(nslookup outlook.office365.com \
 		 | sed -nE 's/^Address:[[:space:]]+(([[:alnum:]]+:){2}).+/\1/p' \
@@ -14,6 +11,5 @@ if test -z "$prefix" ; then
 fi
 
 TEXT=$(printf 'precedence %s:/96 100\n' "$prefix")
-if ! grep -qF "${TEXT}" "$DESTDIR/etc/gai.conf" ; then
-	echo "$TEXT" >> "$DESTDIR/etc/gai.conf"
-fi
+grep -qF "${TEXT}" "$DESTDIR/etc/gai.conf" 2>/dev/null ||
+echo "$TEXT" >> "$DESTDIR/etc/gai.conf"

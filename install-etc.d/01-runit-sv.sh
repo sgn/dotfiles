@@ -2,6 +2,9 @@
 
 [ -d "$DESTDIR/etc/sv" ] || return
 
+. "${0%/*}/common.sh"
+cd "${0%/*}/.."
+
 for dir in sv/*; do
 	name=$(basename "$dir")
 	mkdir -p "$DESTDIR/etc/$dir"

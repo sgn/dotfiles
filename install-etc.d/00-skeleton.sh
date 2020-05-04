@@ -1,8 +1,8 @@
 #!/bin/sh
 
-find etc -type f -o -type l | while read -r name; do
-	xdir=$DESTDIR/$(dirname "$name")
-	if [ -d "$xdir" ] && ! cmp -s "$name" "$DESTDIR/$name"; then
-		cp "$name" "$DESTDIR/$name"
-	fi
+. "${0%/*}/common.sh"
+cd "${0%/*}/../etc"
+
+find . -type f -o -type l | while IFS= read -r name; do
+	xcpdiff "$name"
 done

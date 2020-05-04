@@ -50,7 +50,7 @@ $(PREFIX).tar: $(MODULE_TAR)
 	@git -C $< archive --format=tar --prefix=$(PREFIX)/$< -o $(CURDIR)/$@ HEAD
 
 system:
-	@./install-etc.sh
+	@./install-etc.d/all.sh
 
 .PHONY: clean
 clean:
