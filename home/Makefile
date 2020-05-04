@@ -30,7 +30,7 @@ xlink: $(OUT_FILES) $(OUT_SYMLINKS)
 localfiles: $(LOCAL_FILES)
 
 $(OUT_FILES): $(HOME)/.%: %
-	@../xinstall.sh $< $@
+	@../xinstall.sh $<
 
 # This is a special rule for supervise link to /run
 # It doesn't work for top-level dotfiles
