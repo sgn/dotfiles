@@ -1,0 +1,16 @@
+#!/bin/sh
+
+: "${BINPKGS:=${HOME}/src/void-packages/hostdir/binpkgs}"
+export CDPATH=
+
+cd "${BINPKGS}"
+
+find . \( -type d -path './*' -prune \) -o \
+	-name '*.noarch.xbps' -prune -o \
+	-name '*.xbps' -print |
+	sed -e 's/^.*[.]\([^.]*.\)[.]xbps$/\1/p' |
+	sort -u |
+	while read -r _arch; do
+		env XBPS_TARGET_ARCH="$_arch" xbps-rindex \
+			-a --force *.noarch.xbps *."$_arch".xbps
+	done
