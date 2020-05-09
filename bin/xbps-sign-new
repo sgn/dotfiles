@@ -3,6 +3,9 @@
 : "${BINPKGS:=${HOME}/src/void-packages/hostdir/binpkgs}"
 : "${PRIVKEY:=${HOME}/src/private.pem}"
 
+export CDPATH=
+_privkey=$(readlink -f "$PRIVKEY")
+
 debug=
 while test $# -ne 0; do
 	case "$1" in
@@ -11,11 +14,13 @@ while test $# -ne 0; do
 	shift
 done
 
-find "$BINPKGS" -maxdepth 1 \
-	-name '*.xbps' -print0 -o\
-	-name '*.xbps.sig' -print0 |
-	sed -z 's/[.]sig$//' |
-	sort -z |
-	uniq -z -u |
-	xargs --null --no-run-if-empty \
-		xbps-rindex ${debug:+-d} --privkey "$PRIVKEY" --sign-pkg
+cd "$BINPKGS"
+
+# Don't use globs, there's a max length for argument
+find . \( -type d -path './*' -prune \) -o \
+	-name '*.xbps' -print -o \
+	-name '*.xbps.sig' -print |
+	sed 's,[.]/,,; s/[.]sig$//' |
+	sort |
+	uniq -u |
+	xargs xbps-rindex ${debug:+-d} --privkey "$_privkey" --sign-pkg
