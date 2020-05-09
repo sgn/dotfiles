@@ -4,6 +4,9 @@
 : "${PRIVKEY:=${HOME}/src/private.pem}"
 : "${SIGNER:=Danh Doan (Void Packaging) <congdanhqx@gmail.com>}"
 
+export CDPATH=
+_privkey=$(readlink -f "$PRIVKEY")
+
 force=
 debug=
 while test $# -ne 0; do
@@ -14,15 +17,20 @@ while test $# -ne 0; do
 	shift
 done
 
-find "$BINPKGS" -maxdepth 1 -name '*.xbps' -print0 |
-	sed -z -E -e '/noarch[.]xbps$/d' \
-		-e 's/^.*[.]([^.]+)[.]xbps$/\1/p' |
-	sort -z |
-	uniq -z |
-	xargs --null --no-run-if-empty -I '{}' \
-		env XBPS_TARGET_ARCH='{}' xbps-rindex \
+cd "${BINPKGS}"
+
+find . \( -type d -path './*' -prune \) -o \
+	-name '*.noarch.xbps' -prune -o \
+	-name '*.xbps' -print |
+	sed -e 's/^.*[.]\([^.]*.\)[.]xbps$/\1/p' |
+	sort -u |
+	# sort | uniq |
+	while read -r _arch; do
+		echo "Initializing siging repository for $_arch"
+		env XBPS_TARGET_ARCH="$_arch" xbps-rindex \
 			${force:+--force} \
 			${debug:+--debug} \
-			--privkey "$PRIVKEY" \
+			--privkey "$_privkey" \
 			--sign --signedby "$SIGNER" \
-			"$BINPKGS"
+			.
+	done
