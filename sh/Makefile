@@ -9,6 +9,7 @@ GEN_FILES :=
 BASH_FILES += 00-setup.sh
 BASH_FILES += 80-alias-core-util.sh
 BASH_FILES += 80-alias-misc.sh
+BASH_FILES += 80-functions.sh
 BASH_FILES += 90-prompt.bash
 BASH_FILES += 91-prefer-tui-browser.sh
 BASH_FILES += 93-xlibc.sh
@@ -27,6 +28,7 @@ ZSH_FILES += 70-alias-grml.zsh
 ZSH_FILES += 70-zle-grml.zsh
 ZSH_FILES += 80-alias-core-util.sh
 ZSH_FILES += 80-alias-misc.sh
+ZSH_FILES += 80-functions.sh
 ZSH_FILES += 80-functions.zsh
 ZSH_FILES += 80-functions-grml.zsh
 ZSH_FILES += 90-completion.zsh
@@ -43,6 +45,11 @@ ZSH_FILES += 93-xlibc.sh
 GEN_FILES += 98-bundle.zsh
 ZSH_FILES += 98-bundle.zsh
 ZSH_FILES += 99-cowsay.sh
+
+ifeq ($(wildcard local.sh),local.sh)
+BASH_FILES += local.sh
+ZSH_FILES  += local.sh
+endif
 
 ifeq ($(wildcard local.bash),local.bash)
 BASH_FILES += local.bash
