@@ -12,8 +12,6 @@ OUT_SYMLINKS = $(subst ./,$(HOME)/.,$(ALL_SYMLINKS))
 LOCAL_FILES=\
 	$(HOME)/.config/mutt/aliases \
 	$(HOME)/.config/mutt/local.rc \
-	$(HOME)/.config/local.profile \
-	$(HOME)/.config/local.xprofile \
 
 .PHONY: all all-real xlink localfiles var
 

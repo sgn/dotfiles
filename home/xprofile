@@ -75,4 +75,4 @@ if [ "${DESKTOP_SESSION:-dwm}" = dwm ]; then
 fi
 
 ## Hook, should be the last one to be sourced
-. "${HOME}/.config/local.xprofile"
+test -r ~/.config/local.xprofile && . ~/.config/local.xprofile

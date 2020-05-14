@@ -103,4 +103,4 @@ done
 unset socket
 
 ## Specific to local computer. Should be sourced last
-. "${HOME}/.config/local.profile"
+test -r ~/.config/local.profile && . ~/.config/local.profile
