@@ -67,19 +67,19 @@ clean:
 	$(RM) $(GEN_FILES)
 
 $(HOME)/.bashrc: $(BASH_FILES)
-	@echo "\tGEN $@"
+	@echo "	GEN $@"
 	@cat $(BASH_FILES) >$@
 
 %.zwc: %
-	@echo "\tCOMPILE $<"
+	@echo "	COMPILE $<"
 	@zsh -c 'zcompile $<'
 
 $(HOME)/.zshrc: $(ZSH_FILES)
-	@echo "\tGEN $@"
+	@echo "	GEN $@"
 	@cat $(ZSH_FILES) >$@
 
 %: %.in
-	@echo "\tGEN zsh/$@"
+	@echo "	GEN zsh/$@"
 	@sed -e 's:[$$]DOTFILES:$(ROOT):' \
 		-e 's:__CURDIR__:$(CURDIR):' \
 		$< >$@

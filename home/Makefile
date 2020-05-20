@@ -35,7 +35,7 @@ $(OUT_FILES): $(HOME)/.%: %
 # This is a special rule for supervise link to /run
 # It doesn't work for top-level dotfiles
 $(OUT_SYMLINKS):
-	@echo "\tINSTALL $(subst $(HOME)/,,$@)"
+	@echo "	INSTALL $(subst $(HOME)/,,$@)"
 	@$(MKDIR) $(dir $@)
 	@$(CP) $(subst $(HOME)/.,,$@) $(dir $@)
 

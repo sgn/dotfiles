@@ -16,9 +16,9 @@ var:
 	@echo $(OUT_FILES)
 
 $(OUTDIR):
-	@echo "\tMKDIR $@"
+	@echo "	MKDIR $@"
 	@$(MKDIR) $@
 
 $(OUTDIR)%: %
-	@echo "\tINSTALL $(XDIR)$<"
+	@echo "	INSTALL $(XDIR)$<"
 	@$(LN) $(CURDIR)/$< $@
