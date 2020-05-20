@@ -57,6 +57,7 @@ set matchpairs+=<:>
 " rendering
 set ttyfast
 set lazyredraw
+set listchars=tab:>-,eol:$,nbsp:@,extends:#
 
 " folding
 set foldenable
@@ -111,11 +112,9 @@ au! BufEnter *_EDITMSG call setpos('.', [0, 1, 1, 0])
 au! BufNewFile,BufRead template set filetype=bash
 au  BufNewFile,BufRead *.yml set et ts=2 sts=2 sw=2
 
-if version >= 700
-	map <F7> :set spell!<CR><Bar>:echo "Spell Check: " . strpart("OffOn", 3 * &spell, 3)<cr>
-	set spellfile=~/.vim/spellfile.add
-	set sps=best,10
-endif
+map <F7> :set spell!<CR><Bar>:echo "Spell Check: " . strpart("OffOn", 3 * &spell, 3)<cr>
+set spellfile=~/.vim/spellfile.add
+set sps=best,10
 
 set statusline=[%2.n]        " buffer number
 set statusline+=%#todo#%f%*  " filename, relative
