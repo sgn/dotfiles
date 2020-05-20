@@ -47,7 +47,7 @@ esac
 
 git_editor "$GIT_DIR/clean-ref-list"
 
-sed -e '/^#/d' -e 's/.*\t/delete /' "$GIT_DIR/clean-ref-list" |
+sed -e '/^#/d' -e 's/.*	/delete /' "$GIT_DIR/clean-ref-list" |
 	git update-ref --stdin
 
 rm -f "$GIT_DIR/clean-ref-list"
