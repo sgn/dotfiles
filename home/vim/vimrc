@@ -134,7 +134,7 @@ colorscheme mindark
 command HGroup let s = synID(line('.'), col('.'), 1) |
 	\ echo synIDattr(s, 'name') . ' -> ' . synIDattr(synIDtrans(s), 'name')
 
-command VKey if &keymap == '' | set keymap=vietnamese-telex_utf-8 |
+command VKey if &keymap == '' | set keymap=telex |
 	\ else | set keymap& | endif
 " toggle list
 nnoremap <F2> :set list!<cr>
