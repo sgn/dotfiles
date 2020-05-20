@@ -6,16 +6,16 @@
 [alias]
 	st = status --short
 	di = diff -M -p --stat
-	diw = di -w
-	diww = diw --word-diff=color
-	diwwd = diww --word-diff-regex=.
-	dc = di --cached
-	dcw = diw --cached
-	dcww = diww --cached
-	dcwwd = diwwd --cached
-	dcc = dc --check
+	diw = diff -M -p --stat -w
+	diww = diff -M -p --stat -w --word-diff=color
+	diwwd = diff -M -p --stat -w --word-diff=color --word-diff-regex=.
+	dc = diff -M -p --stat --cached
+	dcw = diff -M -p --stat -w --cached
+	dcww = diff -M -p --stat -w --word-diff=color --cached
+	dcwwd = diff -M -p --stat -w --word-diff=color --word-diff-regex=. --cached
+	dcc = diff -M -p --stat --cached --check
 	ci = commit
-	cia = ci --amend --no-edit
+	cia = commit --amend --no-edit
 	co = checkout
 	ll = ls-files
 	llm = ls-files -m
@@ -24,9 +24,9 @@
 	rs = restore
 	ss = show -s
 	s = show -M -p --stat
-	shw = s -w
-	shww = shw --word-diff=color
-	shwwd = shww --word-diff-regex=.
+	shw = show -M -p --stat -w
+	shww = show -M -p --stat -w --word-diff=color
+	shwwd = show -M -p --stat -w --word-diff=color --word-diff-regex=.
 	summary = show -s --date=short --pretty='format:%h, (%s, %ad)'
 	sw = switch
 	env = !env | grep ^GIT_
