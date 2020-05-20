@@ -34,7 +34,7 @@
 	enabled = true
 	autoupdate = true
 [pull]
-	rebase = true
+	rebase = false
 [push]
 	default = current
 [grep]
