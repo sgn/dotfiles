@@ -21,11 +21,11 @@ if [ "${TARGET##*/}" = run ] &&
 		_grandma=${_parent%/log}
 		_sv="${_grandma##*/}-log"
 	fi
-	echo "\tINSTALL ${_parent}/supervise"
+	echo "	INSTALL ${_parent}/supervise"
 	rm -rf "$_parent/supervise"
 	command ${LN} -s "/run/x-user/$USER/runit/supervise.$_sv" \
 		"$_parent/supervise"
 fi
 
-echo "\tINSTALL ${TARGET}"
+echo "	INSTALL ${TARGET}"
 command ${LN} "$SOURCE" "$TARGET"
