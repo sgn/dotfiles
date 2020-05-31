@@ -1,0 +1,13 @@
+#!/bin/sh
+
+_musl=
+if [ "$1" = musl ]
+then
+	_musl=-musl
+	shift
+fi
+xbps-src-single ${_musl:+-m musl} "$@" &&
+xbps-src-single ${_musl:+-m musl} -a "aarch64$_musl" "$@" &&
+xbps-src-single ${_musl:+-m musl} -a "armv7l$_musl" "$@" &&
+xbps-src-single ${_musl:+-m musl} -a "armv6l$_musl" "$@" &&
+true
