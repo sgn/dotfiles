@@ -1,3 +1,4 @@
 #!/bin/sh
 
-exec snooze -H'*' -M/10 ssoma sync
+ssoma sync
+exec sleep 600

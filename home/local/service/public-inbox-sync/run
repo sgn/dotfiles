@@ -5,7 +5,6 @@ if [ ! -d "${HOME}/.cache/public-inbox" ]; then
 	exit 1
 fi
 
-exec snooze -H'*' -M/10 sh -c "
-	git -C '$HOME/.cache/public-inbox/git/git/0.git' fetch
-	public-inbox-index '$HOME/.cache/public-inbox/git'
-"
+git -C ~/.cache/public-inbox/git/git/0.git fetch &&
+public-inbox-index ~/.cache/public-inbox/git
+exec sleep 600
