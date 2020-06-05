@@ -32,6 +32,7 @@ do
 done
 
 build_args() {
+	# printf '+refs/pull/%1$d/head:pull/%1$d' "$@" doesn't work with dash
 	printf "%d\n" "$@" |
 		sed 's|.*|+refs/pull/&/head:pull/&|'
 }
