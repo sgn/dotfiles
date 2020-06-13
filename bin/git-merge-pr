@@ -33,7 +33,7 @@ done
 
 build_args() {
 	printf "%d\n" "$@" |
-		sed 's|.*|refs/pull/&/head:pull/&|'
+		sed 's|.*|+refs/pull/&/head:pull/&|'
 }
 
 build_msg() {
