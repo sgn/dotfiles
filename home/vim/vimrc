@@ -131,8 +131,13 @@ set statusline+=[%c%V]       " cursor column
 " Color scheme
 colorscheme mindark
 
-command HGroup let s = synID(line('.'), col('.'), 1) |
-	\ echo synIDattr(s, 'name') . ' -> ' . synIDattr(synIDtrans(s), 'name')
+command! -nargs=* HGroup call HGroup(<f-args>)
+function! HGroup( ... )
+	let l = a:0 > 0 ? a:1 : line('.')
+	let c = a:0 > 1 ? a:2 : col('.')
+	let s = synID(l, c, 1)
+	echo synIDattr(s, 'name') . ' -> ' . synIDattr(synIDtrans(s), 'name')
+endfunction
 
 command VKey if &keymap == '' | set keymap=telex |
 	\ else | set keymap& | endif
@@ -140,3 +145,5 @@ command VKey if &keymap == '' | set keymap=telex |
 nnoremap <F2> :set list!<cr>
 " rotate tab size
 nnoremap <silent> <F3> :let &ts=(&ts*2 > 16 ? 2 : &ts*2)<cr>:echo "tabstop:" . &ts<cr>
+nnoremap <leader><Left> :bprevious<cr>
+nnoremap <leader><Right> :bnext<cr>
