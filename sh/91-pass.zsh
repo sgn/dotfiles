@@ -16,7 +16,7 @@ pass-login () {
 	done
 	login=$(pass show "$1" | sed -n '/^login: /s/login: //p')
 	if [[ "$clip" ]]; then
-		echo -n "$login" | clip
+		echo -n "$login" | xclip -selection "${PASSWORD_STORE_X_SELECTION:-clipboard}"
 		echo "Login copied into clipboard"
 	elif [[ "$qrcode" ]]; then
 		echo -n "$login" | qrencode -t utf8
