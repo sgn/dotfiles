@@ -33,6 +33,7 @@ export TZ
 XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
 export XDG_CONFIG_HOME
 
+add_to_path begin /usr/lib/ccache/bin
 add_to_path "${HOME}/.local/platform-tools"
 
 ## pager
