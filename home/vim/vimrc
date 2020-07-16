@@ -147,3 +147,6 @@ nnoremap <F2> :set list!<cr>
 nnoremap <silent> <F3> :let &ts=(&ts*2 > 16 ? 2 : &ts*2)<cr>:echo "tabstop:" . &ts<cr>
 nnoremap <leader><Left> :bprevious<cr>
 nnoremap <leader><Right> :bnext<cr>
+if &diff
+	syntax off
+endif
