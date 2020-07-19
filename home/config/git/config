@@ -66,6 +66,8 @@
 	autoStash = true
 [add "interactive"]
 	usebuiltin = true
+[merge]
+	tool = vimdiff3
 [includeIf "gitdir:~/src/git/"]
 	path = ~/.config/git/git.conf
 [includeIf "gitdir:~/src/void-packages/"]
