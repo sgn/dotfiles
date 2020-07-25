@@ -72,3 +72,5 @@
 	path = ~/.config/git/git.conf
 [includeIf "gitdir:~/src/void-packages/"]
 	path = ~/.config/git/void-packages.conf
+[includeIf "gitdir:~/src/vp/"]
+	path = ~/.config/git/void-packages.conf
