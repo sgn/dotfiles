@@ -3,6 +3,21 @@
 cd "$(dirname "$0")"
 DOTDIR=$(pwd)
 
+_all=yes
+_link=
+_shell=
+_external=
+while	case "$#,$1" in
+	0,*  | *,--)		break ;;
+	*,-l | *,--link)	_all= ; _link=yes ;;
+	*,-s | *,--shell)	_all= ; _shell=yes ;;
+	*,-e | *,--external)	_all= ; _external=yes ;;
+	esac
+do
+	shift
+done
+
+test -n "$_all$_external" &&
 git submodule update --init || :
 
 # There's a bug in stow --dotfiles
@@ -28,36 +43,38 @@ mklink() {
 	ln -sf "$DOTDIR/$1" "$HOME/$2"
 }
 
-for _src in home/local/service/*; do
-	_target=".${_src#home/}"
-	_sv=${_src##*/}
-	if test -f "$_src/log/run"; then
-		mksupervise "$_sv-log" "$_sv/log"
-		mklink "$_src/log/run" "$_target/log"
-	fi
-	mksupervise "$_sv" "$_sv"
-	for _file in "$_src"/*; do
-		case "$_file" in
-		*/run|*/log) ;;
-		*/down) : >"$HOME/$_target/down" ;;
-		*)	mklink "$_file" "$_target" ;;
-		esac
+do_link() {
+	for _src in home/local/service/*; do
+		_target=".${_src#home/}"
+		_sv=${_src##*/}
+		if test -f "$_src/log/run"; then
+			mksupervise "$_sv-log" "$_sv/log"
+			mklink "$_src/log/run" "$_target/log"
+		fi
+		mksupervise "$_sv" "$_sv"
+		for _file in "$_src"/*; do
+			case "$_file" in
+			*/run|*/log) ;;
+			*/down) : >"$HOME/$_target/down" ;;
+			*)	mklink "$_file" "$_target" ;;
+			esac
+		done
+		mklink "$_src/run" "$_target"
 	done
-	mklink "$_src/run" "$_target"
-done
 
-find home -path home/local/service -prune \
-	-o -name '*.sw?' -prune \
-	-o -type f -print \
-	-o -type l -print |
-while read -r _src; do
-	_target=".${_src#home/}"
-	if test -L "$_src"; then
-		cp "$_src" "$HOME/$_target"
-	elif test -f "$_src"; then
-		ln -sf "$DOTDIR/$_src" "$HOME/$_target"
-	fi
-done
+	find home -path home/local/service -prune \
+		-o -name '*.sw?' -prune \
+		-o -type f -print \
+		-o -type l -print |
+	while read -r _src; do
+		_target=".${_src#home/}"
+		if test -L "$_src"; then
+			cp "$_src" "$HOME/$_target"
+		elif test -f "$_src"; then
+			ln -sf "$DOTDIR/$_src" "$HOME/$_target"
+		fi
+	done
+}
 
 cat_if_exist() {
 	test -f "$1" && cat "$1"
@@ -105,11 +122,16 @@ merge_zshrc() {
 	cat_if_exist local.zsh
 }
 
-cd sh
-if command -v bash >/dev/null 2>&1; then
-	merge_bashrc >"$HOME/.bashrc"
-fi
-if command -v zsh >/dev/null 2>&1; then
-	merge_zshrc >"$HOME/.zshrc"
-	zsh -c "zcompile $HOME/.zshrc"
-fi
+mk_rc() {
+	cd sh
+	if command -v bash >/dev/null 2>&1; then
+		merge_bashrc >"$HOME/.bashrc"
+	fi
+	if command -v zsh >/dev/null 2>&1; then
+		merge_zshrc >"$HOME/.zshrc"
+		zsh -c "zcompile $HOME/.zshrc"
+	fi
+}
+
+test -n "$_all$_link" && do_link
+test -n "$_all$_shell" && mk_rc
