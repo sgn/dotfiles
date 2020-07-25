@@ -31,28 +31,26 @@ do
 	esac
 done
 
-build_args() {
-	# printf '+refs/pull/%1$d/head:pull/%1$d' "$@" doesn't work with dash
-	printf "%d\n" "$@" |
-		sed 's|.*|+refs/pull/&/head:pull/&|'
+add_close_trailer() {
+	GIT_EDITOR="git interpret-trailers --in-place --trailer 'Close: #$1'" \
+	git commit --amend
 }
 
-build_msg() {
-	echo "Merge PR #$1"
-	echo ""
-	git shortlog "..$2"
-}
+printf "refs/pull/%d/head\n" "$@" |
+xargs git fetch --no-tags \
+	--refmap='+refs/pull/*/head:refs/pulls/*' -- "$REPOSITORY"
 
-build_args "$@" | xargs git fetch -- "$REPOSITORY"
-
-for pull_id; do
-	pull_head="pull/$pull_id"
-
-	if test "$(git config merge-pr.backend)" = am; then
-		GIT_EDITOR="git interpret-trailers --in-place --trailer 'Close: #$pull_id'" \
-		git cherry-pick --edit HEAD.."$pull_head"
-	else
-		build_msg "$pull_id" "$pull_head" |
-		git merge --no-edit --no-ff -F /dev/stdin "$pull_head"
-	fi
-done
+if test "$(git config merge-pr.backend)" = am; then
+	for id; do
+		oldoid=$(git rev-parse --verify HEAD)
+		git format-patch --stdout HEAD.."refs/pulls/$id" |
+			git am -3
+		if test "$(git rev-parse --verify HEAD)" != "$oldoid"; then
+			add_close_trailer "$id"
+		fi
+	done
+else
+	for id; do
+		git merge --no-ff -m "Merge PR #$1" --log "refs/pulls/$id"
+	done
+fi
