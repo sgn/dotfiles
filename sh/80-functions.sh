@@ -16,3 +16,9 @@ add_home_local_bin() {
 	*) PATH="$HOME/.local/bin:$PATH" ;;
 	esac
 }
+
+build_flags() {
+	CFLAGS+=" -fstack-protector-strong -D_FORTIFY_SOURCE=2 -march=native -mtune=native"
+	LDFLAGS+=" -Wl,--as-needed -Wl,-z,relro -Wl,-z,now"
+	export CFLAGS LDFLAGS
+}
