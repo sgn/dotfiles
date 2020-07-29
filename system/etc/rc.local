@@ -1,9 +1,16 @@
 #!/bin/sh
-
-for f in /etc/zoneshot.d/start/*; do
-	if [ -f "$f" ] && [ -x "$f" ]; then
-		$f &
-	fi
-done
+if command -v timeout >/dev/null; then
+	for f in /etc/zoneshot.d/start/*; do
+		if [ -f "$f" ] && [ -x "$f" ]; then
+			timeout 5 $f &
+		fi
+	done
+else
+	for f in /etc/zoneshot.d/start/*; do
+		if [ -f "$f" ] && [ -x "$f" ]; then
+			$f &
+		fi
+	done
+fi
 
 wait

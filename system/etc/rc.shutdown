@@ -1,7 +1,15 @@
 #!/bin/sh
 
-for f in /etc/zoneshot.d/stop/*; do
-	if [ -f "$f" ] && [ -x "$f" ]; then
-		"$f"
-	fi
-done
+if command -v timeout; then
+	for f in /etc/zoneshot.d/stop/*; do
+		if [ -f "$f" ] && [ -x "$f" ]; then
+			timeout 5 "$f"
+		fi
+	done
+else
+	for f in /etc/zoneshot.d/stop/*; do
+		if [ -f "$f" ] && [ -x "$f" ]; then
+			"$f"
+		fi
+	done
+fi
