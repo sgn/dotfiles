@@ -4,10 +4,10 @@ die() {
 }
 
 xcpdiff() {
-	if ! cmp -s "$1" "$DESTDIR/etc/$1"
+	if ! cmp -s "$1" "$DESTDIR/$1"
 	then
-		mkdir -p "$DESTDIR/etc/${1%/*}"
-		cp "$1" "$DESTDIR/etc/$1"
+		mkdir -p "$DESTDIR/${1%/*}"
+		cp "$1" "$DESTDIR/$1"
 	fi
 }
 

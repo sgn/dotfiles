@@ -1,9 +1,11 @@
+#!/bin/sh
 if test -w /etc/X11/Xwrapper.config; then
 	echo "let Xorg run without root"
 	TEMP=$(mktemp)
-	awk '!/needs_root_rights/{print $0}
- ENDFILE{print "needs_root_rights = no"}' \
-	    /etc/X11/Xwrapper.config >$TEMP
+	awk '
+		!/needs_root_rights/{print $0}
+		ENDFILE{print "needs_root_rights = no"}
+	' /etc/X11/Xwrapper.config >$TEMP
 	if ! diff $TEMP /etc/X11/Xwrapper.config >/dev/null 2>&1; then
 		mv $TEMP /etc/X11/Xwrapper.config
 		chmod a+r /etc/X11/Xwrapper.config

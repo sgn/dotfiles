@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=xinitrc
 Comment=Use this session to run .xinitrc as Xsession
-Exec=/etc/X11/xsession-xinitrc
+Exec=/usr/local/bin/xsession-xinitrc
 Icon=
 Type=Application
 DesktopNames=xinitrc
