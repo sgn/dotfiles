@@ -2,5 +2,4 @@
 
 thisdir="${0%/*}"
 
-./battery.sh
-exec sleep 180
+exec snooze -H'*' -M/3 ./battery.sh

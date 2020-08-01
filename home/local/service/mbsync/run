@@ -1,4 +1,3 @@
 #!/bin/sh
 
-mbsync -a
-exec sleep 120
+exec snooze -H'*' -M/2 -S30 mbsync -a

@@ -5,6 +5,7 @@ if [ ! -d "${HOME}/.cache/public-inbox" ]; then
 	exit 1
 fi
 
-git -C ~/.cache/public-inbox/git/git/0.git fetch &&
-public-inbox-index ~/.cache/public-inbox/git
-exec sleep 600
+exec snooze -H'*' -M 17 -S45 sh -c '
+	git -C ~/.cache/public-inbox/git/git/0.git fetch &&
+	public-inbox-index ~/.cache/public-inbox/git
+'
