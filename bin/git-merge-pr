@@ -16,9 +16,11 @@ while test "$#" -ne 0
 do
 	OPTION="$1"
 	case "$OPTION" in
-	--) shift; break ;;
-	-*) ;;
-	*) break ;;
+	--)	shift; break ;;
+	-u)	;;
+	-u*)	REPOSITORY=${1#-u}; continue ;;
+	-*)	usage ;;
+	*)	break ;;
 	esac
 
 	# Below switches want 1 argument
