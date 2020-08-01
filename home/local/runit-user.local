@@ -1,0 +1,5 @@
+#!/bin/sh
+
+if test "$(uname -n)" = "danh-rpi"; then
+	tmux new -d -s weechat weechat
+fi

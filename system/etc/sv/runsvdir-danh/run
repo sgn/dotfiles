@@ -13,4 +13,10 @@ export HOME=$(eval echo ~$ZUSER)
 [ $? -eq 0 ] || exit
 groups=$(id -Gn $ZUSER | tr ' ' ':')
 
-exec chpst -u"$ZUSER:$groups" sh -l -c 'exec runsvdir ~/.local/service'
+exec chpst -u"$ZUSER:$groups" sh -l -c '
+	cd ~
+	if [ -f ~/.local/runit-user.local ]; then
+		. ~/.local/runit-user.local
+	fi
+	exec runsvdir ~/.local/service
+'

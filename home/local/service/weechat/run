@@ -1,5 +1,0 @@
-#!/bin/sh
-
-cd ~
-tmux new -d -s weechat weechat
-exec pause
