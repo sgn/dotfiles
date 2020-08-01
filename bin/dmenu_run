@@ -1,2 +1,4 @@
 #!/bin/sh
-exec $(dmenu_path | dmenu "$@")
+_cmd=$(dmenu_path | dmenu "$@")
+
+exec $_cmd
