@@ -36,14 +36,14 @@ refs|refs/|refs/*|"**"*)
 	pattern="refs/heads/$1" ;;
 esac
 
-(
+{
 	git for-each-ref "$pattern" |
 		grep -vF -e refs/remotes/ -e refs/heads/master
 	cat <<-EOF
 	# Delete refname you want to keep.
 	# Any line starts with # will be ignored.
 	EOF
-) >"$GIT_DIR/clean-ref-list"
+} >"$GIT_DIR/clean-ref-list"
 
 git_editor "$GIT_DIR/clean-ref-list"
 
