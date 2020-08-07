@@ -67,7 +67,7 @@
 [add "interactive"]
 	usebuiltin = true
 [merge]
-	tool = vimdiff3
+	tool = vimdiff
 [includeIf "gitdir:~/src/git/"]
 	path = ~/.config/git/git.conf
 [includeIf "gitdir:~/src/void-packages/"]
