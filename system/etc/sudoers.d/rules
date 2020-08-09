@@ -1,0 +1,5 @@
+%wheel ALL=(ALL) ALL
+Cmnd_Alias HALT = /usr/bin/halt, /usr/bin/shutdown, /usr/bin/reboot, \
+		  /usr/bin/poweroff, /usr/bin/zzz, /usr/bin/ZZZ
+%wheel ALL=(ALL) NOPASSWD: HALT
+Defaults umask = 0022
