@@ -4,9 +4,16 @@ sv down ~/.local/service/battery
 sv down ~/.local/service/i3lock
 sv down ~/.local/service/slstatus
 
-ps -u$USER -o pid=,comm= | \
+list_x_pid() {
+	ps -u$USER -o pid=,comm= |
 	awk '
 		$2~"^(gvfsd|dconf|gsetting|udisk)"{print $1}
 		$2=="dunst"||
-		$2=="xcape"{print $1}' | \
-	xargs kill
+		$2=="xcape"{print $1}
+	'
+}
+
+_x_pid=$(list_x_pid)
+if [ "$_x_pid" ]; then
+	kill $_x_pid
+fi
