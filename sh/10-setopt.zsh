@@ -2,7 +2,6 @@
 setopt long_list_jobs
 setopt notify
 setopt no_hup
-setopt print_exit_value
 # cd
 setopt auto_cd
 setopt auto_pushd
