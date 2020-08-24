@@ -1,8 +1,14 @@
 #!/bin/sh
 # requires: /sys/class/power_supply/BAT0/charge_stop_threshold
 
+for f in /sys/class/power_supply/BAT*/charge_start_threshold; do
+	if [ -f $f ]; then
+		echo 20 > "$f"
+	fi
+done
+
 for f in /sys/class/power_supply/BAT*/charge_stop_threshold; do
 	if [ -f $f ]; then
-		echo 80 > "$f"
+		echo 90 > "$f"
 	fi
 done
