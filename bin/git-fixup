@@ -1,0 +1,71 @@
+#!/bin/sh
+# Copyright (c) 2020
+# Đoàn Trần Công Danh <congdanhqx@gmail.com>
+#
+# Licensed under GPL v2
+USAGE='[options] [--] [<path>]'
+LONG_USAGE='[-d] [--] [<path>]
+-d	fixup based on parent directory of changed files
+	incompatible with <path>
+<path>	fixup based on given path instead of changed path
+	incompatible with -d
+'
+
+. "$(git --exec-path)/git-sh-setup"
+
+fixup_directory=
+while case "$#" in 0) break ;; esac
+do
+	case "$1" in
+	-d)	fixup_directory=yes ;;
+	--)
+		shift; break ;;
+	-*)
+		usage ;;
+	*)
+		break ;;
+	esac
+	shift
+done
+
+case "$#" in
+0)	pathspec= ;;
+1)
+	if [ "$fixup_directory" ]; then
+		usage
+	fi
+	pathspec="$1"
+	;;
+*)	usage ;;
+esac
+
+filter_pathspec() {
+	git diff-index --name-only --no-renames --diff-filter=${fixup_directory:+A}MD HEAD |
+	if [ "$fixup_directory" ]; then
+		sed 's,/[/]*$,,'
+	else
+		cat
+	fi
+}
+
+do_fixup() {
+	targetrev=$(git rev-list -1 HEAD "$@")
+	if [ "$targetrev" ]; then
+		exec git commit --fixup=$targetrev
+	else
+		echo "Couldn't find target revision!" >&2
+		exit 1
+	fi
+}
+
+if test -n "$pathspec"; then
+	do_fixup "$pathspec"
+fi
+
+pathspec="$(filter_pathspec)"
+if test -z "$pathspec"; then
+	echo "fixup what?" >&2
+	exit 1
+fi
+
+do_fixup $pathspec
