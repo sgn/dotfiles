@@ -30,7 +30,7 @@ find home -type d |
 mkdir -p ~/bin
 
 # stow --ignore='\.sw.' --dotfiles -t "$HOME" home
-# stow --ignore='\.sw.' -t "$HOME/bin" bin
+stow --ignore='\.sw.' -t "$HOME/bin" bin
 
 mksupervise() {
 	if test ! -L "$HOME/.local/service/$2/supervise"; then
