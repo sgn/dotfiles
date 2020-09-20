@@ -2,5 +2,5 @@
 
 cd $(xdistdir)
 git diff-index -r --no-renames --name-only --diff-filter=AM \
-	upstream/master -- 'srcpkgs/*/template' |
+	HEAD~ -- 'srcpkgs/*/template' |
 	xargs -L1 xlint
