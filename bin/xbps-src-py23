@@ -1,0 +1,130 @@
+#!/bin/bash
+
+set -e
+
+pkg="${1%/template}"
+pkg="${1#srcpkgs/}"
+pkg="${pkg#python-}"
+
+if [ ! -f "srcpkgs/python-$pkg/template" ]; then
+	exit 0
+fi
+
+source "srcpkgs/python-$pkg/template"
+
+if [ -L "srcpkgs/python3-$pkg" ]; then
+	eval "python3-${pkg}_package"
+else
+	git rm -rf "srcpkgs/python-$pkg"
+	exec git commit -m "python-$pkg: drop package"
+fi
+
+for func in $(typeset -F); do
+	case "$func" in
+	python3-${pkg}_package)
+		rm -f "srcpkgs/python3-$pkg"
+		cp -R "srcpkgs/python-$pkg" "srcpkgs/python3-$pkg"
+		;;
+	*_package)
+		subpkg="${func%_package}"
+		rm -f "srcpkgs/$subpkg"
+		ln -s "python3-$pkg" "srcpkgs/$subpkg"
+		;;
+	esac
+done
+
+for _file in "srcpkgs/python3-$pkg/python3-$pkg.INSTALL"*; do
+	if [ -f "$_file" ]; then
+		_postfix="${_file##*.INSTALL}"
+		mv "$_file" "srcpkgs/python3-$pkg/INSTALL$_postfix"
+	fi
+done
+
+
+
+notpy2() {
+	xfirst=
+	for dep in $*
+	do
+		case "$dep" in
+		'"python' | '"python-'* | python-*'"')
+			printf '"' ;;
+		python | python-*) ;;
+		*)	printf "$xfirst%s" "$dep"; xfirst=' ' ;;
+		esac
+	done
+	echo
+}
+
+inmakedepends=
+independs=
+insubpackage=
+inalternatives=
+metachanged=
+while IFS= read -r line; do
+	case "$line" in
+	" "*)
+		if [ "$inmakedepends" ]; then
+			notpy2 "$line"
+		elif [ -z "${independs}${inalternatives}" ]; then
+			printf "%s\n" "$line"
+		fi
+		continue
+		;;
+	*)
+		independs=
+		inmakedepends=
+		inalternatives=
+		;;
+	esac
+
+	case "$line" in
+	*"emplate file for"* | pkgname=* | build_style=*)
+		printf "%s\n" "${line/python/python3}" ;;
+	*archs=noarch)
+		metachanged=yes
+		;;
+	*pycompile_module=*)
+		;;
+	hostmakedepends=* | makedepends=* | checkdepends=*)
+		inmakedepends=yes
+		printf "%s=" "${line%%=*}"
+		notpy2 "${line#*=}"
+		;;
+	depends=*)
+		printf 'depends="%s"\n' "$depends" ;;
+	short_desc=*)
+		printf 'short_desc="%s"\n' "$short_desc" ;;
+	alternatives=*)
+		inalternatives=yes
+		printf 'conflicts="python-%s>=0"\n' "$pkg"
+		;;
+	python3-${pkg}_package*)
+		insubpackage=yes
+		;;
+	"}")
+		if [ "$insubpackage" ]; then
+			insubpackage=
+		else
+			echo "}"
+		fi
+		;;
+	*)	[ ! "$insubpackage" ] && printf "%s\n" "$line" ;;
+	esac
+done <srcpkgs/python-"$pkg"/template >srcpkgs/python3-"$pkg"/template
+
+git rm --cached "srcpkgs/python3-$pkg"
+git rm -r "srcpkgs/python-$pkg"
+git add "srcpkgs/python3-$pkg"
+
+vim '+/^license' "srcpkgs/python3-$pkg/template"
+
+sedexpr='${/^$/d};'
+if [ "$metachanged" ]; then
+	revision=$(( revision + 1 ))
+	sedexpr+="/^revision=/s/=.*/=$revision/"
+fi
+sed -i -e "$sedexpr" "srcpkgs/python3-$pkg/template"
+git add "srcpkgs/python3-$pkg/template"
+
+git commit -m "python-$pkg: drop package"
