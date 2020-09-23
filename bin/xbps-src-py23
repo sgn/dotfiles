@@ -60,7 +60,6 @@ inmakedepends=
 independs=
 insubpackage=
 inalternatives=
-metachanged=
 while IFS= read -r line; do
 	case "$line" in
 	" "*)
@@ -81,10 +80,7 @@ while IFS= read -r line; do
 	case "$line" in
 	*"emplate file for"* | pkgname=* | build_style=*)
 		printf "%s\n" "${line/python/python3}" ;;
-	*archs=noarch)
-		metachanged=yes
-		;;
-	*pycompile_module=*)
+	*archs=noarch | *pycompile_module=*)
 		;;
 	hostmakedepends=* | makedepends=* | checkdepends=*)
 		inmakedepends=yes
@@ -117,14 +113,12 @@ git rm --cached "srcpkgs/python3-$pkg"
 git rm -r "srcpkgs/python-$pkg"
 git add "srcpkgs/python3-$pkg"
 
+sed -i -e '${/^$/d}' "srcpkgs/python3-$pkg/template"
+
 vim '+/^license' "srcpkgs/python3-$pkg/template"
 
-sedexpr='${/^$/d};'
-if [ "$metachanged" ]; then
-	revision=$(( revision + 1 ))
-	sedexpr+="/^revision=/s/=.*/=$revision/"
-fi
-sed -i -e "$sedexpr" "srcpkgs/python3-$pkg/template"
+revision=$(( revision + 1 ))
+sed -i -e '${/^$/d}' -e "/^revision=/s/=.*/=$revision/" "srcpkgs/python3-$pkg/template"
 git add "srcpkgs/python3-$pkg/template"
 
 git commit -m "python-$pkg: drop package"
