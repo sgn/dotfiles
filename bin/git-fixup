@@ -37,7 +37,7 @@ case "$#" in
 esac
 
 filter_pathspec() {
-	git diff-index --name-only --no-renames --diff-filter=${fixup_directory:+A}MD HEAD |
+	git diff-index --cached --name-only --no-renames --diff-filter=${fixup_directory:+A}MD HEAD |
 	if [ "$fixup_directory" ]; then
 		sed 's,/[/]*$,,'
 	else
