@@ -74,3 +74,5 @@
 	path = ~/.config/git/void-packages.conf
 [includeIf "gitdir:~/src/vp/"]
 	path = ~/.config/git/void-packages.conf
+[feature]
+	experimental = true
