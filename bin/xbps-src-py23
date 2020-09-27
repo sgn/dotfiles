@@ -29,6 +29,7 @@ for func in $(typeset -F); do
 		subpkg="${func%_package}"
 		rm -f "srcpkgs/$subpkg"
 		ln -s "python3-$pkg" "srcpkgs/$subpkg"
+		git add "srcpkgs/$subpkg"
 		;;
 	esac
 done
@@ -94,6 +95,9 @@ while IFS= read -r line; do
 	alternatives=*)
 		inalternatives=yes
 		printf 'conflicts="python-%s>=0"\n' "$pkg"
+		;;
+	maintainer=*"<al3hex@gmail.com>"*)
+		echo 'maintainer="Orphaned <orphan@voidlinux.org>"'
 		;;
 	python3-${pkg}_package*)
 		insubpackage=yes

@@ -77,8 +77,8 @@ mailcap ~/.w3m/mailcap, /etc/w3m/mailcap
 urimethodmap ~/.w3m/urimethodmap, /etc/w3m/urimethodmap
 editor /usr/bin/vim
 mailto_options 1
-mailer /usr/bin/notmuch-emacs-mua
-extbrowser /usr/bin/firefox
+mailer /usr/bin/mutt
+extbrowser /usr/bin/firefox -P default
 extbrowser2 sh -c 'printf %s "$0" | xclip'
 extbrowser3 sh -c 'printf %s "$0" | xclip -sel clip'
 extbrowser4 
