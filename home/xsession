@@ -1,3 +1,4 @@
 #!/bin/sh
 
+exec i3
 exec ~/.local/bin/dwm

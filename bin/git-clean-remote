@@ -1,7 +1,5 @@
 #!/bin/sh
-# Copyright (c) 2020
-# Đoàn Trần Công Danh <congdanhqx@gmail.com>
-# Licensed under GPL v2
+
 USAGE='[-n|--dry-run] -- [<remote>]'
 LONG_USAGE='
 -n
