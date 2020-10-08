@@ -7,7 +7,7 @@ target_self 0
 open_tab_blank 0
 open_tab_dl_list 0
 display_link 0
-display_link_number 0
+display_link_number 1
 decode_url 0
 display_lineinfo 0
 ext_dirlist 1
@@ -26,7 +26,7 @@ display_image 1
 pseudo_inlines 1
 auto_image 1
 max_load_image 4
-ext_image_viewer 1
+ext_image_viewer 0
 image_scale 100
 imgdisplay w3mimgdisplay
 image_map_list 1
