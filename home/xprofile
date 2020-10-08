@@ -63,9 +63,7 @@ if command -v dunst >/dev/null 2>&1; then
 fi
 
 if [ -d /sys/class/power_supply/BAT0 ]; then
-	if command -v sv >/dev/null 2>&1; then
-		sv up ~/.local/service/battery
-	fi
+	sv up ~/.local/service/battery
 fi
 
 if command -v start-pulseaudio-x11 >/dev/null 2>&1; then
@@ -78,6 +76,9 @@ dwm|xinitrc)
 	## lock is the screensaver
 	sv up ~/.local/service/i3lock
 	sv up ~/.local/service/slstatus
+	;;
+i3)
+	sv up ~/.local/service/i3lock
 	;;
 esac
 

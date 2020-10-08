@@ -103,5 +103,8 @@ for socket in /var/lib/mpd/socket /tmp/mpd.socket; do
 done
 unset socket
 
+SVDIR=$HOME/.local/service
+export SVDIR
+
 ## Specific to local computer. Should be sourced last
 test -r ~/.config/local.profile && . ~/.config/local.profile
