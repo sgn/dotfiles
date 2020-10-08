@@ -92,7 +92,8 @@ export GEM_HOME GEM_SPEC_CACHE
 add_to_path "$GEM_HOME/bin"
 
 LANG=en_US.UTF-8
-export LANG
+LANGUAGE=en_US
+export LANG LANGUAGE
 
 for socket in /var/lib/mpd/socket /tmp/mpd.socket; do
 	if [ -S "$socket" ]; then
