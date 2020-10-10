@@ -1,14 +1,19 @@
 #!/bin/sh
-# tmux-urls - get a list of all urls in current tmux pane.
-# Copied and modified from:
-# https://github.com/Duncaen/dotfiles/blob/d58fee76e7014a461fada5b0c549198c33f48379/bin/tmux-urls
+# tmux-urls - select and open selected url in current tmux pane
+# inspired by Duncaen's
+
+urls_file=$(mktemp)
+cleanup() {
+	rm -f $urls_file
+}
+trap cleanup EXIT
 
 get_urls() {
 	tmux capture-pane -pJ |
-	grep -oE '(www.|http[s]?://)[^ ]+'
+	grep -oE '(www.|http[s]?://)[^ )>]+' >"$urls_file"
 }
 
-tmux display-message -p '#W'
+tmux display-message -p '#W' >/dev/null
 case "$(tmux display-message -p '#W')" in
 	weechat*|WeeChat*)
 		tmux send-keys M-l
@@ -17,3 +22,7 @@ case "$(tmux display-message -p '#W')" in
 		;;
 	*) get_urls ;;
 esac
+if test -s "$urls_file"; then
+	_url=$(fzf-tmux <$urls_file)
+	test -n "$_url" && nohup topen "$_url"
+fi

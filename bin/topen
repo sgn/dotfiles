@@ -1,15 +1,14 @@
 #!/bin/sh
 
 if ! command -v tmux >/dev/null 2>&1; then
-	echo "! command -v tmux" >> /tmp/topen.log
 	exec xdg-open "$@"
 fi
 
 
-for browser in w3m elinks lynx elinks firefox; do
-	command -v $browser >/dev/null 2>&1 && \
-		BROWSER=$browser && \
-		export BROWSER && \
+for browser in w3m elinks lynx elinks; do
+	command -v $browser >/dev/null 2>&1 &&
+		BROWSER=$browser &&
+		export BROWSER &&
 		break
 done; unset browser
 
