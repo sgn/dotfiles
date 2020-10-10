@@ -90,7 +90,7 @@ set showmatch
 nnoremap <leader>/ :nohlsearch<CR>
 
 set autowrite
-set mouse=
+set mouse=nvi
 " toggle paste to not alter text on copy/paste
 set pastetoggle=<f11>
 

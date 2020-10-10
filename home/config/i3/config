@@ -1,15 +1,13 @@
 set $mod Mod4
-font pango:monospace 12
-#font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans Mono 10
 
-# Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-set $terminal st
+set $terminal urxvtc
 
-exec --no-startup-id exec $terminal -n scratchpad -t scratchpad -g 120x34
-for_window [instance="scratchpad"] floating enable;
-for_window [instance="scratchpad"] move scratchpad;
-bindsym $mod+grave [instance="scratchpad"] scratchpad show
+exec --no-startup-id exec urxvt -title scratchpad -g 120x34
+for_window [title="scratchpad"] floating enable;
+for_window [title="scratchpad"] move scratchpad;
+bindsym $mod+grave [title="scratchpad"] scratchpad show
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id volume.sh up     && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id volume.sh down   && $refresh_i3status
