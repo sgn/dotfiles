@@ -8,8 +8,15 @@ if ! command -v sv >/dev/null; then
 fi
 
 ## X resources
-command -v xrdb >/dev/null &&
-xrdb -merge "${HOME}/.config/Xresources/config"
+if command -v xrdb >/dev/null
+then
+	xrdb -merge "${HOME}/.config/Xresources/config"
+	if [ -f "$HOME/.config/Xresources/local" ]
+	then
+		xrdb -merge "${HOME}/.config/Xresources/local"
+	fi
+fi
+
 
 ## Disable Touchpad if exists
 if command -v xinput >/dev/null; then

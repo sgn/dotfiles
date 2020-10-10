@@ -1,5 +1,5 @@
 set $mod Mod4
-font pango:DejaVu Sans Mono 10
+font pango:DejaVu Sans Mono 8
 
 set $refresh_i3status killall -SIGUSR1 i3status
 set $terminal urxvtc
