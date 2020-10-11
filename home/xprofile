@@ -91,7 +91,7 @@ esac
 
 if command -v urxvtd >/dev/null; then
 	export RXVT_SOCKET=$HOME/.cache/urxvt/urxvt.socket
-	mkdir $RXVT_SOCKET
+	mkdir ${RXVT_SOCKET%/*}
 	urxvtd -q -f -o
 fi
 

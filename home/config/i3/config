@@ -37,7 +37,7 @@ bindsym $mod+Shift+Return exec exec $terminal
 bindsym $mod+Shift+c kill
 
 # start dmenu (a program launcher)
-set $dargs -fn monospace:size=12 -nb '#1d2021' -nf '#bdae93' -sb '#3c3836' -sf '#ebdbb2'
+set $dargs -fn monospace:size=8 -nb '#1d2021' -nf '#bdae93' -sb '#3c3836' -sf '#ebdbb2'
 bindsym $mod+p exec exec dmenu_run $dargs
 bindsym $mod+u exec passmenu $dargs
 

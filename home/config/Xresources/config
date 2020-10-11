@@ -18,7 +18,7 @@
 *color14:	#8ec07c
 *color15:	#fbf1c7
 URxvt.perl-ext-common: default,matcher
-URxvt*font: xft:Deja Vu Sans Mono:size=8
+URxvt*font: xft:Deja Vu Sans Mono:size=8, xft:Noto Sans Mono:size=8
 URxvt.iso14755_52: false
 URxvt*scrollBar: false
 URxvt.keysym.M-u: matcher:list
@@ -26,3 +26,13 @@ URxvt.url-launcher: topen
 URxvt.underlineURLs: False
 URxvt.visualBell: true
 URxvt.matcher.button: 1
+Xft.antialias: true
+Xft.autohint: true
+XTerm.vt100.bellIsUrgent: true
+XTerm.vt100.font: xft:Deja Vu Sans Mono:size=8
+XTerm.vt100.fullscreen: never
+XTerm.vt100.locale: false
+XTerm.vt100.metaSendsEscape: true
+XTerm.vt100.saveLines: 4096
+XTerm.vt100.termName: xterm-256color
+XTerm.vt100.utf8: true
