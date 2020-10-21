@@ -89,11 +89,11 @@ i3)
 	;;
 esac
 
-if command -v urxvtd >/dev/null; then
-	export RXVT_SOCKET=$HOME/.cache/urxvt/urxvt.socket
-	mkdir ${RXVT_SOCKET%/*}
-	urxvtd -q -f -o
-fi
+# if command -v urxvtd >/dev/null; then
+# 	export RXVT_SOCKET=$HOME/.cache/urxvt/urxvt.socket
+# 	mkdir ${RXVT_SOCKET%/*}
+# 	urxvtd -q -f -o
+# fi
 
 ## Hook, should be the last one to be sourced
 test -r ~/.config/local.xprofile && . ~/.config/local.xprofile

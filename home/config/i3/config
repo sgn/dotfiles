@@ -2,9 +2,9 @@ set $mod Mod4
 font pango:DejaVu Sans Mono 8
 
 set $refresh_i3status killall -SIGUSR1 i3status
-set $terminal urxvtc
+set $terminal st
 
-exec --no-startup-id exec urxvt -title scratchpad -g 120x34
+exec --no-startup-id exec xterm -n scratchpad -T scratchpad -g 80x24
 for_window [title="scratchpad"] floating enable;
 for_window [title="scratchpad"] move scratchpad;
 bindsym $mod+grave [title="scratchpad"] scratchpad show
