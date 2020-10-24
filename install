@@ -7,15 +7,50 @@ _all=yes
 _link=
 _shell=
 _external=
+_force=
 while	case "$#,$1" in
-	0,*  | *,--)		break ;;
+	0,*)	break ;;
+	*,--)	shift; break ;;
 	*,-l | *,--link)	_all= ; _link=yes ;;
 	*,-s | *,--shell)	_all= ; _shell=yes ;;
 	*,-e | *,--external)	_all= ; _external=yes ;;
+	*,-e | *,--force)	_force=yes ;;
 	esac
 do
 	shift
 done
+
+# Verify that we tracked that file with Git history before
+# If yes, force relink, otherwise, warn them
+if test -n "$_force"
+then
+	vlink() {
+		rm -f "$2"
+		cp -f "$1" "$2"
+	}
+else
+	if test "$(git rev-parse --is-inside-work-tree 2>/dev/null)" = true
+	then
+		vtracked() {
+			_ohash=$(git hash-object "$1")
+			test "$(git cat-file -t "$_ohash" 2>/dev/null)" = blob
+		}
+	else
+		vtracked() {
+			return 1
+		}
+	fi
+	vlink() {
+		if test ! -f "$2" || vtracked "$2"
+		then
+			rm -f "$2"
+			cp -f "$1" "$2"
+		else
+			printf "%s \n" "NO LINK: '$2' exists and not tracked."
+		fi
+	}
+fi
+
 
 test -n "$_all$_external" &&
 git submodule update --init || :
@@ -30,7 +65,10 @@ find home -type d |
 mkdir -p ~/bin
 
 # stow --ignore='\.sw.' --dotfiles -t "$HOME" home
-stow --ignore='\.sw.' -t "$HOME/bin" bin
+for _file in bin/*
+do
+	vlink "$_file" "$HOME/$_file"
+done
 
 mksupervise() {
 	if test ! -L "$HOME/.local/service/$2/supervise"; then
@@ -39,27 +77,23 @@ mksupervise() {
 	fi
 }
 
-mklink() {
-	ln -sf "$DOTDIR/$1" "$HOME/$2"
-}
-
 do_link() {
 	for _src in home/local/service/*; do
 		_target=".${_src#home/}"
 		_sv=${_src##*/}
 		if test -f "$_src/log/run"; then
 			mksupervise "$_sv-log" "$_sv/log"
-			mklink "$_src/log/run" "$_target/log"
+			vlink "$_src/log/run" "$HOME/$_target/log/run"
 		fi
 		mksupervise "$_sv" "$_sv"
 		for _file in "$_src"/*; do
 			case "$_file" in
 			*/run|*/log) ;;
 			*/down) : >"$HOME/$_target/down" ;;
-			*)	mklink "$_file" "$_target" ;;
+			*)	vlink "$_file" "$HOME/$_target/${_file##*/}" ;;
 			esac
 		done
-		mklink "$_src/run" "$_target"
+		vlink "$_src/run" "$HOME/$_target/run"
 	done
 
 	find home -path home/local/service -prune \
@@ -71,7 +105,7 @@ do_link() {
 		if test -L "$_src"; then
 			cp "$_src" "$HOME/$_target"
 		elif test -f "$_src"; then
-			ln -sf "$DOTDIR/$_src" "$HOME/$_target"
+			vlink "$DOTDIR/$_src" "$HOME/$_target"
 		fi
 	done
 }
