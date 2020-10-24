@@ -10,7 +10,7 @@ trap cleanup EXIT
 
 get_urls() {
 	tmux capture-pane -pJ |
-	grep -oE '(www.|http[s]?://)[^ )>]+' >"$urls_file"
+	grep -oE '(www.|http[s]?://)[^ ")>]+' >"$urls_file"
 }
 
 tmux display-message -p '#W' >/dev/null
@@ -24,5 +24,9 @@ case "$(tmux display-message -p '#W')" in
 esac
 if test -s "$urls_file"; then
 	_url=$(fzf-tmux <$urls_file)
-	test -n "$_url" && nohup topen "$_url"
+	if test -n "$_url"; then
+		nohup topen "$_url" >/dev/null 2>&1 &
+	fi
 fi
+
+true
