@@ -79,9 +79,9 @@ color body  color04  color00   "^gpg: "
 
 
 # Patch
-color   body    green           color00         '^\+.*'
+color   body    green           color00         '^[+].*'
 color   body    red             color00         '^-.*'
-color   body    cyan            color00         '^(Signed-off-by|Cc|Co-Authored-By|Tested-by|Reviewed-by): .+ <.+@.+>$'
+color   body    cyan            color00         '^([a-zA-Z-]+-by|Cc): .+ <.+@.+>$'
 color   body    yellow          color00         '^diff -[^[:space:]]+ [^[:space:]]+ [^[:space:]]+'
 color   body    brightwhite     color00         '^index [0-9a-f]+.*\.\.[0-9a-f]+( [0-7]{6})?'
 color   body    brightwhite     color00         '^(new|deleted) file mode [0-7]{6}'
