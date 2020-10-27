@@ -1,4 +1,0 @@
-#!/bin/sh
-# requires: /usr/bin/ip6tables-restore
-[ ! -e /etc/iptables/ip6tables.rules ] && exit 0
-exec ip6tables-restore -w 3 /etc/iptables/ip6tables.rules
