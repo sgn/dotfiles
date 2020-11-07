@@ -2,7 +2,7 @@
 
 [ -f conf ] && . conf
 
-: ${ZUSER:=danh}
+: ${ZUSER:=sgn}
 ZHOME=$(eval echo ~$ZUSER)
 
 sv -w600 force-stop "$ZHOME"/.local/service/*

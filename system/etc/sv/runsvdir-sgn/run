@@ -4,7 +4,7 @@ exec 2>&1
 
 [ -f conf ] && . conf
 
-: ${ZUSER:=danh}
+: ${ZUSER:=sgn}
 
 install -d -m 700 -o $ZUSER -g $ZUSER /run/x-user/$ZUSER
 install -d -m 700 -o $ZUSER -g $ZUSER /run/x-user/$ZUSER/runit
