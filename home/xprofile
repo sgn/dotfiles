@@ -18,13 +18,6 @@ then
 fi
 
 
-## Disable Touchpad if exists
-if command -v xinput >/dev/null; then
-	xinput --list |
-		sed -nE 's/^.*Touch[Pp]ad[[:space:]]+id=([[:digit:]]+).*$/\1/p' |
-		xargs -L 1 xinput --disable
-fi
-
 _JAVA_AWT_WM_NONREPARENTING=1
 export _JAVA_AWT_WM_NONREPARENTING
 
