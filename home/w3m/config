@@ -24,7 +24,7 @@ ignore_null_img_alt 1
 view_unseenobject 0
 display_image 1
 pseudo_inlines 1
-auto_image 1
+auto_image 0
 max_load_image 4
 ext_image_viewer 0
 image_scale 100
