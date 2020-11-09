@@ -50,9 +50,15 @@ xcape -e 'Control_L=Escape'
 ## Turn off the bell
 xset -b s 180 120
 
-xsetroot -solid '#1d2021'
-command -v nitrogen >/dev/null &&
-nitrogen --restore
+if ! command -v feh >/dev/null; then
+	xsetroot -solid '#1d2021'
+elif test -f ~/Pictures/wallpaper.png; then
+	feh --bg-center ~/Pictures/wallpaper.png
+elif test -f ~/Pictures/wallpaper.jpg; then
+	feh --bg-center ~/Pictures/wallpaper.jpg
+elif test -f ~/Pictures/wallpaper.jpeg; then
+	feh --bg-center ~/Pictures/wallpaper.jpeg
+fi
 
 xdotool mousemove 0 10000 || true
 
