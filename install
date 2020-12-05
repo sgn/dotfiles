@@ -134,9 +134,9 @@ merge_zshrc() {
 		10-setopt.zsh \
 		20-variables.zsh \
 		30-modules.zsh \
-		40-autoload-functions.zsh \
-		40-autoload-functions.zsh \
-		70-key-binding.zsh \
+
+	sed "s,__CURDIR__,$DOTDIR/sh," 40-autoload-functions.zsh.in
+	cat 70-key-binding.zsh \
 		70-alias-grml.zsh \
 		70-zle-grml.zsh \
 		80-alias-core-util.sh \
