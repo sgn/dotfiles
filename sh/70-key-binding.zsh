@@ -46,22 +46,6 @@ mquote () {
 }
 zle -N mquote && bindkey '^Q' mquote
 
-# just type '...' to get '../..'
-rationalise-dot() {
-local MATCH
-if [[ $LBUFFER =~ '(^|/| |	|'$'\n''|\||;|&)\.\.$' ]]; then
-	LBUFFER+=/
-	zle self-insert
-	zle self-insert
-else
-	zle self-insert
-fi
-}
-zle -N rationalise-dot
-bindkey -M viins . rationalise-dot
-## without this, typing a . aborts incremental history search
-bindkey -M isearch . self-insert
-
 # add a command line to the shells history without executing it
 commit-to-history () {
 	print -s ${(z)BUFFER}
