@@ -9,9 +9,6 @@ while test $# -ne 0; do
 done
 
 cd "$(xdistdir)" || exit 1
-[ -f packages ]  || exit 1
-
-PKGS=$(cat packages)
 
 update_pkg() {
 	c_flags=""
@@ -28,7 +25,7 @@ update_pkg() {
 	xbump "$pkg"
 }
 
-for pkg in $PKGS; do
+while read pkg; do
 	c_flags=""
 	echo "Checking for $pkg..."
 	if ${dryrun+:} false; then
