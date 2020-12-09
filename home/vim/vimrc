@@ -110,6 +110,7 @@ set wildmenu
 
 au! BufEnter *_EDITMSG call setpos('.', [0, 1, 1, 0])
 au! BufNewFile,BufRead template setlocal filetype=bash
+au! BufRead,BufNewFile */git/t/*.sh setlocal ft=sharness
 au  BufNewFile,BufRead *.yml setlocal et ts=2 sts=2 sw=2
 au  BufNewFile,BufRead *.yaml setlocal et ts=2 sts=2 sw=2
 au  FileType tex setlocal et ts=2 sts=2 sw=2
