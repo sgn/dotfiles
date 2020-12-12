@@ -1,8 +1,8 @@
-fpath=( __CURDIR__/functions ${fpath} )
-fpath=( __CURDIR__/completions ${fpath} )
+fpath=( $DOTFILES/sh/functions ${fpath} )
+fpath=( $DOTFILES/sh/completions ${fpath} )
 
 typeset -aU ffiles
-ffiles=( __CURDIR__/functions/**/[^_]*[^(~|.zwc)](N.:t))
+ffiles=( $DOTFILES/sh/functions/**/[^_]*[^(~|.zwc)](N.:t))
 (( ${#ffiles} > 0 )) && autoload -U "${ffiles[@]}"
 unset -v ffiles
 

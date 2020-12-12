@@ -1,7 +1,7 @@
 #!/bin/sh
 
 cd "$(dirname "$0")"
-DOTDIR=$(pwd)
+DOTFILES=$(pwd)
 
 _all=yes
 _link=
@@ -105,66 +105,33 @@ do_link() {
 		if test -L "$_src"; then
 			cp "$_src" "$HOME/$_target"
 		elif test -f "$_src"; then
-			vlink "$DOTDIR/$_src" "$HOME/$_target"
+			vlink "$DOTFILES/$_src" "$HOME/$_target"
 		fi
 	done
 }
 
-cat_if_exist() {
-	test -f "$1" && cat "$1"
-}
-
-merge_bashrc() {
-	cat 00-setup.sh \
-		80-alias-core-util.sh \
-		80-alias-misc.sh \
-		80-functions.sh \
-		90-prompt.bash \
-		91-prefer-tui-browser.sh \
-		93-xlibc.sh \
-		99-cowsay.sh
-	cat_if_exist local.sh
-	cat_if_exist local.bash
-}
-
-merge_zshrc() {
-	cat 00-prof.zsh \
-		00-setup.sh \
-		01-setup.zsh \
-		10-setopt.zsh \
-		20-variables.zsh \
-		30-modules.zsh \
-
-	sed "s,__CURDIR__,$DOTDIR/sh," 40-autoload-functions.zsh.in
-	cat 70-key-binding.zsh \
-		70-alias-grml.zsh \
-		70-zle-grml.zsh \
-		80-alias-core-util.sh \
-		80-alias-misc.sh \
-		80-functions.sh \
-		80-functions.zsh \
-		80-functions-grml.zsh \
-		90-completion.zsh \
-		91-pass.zsh \
-		91-prefer-tui-browser.sh \
-		91-term-title.zsh
-	cat_if_exist "92-prompt-battery.$(uname -s).zsh"
-	cat 92-theme.zsh 93-xlibc.sh
-	sed "s,[\$]DOTFILES,$DOTDIR," 98-bundle.zsh.in
-	cat 99-cowsay.sh
-	cat_if_exist local.sh
-	cat_if_exist local.zsh
+merge_shrc() {
+	printf '%s\n' *.sh *."$1" *."$1".in *."$1.$(uname -s)" |
+	sort |
+	while read f; do
+		case "$f" in
+		"*."*)	;;
+		*.in)	sed "s,[$]DOTFILES,$DOTFILES," "$f" ;;
+		*)	cat "$f" ;;
+		esac
+	done
 }
 
 mk_rc() {
 	cd sh
 	if command -v bash >/dev/null 2>&1; then
-		merge_bashrc >"$HOME/.bashrc"
+		merge_shrc bash >"$HOME/.bashrc"
 	fi
 	if command -v zsh >/dev/null 2>&1; then
-		merge_zshrc >"$HOME/.zshrc"
+		merge_shrc zsh >"$HOME/.zshrc"
 		zsh -c "zcompile $HOME/.zshrc"
 	fi
+	cd ..
 }
 
 test -n "$_all$_link" && do_link
