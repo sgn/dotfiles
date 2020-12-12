@@ -77,13 +77,9 @@ if command -v start-pulseaudio-x11 >/dev/null 2>&1; then
 fi
 
 # LXDM doesn't source .xinitrc, LXDM will set DESKTOP_SESSION
-case "${DESKTOP_SESSION:-dwm}" in
-dwm|xinitrc)
+case "${DESKTOP_SESSION:-i3}" in
+i3|xinitrc)
 	## lock is the screensaver
-	sv up ~/.local/service/i3lock
-	sv up ~/.local/service/slstatus
-	;;
-i3)
 	sv up ~/.local/service/i3lock
 	;;
 esac
