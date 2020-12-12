@@ -1,0 +1,13 @@
+#!/bin/sh
+
+exec 2>&1
+
+command -v newsboat >/dev/null || touch down
+
+exec snooze -w0 -s 3d -t ./timefile sh -c '
+	for area in CC CR DS DM GT PL LO OS
+	do
+		newsboat -i http://services.ceon.pl/dblpfeeds/opml/$area.opml
+	done
+	touch timefile
+'
