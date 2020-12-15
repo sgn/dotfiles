@@ -46,7 +46,7 @@ filter_pathspec() {
 }
 
 do_fixup() {
-	targetrev=$(git rev-list -1 HEAD "$@")
+	targetrev=$(git rev-list -1 HEAD -- "$@")
 	if [ "$targetrev" ]; then
 		exec git commit --fixup=$targetrev
 	else
