@@ -1,4 +1,4 @@
-# https://github.com/felipec/dotfiles/blob/44c60c538ff0aa3f100a22485a56481993607e2f/.vim/syntax/sharness.vim
+" https://github.com/felipec/dotfiles/blob/44c60c538ff0aa3f100a22485a56481993607e2f/.vim/syntax/sharness.vim
 if exists('b:current_syntax')
   finish
 endif
