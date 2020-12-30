@@ -76,3 +76,5 @@
 	path = ~/.config/git/void-packages.conf
 [feature]
 	experimental = true
+[init]
+	defaultBranch = main
