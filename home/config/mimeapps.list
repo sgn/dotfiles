@@ -23,8 +23,7 @@ application/x-ext-ps=org.gnome.Evince.desktop
 image/x-bzeps=org.gnome.Evince.desktop
 image/x-eps=org.gnome.Evince.desktop
 image/x-gzeps=org.gnome.Evince.desktop
-image/tiff=org.gnome.Evince.desktop
 application/oxps=org.gnome.Evince.desktop
 application/vnd.ms-xpsdocument=org.gnome.Evince.desktop
 application/illustrator=org.gnome.Evince.desktop
-
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop
