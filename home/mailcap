@@ -1,8 +1,13 @@
 image/*; sxiv %s
 video/*; mpv %s
-application/pdf; /usr/bin/evince %s; test=test -n "$DISPLAY"
-application/x-pdf; /usr/bin/evince %s; test=test -n "$DISPLAY"
-text/plain; less
+# application/pdf; /usr/bin/evince %s; test=test -n "$DISPLAY"
+# application/x-pdf; /usr/bin/evince %s; test=test -n "$DISPLAY"
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; pandoc --from docx --to markdown %s; copiousoutput
+application/vnd.oasis.opendocument.text; pandoc --from odt --to markdown %s; copiousoutput
+application/pdf; pdftotext -layout %s -; copiousoutput;
+application/ms-word; catdoc %s; copiousoutput;
+application/msword; catdoc %s; copiousoutput;
+text/plain; cat %s; copiousoutput;
 # auto view using w3m
 text/html; w3m -I %{charset} -T text/html; copiousoutput;
 # text/html; lynx -force_html -dump -width 80 -assume_charset utf-8 %s ; copiousoutput
