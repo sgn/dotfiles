@@ -1,0 +1,1 @@
+../../../vim/syntax/sharness.vim
