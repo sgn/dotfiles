@@ -78,7 +78,7 @@ urimethodmap ~/.w3m/urimethodmap, /etc/w3m/urimethodmap
 editor /usr/bin/vim
 mailto_options 1
 mailer /usr/bin/mutt
-extbrowser /usr/bin/firefox -P default
+extbrowser /usr/bin/qutebrowser
 extbrowser2 sh -c 'printf %s "$0" | xclip'
 extbrowser3 sh -c 'printf %s "$0" | xclip -sel clip'
 extbrowser4 
