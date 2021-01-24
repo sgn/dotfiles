@@ -15,6 +15,7 @@ while	case "$#,$1" in
 	*,-s | *,--shell)	_all= ; _shell=yes ;;
 	*,-e | *,--external)	_all= ; _external=yes ;;
 	*,-f | *,--force)	_force=yes ;;
+	*,-V | *,--vim)         _vim=yes ;;
 	esac
 do
 	shift
@@ -136,3 +137,8 @@ mk_rc() {
 
 test -n "$_all$_link" && do_link
 test -n "$_all$_shell" && mk_rc
+
+if test -n "$_vim" && test ! -L ~/.vim/pack/bundle/start; then
+	mkdir -p ~/.vim/pack/bundle
+	ln -s $DOTFILES/external/vim ~/.vim/pack/bundle/start
+fi
