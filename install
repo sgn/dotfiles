@@ -14,7 +14,7 @@ while	case "$#,$1" in
 	*,-l | *,--link)	_all= ; _link=yes ;;
 	*,-s | *,--shell)	_all= ; _shell=yes ;;
 	*,-e | *,--external)	_all= ; _external=yes ;;
-	*,-e | *,--force)	_force=yes ;;
+	*,-f | *,--force)	_force=yes ;;
 	esac
 do
 	shift
