@@ -1,6 +1,10 @@
 #!/bin/sh
 
-BROWSER=firefox
+if command -v qutebrowser >/dev/null; then
+	BROWSER=qutebrowser
+else
+	BROWSER=firefox
+fi
 export BROWSER
 
 if ! command -v sv >/dev/null; then
