@@ -1,9 +1,6 @@
 #!/bin/sh
 
-_url=$(xurls | dmenu -l 10)
-
-if [ "$_url" ]; then
-	nohup topen "$_url" >/dev/null 2>&1 &
-fi
-
-exit 0
+xurls |
+sort -u |
+ifne dmenu -l 10 |
+ifne xargs topen
