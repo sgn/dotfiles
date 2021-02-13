@@ -1,0 +1,51 @@
+#!/bin/sh
+
+_distdir=$(xdistdir) || exit
+_archs="x86_64 x86_64-musl aarch64 aarch64-musl armv7l armv7l-musl
+ armv6l armv6l-musl i686"
+
+if [ "x$1" = "x-S" ]; then
+	sync=yes
+	shift
+fi
+
+pkgver() {
+	env XBPS_TARGET_ARCH="$1" xbps-query \
+		-r ~/.local \
+		-C "$_distdir/etc/xbps.d" \
+		-R -p pkgver "$2"
+}
+
+mkitem() {
+	local pkgname="$1"
+	local pkgver dbgpkgver arch
+	for arch in $_archs
+	do
+		pkgver="$(pkgver "$arch" "$pkgname")" &&
+			printf "$pkgver.$arch.xbps%s\\n" "" ".sig"
+		dbgpkgver="$(pkgver "$arch" "$pkgname-dbg")" &&
+			printf "debug/$dbgpkgver.$arch.xbps%s\\n" "" ".sig"
+	done
+}
+
+mkdir -p ~/.local/var/db/xbps
+[ "$sync" ] &&
+for arch in $_archs
+do
+	env XBPS_TARGET_ARCH=$arch xbps-install \
+		-r ~/.local \
+		-C "$_distdir/etc/xbps.d" \
+		-Sy >/dev/null 2>&1 || exit
+done
+
+if [ $# != 0 ]; then
+	for _pkgname
+	do
+		mkitem "$_pkgname"
+	done
+else
+	while read -r _pkgname
+	do
+		mkitem "$_pkgname"
+	done
+fi
