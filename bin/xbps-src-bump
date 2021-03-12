@@ -4,6 +4,7 @@ while test $# -ne 0; do
 	case "$1" in
 	-x) set -x ;;
 	-n|--dry-run) dryrun=yes ;;
+	*) break ;;
 	esac
 	shift
 done
@@ -25,10 +26,11 @@ update_pkg() {
 	xbump "$pkg"
 }
 
-while read pkg; do
-	c_flags=""
+bump() {
+	local pkg="$1"
+	local c_flags=
 	echo "Checking for $pkg..."
-	if ${dryrun+:} false; then
+	if [ "$dryrun" ]; then
 		./xbps-src update-check "$pkg"
 		continue
 	fi
@@ -48,4 +50,14 @@ while read pkg; do
 			update_pkg $c_flags "chroot-$pkg" "$version"
 		fi
 	fi
-done 3>&1 1>&2
+}
+
+if test $# != 0; then
+	for pkg; do
+		bump "$pkg"
+	done
+else
+	while read pkg; do
+		bump "$pkg"
+	done
+fi 3>&1 1>&2
