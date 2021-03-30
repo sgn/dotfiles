@@ -25,7 +25,28 @@ fi
 _JAVA_AWT_WM_NONREPARENTING=1
 export _JAVA_AWT_WM_NONREPARENTING
 
-if command -v fcitx >/dev/null; then
+if command -v uim-xim >/dev/null; then
+	uim-xim &
+	GTK_IM_MODULE=uim
+	QT_IM_MODULE=uim
+	XMODIFIERS=@im=uim
+	export GTK_IM_MODULE QT_IM_MODULE XMODIFIERS
+	if command -v uim-toolbar-gtk3 >/dev/null; then
+		uim-toolbar-gtk3 &
+	fi
+elif command -v ibus-daemon >/dev/null; then
+	GTK_IM_MODULE=ibus
+	QT_IM_MODULE=ibus
+	XMODIFIERS=@im=ibus
+	export GTK_IM_MODULE QT_IM_MODULE XMODIFIERS
+	ibus-daemon -dx
+elif command -v fcitx5 >/dev/null; then
+	GTK_IM_MODULE=fcitx
+	QT_IM_MODULE=fcitx
+	XMODIFIERS=@im=fcitx
+	export GTK_IM_MODULE QT_IM_MODULE XMODIFIERS
+	fcitx5 -d
+elif command -v fcitx >/dev/null; then
 	GTK_IM_MODULE=fcitx
 	QT_IM_MODULE=fcitx
 	XMODIFIERS=@im=fcitx
