@@ -25,6 +25,8 @@ mkitem() {
 			printf "$pkgver.$arch.xbps%s\\n" "" ".sig"
 		dbgpkgver="$(pkgver "$arch" "$pkgname-dbg")" &&
 			printf "debug/$dbgpkgver.$arch.xbps%s\\n" "" ".sig"
+		pkg32ver="$(pkgver "$arch" "$pkgname-32bit")" &&
+			printf "multilib/$pkg32ver.$arch.xbps%s\\n" "" ".sig"
 	done
 }
 
