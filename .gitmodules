@@ -10,3 +10,7 @@
 [submodule "external/vim/vim-lsp"]
 	path = external/vim/vim-lsp
 	url = https://github.com/prabirshrestha/vim-lsp.git
+[submodule "external/emacs/evil"]
+	path = external/emacs/evil
+	url = https://github.com/emacs-evil/evil.git
+	branch = stable

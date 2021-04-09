@@ -99,6 +99,7 @@ do_link() {
 
 	find home -path home/local/service -prune \
 		-o -name '*.sw?' -prune \
+		-o -name '#*#' -prune \
 		-o -type f -print \
 		-o -type l -print |
 	while read -r _src; do
@@ -141,4 +142,16 @@ test -n "$_all$_shell" && mk_rc
 if test -n "$_vim" && test ! -L ~/.vim/pack/bundle/start; then
 	mkdir -p ~/.vim/pack/bundle
 	ln -s $DOTFILES/external/vim ~/.vim/pack/bundle/start
+fi
+
+mkdir -p ~/.emacs.d/elisp
+_tmpfile=$(mktemp)
+for dir in "$DOTFILES"/external/emacs/*
+do
+	test -d "$dir" &&
+	printf "(add-to-list 'load-path \"%s\")\\n" "$dir"
+done >"$_tmpfile"
+
+if ! cmp "$_tmpfile" ~/.emacs.d/elisp/local-generated.el; then
+	cp "$_tmpfile" ~/.emacs.d/elisp/local-generated.el
 fi
