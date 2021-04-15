@@ -32,7 +32,7 @@ prompt_sgn_setup () {
 	# exit status of previous command if failure
 	PS1='%B%F{red}%(?..%? )%f%b'
 	# user@host
-	PS1="${PS1}%B%F{blue}%n%f%b@%m "
+	PS1="${PS1}@%F{blue}%m%f "
 	# cwd, truncate to 40 chars
 	PS1="${PS1}%B%40<..<%~%<<%b "
 	if ${ZSH_PROMPT_NO_PRECMD+false} :; then
