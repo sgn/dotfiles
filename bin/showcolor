@@ -17,12 +17,12 @@ echo
 
 for FGs in 'Default    0m' 'Default    1m' \
 	   'Black   0;30m' 'D Gray  1;30m' \
-	   'Blue    0;34m' 'L Blue  1;34m' \
-	   'Green   0;32m' 'L Green 1;32m' \
-	   'Cyan    0;36m' 'L Cyan  1;36m' \
 	   'Red     0;31m' 'L Red   1;31m' \
-	   'Purple  0;35m' 'LPurple 1;35m' \
+	   'Green   0;32m' 'L Green 1;32m' \
 	   'Brown   0;33m' 'Yellow  1;33m' \
+	   'Blue    0;34m' 'L Blue  1;34m' \
+	   'Purple  0;35m' 'LPurple 1;35m' \
+	   'Cyan    0;36m' 'L Cyan  1;36m' \
 	   'L Gray  0;37m' 'White   1;37m'; do
 	FG=${FGs##* }
 	printf ' %s \033[%s %s ' "$FGs" "$FG" $T
