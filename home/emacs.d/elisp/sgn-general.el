@@ -123,7 +123,7 @@ Work on buffer and region"
   (add-hook hook 'sgn/turn-on-local-column-number-mode))
 
 (global-display-line-numbers-mode)
-(setq display-line-numbers-type 'visual)
+(setq display-line-numbers-type 'relative)
 (size-indication-mode -1)
 
 ;;;; Scrolling
