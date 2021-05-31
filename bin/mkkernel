@@ -1,0 +1,20 @@
+#!/bin/sh
+
+cd ~/src/linux
+
+rev=$1
+VERSION="${2:-$rev}-manual"
+
+git checkout "$rev" &&
+make ARCH=x86_64 EXTRAVERSION=-manual -j9 prepare &&
+make ARCH=x86_64 EXTRAVERSION=-manual -j9 bzImage modules &&
+
+sudo make ARCH=x86_64 EXTRAVERSION=-manual -j9 modules_install &&
+sudo install -m644 System.map /boot/System.map-${VERSION} &&
+sudo install -m644 arch/x86/boot/bzImage /boot/vmlinuz-${VERSION} &&
+
+if [ -f /etc/kernel.d/post-install/10-dkms ]; then
+	sudo /etc/kernel.d/post-install/10-dkms linux ${VERSION}
+fi &&
+
+sudo dracut /boot/initramfs-${VERSION} ${VERSION}
