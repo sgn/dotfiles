@@ -16,6 +16,7 @@ unignore in-reply-to
 unignore X-Junked-Because
 unignore X-SpamProbe
 unignore X-Virus-Hagbard
+unignore authentication-results
 
 unhdr_order *
 hdr_order from subject date to cc bcc reply-to
@@ -56,7 +57,7 @@ set attribution="On %{%Y-%m-%d %H:%M:%S%Z}, %f wrote:"
 set mime_type_query_command="file -bi"
 set fast_reply=yes
 
-# reply to everyone, someone didn't subsribed
+# reply to everyone, someone didn't subscribe
 set ignore_list_reply_to=yes
 set include=yes
 
@@ -65,6 +66,7 @@ set alias_file="~/.config/mutt/aliases"
 set history_file="~/.cache/mutt/history"
 set confirmappend=no
 set confirmcreate=no
+set header_color_partial
 
 set pgp_default_key=0x1CA8DFAC890801B5
 set crypt_use_gpgme=yes

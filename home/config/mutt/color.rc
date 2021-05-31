@@ -77,6 +77,9 @@ color body  color00  color02   "^(gpg: )?Good signature "
 color body  color01  color03   "^(gpg: )?WARNING: This key has been revoked .*"
 color body  color04  color00   "^gpg: "
 
+# DKIM
+color header red default "(dkim|spf|dmarc)=fail"
+color header green default "(dkim|spf|dmarc)=pass"
 
 # Patch
 color   body    green           color00         '^[+].*'
