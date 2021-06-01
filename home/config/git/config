@@ -33,21 +33,8 @@
 [rerere]
 	enabled = true
 	autoupdate = true
-[pull]
-	rebase = false
-[push]
-	default = current
-[grep]
-	lineNumber = true
-[log]
-	decorate = short
-	abbrevCommit = true
 [diff]
 	colorMoved = true
-[status]
-	showStash = true
-[mailinfo]
-	scissors = true
 [sendemail]
 	smtpserver = smtp.gmail.com
 	smtpencryption = ssl
@@ -55,17 +42,8 @@
 	confirm = always
 [credential]
 	helper = pass
-[index]
-	recordEndOfIndexEntries = true
 [gpg]
 	program = gpg2
-[format]
-	signOff = true
-[rebase]
-	autoSquash = true
-	autoStash = true
-[add "interactive"]
-	usebuiltin = true
 [merge]
 	tool = vimdiff
 [includeIf "gitdir:~/src/git/"]
@@ -76,5 +54,3 @@
 	path = ~/.config/git/void-packages.conf
 [feature]
 	experimental = true
-[init]
-	defaultBranch = main
