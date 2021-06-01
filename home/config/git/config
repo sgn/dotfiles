@@ -3,49 +3,17 @@
 	email = congdanhqx@gmail.com
 	signingkey = A48B52BF0EA3475A
 
-[alias]
-	st = status --short
-	di = diff -M -p --stat
-	diw = diff -M -p --stat -w
-	diww = diff -M -p --stat -w --word-diff=color
-	diwwd = diff -M -p --stat -w --word-diff=color --word-diff-regex=.
-	dc = diff -M -p --stat --cached
-	dcw = diff -M -p --stat -w --cached
-	dcww = diff -M -p --stat -w --word-diff=color --cached
-	dcwwd = diff -M -p --stat -w --word-diff=color --word-diff-regex=. --cached
-	dcc = diff -M -p --stat --cached --check
-	ci = commit
-	cia = commit --amend --no-edit
-	co = checkout
-	ll = ls-files
-	llm = ls-files -m
-	lg = log --oneline --graph
-	ls-origin = for-each-ref --format='%(refname:lstrip=3)' refs/remotes/origin
-	rs = restore
-	ss = show -s
-	s = show -M -p --stat
-	shw = show -M -p --stat -w
-	shww = show -M -p --stat -w --word-diff=color
-	shwwd = show -M -p --stat -w --word-diff=color --word-diff-regex=.
-	summary = show -s --date=short --pretty='format:%h, (%s, %ad)'
-	sw = switch
-	env = !env | grep ^GIT_
 [rerere]
 	enabled = true
 	autoupdate = true
-[diff]
-	colorMoved = true
 [sendemail]
 	smtpserver = smtp.gmail.com
 	smtpencryption = ssl
 	smtpuser = congdanhqx@gmail.com
-	confirm = always
 [credential]
 	helper = pass
 [gpg]
 	program = gpg2
-[merge]
-	tool = vimdiff
 [includeIf "gitdir:~/src/git/"]
 	path = ~/.config/git/git.conf
 [includeIf "gitdir:~/src/void-packages/"]
