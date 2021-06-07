@@ -41,7 +41,8 @@
 	scissors = true
 [sendemail]
 	smtpserver = smtp.gmail.com
-	smtpencryption = ssl
+	smtpserverport = 587
+	smtpencryption = tls
 	smtpuser = congdanhqx@gmail.com
 	confirm = always
 [credential]
