@@ -64,3 +64,5 @@
 	experimental = true
 [init]
 	defaultBranch = main
+[format]
+	thread = shallow
