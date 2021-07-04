@@ -97,7 +97,10 @@ if [ -d /sys/class/power_supply/BAT0 ]; then
 	sv up ~/.local/service/battery
 fi
 
-if command -v start-pulseaudio-x11 >/dev/null 2>&1; then
+if command -v pipewire >/dev/null 2>&1; then
+	pipewire &
+	pipewire-pulse &
+elif command -v start-pulseaudio-x11 >/dev/null 2>&1; then
 	start-pulseaudio-x11
 fi
 

@@ -7,9 +7,9 @@ sv down ~/.local/service/slstatus
 list_x_pid() {
 	ps -u$USER -o pid=,comm= |
 	awk '
-		$2~"^(gvfsd|dconf|gsetting|udisk)"{print $1}
-		$2=="dunst"||
-		$2=="xcape"{print $1}
+		$2~/^(gvfsd|dconf|gsetting|udisk)/{print $1}
+		$2=="dunst"||$2=="xcape"{print $1}
+		$2~/pipewire/{print $1}
 	'
 }
 
