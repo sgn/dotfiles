@@ -15,10 +15,10 @@ pass-login () {
 		esac
 	done
 	login=$(pass show "$1" | sed -n '/^login: /s/login: //p')
-	if [[ "$clip" ]]; then
+	if [ -n "$clip" ]; then
 		echo -n "$login" | xclip -selection "${PASSWORD_STORE_X_SELECTION:-clipboard}"
 		echo "Login copied into clipboard"
-	elif [[ "$qrcode" ]]; then
+	elif [ "$qrcode" ]; then
 		echo -n "$login" | qrencode -t utf8
 	else
 		echo "$login"
