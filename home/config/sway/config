@@ -1,5 +1,5 @@
 set $mod Mod4
-font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans Mono 12
 
 set $refresh_i3status killall -SIGUSR1 i3status
 set $terminal foot
@@ -37,12 +37,12 @@ bindsym $mod+Shift+Return exec exec $terminal
 bindsym $mod+Shift+c kill
 
 # start dmenu (a program launcher)
-set $dargs -fn monospace:size=8 -nb '#1d2021' -nf '#bdae93' -sb '#3c3836' -sf '#ebdbb2'
+set $dargs -fn monospace:size=12 -nb '#1d2021' -nf '#bdae93' -sb '#3c3836' -sf '#ebdbb2'
 bindsym $mod+p exec exec dmenu_run $dargs
 bindsym $mod+u exec passmenu $dargs
 
 bindsym $mod+w       exec exec qutebrowser
-bindsym $mod+Shift+w exec exec firefox -P script --no-remote
+bindsym $mod+Shift+w exec exec firefox-wayland -P script --no-remote
 
 bindsym $mod+Escape exec --no-startup-id xset s activate
 
