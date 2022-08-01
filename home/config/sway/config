@@ -5,6 +5,8 @@ set $refresh_i3status killall -SIGUSR1 i3status
 set $terminal foot
 
 exec --no-startup-id exec foot -T scratchpad
+exec --no-startup-id exec pipewire
+exec --no-startup-id exec pipewire-pulse
 for_window [title="scratchpad"] floating enable;
 for_window [title="scratchpad"] move scratchpad;
 bindsym $mod+grave [title="scratchpad"] scratchpad show

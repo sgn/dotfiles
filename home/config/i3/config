@@ -28,6 +28,7 @@ bindsym Control+Print exec --no-startup-id --release scrot $scrotoutput -s -f
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+floating_maximum_size 1920 x 1080
 
 # start a terminal
 bindsym $mod+Shift+Return exec exec $terminal
