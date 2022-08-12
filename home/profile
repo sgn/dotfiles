@@ -27,7 +27,7 @@ add_to_path () {
 	esac
 }
 
-TZ="Asia/Ho_Chi_Minh"
+TZ="Asia/Saigon"
 export TZ
 
 XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
