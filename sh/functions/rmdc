@@ -1,0 +1,5 @@
+rmdc() {
+	Rscript -e "rmarkdown::render('$1')"
+}
+
+rmdc "$@"
