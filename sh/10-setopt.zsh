@@ -4,7 +4,7 @@ setopt notify
 setopt no_hup
 # cd
 setopt auto_cd
-setopt auto_pushd
+# setopt auto_pushd
 setopt pushd_ignore_dups
 # completion
 setopt hash_list_all

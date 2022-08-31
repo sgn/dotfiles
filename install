@@ -42,7 +42,13 @@ else
 		}
 	fi
 	vlink() {
-		if test ! -f "$2" || vtracked "$2"
+		if test ! -f "$2"
+		then
+			cp -fp "$1" "$2"
+		elif cmp -s "$1" "$2"
+		then
+			:
+		elif vtracked "$2"
 		then
 			rm -f "$2"
 			cp -fp "$1" "$2"
