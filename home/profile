@@ -107,7 +107,13 @@ strip_from_path () {
 
 strip_from_path /usr/lib/ccache/bin
 strip_from_path "${HOME}/bin:${HOME}/.local/bin"
+strip_from_path "${HOME}/.nix-profile/bin:/nix/var/nix/profiles/default/bin"
 unset -f strip_from_path
+
+# nix on macOS, don't let nix's program override local build
+if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
+	. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+fi
 
 PATH="${HOME}/bin:${HOME}/.local/bin:${PATH}"
 if [ -d /usr/lib/ccache/bin ]; then
