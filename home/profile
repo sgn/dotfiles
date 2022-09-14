@@ -2,27 +2,15 @@
 
 #umask 027
 
+if [ -f ~/.config/local.preprofile ]; then
+	. ~/.config/local.preprofile
+fi
+
 add_to_path () {
-	if test $# -eq 1; then
-		via=end
-	else
-		via="$1"
-		shift
-	fi
-	test -d "$1" || return
 	case ":$PATH:" in
-		*:"$1":*) return ;;
-		*) ;;
-	esac
-	case "$via" in
-	begin)
-		PATH=$1:$PATH
-		;;
-	end)
-		PATH=$PATH:$1
-		;;
+	*:"$1":*) ;;
 	*)
-		echo "Invalid call to add_to_path: $via" >&2
+		PATH=$PATH:$1
 		;;
 	esac
 }
@@ -33,7 +21,6 @@ export TZ
 XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
 export XDG_CONFIG_HOME
 
-add_to_path begin /usr/lib/ccache/bin
 add_to_path "${HOME}/.local/platform-tools"
 
 ## pager
@@ -81,11 +68,6 @@ for i in vim vi ex ed; do
 done
 unset i
 
-## $HOME software install
-## See http://nullprogram.com/blog/2017/06/19/.
-add_to_path begin "$HOME/.local/bin"
-add_to_path begin "$HOME/bin"
-
 GEM_HOME="$HOME/.local/share/gem"
 GEM_SPEC_CACHE="$HOME/.cache/gem"
 export GEM_HOME GEM_SPEC_CACHE
@@ -109,3 +91,25 @@ export SVDIR
 
 ## Specific to local computer. Should be sourced last
 test -r ~/.config/local.profile && . ~/.config/local.profile
+unset -f add_to_path
+
+# Not necessary, skip looking up multiple times
+# when running tmux
+strip_from_path () {
+	case "$PATH" in
+	"$1":*)	PATH=${PATH#"$1":} ;;
+	*:"$1")	PATH=${PATH%:"$1"} ;;
+	*:"$1":*)
+		PATH="${PATH%:"$1":*}:${PATH#*:"$1":}"
+		;;
+	esac
+}
+
+strip_from_path /usr/lib/ccache/bin
+strip_from_path "${HOME}/bin:${HOME}/.local/bin"
+unset -f strip_from_path
+
+PATH="${HOME}/bin:${HOME}/.local/bin:${PATH}"
+if [ -d /usr/lib/ccache/bin ]; then
+	PATH="/usr/lib/ccache/bin:${PATH}"
+fi
