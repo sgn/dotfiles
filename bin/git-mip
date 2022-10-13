@@ -1,0 +1,21 @@
+#!/bin/sh
+
+GIT_DIR=$(git rev-parse --git-dir) || exit
+
+reflog=
+git reset --hard origin/master
+while read branch; do
+	if [ "$reflog" ]; then
+		git reflog delete HEAD@{0}
+	fi
+	reflog=y
+	git merge --no-ff --no-commit "$branch"
+	if ! git diff-index --cached --exit-code -s HEAD; then
+		GIT_EDITOR=: git merge --continue
+		printf '%s\n' "$branch" >&3
+	else
+		git merge --abort
+	fi
+done <${GIT_DIR}/topics 3>${GIT_DIR}/topics.new
+
+diff -u ${GIT_DIR}/topics ${GIT_DIR}/topics.new
