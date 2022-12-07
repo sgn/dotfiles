@@ -161,3 +161,4 @@ done >"$_tmpfile"
 if ! cmp "$_tmpfile" ~/.emacs.d/elisp/local-generated.el; then
 	cp "$_tmpfile" ~/.emacs.d/elisp/local-generated.el
 fi
+test -f ~/.config/git/local.conf || touch ~/.config/git/local.conf
