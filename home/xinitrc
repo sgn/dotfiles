@@ -9,9 +9,6 @@ if test -d /etc/X11/xinit/xinitrc.d ; then
 	unset f
 fi
 
-## local xprofile
-test -f ~/.xprofile && . ~/.xprofile
-
 ## start session
 if test $# -eq 1 && command -v $1 >/dev/null 2>&1 ; then
 	exec $STARTUP "$@"

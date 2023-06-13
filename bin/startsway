@@ -6,7 +6,9 @@ fi
 
 test -r ~/.config/pre.xprofile && . ~/.config/pre.xprofile
 
-. /etc/X11/xinit/xinputrc
+if [ -f /etc/X11/xinit/xinputrc ]; then
+	. /etc/X11/xinit/xinputrc
+fi
 
 if command -v qutebrowser >/dev/null; then
 	BROWSER=qutebrowser
@@ -29,39 +31,16 @@ elif command -v uim-xim >/dev/null; then
 elif command -v ibus-daemon >/dev/null; then
 	GTK_IM_MODULE=ibus
 elif command -v fcitx5 >/dev/null; then
-	GTK_IM_MODULE=fcitx5
+	GTK_IM_MODULE=fcitx
 elif command -v fcitx >/dev/null; then
 	GTK_IM_MODULE=fcitx
 fi
 
-case "$GTK_IM_MODULE" in
-uim)
-	uim-xim &
-	QT_IM_MODULE=uim
-	XMODIFIERS=@im=uim
-	if command -v uim-toolbar-gtk3 >/dev/null; then
-		uim-toolbar-gtk3 &
-	fi
-	;;
-ibus)
-	QT_IM_MODULE=ibus
-	XMODIFIERS=@im=ibus
-	export GTK_IM_MODULE QT_IM_MODULE XMODIFIERS
-	ibus-daemon -dx
-	;;
-fcitx5)
-	GTK_IM_MODULE=fcitx
-	QT_IM_MODULE=fcitx
-	XMODIFIERS=@im=fcitx
-	export GTK_IM_MODULE QT_IM_MODULE XMODIFIERS
-	fcitx5 -d
-	;;
-fcitx)
-	QT_IM_MODULE=fcitx
-	XMODIFIERS=@im=fcitx
-	fcitx
-	;;
-esac
+if [ "$GTK_IM_MODULE" ]; then
+	QT_IM_MODULE="$GTK_IM_MODULE"
+	XMODIFIERS="@im=$GTK_IM_MODULE"
+fi
+
 export GTK_IM_MODULE QT_IM_MODULE XMODIFIERS
 
 if command -v pipewire >/dev/null 2>&1; then

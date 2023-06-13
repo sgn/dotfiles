@@ -1,8 +1,4 @@
-#!/bin/bash
-[[ -f ~/.profile ]] && . ~/.profile
+# .bash_profile
 
-if [ -z "$DISPLAY" ] && [ "$(tty)" = '/dev/tty1' ] ; then
-	exec xinit -- vt01
-else
-	[[ -f ~/.bashrc ]] && . ~/.bashrc
-fi
+# Get the aliases and functions
+[ -f $HOME/.bashrc ] && . $HOME/.bashrc

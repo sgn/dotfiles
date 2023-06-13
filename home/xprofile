@@ -17,7 +17,7 @@ fi
 if command -v xrdb >/dev/null
 then
 	xrdb -merge "${HOME}/.config/Xresources/config"
-	if [ -f "$HOME/.config/Xresources/local" ]
+	if [ -r "$HOME/.config/Xresources/local" ]
 	then
 		xrdb -merge "${HOME}/.config/Xresources/local"
 	fi
@@ -34,38 +34,12 @@ elif command -v uim-xim >/dev/null; then
 elif command -v ibus-daemon >/dev/null; then
 	GTK_IM_MODULE=ibus
 elif command -v fcitx5 >/dev/null; then
-	GTK_IM_MODULE=fcitx5
+	GTK_IM_MODULE=fcitx
 elif command -v fcitx >/dev/null; then
 	GTK_IM_MODULE=fcitx
 fi
-case "$GTK_IM_MODULE" in
-uim)
-	uim-xim &
-	QT_IM_MODULE=uim
-	XMODIFIERS=@im=uim
-	if command -v uim-toolbar-gtk3 >/dev/null; then
-		uim-toolbar-gtk3 &
-	fi
-	;;
-ibus)
-	QT_IM_MODULE=ibus
-	XMODIFIERS=@im=ibus
-	export GTK_IM_MODULE QT_IM_MODULE XMODIFIERS
-	ibus-daemon -dx
-	;;
-fcitx5)
-	GTK_IM_MODULE=fcitx
-	QT_IM_MODULE=fcitx
-	XMODIFIERS=@im=fcitx
-	export GTK_IM_MODULE QT_IM_MODULE XMODIFIERS
-	fcitx5 -d
-	;;
-fcitx)
-	QT_IM_MODULE=fcitx
-	XMODIFIERS=@im=fcitx
-	fcitx
-	;;
-esac
+QT_IM_MODULE=$GTK_IM_MODULE
+XMODIFIERS=@im=$GTK_IM_MODULE
 export GTK_IM_MODULE QT_IM_MODULE XMODIFIERS
 
 # xmodmap - <<EOF
@@ -88,6 +62,26 @@ xcape -e 'Control_L=Escape'
 
 ## Turn off the bell
 xset -b s 180 120
+
+case "$GTK_IM_MODULE" in
+uim)
+	uim-xim &
+	if command -v uim-toolbar-gtk3 >/dev/null; then
+		uim-toolbar-gtk3 &
+	fi
+	;;
+ibus)
+	ibus-daemon -dx
+	;;
+fcitx)
+	fcitx5 -d || fcitx
+	;;
+esac
+
+if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
+	test -r ~/.config/local.xprofile && . ~/.config/local.xprofile
+	return
+fi
 
 if ! command -v feh >/dev/null; then
 	xsetroot -solid '#1d2021'

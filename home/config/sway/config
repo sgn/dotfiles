@@ -5,6 +5,7 @@ set $refresh_i3status killall -SIGUSR1 i3status
 set $terminal foot
 
 exec --no-startup-id exec foot -T scratchpad
+exec --no-startup-id exec x-input-method
 for_window [title="scratchpad"] floating enable;
 for_window [title="scratchpad"] move scratchpad;
 bindsym $mod+grave [title="scratchpad"] scratchpad show
@@ -25,6 +26,7 @@ set $scrotoutput 'Screenshot.%Y.%m.%d-%H.%M.%S.png' -e 'mv $f ~/Pictures'
 bindsym Print exec --no-startup-id scrot $scrotoutput
 bindsym Shift+Print exec --no-startup-id scrot $scrotoutput -u
 bindsym Control+Print exec --no-startup-id --release scrot $scrotoutput -s -f
+xwayland disable
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

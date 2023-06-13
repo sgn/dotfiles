@@ -1,12 +1,11 @@
-
 [Default Applications]
 text/html=org.qutebrowser.qutebrowser.desktop.desktop
 x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop.desktop
 x-scheme-handler/https=org.qutebrowser.qutebrowser.desktop.desktop
 x-scheme-handler/about=org.qutebrowser.qutebrowser.desktop.desktop
 x-scheme-handler/unknown=org.qutebrowser.qutebrowser.desktop.desktop
-image/jpeg=sxiv.desktop
-image/png=sxiv.desktop
+image/jpeg=org.xfce.ristretto.desktop
+image/png=org.xfce.ristretto.desktop
 image/bmp=sxiv.desktop
 image/gif=sxiv.desktop
 image/tiff=sxiv.desktop
@@ -27,3 +26,28 @@ application/oxps=org.gnome.Evince.desktop
 application/vnd.ms-xpsdocument=org.gnome.Evince.desktop
 application/illustrator=org.gnome.Evince.desktop
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop
+video/quicktime=mpv.desktop
+video/mp4=mpv.desktop
+video/x-ms-wmv=mpv.desktop
+video/x-matroska=mpv.desktop
+text/plain=org.xfce.mousepad.desktop;
+x-scheme-handler/discord-505520727521361941=discord-505520727521361941.desktop
+
+[Added Associations]
+application/pdf=org.gnome.Evince.desktop;
+image/jpeg=sxiv.desktop;fotoxx.desktop;feh.desktop;gpicview.desktop;gmic_qt.desktop;darktable.desktop;mypaint.desktop;org.xfce.ristretto.desktop;krita_jpeg.desktop;mupdf.desktop;ristretto.desktop;
+application/octet-stream=seahorse-pgp-encrypted.desktop;
+text/html=firefox.desktop;chromium.desktop;
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=libreoffice-calc.desktop;
+text/x-tex=org.xfce.mousepad.desktop;
+text/x-makefile=org.xfce.mousepad.desktop;
+application/msword=libreoffice-writer.desktop;
+video/quicktime=mpv.desktop;
+video/mp4=mpv.desktop;
+image/x-canon-cr2=org.xfce.ristretto.desktop;
+application/vnd.ms-excel=libreoffice-calc.desktop;
+video/x-ms-wmv=mpv.desktop;
+application/json=org.xfce.mousepad.desktop;
+text/x-log=org.xfce.mousepad.desktop;
+video/x-matroska=mpv.desktop;
+image/png=gpicview.desktop;org.xfce.ristretto.desktop;

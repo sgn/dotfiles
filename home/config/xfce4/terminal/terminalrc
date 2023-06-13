@@ -1,5 +1,4 @@
 [Configuration]
-FontName=Monospace 8
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBellUrgent=TRUE
@@ -30,4 +29,5 @@ MiscShowUnsafePasteDialog=TRUE
 ColorForeground=#d5d5c4c4a1a1
 ColorBackground=#1d1d20202121
 ColorPalette=rgb(29,32,33);rgb(251,73,52);rgb(184,187,38);rgb(250,189,47);rgb(131,165,152);rgb(211,134,155);rgb(142,192,124);rgb(213,196,161);rgb(102,92,84);rgb(251,73,52);rgb(184,187,38);rgb(250,189,47);rgb(131,165,152);rgb(211,134,155);rgb(142,192,124);rgb(251,241,199)
+MiscRightClickAction=TERMINAL_RIGHT_CLICK_ACTION_CONTEXT_MENU
 

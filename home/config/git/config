@@ -47,8 +47,6 @@
 	confirm = always
 [credential]
 	helper = pass
-[gpg]
-	program = gpg2
 [rebase]
 	autoSquash = true
 	autoStash = true

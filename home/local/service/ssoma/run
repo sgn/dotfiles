@@ -1,3 +1,4 @@
 #!/bin/sh
 
+exec >/dev/null 2>&1
 exec snooze -H'*' -M3/10 -S15 ssoma sync
