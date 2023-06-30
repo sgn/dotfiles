@@ -13,6 +13,20 @@ get_urls() {
 	grep -oE '(www.|http[s]?://)[^ ")>]+' >"$urls_file"
 }
 
+all_browsers() {
+	command -v firefox 2>/dev/null
+	command -v chromium 2>/dev/null
+	command -v qutebrowser 2>/dev/null
+	if flatpak info org.chromium.Chromium >/dev/null 2>&1; then
+		echo 'flatpak run org.chromium.Chromium'
+	fi
+	if flatpak info org.mozilla.Firefox >/dev/null 2>&1; then
+		echo 'flatpak run org.mozilla.Firefox'
+	fi
+	command -v xdg-open 2>/dev/null
+	command -v topen 2>/dev/null
+}
+
 tmux display-message -p '#W' >/dev/null
 case "$(tmux display-message -p '#W')" in
 	weechat*|WeeChat*)
@@ -25,7 +39,9 @@ esac
 if test -s "$urls_file"; then
 	_url=$(fzf-tmux <$urls_file)
 	if test -n "$_url"; then
-		nohup topen "$_url" >/dev/null 2>&1 &
+		browser=$(all_browsers | fzf-tmux)
+		[ "$browser" ] || browser=topen
+		nohup $browser "$_url" >/dev/null 2>&1 &
 	fi
 fi
 
