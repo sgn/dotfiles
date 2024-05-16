@@ -19,6 +19,12 @@ add_home_local_bin() {
 
 build_flags() {
 	local _cppflags="-fstack-protector-strong -D_FORTIFY_SOURCE=2 -march=native -mtune=native -pipe -O2 -g"
+	_cppflags="${_cppflags} -Werror=implicit-function-declaration"
+	_cppflags="${_cppflags} -Werror=implicit-int"
+	_cppflags="$_cppflags -Werror=incompatible-pointer-types"
+	_cppflags="$_cppflags -Werror=int-conversion"
+	_cppflags="$_cppflags -Werror=deprecated-declarations"
+	_cppflags="$_cppflags -Werror=maybe-uninitialized"
 	CFLAGS="$_cppflags ${CFLAGS:-}"
 	CXXFLAGS="$_cppflags ${CXXFLAGS:-}"
 	LDFLAGS="-Wl,--as-needed -Wl,-z,relro -Wl,-z,now ${LDFLAGS:-}"

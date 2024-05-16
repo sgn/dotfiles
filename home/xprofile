@@ -63,53 +63,58 @@ xcape -e 'Control_L=Escape'
 ## Turn off the bell
 xset -b s 180 120
 
-case "$GTK_IM_MODULE" in
-uim)
-	uim-xim &
-	if command -v uim-toolbar-gtk3 >/dev/null; then
-		uim-toolbar-gtk3 &
-	fi
-	;;
-ibus)
-	ibus-daemon -dx
-	;;
-fcitx)
-	fcitx5 -d || fcitx
+_xprofile_manual_xdg=yes
+
+if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
+	_xprofile_manual_xdg=
+fi
+
+case "$DESKTOP_SESSION" in
+mate|xfce)
+	_xprofile_manual_xdg=
 	;;
 esac
 
-if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
-	test -r ~/.config/local.xprofile && . ~/.config/local.xprofile
-	return
-fi
+if [ "$_xprofile_manual_xdg" ]; then
+	case "$GTK_IM_MODULE" in
+	uim)
+		uim-xim &
+		if command -v uim-toolbar-gtk3 >/dev/null; then
+			uim-toolbar-gtk3 &
+		fi
+		;;
+	ibus)
+		ibus-daemon -dx
+		;;
+	fcitx)
+		fcitx5 -d || fcitx
+		;;
+	esac
 
-if ! command -v feh >/dev/null; then
-	xsetroot -solid '#1d2021'
-elif test -f ~/Pictures/wallpaper.png; then
-	feh --bg-center ~/Pictures/wallpaper.png
-elif test -f ~/Pictures/wallpaper.jpg; then
-	feh --bg-center ~/Pictures/wallpaper.jpg
-elif test -f ~/Pictures/wallpaper.jpeg; then
-	feh --bg-center ~/Pictures/wallpaper.jpeg
-fi
+	if ! command -v feh >/dev/null; then
+		xsetroot -solid '#1d2021'
+	elif test -f ~/Pictures/wallpaper.png; then
+		feh --bg-center ~/Pictures/wallpaper.png
+	elif test -f ~/Pictures/wallpaper.jpg; then
+		feh --bg-center ~/Pictures/wallpaper.jpg
+	elif test -f ~/Pictures/wallpaper.jpeg; then
+		feh --bg-center ~/Pictures/wallpaper.jpeg
+	fi
 
-xdotool mousemove 0 10000 || true
+	if command -v dunst >/dev/null 2>&1; then
+		dunst &
+	fi
 
-# command -v unclutter >/dev/null 2>&1 && unclutter &
+	if [ -d /sys/class/power_supply/BAT0 ]; then
+		sv up ~/.local/service/battery
+	fi
 
-if command -v dunst >/dev/null 2>&1; then
-	dunst &
-fi
-
-if [ -d /sys/class/power_supply/BAT0 ]; then
-	sv up ~/.local/service/battery
-fi
-
-if command -v pipewire >/dev/null 2>&1; then
-	pipewire &
-	pipewire-pulse &
-elif command -v start-pulseaudio-x11 >/dev/null 2>&1; then
-	start-pulseaudio-x11
+	if command -v pipewire >/dev/null 2>&1; then
+		pipewire &
+		pipewire-pulse &
+	elif command -v start-pulseaudio-x11 >/dev/null 2>&1; then
+		start-pulseaudio-x11
+	fi
 fi
 
 # LXDM doesn't source .xinitrc, LXDM will set DESKTOP_SESSION
