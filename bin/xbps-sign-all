@@ -1,10 +1,6 @@
 #!/bin/sh
 
 : "${BINPKGS:=${HOME}/src/void-packages/hostdir/binpkgs}"
-: "${PRIVKEY:=${HOME}/src/private.pem}"
-
-export CDPATH=
-_privkey=$(readlink -f "$PRIVKEY")
 
 force=
 debug=
@@ -23,5 +19,5 @@ find . \( -type d -path './*' -prune \) -o \
 	xbps-rindex \
 		${force:+--force} \
 		${debug:+--debug} \
-		--privkey "$_privkey" \
+		${PRIVKEY:+--privkey "$PRIVKEY"} \
 		--sign-pkg '{}' +

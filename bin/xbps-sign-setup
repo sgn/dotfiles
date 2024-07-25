@@ -1,11 +1,8 @@
 #!/bin/sh
 
 : "${BINPKGS:=${HOME}/src/void-packages/hostdir/binpkgs}"
-: "${PRIVKEY:=${HOME}/src/private.pem}"
-: "${SIGNER:=Danh Doan (Void Packaging) <congdanhqx@gmail.com>}"
-
-export CDPATH=
-_privkey=$(readlink -f "$PRIVKEY")
+: "${PRIVKEY:=${HOME}/.ssh/id_rsa}"
+: "${SIGNER:=ĐOÀN Trần Công Danh <congdanhqx@gmail.com>}"
 
 force=
 debug=
@@ -30,7 +27,7 @@ find . \( -type d -path './*' -prune \) -o \
 		env XBPS_TARGET_ARCH="$_arch" xbps-rindex \
 			${force:+--force} \
 			${debug:+--debug} \
-			--privkey "$_privkey" \
+			${PRIVKEY:+--privkey "$PRIVKEY"} \
 			--sign --signedby "$SIGNER" \
 			.
 	done
