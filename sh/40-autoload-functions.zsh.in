@@ -1,5 +1,5 @@
 fpath=( $DOTFILES/sh/functions ${fpath} )
-fpath=( $DOTFILES/sh/completions ${fpath} )
+fpath=( $HOME/.local/share/git/zsh $DOTFILES/sh/completions ${fpath} )
 
 typeset -aU ffiles
 ffiles=( $DOTFILES/sh/functions/**/[^_]*[^(~|.zwc)](N.:t))
