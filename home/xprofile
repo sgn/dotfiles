@@ -116,6 +116,7 @@ if [ "$_xprofile_manual_xdg" ]; then
 		start-pulseaudio-x11
 	fi
 fi
+unset _xprofile_manual_xdg
 
 # LXDM doesn't source .xinitrc, LXDM will set DESKTOP_SESSION
 case "${DESKTOP_SESSION:-i3}" in
