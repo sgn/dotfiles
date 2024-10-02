@@ -102,6 +102,8 @@ zstyle -e ':completion:*' completer '
 	fi
 	'
 
+zstyle ':completion:*:*:git:*' tag-order 'reply=(common-commands alias-commands)'
+
 zstyle ':completion:*' use-cache  yes
 zstyle ':completion:*:complete:*' cache-path "${HOME}/.cache/zsh"
 
