@@ -3,12 +3,12 @@
 
 for f in /sys/class/power_supply/BAT*/charge_start_threshold; do
 	if [ -f $f ]; then
-		echo 20 > "$f"
+		echo 30 > "$f"
 	fi
 done
 
 for f in /sys/class/power_supply/BAT*/charge_stop_threshold; do
 	if [ -f $f ]; then
-		echo 90 > "$f"
+		echo 98 > "$f"
 	fi
 done
