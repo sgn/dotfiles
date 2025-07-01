@@ -131,3 +131,7 @@ for compcom in cp df feh gpasswd head hnb mv pal stow uname ; do
 	[[ -z ${_comps[$compcom]} ]] && compdef _gnu_generic ${compcom}
 done;
 unset compcom
+
+if fzf --help | grep -q -e --zsh; then
+	source <(fzf --zsh)
+fi
