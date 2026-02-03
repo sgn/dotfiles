@@ -57,8 +57,10 @@ MAIL=/var/mail/$USER
 export MAIL
 
 ## SSH-Agent
-SSH_AUTH_SOCK="/run/x-user/$USER/ssh-agent.socket"
-export SSH_AUTH_SOCK
+if [ ! "$SSH_AUTH_SOCK" ]; then
+	SSH_AUTH_SOCK="/run/x-user/$USER/ssh-agent.socket"
+	export SSH_AUTH_SOCK
+fi
 
 ## Default text editor
 for i in vim vi ex ed; do

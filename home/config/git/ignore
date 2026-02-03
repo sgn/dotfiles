@@ -19,3 +19,4 @@
 *.sw?
 *.xz
 *.diff
+!srcpkgs/*/patches/*.diff
